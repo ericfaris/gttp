@@ -1,0 +1,25 @@
+[project]
+name = "gttp"
+version = "0.1.0"
+description = "Get To The Point — crowd-vetted self-help book summaries curated from Reddit."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "anthropic>=0.40",
+    "requests>=2.31",
+    "PyYAML>=6.0",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+gttp = "gttp.cli:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

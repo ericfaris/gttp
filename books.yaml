@@ -1,0 +1,31 @@
+# Seed catalog. Each book fans out over `subreddits` using `queries`, where
+# {title} is substituted with the book title. Add books with `gttp add "<title>"`
+# or edit this file directly.
+
+defaults:
+  subreddits:
+    - BettermentBookClub
+    - DecidingToBeBetter
+    - getdisciplined
+    - productivity
+    - selfimprovement
+    - books
+  queries:
+    - '{title} summary'
+    - '{title} key takeaways'
+    - '{title} in a nutshell'
+    - '{title} main points'
+  # Filtering thresholds applied before ranking.
+  min_score: 10
+  min_chars: 400
+  max_threads_per_book: 40
+  # How many top-ranked threads feed synthesis.
+  synthesis_top_n: 5
+
+books:
+  - title: Atomic Habits
+    author: James Clear
+  - title: Deep Work
+    author: Cal Newport
+  - title: The 7 Habits of Highly Effective People
+    author: Stephen R. Covey

@@ -1,0 +1,32 @@
+{
+  "book": "Deep Work",
+  "threads": [
+    {
+      "id": "dw1",
+      "title": "Deep Work key takeaways — the whole book in one post",
+      "subreddit": "productivity",
+      "author": "focusmonk",
+      "score": 3100,
+      "permalink": "/r/productivity/comments/dw1/deep_work_takeaways/",
+      "selftext": "Summary of Cal Newport's Deep Work:\n\n- Deep work (focused, cognitively demanding, no distraction) is becoming rare exactly as it becomes valuable. That's the whole thesis.\n- Shallow work (email, meetings, Slack) feels productive but is low-value and easy to replicate.\n- You have a finite amount of deep-work capacity per day (~4 hours even for experts). Protect it.\n- Four philosophies of scheduling deep work: monastic, bimodal, rhythmic (same block daily), journalistic. Pick one that fits your life.\n- Embrace boredom: if you can't tolerate a queue without your phone, you've trained your brain to crave distraction. Schedule your internet use.\n- Quit social media if it doesn't pass a strict cost/benefit test.\n\nThe rhythmic philosophy + shutdown ritual are the two things I actually use.",
+      "top_comments": [
+        "The 4-hours-of-deep-work-max claim is the single most freeing idea. Stop feeling guilty about the other 4 hours.",
+        "First half (why deep work matters) is padded. The rules in the second half are the useful part.",
+        "'Schedule every minute of your day' sounds intense but it exposed how much time I was leaking to shallow work."
+      ]
+    },
+    {
+      "id": "dw2",
+      "title": "Deep Work in a nutshell for people who won't read it",
+      "subreddit": "DecidingToBeBetter",
+      "author": "shutdownritual",
+      "score": 1400,
+      "permalink": "/r/DecidingToBeBetter/comments/dw2/nutshell/",
+      "selftext": "Core idea: the ability to focus without distraction on a hard task is a superpower in a distracted economy, and it's a skill you train, not a talent. Concrete practices: time-block your calendar, batch shallow work, do a hard shutdown at day's end, and deliberately practice being bored so your brain relearns focus.",
+      "top_comments": [
+        "The shutdown ritual (say 'shutdown complete' and stop thinking about work) genuinely helps me sleep.",
+        "Newport can be preachy about social media but the core skill point stands."
+      ]
+    }
+  ]
+}
