@@ -134,6 +134,30 @@ class HttpRedditClient:
         return comments
 
 
+class CachingRedditClient:
+    """Wraps any RedditClient, persisting fetched threads to .cache/threads/.
+
+    On a cache hit it serves from disk (no network); `refresh=True` forces a
+    re-fetch. This keeps ranking/synthesis iteration off the Reddit API.
+    """
+
+    def __init__(self, inner: RedditClient, refresh: bool = False):
+        self.inner = inner
+        self.refresh = refresh
+
+    def search(self, book: Book) -> list[RedditThread]:
+        # Imported here to avoid a circular import (cache imports this module).
+        from .cache import load_cached_threads, save_threads
+
+        if not self.refresh:
+            cached = load_cached_threads(book.slug)
+            if cached is not None:
+                return cached
+        threads = self.inner.search(book)
+        save_threads(book.slug, threads)
+        return threads
+
+
 def _thread_from_dict(d: dict) -> RedditThread:
     return RedditThread(
         id=d["id"],

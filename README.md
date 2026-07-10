@@ -48,6 +48,23 @@ gttp build
   synthesis. Missing an Anthropic key falls back to the heuristic synthesizer
   automatically, so `gttp build` degrades gracefully.
 
+### Incremental builds
+
+Fetched threads and synthesized pages are cached under `.cache/`, so iterating
+is cheap:
+
+```bash
+gttp build --only "Deep Work"   # rebuild one book; the rest render from cache
+gttp build --refresh            # ignore cached threads, re-fetch from Reddit
+```
+
+`--only` re-fetches and re-synthesizes just the matching book (matched by title
+substring) and reuses cached pages for everything else, so the index stays
+complete. Without `--refresh`, re-runs reuse cached Reddit threads — you can
+re-tune ranking and synthesis without spending a single Reddit call. Every book
+builds in isolation: one failed fetch never sinks the run (it falls back to the
+last cached page, or an error placeholder).
+
 ## Configuration
 
 `books.yaml` is the seed list — book titles plus the subreddits and search
