@@ -1,8 +1,9 @@
 """End-to-end offline test: fixtures -> filter -> heuristic rank/synth -> markdown."""
 
+from gttp import cache
 from gttp.config import Book, load_catalog, slugify
-from gttp.models import RedditThread
-from gttp.pipeline import build_book
+from gttp.models import BookPage, RedditThread
+from gttp.pipeline import build_book, match_books
 from gttp.publish import render_markdown
 from gttp.ranking import filter_threads
 from gttp.reddit_client import FixtureRedditClient
@@ -62,3 +63,39 @@ def test_catalog_loads():
     assert any(b.title == "Atomic Habits" for b in books)
     # defaults should be merged in
     assert all(b.subreddits for b in books)
+
+
+def test_match_books():
+    books = load_catalog()
+    assert len(match_books(books, None)) == len(books)  # None -> all
+    only = match_books(books, "deep work")  # case-insensitive substring
+    assert [b.title for b in only] == ["Deep Work"]
+    assert match_books(books, "nonexistent title") == []
+
+
+def test_thread_and_page_cache_roundtrip(tmp_path, monkeypatch):
+    monkeypatch.setattr(cache, "THREADS_DIR", tmp_path / "threads")
+    monkeypatch.setattr(cache, "PAGES_DIR", tmp_path / "pages")
+
+    threads = FixtureRedditClient().search(_book())
+    cache.save_threads("atomic-habits", threads)
+    loaded = cache.load_cached_threads("atomic-habits")
+    assert [t.id for t in loaded] == [t.id for t in threads]
+    assert cache.load_cached_threads("missing") is None
+
+    page = build_book(_book(), FixtureRedditClient())
+    cache.save_page("atomic-habits", page)
+    restored = cache.load_cached_page("atomic-habits")
+    assert isinstance(restored, BookPage)
+    assert restored.core_idea == page.core_idea
+    assert restored.bullets == page.bullets
+
+
+def test_build_book_isolates_errors():
+    class ExplodingClient:
+        def search(self, book):
+            raise RuntimeError("reddit is down")
+
+    page = build_book(_book(), ExplodingClient())  # must not raise
+    assert page.generated_by == "error"
+    assert "reddit is down" in page.honest_take

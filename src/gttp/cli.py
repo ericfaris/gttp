@@ -7,7 +7,7 @@ import sys
 
 from . import __version__
 from .config import add_book, load_catalog
-from .pipeline import build_all
+from .pipeline import build_all, match_books
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -24,6 +24,17 @@ def main(argv: list[str] | None = None) -> int:
         "--offline",
         action="store_true",
         help="use bundled fixtures and the heuristic synthesizer (no network)",
+    )
+    p_build.add_argument(
+        "--only",
+        metavar="TITLE",
+        help="rebuild just the matching book (by title substring); the rest "
+        "of the index renders from cache",
+    )
+    p_build.add_argument(
+        "--refresh",
+        action="store_true",
+        help="ignore cached threads and re-fetch from Reddit",
     )
 
     sub.add_parser("list", help="list catalog books")
@@ -48,9 +59,12 @@ def main(argv: list[str] | None = None) -> int:
         if not books:
             print("Catalog is empty. Add a book with `gttp add \"<title>\"`.")
             return 1
-        print(f"Building {len(books)} book(s)"
-              f"{' (offline)' if args.offline else ''}...")
-        build_all(books, offline=args.offline)
+        if args.only and not match_books(books, args.only):
+            print(f"No catalog book matches '{args.only}'.")
+            return 1
+        scope = f"'{args.only}'" if args.only else f"{len(books)} book(s)"
+        print(f"Building {scope}{' (offline)' if args.offline else ''}...")
+        build_all(books, offline=args.offline, only=args.only, refresh=args.refresh)
         return 0
 
     return 1
