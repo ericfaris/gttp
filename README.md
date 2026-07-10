@@ -63,6 +63,23 @@ back to Reddit, so it stays well within the free tier. The Reddit fetch layer
 is deliberately swappable (`reddit_client.py`) so it can be replaced without
 touching the rest of the pipeline.
 
+## Deploying
+
+`.github/workflows/build.yml` runs the online build and publishes `site/` to
+GitHub Pages. To enable it:
+
+1. **Settings → Pages → Source: GitHub Actions.**
+2. **Settings → Secrets and variables → Actions**, add:
+   - `ANTHROPIC_API_KEY`
+   - `REDDIT_CLIENT_ID`
+   - `REDDIT_CLIENT_SECRET`
+3. Trigger it from the **Actions** tab (*Build and publish gttp → Run workflow*),
+   or wait for the weekly Monday run.
+
+Missing secrets don't break the build — any book the pipeline can't fetch falls
+back to fixtures + the heuristic synthesizer, so the workflow always publishes a
+site.
+
 ## Layout
 
 ```
