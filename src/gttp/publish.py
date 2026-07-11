@@ -8,9 +8,11 @@ site generator. Point Hugo/Jekyll/Astro at the Markdown if you want more.
 from __future__ import annotations
 
 import html
+import shutil
 from pathlib import Path
 
-from .config import SITE_DIR
+from . import covers
+from .config import SITE_DIR, slugify
 from .models import BookPage
 
 
@@ -49,21 +51,36 @@ def render_markdown(page: BookPage) -> str:
     return "\n".join(lines)
 
 
-def write_site(pages: list[BookPage], site_dir: Path = SITE_DIR) -> Path:
-    """Write per-book Markdown + HTML and an index page. Returns index path."""
+def write_site(
+    pages: list[BookPage],
+    site_dir: Path = SITE_DIR,
+    covers_dir: Path | None = None,
+) -> Path:
+    """Write per-book Markdown + HTML and an index page. Returns index path.
+
+    Any committed cover in `covers_dir` for a catalog book is copied into
+    `site_dir/covers/`; books without one render an SVG placeholder.
+    """
+    if covers_dir is None:
+        covers_dir = covers.COVERS_DIR
     site_dir.mkdir(parents=True, exist_ok=True)
     books_dir = site_dir / "books"
     books_dir.mkdir(exist_ok=True)
-
-    from .config import slugify
+    site_covers = site_dir / "covers"
 
     for page in pages:
         slug = slugify(page.title)
+        src = covers.cover_file(slug, covers_dir)
+        if src is not None:
+            site_covers.mkdir(exist_ok=True)
+            shutil.copy2(src, site_covers / f"{slug}.jpg")
         (books_dir / f"{slug}.md").write_text(render_markdown(page))
-        (books_dir / f"{slug}.html").write_text(_render_book_html(page))
+        (books_dir / f"{slug}.html").write_text(
+            _render_book_html(page, covers_dir)
+        )
 
     index = site_dir / "index.html"
-    index.write_text(_render_index_html(pages))
+    index.write_text(_render_index_html(pages, covers_dir))
     return index
 
 
@@ -96,9 +113,19 @@ def _render_footer(root: str = "") -> str:
     )
 
 
-def _render_index_card(page: BookPage) -> str:
-    from .config import slugify
+def _cover_tile(page: BookPage, covers_dir: Path, root: str, css_class: str) -> str:
+    """A cover <img> when one is stored, else a deterministic SVG placeholder."""
+    slug = slugify(page.title)
+    if covers.cover_file(slug, covers_dir) is not None:
+        alt = html.escape(f"Cover of {page.title}")
+        return (
+            f'<img class="{css_class}" src="{root}covers/{slug}.jpg" '
+            f'alt="{alt}" loading="lazy" width="72" height="108">'
+        )
+    return covers.placeholder_svg(page.title, css_class)
 
+
+def _render_index_card(page: BookPage, covers_dir: Path) -> str:
     has_summary = _has_summary(page)
     cls = "card" if has_summary else "card empty"
     search = html.escape(
@@ -109,19 +136,23 @@ def _render_index_card(page: BookPage) -> str:
     tags = "".join(
         f'<span class="tag">r/{html.escape(sub)}</span>' for sub in subs
     )
+    cover = _cover_tile(page, covers_dir, "", "cover cover-thumb")
     return (
         f'<li class="{cls}" data-search="{search}">'
+        f'{cover}'
+        f'<div class="card-body">'
         f'<a href="books/{slugify(page.title)}.html">'
         f"<strong>{html.escape(page.title)}</strong>{author}</a>"
         f'<p>{html.escape(page.core_idea)}</p>'
-        f'{f"<p class=tags>{tags}</p>" if tags else ""}</li>'
+        f'{f"<p class=tags>{tags}</p>" if tags else ""}'
+        f'</div></li>'
     )
 
 
-def _render_index_html(pages: list[BookPage]) -> str:
+def _render_index_html(pages: list[BookPage], covers_dir: Path) -> str:
     # The index is a view: stable-sort summary books first, catalog order within.
     ordered = sorted(pages, key=lambda p: not _has_summary(p))
-    cards = "\n".join(_render_index_card(p) for p in ordered)
+    cards = "\n".join(_render_index_card(p, covers_dir) for p in ordered)
     script = (
         "<script>"
         "var q=document.getElementById('q');"
@@ -154,12 +185,18 @@ def _render_index_html(pages: list[BookPage]) -> str:
     )
 
 
-def _render_book_html(page: BookPage) -> str:
+def _render_book_html(page: BookPage, covers_dir: Path) -> str:
     parts = [f"<p class='back'><a href='../index.html'>← all books</a></p>"]
-    parts.append(f"<h1>{html.escape(page.title)}</h1>")
+    cover = _cover_tile(page, covers_dir, "../", "cover cover-detail")
+    hero = [cover, '<div class="hero-body">']
+    hero.append(f"<h1>{html.escape(page.title)}</h1>")
     if page.author:
-        parts.append(f"<p class='author'>by {html.escape(page.author)}</p>")
-    parts.append(f"<blockquote class='core'>{html.escape(page.core_idea)}</blockquote>")
+        hero.append(f"<p class='author'>by {html.escape(page.author)}</p>")
+    hero.append(
+        f"<blockquote class='core'>{html.escape(page.core_idea)}</blockquote>"
+    )
+    hero.append("</div>")
+    parts.append(f'<div class="book-hero">{"".join(hero)}</div>')
     if page.bullets:
         parts.append('<nav class="toc" aria-label="Ideas"><ol>')
         parts.extend(
@@ -210,14 +247,14 @@ _HTML_SHELL = """<!doctype html>
   :root {{ color-scheme: light dark; }}
   html {{ scroll-behavior: smooth; }}
   body {{ font: 17px/1.6 -apple-system, system-ui, sans-serif; margin: 0; }}
-  main {{ max-width: 42rem; margin: 2rem auto; padding: 0 1.2rem; }}
-  h1 {{ line-height: 1.2; }}
+  main {{ max-width: 46rem; margin: 2rem auto; padding: 0 1.2rem; }}
+  h1 {{ line-height: 1.15; letter-spacing: -0.01em; }}
   .sub, .author {{ color: #888; }}
   .site-header {{ border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
                   padding: .7rem 1.2rem; }}
   .site-title {{ font-weight: 700; text-decoration: none; }}
   .site-title span {{ color: #888; font-weight: 400; }}
-  .site-footer {{ max-width: 42rem; margin: 3rem auto 2rem; padding: 1rem 1.2rem 0;
+  .site-footer {{ max-width: 46rem; margin: 3rem auto 2rem; padding: 1rem 1.2rem 0;
                   border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent);
                   color: #888; font-size: .85rem; }}
   .search {{ font: inherit; width: 100%; box-sizing: border-box; margin: .5rem 0 1.5rem;
@@ -225,9 +262,29 @@ _HTML_SHELL = """<!doctype html>
              border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
              background: color-mix(in srgb, currentColor 4%, transparent); color: inherit; }}
   .books {{ list-style: none; padding: 0; }}
-  .books li {{ margin: 1.4rem 0; }}
+  .books li {{ display: flex; gap: 1rem; align-items: flex-start;
+               margin: .4rem 0; padding: .9rem; border-radius: .7rem;
+               border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+               transition: border-color .15s, background .15s; }}
+  .books li:hover {{ border-color: color-mix(in srgb, #e0703c 55%, transparent);
+                     background: color-mix(in srgb, currentColor 3%, transparent); }}
+  .card-body {{ min-width: 0; flex: 1; }}
+  .card-body a {{ text-decoration: none; }}
   .books p {{ color: #888; margin: .3rem 0 0; }}
   .card.empty {{ opacity: .55; }}
+  .cover {{ display: block; object-fit: cover; aspect-ratio: 2 / 3;
+            border-radius: .35rem;
+            border: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+            background: color-mix(in srgb, currentColor 8%, transparent); }}
+  .cover-thumb {{ width: 4.5rem; height: auto; flex-shrink: 0; }}
+  .cover-detail {{ width: 12rem; height: auto; flex-shrink: 0; }}
+  .book-hero {{ display: grid; grid-template-columns: auto 1fr; gap: 1.5rem;
+                align-items: start; margin: .5rem 0 1.5rem; }}
+  .hero-body h1 {{ margin-top: 0; }}
+  @media (max-width: 30rem) {{
+    .book-hero {{ grid-template-columns: 1fr; }}
+    .cover-detail {{ width: 8rem; }}
+  }}
   .tag {{ display: inline-block; font-size: .75rem; margin-right: .35rem;
           padding: .1rem .5rem; border-radius: 1rem; color: #888;
           border: 1px solid color-mix(in srgb, currentColor 30%, transparent); }}

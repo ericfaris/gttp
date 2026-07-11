@@ -20,8 +20,8 @@ BOOKS_FILE = ROOT / "books.yaml"
 FIXTURES_DIR = ROOT / "fixtures"
 SITE_DIR = ROOT / "site"
 
-# The model used for ranking and synthesis. Opus 4.8 is the current default.
-MODEL = "claude-opus-4-8"
+# The model used for ranking and synthesis.
+MODEL = "claude-sonnet-4-6"
 
 load_dotenv(ROOT / ".env")
 
