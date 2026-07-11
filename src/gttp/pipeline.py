@@ -9,14 +9,14 @@ in isolation — one failure never sinks the whole run.
 from __future__ import annotations
 
 from .cache import load_cached_page, save_page
-from .config import Book, reddit_credentials, slugify
+from .config import Book, slugify
 from .models import BookPage
 from .publish import write_site
 from .ranking import filter_threads, rank_threads
 from .reddit_client import (
     CachingRedditClient,
     FixtureRedditClient,
-    HttpRedditClient,
+    PlaywrightRedditClient,
     RedditClient,
 )
 from .synthesize import synthesize
@@ -25,11 +25,9 @@ from .synthesize import synthesize
 def make_reddit_client(offline: bool, refresh: bool = False) -> RedditClient:
     if offline:
         return FixtureRedditClient()
-    creds = reddit_credentials()
-    if creds is None:
-        print("No Reddit credentials found; using bundled fixtures.")
-        return FixtureRedditClient()
-    return CachingRedditClient(HttpRedditClient(*creds), refresh=refresh)
+    # Live Reddit blocks raw HTTP clients, so fetch through a real browser; the
+    # client degrades to fixtures on its own if the browser can't launch.
+    return CachingRedditClient(PlaywrightRedditClient(), refresh=refresh)
 
 
 def match_books(books: list[Book], only: str | None) -> list[Book]:
@@ -74,23 +72,29 @@ def build_all(
     client = make_reddit_client(offline, refresh)
 
     pages: dict[str, BookPage] = {}
-    # (Re)build the targeted books fresh and cache them.
-    for book in targets:
-        page = build_book(book, client)
-        save_page(book.slug, page)
-        pages[book.slug] = page
-
-    # Fill in the rest from cache so the index stays complete; build any that
-    # have never been generated.
-    for book in books:
-        if book.slug in target_slugs:
-            continue
-        cached = load_cached_page(book.slug)
-        if cached is None:
+    try:
+        # (Re)build the targeted books fresh and cache them.
+        for book in targets:
             page = build_book(book, client)
             save_page(book.slug, page)
-            cached = page
-        pages[book.slug] = cached
+            pages[book.slug] = page
+
+        # Fill in the rest from cache so the index stays complete; build any
+        # that have never been generated.
+        for book in books:
+            if book.slug in target_slugs:
+                continue
+            cached = load_cached_page(book.slug)
+            if cached is None:
+                page = build_book(book, client)
+                save_page(book.slug, page)
+                cached = page
+            pages[book.slug] = cached
+    finally:
+        # Release the browser (if the client launched one).
+        close = getattr(client, "close", None)
+        if close is not None:
+            close()
 
     ordered = [pages[b.slug] for b in books]
     index = write_site(ordered)

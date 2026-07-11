@@ -92,12 +92,3 @@ def add_book(title: str, author: str | None = None, path: Path = BOOKS_FILE) -> 
 
 def anthropic_key() -> str | None:
     return os.environ.get("ANTHROPIC_API_KEY") or None
-
-
-def reddit_credentials() -> tuple[str, str, str] | None:
-    cid = os.environ.get("REDDIT_CLIENT_ID")
-    secret = os.environ.get("REDDIT_CLIENT_SECRET")
-    ua = os.environ.get("REDDIT_USER_AGENT", "gttp/0.1")
-    if cid and secret:
-        return cid, secret, ua
-    return None

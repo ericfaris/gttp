@@ -1,0 +1,30 @@
+name: gttp
+
+services:
+  app:
+    build: .
+    image: ericfaris/gttp:latest
+    restart: unless-stopped
+    user: "1000:1000"
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - "127.0.0.1:8100:8100"
+    # Chromium needs more shared memory than Docker's tiny 64M default, even
+    # with --disable-dev-shm-usage as a fallback.
+    shm_size: "512m"
+    volumes:
+      # Built static site — served by the container and what the tunnel exposes.
+      - ./site:/app/site
+      # Fetched-thread + synthesized-page cache (also holds the persistent
+      # browser profile under browser-profile/), so restarts don't re-fetch.
+      - ./.cache:/app/.cache
+      # Catalog — edit on the host with `gttp add` or by hand; picked up on next build.
+      - ./books.yaml:/app/books.yaml
+    environment:
+      # Enables Claude ranking + synthesis; falls back to the heuristic
+      # synthesizer without it.
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      # How often to rebuild the whole catalog, in hours.
+      - POLL_INTERVAL_HOURS=${POLL_INTERVAL_HOURS:-168}
+      - PORT=8100

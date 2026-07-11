@@ -34,15 +34,13 @@ jobs:
         run: pip install -e .
 
       - name: Build site
-        # Missing secrets don't fail the build — the pipeline falls back to
-        # bundled fixtures + the heuristic synthesizer for any book it can't
-        # fetch, so this always produces a publishable site.
+        # CI builds offline: live Reddit needs a real (headed) browser, which a
+        # headless datacenter runner can't provide, and Reddit blocks such IPs
+        # anyway. This publishes from bundled fixtures + cached pages; live
+        # refreshes happen on the self-hosted container (see README).
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
-          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
-          REDDIT_USER_AGENT: "gttp/0.1 (github-actions)"
-        run: gttp build
+        run: gttp build --offline
 
       - uses: actions/configure-pages@v5
 

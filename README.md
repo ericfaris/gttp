@@ -30,23 +30,25 @@ files and a script that adds a book on demand.
 
 ```bash
 pip install -e .
-cp .env.example .env          # optional: add Reddit + Anthropic credentials
+playwright install chromium   # one-time: the browser used for live Reddit search
+cp .env.example .env          # optional: add your Anthropic key
 
-# Runs fully offline from bundled fixtures — no credentials needed:
+# Runs fully offline from bundled fixtures — no browser or keys needed:
 gttp build --offline
 open site/index.html          # or serve site/ however you like
 
-# With credentials, add a real book end-to-end:
+# Live: fetch real Reddit threads and synthesize a book end-to-end:
 gttp add "Deep Work"
 gttp build
 ```
 
 - **Offline mode** (`--offline`) reads Reddit threads from `fixtures/` and
-  synthesizes pages with a deterministic heuristic — zero network calls. Use it
-  to see the pipeline work before wiring up any keys.
-- **Online mode** uses Reddit's API for search and Claude for ranking +
-  synthesis. Missing an Anthropic key falls back to the heuristic synthesizer
-  automatically, so `gttp build` degrades gracefully.
+  synthesizes pages with a deterministic heuristic — zero network calls, no
+  browser. Use it to see the pipeline work before wiring up anything.
+- **Online mode** fetches live Reddit threads through a real browser (see
+  Configuration) and uses Claude for ranking + synthesis. Missing an Anthropic
+  key falls back to the heuristic synthesizer, and a missing/unlaunchable
+  browser falls back to fixtures — so `gttp build` always degrades gracefully.
 
 ### Incremental builds
 
@@ -70,32 +72,52 @@ last cached page, or an error placeholder).
 `books.yaml` is the seed list — book titles plus the subreddits and search
 queries to fan out over. Edit it directly or use `gttp add "<title>"`.
 
-Credentials live in `.env` (see `.env.example`):
+The only secret is `ANTHROPIC_API_KEY` in `.env` (see `.env.example`) — it
+enables Claude ranking + synthesis. Nothing else is required.
 
-- `ANTHROPIC_API_KEY` — enables Claude ranking + synthesis.
-- `REDDIT_CLIENT_ID` / `REDDIT_CLIENT_SECRET` — enable live Reddit search.
+**Live Reddit search runs through a real browser, not the API.** Reddit blocks
+raw-HTTP clients (`requests`/`curl` → 403) and its OAuth API now sits behind a
+manual "Responsible Builder Policy" application that low-volume hobby tools
+rarely clear. So `PlaywrightRedditClient` launches a headed Chromium, warms it
+by loading a normal Reddit page, and issues each `.json` request as a
+same-origin in-page `fetch()` — which returns clean JSON. Consequences:
 
-Reddit's free API is non-commercial only; this is batch curation that links
-back to Reddit, so it stays well within the free tier. The Reddit fetch layer
-is deliberately swappable (`reddit_client.py`) so it can be replaced without
-touching the rest of the pipeline.
+- Run `playwright install chromium` once (the Docker image bakes it in).
+- A **display** is required. On Windows/WSL, WSLg provides one; the Docker
+  image runs Xvfb. Headless does *not* work — Reddit blocks it.
+- Requests are paced ~6s apart (≈10/min), so a full uncached build is slow;
+  the `.cache/` (including the browser profile) makes re-runs cheap.
 
-## Deploying
+The fetch layer is deliberately swappable (`reddit_client.py`) so it can be
+replaced without touching the rest of the pipeline.
 
-`.github/workflows/build.yml` runs the online build and publishes `site/` to
-GitHub Pages. To enable it:
+## Running as a container
+
+`docker-compose.yml` builds an image that rebuilds the catalog on a timer
+(`POLL_INTERVAL_HOURS`, default weekly) and serves `site/` on
+`127.0.0.1:8100`. It runs headed Chromium under Xvfb, so **live Reddit fetching
+works from the container** — unlike GitHub Actions (below).
+
+```bash
+docker compose up -d --build      # build + serve on http://127.0.0.1:8100
+docker compose logs -f            # watch build progress
+```
+
+`.cache/`, `site/`, and `books.yaml` are bind-mounted, so cached threads,
+the browser profile, and the catalog persist across restarts.
+
+## Deploying (GitHub Pages)
+
+`.github/workflows/build.yml` publishes `site/` to GitHub Pages, but builds
+**offline** (`gttp build --offline`): a headless datacenter runner can't drive a
+real browser and Reddit blocks such IPs anyway, so live refreshes happen on the
+self-hosted container above. To enable Pages:
 
 1. **Settings → Pages → Source: GitHub Actions.**
-2. **Settings → Secrets and variables → Actions**, add:
-   - `ANTHROPIC_API_KEY`
-   - `REDDIT_CLIENT_ID`
-   - `REDDIT_CLIENT_SECRET`
+2. **Settings → Secrets and variables → Actions**, add `ANTHROPIC_API_KEY`
+   (optional — without it the heuristic synthesizer is used).
 3. Trigger it from the **Actions** tab (*Build and publish gttp → Run workflow*),
    or wait for the weekly Monday run.
-
-Missing secrets don't break the build — any book the pipeline can't fetch falls
-back to fixtures + the heuristic synthesizer, so the workflow always publishes a
-site.
 
 ## Layout
 
