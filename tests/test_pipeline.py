@@ -91,7 +91,11 @@ def test_thread_and_page_cache_roundtrip(tmp_path, monkeypatch):
     assert restored.bullets == page.bullets
 
 
-def test_build_book_isolates_errors():
+def test_build_book_isolates_errors(tmp_path, monkeypatch):
+    # Isolate the page cache so the error path has no cached page to fall back
+    # to — we're asserting the error-placeholder behavior specifically.
+    monkeypatch.setattr(cache, "PAGES_DIR", tmp_path / "pages")
+
     class ExplodingClient:
         def search(self, book):
             raise RuntimeError("reddit is down")
