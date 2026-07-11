@@ -46,7 +46,7 @@ def render_markdown(page: BookPage) -> str:
                 f"— r/{s['subreddit']} ({s['score']} upvotes)"
             )
         lines.append("")
-    lines.append(f"<sub>Synthesized by: {page.generated_by}</sub>")
+    lines.append(f"<sub>{_generated_line(page)}</sub>")
     lines.append("")
     return "\n".join(lines)
 
@@ -86,6 +86,12 @@ def write_site(
 
 def _has_summary(page: BookPage) -> bool:
     return bool(page.bullets or page.sources)
+
+
+def _generated_line(page: BookPage) -> str:
+    if page.generated_at:
+        return f"Synthesized by: {page.generated_by} on {page.generated_at}"
+    return f"Synthesized by: {page.generated_by}"
 
 
 def _truncate(text: str, limit: int = 60) -> str:
@@ -229,7 +235,7 @@ def _render_book_html(page: BookPage, covers_dir: Path) -> str:
                 f"— r/{html.escape(s['subreddit'])} ({s['score']} upvotes)</li>"
             )
         parts.append("</ul>")
-    parts.append(f"<p class='gen'>Synthesized by: {page.generated_by}</p>")
+    parts.append(f"<p class='gen'>{html.escape(_generated_line(page))}</p>")
     return _HTML_SHELL.format(
         title=html.escape(page.title) + " — gttp",
         header=_render_header("../"),

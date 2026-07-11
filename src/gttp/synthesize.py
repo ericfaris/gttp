@@ -9,6 +9,7 @@ the pipeline still produces output.
 from __future__ import annotations
 
 import json
+from datetime import date
 
 from .config import MODEL, Book, anthropic_key
 from .models import BookPage, RankedThread
@@ -50,7 +51,7 @@ def synthesize(book: Book, ranked: list[RankedThread]) -> BookPage:
         for r in top
     ]
     if not top:
-        return BookPage(
+        page = BookPage(
             title=book.title,
             author=book.author,
             core_idea="No qualifying Reddit summaries found yet.",
@@ -59,16 +60,21 @@ def synthesize(book: Book, ranked: list[RankedThread]) -> BookPage:
             quotes=[],
             sources=[],
         )
+        page.generated_at = date.today().isoformat()
+        return page
 
     if anthropic_key():
         try:
             page = _synthesize_with_claude(book, top)
             page.sources = sources
+            page.generated_at = date.today().isoformat()
             return page
         except Exception as exc:
             print(f"    synthesis: Claude call failed ({exc}); using heuristic")
 
-    return _synthesize_heuristic(book, top, sources)
+    page = _synthesize_heuristic(book, top, sources)
+    page.generated_at = date.today().isoformat()
+    return page
 
 
 def _synthesize_with_claude(book: Book, top: list[RankedThread]) -> BookPage:
@@ -100,7 +106,10 @@ def _synthesize_with_claude(book: Book, top: list[RankedThread]) -> BookPage:
     )
     resp = client.messages.create(
         model=MODEL,
-        max_tokens=4000,
+        # Adaptive thinking at high effort can spend several thousand tokens
+        # reasoning before ever emitting the JSON output; 4000 was tuned for
+        # Opus and left no room on Sonnet 4.6, causing empty responses.
+        max_tokens=12000,
         thinking={"type": "adaptive"},
         output_config={
             "effort": "high",

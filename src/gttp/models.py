@@ -53,3 +53,4 @@ class BookPage:
     quotes: list[dict]  # {"text": ..., "author": ..., "url": ...}
     sources: list[dict]  # {"title": ..., "url": ..., "subreddit": ..., "score": ...}
     generated_by: str = "heuristic"  # "claude" or "heuristic"
+    generated_at: str = ""  # ISO date (YYYY-MM-DD) this page was synthesized
