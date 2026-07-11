@@ -23,6 +23,7 @@ RUN playwright install --with-deps chromium \
 
 COPY fixtures/ ./fixtures/
 COPY books.yaml ./books.yaml
+COPY covers/ ./covers/
 COPY entrypoint.sh ./entrypoint.sh
 RUN chmod +x ./entrypoint.sh
 

@@ -21,6 +21,10 @@ services:
       - ./.cache:/app/.cache
       # Catalog — edit on the host with `gttp add` or by hand; picked up on next build.
       - ./books.yaml:/app/books.yaml
+      # Committed cover images — fetched via `gttp add`/`gttp covers`; bind-mounted
+      # (not just baked into the image) so covers fetched inside the container
+      # persist on the host and survive restarts without a rebuild.
+      - ./covers:/app/covers
     environment:
       # Enables Claude ranking + synthesis; falls back to the heuristic
       # synthesizer without it.
