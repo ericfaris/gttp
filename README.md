@@ -106,6 +106,22 @@ docker compose logs -f            # watch build progress
 `.cache/`, `site/`, and `books.yaml` are bind-mounted, so cached threads,
 the browser profile, and the catalog persist across restarts.
 
+## Covers
+
+Book cover images come from [Open Library](https://openlibrary.org/). A cover is
+fetched automatically when you `gttp add` a book, and you can backfill or refresh
+the whole catalog at any time:
+
+```bash
+gttp covers            # fetch covers for books that don't have one yet
+gttp covers --force    # re-fetch every book (e.g. after a wrong match)
+```
+
+Covers are stored committed under `covers/<slug>.jpg` (one Large image per book)
+and copied into `site/covers/` at build time. Books without a cover render a
+deterministic lettered placeholder, so `gttp build --offline` never touches the
+network — fetching only happens in `gttp add` and `gttp covers`.
+
 ## Deploying (GitHub Pages)
 
 `.github/workflows/build.yml` publishes `site/` to GitHub Pages, but builds
@@ -130,7 +146,9 @@ src/gttp/
   synthesize.py    Claude page synthesis (+ heuristic fallback)
   publish.py       Markdown + static-site rendering
   pipeline.py      orchestration
-  cli.py           `gttp add` / `gttp build` / `gttp list`
+  covers.py        Open Library cover fetch + SVG placeholder
+  cli.py           `gttp add` / `gttp build` / `gttp list` / `gttp covers`
 fixtures/          offline sample data
 books.yaml         seed catalog
+covers/            committed book cover images (<slug>.jpg)
 ```

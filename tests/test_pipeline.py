@@ -134,7 +134,10 @@ def test_write_site_html_features(tmp_path):
         quotes=[],
         sources=[],
     )
-    write_site([empty, summary], tmp_path)
+    covers_dir = tmp_path / "src-covers"
+    covers_dir.mkdir()
+    (covers_dir / "atomic-habits.jpg").write_bytes(b"\xff\xd8" + b"x" * 4000)
+    write_site([empty, summary], tmp_path, covers_dir=covers_dir)
 
     index = (tmp_path / "index.html").read_text()
     # Search box + per-card searchable data.
@@ -146,11 +149,24 @@ def test_write_site_html_features(tmp_path):
     # Subreddit tag derives from sources.
     assert "r/getdisciplined" in index
 
+    # Cover with a stored file renders an <img>; the one without gets an SVG.
+    assert "covers/atomic-habits.jpg" in index
+    assert 'loading="lazy"' in index
+    meditations_card = index[index.index("Meditations") - 200 : index.index("Meditations") + 200]
+    assert "<svg" in meditations_card
+    # The stored cover was copied into the generated site.
+    assert (tmp_path / "covers" / "atomic-habits.jpg").exists()
+
     book = (tmp_path / "books" / "atomic-habits.html").read_text()
     assert 'id="idea-1"' in book  # per-idea anchor
     assert 'class="toc"' in book  # jump list
     assert 'href="#idea-1"' in book
     assert "site-header" in book and "site-footer" in book
+    # Detail page references the cover one directory up.
+    assert "../covers/atomic-habits.jpg" in book
+
+    meditations = (tmp_path / "books" / "meditations.html").read_text()
+    assert "<svg" in meditations  # placeholder on the coverless detail page
 
     # The Markdown output is byte-identical to render_markdown.
     md = (tmp_path / "books" / "atomic-habits.md").read_text()
