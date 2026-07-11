@@ -246,6 +246,15 @@ class PlaywrightRedditClient(_RedditSearchBase):
         from playwright.sync_api import sync_playwright
 
         self.profile_dir.mkdir(parents=True, exist_ok=True)
+        # Clear stale Chromium single-instance locks. A crashed run — or a
+        # throwaway container that shared this (bind-mounted) profile — leaves
+        # SingletonLock/Cookie/Socket pointing at a dead process, and Chromium
+        # then refuses to start ("Opening in existing browser session"). We are
+        # the sole user of this profile, so removing them is safe. The container
+        # entrypoint does the same on boot, but builds invoked via `docker exec`
+        # or on the host bypass it.
+        for lock in ("SingletonLock", "SingletonCookie", "SingletonSocket"):
+            (self.profile_dir / lock).unlink(missing_ok=True)
         self._pw = sync_playwright().start()
         self._context = self._pw.chromium.launch_persistent_context(
             str(self.profile_dir),
