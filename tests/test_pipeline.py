@@ -1,12 +1,22 @@
 """End-to-end offline test: fixtures -> filter -> heuristic rank/synth -> markdown."""
 
-from gttp import cache
+import pytest
+
+from gttp import cache, ranking, synthesize
 from gttp.config import Book, load_catalog, slugify
 from gttp.models import BookPage, RedditThread
 from gttp.pipeline import build_book, match_books
-from gttp.publish import render_markdown
+from gttp.publish import render_markdown, write_site
 from gttp.ranking import filter_threads
 from gttp.reddit_client import FixtureRedditClient
+
+
+@pytest.fixture(autouse=True)
+def _force_heuristic(monkeypatch):
+    # This suite exercises the offline/heuristic path; keep it independent of
+    # (and off the network from) whatever ANTHROPIC_API_KEY may be in the env.
+    monkeypatch.setattr(ranking, "anthropic_key", lambda: None)
+    monkeypatch.setattr(synthesize, "anthropic_key", lambda: None)
 
 
 def _book(title="Atomic Habits"):
@@ -103,3 +113,45 @@ def test_build_book_isolates_errors(tmp_path, monkeypatch):
     page = build_book(_book(), ExplodingClient())  # must not raise
     assert page.generated_by == "error"
     assert "reddit is down" in page.honest_take
+
+
+def test_write_site_html_features(tmp_path):
+    summary = BookPage(
+        title="Atomic Habits",
+        author="James Clear",
+        core_idea="Small habits compound into big results.",
+        bullets=["Make it obvious", "Make it easy"],
+        honest_take="Solid.",
+        quotes=[],
+        sources=[{"title": "t", "url": "https://x", "subreddit": "getdisciplined", "score": 42}],
+    )
+    empty = BookPage(
+        title="Meditations",
+        author="Marcus Aurelius",
+        core_idea="No qualifying Reddit summaries found yet.",
+        bullets=[],
+        honest_take="",
+        quotes=[],
+        sources=[],
+    )
+    write_site([empty, summary], tmp_path)
+
+    index = (tmp_path / "index.html").read_text()
+    # Search box + per-card searchable data.
+    assert 'id="q"' in index
+    assert "data-search" in index
+    # The no-summary book is dimmed and sorts after the summary book.
+    assert 'class="card empty"' in index
+    assert index.index("Atomic Habits") < index.index("Meditations")
+    # Subreddit tag derives from sources.
+    assert "r/getdisciplined" in index
+
+    book = (tmp_path / "books" / "atomic-habits.html").read_text()
+    assert 'id="idea-1"' in book  # per-idea anchor
+    assert 'class="toc"' in book  # jump list
+    assert 'href="#idea-1"' in book
+    assert "site-header" in book and "site-footer" in book
+
+    # The Markdown output is byte-identical to render_markdown.
+    md = (tmp_path / "books" / "atomic-habits.md").read_text()
+    assert md == render_markdown(summary)
