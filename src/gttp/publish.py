@@ -112,7 +112,7 @@ def _render_header(root: str) -> str:
     return (
         f"<header class='site-header'>"
         f"<a class='site-title' href='{root}index.html'>"
-        f"<img src='{root}logo.png' alt='Get To The Point' height='32'></a></header>"
+        f"<img src='{root}logo.png' alt='Get To The Point' width='250'></a></header>"
     )
 
 
@@ -268,7 +268,7 @@ _HTML_SHELL = """<!doctype html>
   .site-header {{ border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
                   padding: .7rem 1.2rem; }}
   .site-title {{ display: inline-block; text-decoration: none; }}
-  .site-title img {{ display: block; height: 32px; width: auto; background: #fff;
+  .site-title img {{ display: block; width: 250px; height: auto; background: #fff;
                       border-radius: 6px; padding: 3px 10px; }}
   .site-footer {{ max-width: 46rem; margin: 3rem auto 2rem; padding: 1rem 1.2rem 0;
                   border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent);
