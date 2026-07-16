@@ -93,18 +93,42 @@ replaced without touching the rest of the pipeline.
 
 ## Running as a container
 
-`docker-compose.yml` builds an image that rebuilds the catalog on a timer
-(`POLL_INTERVAL_HOURS`, default weekly) and serves `site/` on
-`127.0.0.1:8100`. It runs headed Chromium under Xvfb, so **live Reddit fetching
-works from the container** — unlike GitHub Actions (below).
+`docker-compose.yml` builds an image that serves `site/` on `127.0.0.1:8100`.
+It runs headed Chromium under Xvfb, so **live Reddit fetching works from the
+container** — unlike GitHub Actions (below). Nothing builds automatically: the
+container only serves whatever is already in `site/`. Every build is run
+manually, on purpose — see [Summaries are permanent](#summaries-are-permanent).
 
 ```bash
-docker compose up -d --build      # build + serve on http://127.0.0.1:8100
-docker compose logs -f            # watch build progress
+docker compose up -d --build      # build the image + serve on http://127.0.0.1:8100
+docker exec gttp-app-1 gttp build --only "Some Title"   # build one book manually
+docker compose logs -f            # watch it
 ```
 
 `.cache/`, `site/`, and `books.yaml` are bind-mounted, so cached threads,
 the browser profile, and the catalog persist across restarts.
+
+## Summaries are permanent
+
+Once a book gets a real Claude-synthesized page it's **finalized** and
+`gttp build` — even a full one with no `--only` — will never rebuild it again
+automatically; you'll see `already finalized, skipping`. The only way to redo
+one is deliberately, with `--force`:
+
+```bash
+gttp build --only "Some Title" --force
+```
+
+Non-final pages (empty placeholders, heuristic fallbacks — e.g. when the
+Anthropic API is unreachable or out of credit) are still safe: a rebuild can
+never save something *worse* than what's cached, only equal or better.
+
+`.cache/pages/*.json` — the synthesized summaries themselves — are committed
+to git (unlike `.cache/threads/` and the browser profile, which are
+regenerable and stay ignored), so they're recoverable from history no matter
+what happens to the local cache or container.
+
+Nothing in this repo runs a build on a schedule. All builds are manual.
 
 ## Covers
 

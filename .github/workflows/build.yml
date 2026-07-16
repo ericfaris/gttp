@@ -1,11 +1,11 @@
 name: Build and publish gttp
 
-# Runs the online build (Reddit + Claude) and publishes site/ to GitHub Pages.
-# Trigger manually from the Actions tab, or on the weekly schedule.
+# Runs the offline build (fixtures + already-finalized cached pages) and
+# publishes site/ to GitHub Pages. Manual only — trigger from the Actions tab.
+# Nothing in this repo builds on a schedule; see README's "Summaries are
+# permanent" section for why.
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 6 * * 1" # Mondays 06:00 UTC — books don't change often
 
 permissions:
   contents: read

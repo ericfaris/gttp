@@ -1,8 +1,10 @@
 #!/bin/sh
-# Serves site/ over HTTP while rebuilding it on a timer. Live Reddit search runs
-# through a headed Chromium (Reddit blocks headless / raw-HTTP clients), so a
-# virtual display (Xvfb) is brought up first. All of this runs as the non-root
-# container user.
+# Serves site/ over HTTP. Nothing in this container builds or rebuilds
+# anything automatically or on a schedule — every `gttp build` is run
+# manually (e.g. `docker exec gttp-app-1 gttp build --only "Title"`). Xvfb is
+# still started here so a manual build has the virtual display live Reddit
+# search needs (it drives a headed Chromium; Reddit blocks headless /
+# raw-HTTP clients). All of this runs as the non-root container user.
 set -e
 
 export DISPLAY="${DISPLAY:-:99}"
@@ -25,23 +27,10 @@ for i in $(seq 1 50); do
     sleep 0.1
 done
 
-rebuild() {
-    echo "[gttp] build starting $(date -Iseconds)"
-    gttp build || echo "[gttp] build failed, keeping last good site/"
-    echo "[gttp] build finished $(date -Iseconds)"
-}
-
 mkdir -p site
-[ -f site/index.html ] || rebuild
 python3 -m http.server "$PORT" --directory site &
 SERVER_PID=$!
 
 trap 'kill $SERVER_PID' TERM INT
 
-while true; do
-    sleep "$(( POLL_INTERVAL_HOURS * 3600 ))"
-    rebuild
-done &
-LOOP_PID=$!
-
-wait $SERVER_PID $LOOP_PID
+wait $SERVER_PID

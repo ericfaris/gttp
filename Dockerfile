@@ -29,7 +29,6 @@ COPY entrypoint.sh ./entrypoint.sh
 RUN chmod +x ./entrypoint.sh
 
 ENV PORT=8100 \
-    POLL_INTERVAL_HOURS=168 \
     DISPLAY=:99 \
     HOME=/tmp
 

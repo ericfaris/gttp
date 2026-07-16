@@ -29,6 +29,4 @@ services:
       # Enables Claude ranking + synthesis; falls back to the heuristic
       # synthesizer without it.
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
-      # How often to rebuild the whole catalog, in hours.
-      - POLL_INTERVAL_HOURS=${POLL_INTERVAL_HOURS:-168}
       - PORT=8100
