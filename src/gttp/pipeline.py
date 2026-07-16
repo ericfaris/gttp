@@ -8,7 +8,7 @@ in isolation — one failure never sinks the whole run.
 
 from __future__ import annotations
 
-from .cache import load_cached_page, save_page
+from .cache import is_final, load_cached_page, page_quality, save_page
 from .config import Book, slugify
 from .models import BookPage
 from .publish import write_site
@@ -39,9 +39,22 @@ def match_books(books: list[Book], only: str | None) -> list[Book]:
     return [b for b in books if q in b.slug or only.lower() in b.title.lower()]
 
 
-def build_book(book: Book, client: RedditClient) -> BookPage:
-    """Build one book's page. On any failure, fall back to a cached page if we
-    have one, otherwise an error placeholder — never raise."""
+def build_book(book: Book, client: RedditClient, force: bool = False) -> BookPage:
+    """Build one book's page.
+
+    A finalized page (real Claude synthesis — see `is_final`) is never
+    rebuilt automatically; pass `force=True` (the CLI's `--force`) to
+    deliberately redo it. For everything else: on any failure, or if the
+    fresh result is lower quality than what's cached (e.g. the Anthropic API
+    is unreachable/out of credit and synthesis silently degrades to the
+    heuristic fallback), the existing cached page wins — a rebuild must never
+    save something worse than what it started with.
+    """
+    cached = load_cached_page(book.slug)
+    if cached is not None and is_final(cached) and not force:
+        print(f"  {book.title}: already finalized, skipping (use --force to redo)")
+        return cached
+
     print(f"  {book.title}")
     try:
         threads = client.search(book)
@@ -51,14 +64,17 @@ def build_book(book: Book, client: RedditClient) -> BookPage:
         ranked = rank_threads(kept, book)
         page = synthesize(book, ranked)
         print(f"    synthesized page ({page.generated_by})")
-        return page
     except Exception as exc:
         print(f"    ERROR: {exc}")
-        cached = load_cached_page(book.slug)
-        if cached is not None:
-            print("    reusing last cached page")
-            return cached
-        return _error_page(book, exc)
+        page = _error_page(book, exc)
+
+    if cached is not None and page_quality(page) < page_quality(cached):
+        print(
+            f"    new result ({page.generated_by}) is lower quality than the "
+            f"cached page ({cached.generated_by}); keeping the cached page"
+        )
+        return cached
+    return page
 
 
 def build_all(
@@ -66,6 +82,7 @@ def build_all(
     offline: bool = False,
     only: str | None = None,
     refresh: bool = False,
+    force: bool = False,
 ) -> list[BookPage]:
     targets = match_books(books, only)
     target_slugs = {b.slug for b in targets}
@@ -73,10 +90,14 @@ def build_all(
 
     pages: dict[str, BookPage] = {}
     try:
-        # (Re)build the targeted books fresh and cache them.
+        # (Re)build the targeted books — `force` only ever applies here, never
+        # to the cache-filled rest below, so a plain full `gttp build` can
+        # never mass-resummarize an already-finalized catalog by accident.
         for book in targets:
-            page = build_book(book, client)
-            save_page(book.slug, page)
+            before = load_cached_page(book.slug)
+            page = build_book(book, client, force=force)
+            if page is not before:
+                save_page(book.slug, page)
             pages[book.slug] = page
 
         # Fill in the rest from cache so the index stays complete; build any

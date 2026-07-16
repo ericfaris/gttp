@@ -1,0 +1,36 @@
+{
+  "title": "The 7 Habits of Highly Effective People",
+  "author": "Stephen R. Covey",
+  "core_idea": "The 7 Habits summary \u2014 the actual 7 habits and what they mean.",
+  "bullets": [
+    "Be proactive \u2014 focus on your circle of influence, not your circle of concern. You choose your response.",
+    "Begin with the end in mind \u2014 define what success actually looks like before you start (write a personal mission statement).",
+    "Put first things first \u2014 prioritize important-but-not-urgent work (Quadrant II) over urgent noise.",
+    "Think win-win \u2014 seek mutual benefit, not zero-sum.",
+    "Seek first to understand, then to be understood \u2014 listen with intent to understand, not to reply."
+  ],
+  "honest_take": "Distilled from the top 2 Reddit threads. Enable an Anthropic API key for a synthesized, opinionated take.",
+  "quotes": [
+    {
+      "text": "Habit 5 (understand before being understood) is worth the whole book. Most conflict dies right there.",
+      "author": "a commenter",
+      "url": "https://www.reddit.com/r/selfimprovement/comments/sh1/7_habits_summary/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "The 7 Habits summary \u2014 the actual 7 habits and what they mean",
+      "url": "https://www.reddit.com/r/selfimprovement/comments/sh1/7_habits_summary/",
+      "subreddit": "selfimprovement",
+      "score": 2600
+    },
+    {
+      "title": "Main points of 7 Habits without the corporate fluff",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/sh2/without_fluff/",
+      "subreddit": "getdisciplined",
+      "score": 780
+    }
+  ],
+  "generated_by": "heuristic",
+  "generated_at": "2026-07-16"
+}

@@ -1,6 +1,11 @@
 .env
 site/
-.cache/
+# .cache/pages/ holds the synthesized book summaries — committed on purpose so
+# a finalized summary survives even if the local cache is wiped or a bad
+# rebuild degrades it (see cache.py: page_quality/is_final). Everything else
+# under .cache/ (raw Reddit threads, the browser profile) is regenerable.
+.cache/*
+!.cache/pages/
 __pycache__/
 *.pyc
 *.egg-info/

@@ -1,0 +1,36 @@
+{
+  "title": "Deep Work",
+  "author": "Cal Newport",
+  "core_idea": "Deep Work key takeaways \u2014 the whole book in one post.",
+  "bullets": [
+    "Deep work (focused, cognitively demanding, no distraction) is becoming rare exactly as it becomes valuable. That's the whole thesis.",
+    "Shallow work (email, meetings, Slack) feels productive but is low-value and easy to replicate.",
+    "You have a finite amount of deep-work capacity per day (~4 hours even for experts). Protect it.",
+    "Four philosophies of scheduling deep work: monastic, bimodal, rhythmic (same block daily), journalistic. Pick one that fits your life.",
+    "Embrace boredom: if you can't tolerate a queue without your phone, you've trained your brain to crave distraction. Schedule your internet use."
+  ],
+  "honest_take": "Distilled from the top 2 Reddit threads. Enable an Anthropic API key for a synthesized, opinionated take.",
+  "quotes": [
+    {
+      "text": "The 4-hours-of-deep-work-max claim is the single most freeing idea. Stop feeling guilty about the other 4 hours.",
+      "author": "a commenter",
+      "url": "https://www.reddit.com/r/productivity/comments/dw1/deep_work_takeaways/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Deep Work key takeaways \u2014 the whole book in one post",
+      "url": "https://www.reddit.com/r/productivity/comments/dw1/deep_work_takeaways/",
+      "subreddit": "productivity",
+      "score": 3100
+    },
+    {
+      "title": "Deep Work in a nutshell for people who won't read it",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/dw2/nutshell/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 1400
+    }
+  ],
+  "generated_by": "heuristic",
+  "generated_at": "2026-07-16"
+}

@@ -38,6 +38,12 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="ignore cached threads and re-fetch from Reddit",
     )
+    p_build.add_argument(
+        "--force",
+        action="store_true",
+        help="resummarize even a book that's already finalized (real Claude "
+        "synthesis is otherwise locked and never silently rebuilt/degraded)",
+    )
 
     sub.add_parser("list", help="list catalog books")
 
@@ -97,7 +103,13 @@ def main(argv: list[str] | None = None) -> int:
             return 1
         scope = f"'{args.only}'" if args.only else f"{len(books)} book(s)"
         print(f"Building {scope}{' (offline)' if args.offline else ''}...")
-        build_all(books, offline=args.offline, only=args.only, refresh=args.refresh)
+        build_all(
+            books,
+            offline=args.offline,
+            only=args.only,
+            refresh=args.refresh,
+            force=args.force,
+        )
         return 0
 
     return 1

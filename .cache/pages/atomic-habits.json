@@ -1,0 +1,36 @@
+{
+  "title": "Atomic Habits",
+  "author": "James Clear",
+  "core_idea": "Atomic Habits summary in 5 points (so you don't have to read all 300 pages).",
+  "bullets": [
+    "You do not rise to the level of your goals, you fall to the level of your systems. Focus on the process, not the outcome.",
+    "Habits are the compound interest of self-improvement. 1% better every day = ~37x better in a year.",
+    "The 4 laws: make it obvious, make it attractive, make it easy, make it satisfying. Invert them to break a bad habit.",
+    "Identity change is the real lever. Don't aim to 'read a book', aim to 'be a reader'. Every action is a vote for the person you want to become.",
+    "Environment beats willpower. Make good habits the path of least resistance and bad ones annoying to start."
+  ],
+  "honest_take": "Distilled from the top 2 Reddit threads. Enable an Anthropic API key for a synthesized, opinionated take.",
+  "quotes": [
+    {
+      "text": "The identity-based habits chapter is the only genuinely new idea here. Everything else is Charles Duhigg's The Power of Habit repackaged.",
+      "author": "a commenter",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/ah1/atomic_habits_summary/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Atomic Habits summary in 5 points (so you don't have to read all 300 pages)",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/ah1/atomic_habits_summary/",
+      "subreddit": "BettermentBookClub",
+      "score": 4200
+    },
+    {
+      "title": "The one Atomic Habits idea that actually changed my life: the two-minute rule",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/ah2/two_minute_rule/",
+      "subreddit": "getdisciplined",
+      "score": 1800
+    }
+  ],
+  "generated_by": "heuristic",
+  "generated_at": "2026-07-16"
+}
