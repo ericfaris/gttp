@@ -12,7 +12,7 @@ import shutil
 from pathlib import Path
 
 from . import covers
-from .config import SITE_DIR, slugify
+from .config import SITE_DIR, STATIC_DIR, slugify
 from .models import BookPage
 
 
@@ -68,6 +68,11 @@ def write_site(
     books_dir.mkdir(exist_ok=True)
     site_covers = site_dir / "covers"
 
+    if STATIC_DIR.is_dir():
+        for asset in STATIC_DIR.iterdir():
+            if asset.is_file():
+                shutil.copy2(asset, site_dir / asset.name)
+
     for page in pages:
         slug = slugify(page.title)
         src = covers.cover_file(slug, covers_dir)
@@ -106,8 +111,8 @@ def _truncate(text: str, limit: int = 60) -> str:
 def _render_header(root: str) -> str:
     return (
         f"<header class='site-header'>"
-        f"<a class='site-title' href='{root}index.html'>gttp"
-        f"<span> — Get To The Point</span></a></header>"
+        f"<a class='site-title' href='{root}index.html'>"
+        f"<img src='{root}logo.png' alt='Get To The Point' height='32'></a></header>"
     )
 
 
@@ -249,6 +254,10 @@ _HTML_SHELL = """<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <style>
   :root {{ color-scheme: light dark; }}
   html {{ scroll-behavior: smooth; }}
@@ -258,8 +267,9 @@ _HTML_SHELL = """<!doctype html>
   .sub, .author {{ color: #888; }}
   .site-header {{ border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
                   padding: .7rem 1.2rem; }}
-  .site-title {{ font-weight: 700; text-decoration: none; }}
-  .site-title span {{ color: #888; font-weight: 400; }}
+  .site-title {{ display: inline-block; text-decoration: none; }}
+  .site-title img {{ display: block; height: 32px; width: auto; background: #fff;
+                      border-radius: 6px; padding: 3px 10px; }}
   .site-footer {{ max-width: 46rem; margin: 3rem auto 2rem; padding: 1rem 1.2rem 0;
                   border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent);
                   color: #888; font-size: .85rem; }}

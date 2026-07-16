@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[2]
 BOOKS_FILE = ROOT / "books.yaml"
 FIXTURES_DIR = ROOT / "fixtures"
 SITE_DIR = ROOT / "site"
+STATIC_DIR = ROOT / "static"
 
 # The model used for ranking and synthesis.
 MODEL = "claude-sonnet-4-6"
