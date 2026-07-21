@@ -100,15 +100,15 @@ def placeholder_svg(title: str, css_class: str) -> str:
     letter = next((c for c in title if c.isalnum()), "?").upper()
     digest = hashlib.md5(title.encode("utf-8")).hexdigest()
     hue = int(digest[:6], 16) % 360
-    fill = f"hsl({hue} 45% 38%)"
+    fill = f"hsl({hue} 40% 40%)"
     letter_esc = html.escape(letter)
     label = html.escape(f"Cover of {title}")
     return (
         f'<svg class="{css_class}" viewBox="0 0 60 90" role="img" '
         f'aria-label="{label}" preserveAspectRatio="xMidYMid slice">'
         f'<rect width="60" height="90" fill="{fill}"/>'
-        f'<text x="30" y="45" fill="#fff" font-size="34" font-weight="600" '
+        f'<text x="30" y="45" fill="#fff" font-size="34" font-weight="700" '
         f'text-anchor="middle" dominant-baseline="central" '
-        f'font-family="-apple-system, system-ui, sans-serif">{letter_esc}</text>'
+        f'font-family="Georgia, \'Times New Roman\', serif">{letter_esc}</text>'
         f'</svg>'
     )
