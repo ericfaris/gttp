@@ -1,11 +1,64 @@
 {
   "title": "Meditations",
   "author": "Marcus Aurelius",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
-  "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "core_idea": "Meditations is Marcus Aurelius's private notebook for talking himself into not being an idiot every morning \u2014 the whole book boils down to: separate what you control (your judgments, reactions, effort) from what you don't (other people, outcomes, death), and rehearse hard moments before they happen so they don't ambush you.",
+  "bullets": [
+    "Do the 3-minute premeditation drill: before your day starts, write down one thing that could go wrong and exactly how you'd respond to it. This is the single habit Redditors actually kept from the book.",
+    "Draw a hard line daily between 'in my control' (thoughts, effort, response) and 'not in my control' (past events, other people's opinions, outcomes) \u2014 stop spending energy on the second column.",
+    "Treat a craving, a bad mood, or a setback as neutral raw material, not a verdict on your character \u2014 Marcus's line is that things themselves are indifferent; it's the meaning you assign that hurts.",
+    "Expect to fail and restart constantly \u2014 the 'catch yourself drifting, gently return' loop isn't a bug in the practice, it is the practice. Beating yourself up over lapses defeats the point.",
+    "Don't read it as one running argument \u2014 it's a journal of repeated self-talk. Dip into a page a day rather than grinding through cover to cover."
+  ],
+  "honest_take": "Reddit doesn't really engage with Meditations as a text \u2014 almost nobody discusses specific books/chapters, and the strongest 'book club' thread mentions it in one paragraph as the source of a single morning habit, then moves on to Atomic Habits and Why We Sleep. Most of the deeper emotional threads (the meth-relapse post, the anxiety post, the confidence post) never cite the book directly at all \u2014 they're just running on diffuse 'stoicism vibes' that get credited to Marcus Aurelius by osmosis. One heavily upvoted thread that keeps surfacing in searches for 'Meditations' isn't even about the book \u2014 it's about breath meditation as a practice, a title collision that muddies every roundup like this one. The sharpest real criticism, read between the lines: the book is repetitive journal entries with no narrative arc or chapter logic worth following in order, so trying to read it start-to-finish is where people bounce off; the value people actually extract is one or two portable moves (premeditate adversity, control vs. no control) rather than the full text. If you want the Reddit-endorsed version, skim for those two ideas and skip the rest as ambient philosophical wallpaper.",
+  "quotes": [
+    {
+      "text": "Meditations by Marcus Aurelius gave me a morning reflection habit. Before the day starts, I write down one thing that could go wrong today and how I'd handle it. Takes 3 minutes. Changed how I react to basically everything.",
+      "author": "StackedMornings",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/1skm8oc/which_book_actually_changed_your_daily_habits_not/"
+    },
+    {
+      "text": "I acknowledge that all drugs are neutral elements; neither evil nor good, and have no effect on our lives other than the ideas we project unto them.",
+      "author": "weeddealingaccount",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/kd7mbz/after_almost_3_years_off_of_it_i_was_offered_meth/"
+    },
+    {
+      "text": "you can't be ambitious or productive while focusing on what you cannot control.",
+      "author": "Cat_Eyed_Goddess94",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/kpyb88/i_started_getting_anxious_because_theres_a_huge/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Which book actually changed your daily habits, not just how you think?",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/1skm8oc/which_book_actually_changed_your_daily_habits_not/",
+      "subreddit": "BettermentBookClub",
+      "score": 99
+    },
+    {
+      "title": "I started getting anxious because there's a huge disconnect between where I am right now versus where I want to be. When this happens, remind yourself of what life will be like if you keep going, and that the anxiety is an illusion since you spend ur current life working towards your future life.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/kpyb88/i_started_getting_anxious_because_theres_a_huge/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 1511
+    },
+    {
+      "title": "After almost 3 years off of it, I was offered Meth and I politely declined.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/kd7mbz/after_almost_3_years_off_of_it_i_was_offered_meth/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 1982
+    },
+    {
+      "title": "Just wanted to share a simple shift in mindset that's made a huge difference in my journey to end my tech-addiction and other bad habits.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/taz4c1/just_wanted_to_share_a_simple_shift_in_mindset/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 758
+    },
+    {
+      "title": "I Know This Will Help Someone",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/c5vjgq/i_know_this_will_help_someone/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 1131
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

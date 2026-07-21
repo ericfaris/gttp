@@ -1,11 +1,64 @@
 {
   "title": "The Magic of Thinking Big",
   "author": "David J. Schwartz",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
-  "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "core_idea": "Schwartz's whole pitch is that the size of your goals\u2014not your IQ, luck, or resources\u2014determines the size of your results, because self-belief and 'big thinking' habits directly shape the actions you take and the risks you're willing to try.",
+  "bullets": [
+    "Believe you can before you try \u2014 most people fail simply because they've already decided they can't, and that belief becomes the ceiling.",
+    "Think in terms of 'how can I' instead of 'why I can't' \u2014 Schwartz frames every excuse as a solvable logistics problem, not a verdict.",
+    "Surround yourself with people who expect more from you; your environment recalibrates what 'normal ambition' looks like.",
+    "Act on ideas immediately instead of waiting to feel ready \u2014 momentum, not motivation, is what actually produces results.",
+    "Set goals bigger than feels comfortable, because oversized goals force you to grow into new capabilities you wouldn't reach for otherwise."
+  ],
+  "honest_take": "Reddit's self-help crowd doesn't discuss this book chapter-by-chapter much anymore \u2014 it's absorbed into the wallpaper of a hundred paraphrased threads. The honest consensus across these communities is that 'thinking big' books are 80% recycled platitudes ('believe in yourself,' 'you are the architect of your fate') that feel obvious once you've read three other self-help books, and 20% genuinely useful behavioral tricks that only work if you pair them with mechanics \u2014 habit design, environment control, tiny first steps \u2014 which is exactly what modern threads add back in because the original book is light on 'how.' The real critique redditors level at this genre is that belief without a system is just vibes; the parts worth keeping are the ones that turn into a concrete action (lower the activation energy, act before you feel ready), and the parts worth skimming are the motivational-speaker chapters that just repeat 'aim higher' in different words without giving you the next physical step.",
+  "quotes": [
+    {
+      "text": "Fuck that. I don\u2019t care what your backstory is, you are worthy.",
+      "author": "StaticNocturne",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/d6ji86/advice_a_comprehensive_guide_to_becoming_the_best/"
+    },
+    {
+      "text": "Motivation is a trap.",
+      "author": "mindsetdoesmatters",
+      "url": "https://www.reddit.com/r/productivity/comments/1h8j41q/how_i_finally_beat_procrastination_hint_its_not/"
+    },
+    {
+      "text": "Take charge for your attitude. Let no one choose it for you.",
+      "author": "ashhtreeee",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/drm7n0/50_life_lessons_from_an_80_yr_old_man_for_some/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "[Method] I summarized all the top posts of the top self-help subreddits of all time into a cheatsheet.",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/b9w7fx/method_i_summarized_all_the_top_posts_of_the_top/",
+      "subreddit": "getdisciplined",
+      "score": 7342
+    },
+    {
+      "title": "How I Finally Beat Procrastination (Hint: It\u2019s Not Motivation) \ud83c\udfaf",
+      "url": "https://www.reddit.com/r/productivity/comments/1h8j41q/how_i_finally_beat_procrastination_hint_its_not/",
+      "subreddit": "productivity",
+      "score": 3062
+    },
+    {
+      "title": "[Advice] A Comprehensive guide to becoming the best version of yourself",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/d6ji86/advice_a_comprehensive_guide_to_becoming_the_best/",
+      "subreddit": "getdisciplined",
+      "score": 2039
+    },
+    {
+      "title": "50 life lessons from an 80 yr old man. (For some reasons #14 stuck with me)",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/drm7n0/50_life_lessons_from_an_80_yr_old_man_for_some/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 3099
+    },
+    {
+      "title": "[Method] What finally made it click. Dopamine control.",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/qajv29/method_what_finally_made_it_click_dopamine_control/",
+      "subreddit": "getdisciplined",
+      "score": 2522
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

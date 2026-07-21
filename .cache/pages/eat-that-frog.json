@@ -1,11 +1,64 @@
 {
   "title": "Eat That Frog!",
   "author": "Brian Tracy",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
-  "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "core_idea": "Brian Tracy's whole book boils down to one move: identify the single most important, most uncomfortable task on your list (the 'frog') and do it first thing in the morning, before email, before meetings, before anything else \u2014 because willpower is highest early and lowest by 3pm.",
+  "bullets": [
+    "Use the ABCDE method: rank every task A (serious consequences if not done) through E (no consequences), and never touch a B task while an A task is undone.",
+    "Pick the single ugliest, highest-value task on your list and do it before you open email or Slack \u2014 that's 'eating the frog.'",
+    "Apply 80/20: 20% of your tasks produce 80% of your results, so most of your to-do list is filler you can ignore or delete.",
+    "Single-task. Tracy is explicit that multitasking is a productivity myth \u2014 pick one frog, finish it, then move to the next.",
+    "Plan tomorrow's frog the night before so you're not deciding what to work on when your willpower is already spent."
+  ],
+  "honest_take": "None of the linked threads are actually a discussion of 'Eat That Frog!' by name \u2014 Reddit's self-help crowd talks about the same underlying idea (do the hard important thing first, prioritize ruthlessly) constantly, but they credit it to the 'big rocks in the jar' analogy, Pareto's 80/20, or lump it in with Atomic Habits and The Slight Edge rather than citing Tracy directly. That's actually the sharpest implicit criticism of the book floating around self-help circles: the core insight is one paragraph long and everyone already half-knows it from other sources, so the book gets padded to 21 short chapters restating 'prioritize and start' in slightly different language. The genuinely useful chapters are the ABCDE method and the 80/20 chapter \u2014 those give you a repeatable system. The rest (the chapters on 'upgrading your key skills,' 'technology,' single-tasking pep talks) read as filler that most people skip after the first read-through. The bigger consensus from actual habit-focused threads is that Tracy's book is a motivation-flavored kickstart, but the people who stick with it long-term are the ones who pair it with discipline-based habit tracking (bullet journals, small non-negotiable daily minimums) rather than relying on the 'frog' framing alone.",
+  "quotes": [
+    {
+      "text": "Well, the most important tasks are the big rocks and the jar is your to-do list.",
+      "author": "tinmmayer",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/90fj60/my_team_is_overwhelmed_with_stress_at_work/"
+    },
+    {
+      "text": "Motivation fades. Discipline is forever.",
+      "author": "The_Wolf_Pack",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/cv5gng/30_days_and_what_ive_learnedearned/"
+    },
+    {
+      "text": "DON'T TRUST MOTIVATION. Motivation is good if it's there but it shouldn't be the foundation of the habits you create.",
+      "author": "luuk0987",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/9t0hqd/what_ive_learned_working_my_way_up_from_rock/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "A week before the lockdowns began I did a one week no procrastination challenge: no distractions, no phone, no TV, nothing unplanned. Now might be the best time for you to try it too! It's a great way of catching up on a lot of work in a short amount of time. Here's my method and takeaways.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/fnhfji/a_week_before_the_lockdowns_began_i_did_a_one/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 443
+    },
+    {
+      "title": "My Team is Overwhelmed with Stress at Work",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/90fj60/my_team_is_overwhelmed_with_stress_at_work/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 131
+    },
+    {
+      "title": "Here\u2019s how to change yourself with consistent small habits with James Clear\u2019s Atomic Habits",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/h9k21k/heres_how_to_change_yourself_with_consistent/",
+      "subreddit": "BettermentBookClub",
+      "score": 274
+    },
+    {
+      "title": "30 days and what Ive learned/earned.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/cv5gng/30_days_and_what_ive_learnedearned/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 570
+    },
+    {
+      "title": "What I've learned working my way up from rock bottom",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/9t0hqd/what_ive_learned_working_my_way_up_from_rock/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 565
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

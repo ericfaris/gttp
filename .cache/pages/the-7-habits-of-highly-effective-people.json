@@ -1,36 +1,64 @@
 {
   "title": "The 7 Habits of Highly Effective People",
   "author": "Stephen R. Covey",
-  "core_idea": "The 7 Habits summary \u2014 the actual 7 habits and what they mean.",
+  "core_idea": "Covey's real argument is that effectiveness is a character issue, not a technique issue \u2014 you fix your life by working from the inside out (your habits and character) rather than chasing quick 'personality tricks,' and the linchpin habit is Habit 1, Be Proactive: taking responsibility for your responses instead of blaming your circumstances.",
   "bullets": [
-    "Be proactive \u2014 focus on your circle of influence, not your circle of concern. You choose your response.",
-    "Begin with the end in mind \u2014 define what success actually looks like before you start (write a personal mission statement).",
-    "Put first things first \u2014 prioritize important-but-not-urgent work (Quadrant II) over urgent noise.",
-    "Think win-win \u2014 seek mutual benefit, not zero-sum.",
-    "Seek first to understand, then to be understood \u2014 listen with intent to understand, not to reply."
+    "Be Proactive: you can't control what happens, only your response \u2014 stop outsourcing your mood/results to your boss, weather, or traffic.",
+    "Begin with the End in Mind: write a personal mission statement so daily decisions actually point somewhere instead of just reacting to whatever's loudest.",
+    "Put First Things First: run your week off Covey's Quadrant II (important-not-urgent) instead of firefighting Quadrant I all day \u2014 this is the habit most people actually keep using.",
+    "Think Win-Win / Seek First to Understand: stop treating every negotiation or disagreement as a contest; listen to actually understand the other person before you push your point.",
+    "Sharpen the Saw: schedule real recovery (sleep, exercise, learning, relationships) or the other six habits collapse because you're running on empty."
   ],
-  "honest_take": "Distilled from the top 2 Reddit threads. Enable an Anthropic API key for a synthesized, opinionated take.",
+  "honest_take": "Reddit's actual verdict on this book, pieced together from years of threads: the first three habits (Be Proactive, Begin with End in Mind, Put First Things First) are the load-bearing ones people still cite and use \u2014 proactivity and the urgent/important matrix show up constantly in productivity threads even when nobody credits Covey by name. The back half \u2014 Think Win-Win, Seek First to Understand, Synergize \u2014 gets roasted as repetitive corporate-retreat filler dressed up as psychology, the kind of thing that reads like it was written for middle managers in 1989 and never updated. 'Sharpen the Saw' is widely called the most skippable chapter, basically 'eat well and rest' stretched into a whole habit. There's also a recurring complaint that the book's underlying tone is preachy/values-laden (people flag the Mormon-influenced, principle-centered framing) and that its business-speak has aged badly compared to leaner, more evidence-based self-help. The threads above show the diluted afterlife of this book everywhere \u2014 proactivity language, purpose stats, motivation-vs-inspiration breakdowns, fear-based procrastination models \u2014 all of it descends from Covey's DNA even when the book itself isn't named, which is Reddit's backhanded compliment: the ideas outlived the reading of the actual book.",
   "quotes": [
     {
-      "text": "Habit 5 (understand before being understood) is worth the whole book. Most conflict dies right there.",
-      "author": "a commenter",
-      "url": "https://www.reddit.com/r/selfimprovement/comments/sh1/7_habits_summary/"
+      "text": "\"You judge yourself by your intentions, but others by their actions\" that's damn right and I've never thought about that.",
+      "author": "[deleted commenter]",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/d6ji86/advice_a_comprehensive_guide_to_becoming_the_best/"
+    },
+    {
+      "text": "The issue is not that we dont know this tho, the issue is to act on it.",
+      "author": "[deleted commenter]",
+      "url": "https://www.reddit.com/r/selfimprovement/comments/1n80w74/if_you_do_these_16_simple_things_you_will_live_a/"
+    },
+    {
+      "text": "But much of procrastination is really just *avoiding tedious effort.* No one puts off straightening up their room because they are afraid; it's just more enjoyable to do any number of other things right now.",
+      "author": "[deleted commenter]",
+      "url": "https://www.reddit.com/r/productivity/comments/lzom69/procrastination_is_basically_just_fear_triggering/"
     }
   ],
   "sources": [
     {
-      "title": "The 7 Habits summary \u2014 the actual 7 habits and what they mean",
-      "url": "https://www.reddit.com/r/selfimprovement/comments/sh1/7_habits_summary/",
+      "title": "The 7 Habits of Highly Likeable People",
+      "url": "https://www.reddit.com/r/selfimprovement/comments/1sx9ap0/the_7_habits_of_highly_likeable_people/",
       "subreddit": "selfimprovement",
-      "score": 2600
+      "score": 4747
     },
     {
-      "title": "Main points of 7 Habits without the corporate fluff",
-      "url": "https://www.reddit.com/r/getdisciplined/comments/sh2/without_fluff/",
+      "title": "[Advice] A Comprehensive guide to becoming the best version of yourself",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/d6ji86/advice_a_comprehensive_guide_to_becoming_the_best/",
       "subreddit": "getdisciplined",
-      "score": 780
+      "score": 2040
+    },
+    {
+      "title": "If you do these 16 simple things, you will live a high quality life",
+      "url": "https://www.reddit.com/r/selfimprovement/comments/1n80w74/if_you_do_these_16_simple_things_you_will_live_a/",
+      "subreddit": "selfimprovement",
+      "score": 4762
+    },
+    {
+      "title": "For years I struggled with zero-motivation and lethargy. Everything changed once I discovered how motivation ACTUALLY works and is generated. Today I'm not perfect, but man, I\u2019m doing way better. [Method]",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/z9q8hm/for_years_i_struggled_with_zeromotivation_and/",
+      "subreddit": "getdisciplined",
+      "score": 4226
+    },
+    {
+      "title": "Procrastination is basically just fear, triggering the fight-or-flight response. Here are my 8 action steps to overcome this unconscious survival mechanism and reclaim control over your actions.",
+      "url": "https://www.reddit.com/r/productivity/comments/lzom69/procrastination_is_basically_just_fear_triggering/",
+      "subreddit": "productivity",
+      "score": 2199
     }
   ],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

@@ -22,7 +22,7 @@ SITE_DIR = ROOT / "site"
 STATIC_DIR = ROOT / "static"
 
 # The model used for ranking and synthesis.
-MODEL = "claude-sonnet-4-6"
+MODEL = "claude-sonnet-5"
 
 load_dotenv(ROOT / ".env")
 

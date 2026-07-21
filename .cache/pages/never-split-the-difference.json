@@ -1,11 +1,64 @@
 {
   "title": "Never Split the Difference",
   "author": "Chris Voss",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
-  "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "core_idea": "Note on sources: the Reddit threads supplied for this brief are about discipline, dopamine, and marathon training \u2014 none of them actually discuss 'Never Split the Difference' or Chris Voss. So the quotes below are real and verbatim, but they're not testimony about this book; treat the core_idea/bullets as a straight synthesis of the book itself, not of Reddit sentiment on it. Voss's real thesis: in any negotiation, don't try to be 'rational' or split down the middle \u2014 use tactical empathy (mirroring, labeling emotions, calibrated 'how/what' questions) to get the other side to feel understood, then guide them to their own 'that's right' moment where they commit to your solution as if it were theirs.",
+  "bullets": [
+    "Mirror the last 1-3 words the other person says, in a curious tone \u2014 it makes them elaborate and reveals what they actually care about.",
+    "Label emotions out loud ('It seems like you're worried about...') instead of naming facts \u2014 defusing feelings before you negotiate terms.",
+    "Chase 'That's right,' not 'You're right' \u2014 the second one is people agreeing just to end the conversation, the first means they feel truly understood.",
+    "Ask calibrated open questions starting with 'how' or 'what' ('How am I supposed to do that?') to make the other side solve your problem for you, without them feeling pushed.",
+    "Get a 'no' early and on purpose \u2014 people feel safer and more in control saying no than yes, so structure requests to invite it (e.g., 'Is now a bad time to talk?')."
+  ],
+  "honest_take": "Full transparency: the threads I was given to synthesize aren't actually about this book at all \u2014 they're r/getdisciplined and r/productivity posts about willpower, dopamine, and marathon training, so I can't hand you real Reddit quotes debating Voss's tactics because none exist in this source set. Speaking from general knowledge of how this book is discussed online (not from the provided threads): the common gripe is that the negotiation examples are almost all high-stakes/hostage-crisis stories, which are gripping to read but don't map cleanly onto asking your boss for a raise or haggling over a used car \u2014 critics say the book oversells how far FBI kidnapping tactics generalize to everyday life. The 'Black Swan' chapter near the end (on finding hidden information) is frequently called the weakest/most skippable, feeling tacked-on compared to the mirroring/labeling/calibrated-questions core which is genuinely the reusable 80%. Some readers also find the tone a little salesman-y \u2014 Voss is very confident every tactic worked because HE was the one telling the story.",
+  "quotes": [
+    {
+      "text": "You need to seperate your actions from your feelings!",
+      "author": "Limp_Edu4797",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1mbhsfy/my_grandma_96_made_discipline_so_simple/"
+    },
+    {
+      "text": "Instead of fighting 'do it now' vs 'do it later with my brain, I've told myself 'Ok, Brain, we don't have to do it now. We can sit here the entire day and don't even start doing it. BUT we'll do NOTHING else.'",
+      "author": "pie6k",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/ic70lc/advice_being_overstimulated_is_the_cause_of_the/"
+    },
+    {
+      "text": "The truth is, we\u2019re not short on knowledge, we\u2019re short on behavioral patterns.",
+      "author": "pie6k",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/ic70lc/advice_being_overstimulated_is_the_cause_of_the/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "[METHOD] How I went from rock bottom to disciplined in 6 months.",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/9t0gqz/method_how_i_went_from_rock_bottom_to_disciplined/",
+      "subreddit": "getdisciplined",
+      "score": 16316
+    },
+    {
+      "title": "My grandma (96) made discipline so simple",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1mbhsfy/my_grandma_96_made_discipline_so_simple/",
+      "subreddit": "getdisciplined",
+      "score": 8428
+    },
+    {
+      "title": "[Advice] Being overstimulated is the cause of the lack of discipline",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/ic70lc/advice_being_overstimulated_is_the_cause_of_the/",
+      "subreddit": "getdisciplined",
+      "score": 6175
+    },
+    {
+      "title": "You're Not Lazy, You're Dopamine-Depleted (Part 2): Real Steps That Actually Work - Trust Me, I've Tested Them All",
+      "url": "https://www.reddit.com/r/productivity/comments/1hx8tvy/youre_not_lazy_youre_dopaminedepleted_part_2_real/",
+      "subreddit": "productivity",
+      "score": 5359
+    },
+    {
+      "title": "[Advice] 3 years ago I ran and trained for a marathon by myself. I learned 12 important lessons along the way that have helped tremendously in my life to date, hopefully you find these 12 lessons valuable too!",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/a1sa3p/advice_3_years_ago_i_ran_and_trained_for_a/",
+      "subreddit": "getdisciplined",
+      "score": 4975
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

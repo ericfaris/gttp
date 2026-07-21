@@ -1,11 +1,64 @@
 {
   "title": "The Obstacle Is the Way",
   "author": "Ryan Holiday",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
-  "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "core_idea": "Holiday's whole book compresses into the old Stoic triad \u2014 perception, action, will: obstacles are neutral events until you assign them meaning, so change how you see the problem, act on what's in front of you regardless of fear, and accept what you can't control so you don't waste energy raging at it.",
+  "bullets": [
+    "Reframe the obstacle before reacting to it \u2014 a craving, a breakup, a bad day is 'neutral' until you decide what it means; that decision is the actual fight.",
+    "Don't wait to feel motivated \u2014 act first, in the smallest possible unit (one paragraph, one pushup, one declined hit), and motivation follows the action instead of preceding it.",
+    "Separate what's yours to control from what isn't; stop spending willpower on the boss's mood, the ex's decision, or yesterday's mistake.",
+    "Use setbacks as raw material, not verdicts \u2014 a relapse risk, a depressive episode, a missed deadline is data for the next attempt, not proof of who you are.",
+    "Zoom out on purpose \u2014 most crises feel unbearable because you're inside them; asking 'is this actually a problem right now, this second' or 'would I accept this talk from a stranger' breaks the spiral."
+  ],
+  "honest_take": "None of these threads are actually reviewing the book as a book \u2014 that's the tell. Reddit doesn't cite chapters, doesn't argue about the Amelia Earhart or Ulysses S. Grant sections, doesn't debate the writing. Instead the book's central move (obstacle = opportunity) gets stripped down to a mantra and bolted onto whatever crisis someone's already dealing with: addiction relapse, depression, procrastination, motivation lists. It's used the same way people use Atomic Habits or a Marcus Aurelius meme \u2014 as emergency scaffolding for self-talk, not as literature. The sharpest implicit criticism is that nobody treats it as a rigorous or original text; the ideas (act despite fear, focus on what you control, small wins beat big goals) are Stoicism 101 that Holiday repackaged, and Reddit's own crowd-sourced advice threads (the learned-helplessness post, the depression-lessons post) independently arrive at the same conclusions without ever mentioning the book \u2014 which suggests the book's value is packaging, not novelty. If you're going to skip anything, skip expecting deep chapter-by-chapter insight; the whole thing is one framework stretched across a lot of biography. People here use the framework, not the prose.",
+  "quotes": [
+    {
+      "text": "I acknowledge that all drugs are neutral elements; neither evil nor good, and have no effect on our lives other than the ideas we project unto them.",
+      "author": "weeddealingaccount",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/kd7mbz/after_almost_3_years_off_of_it_i_was_offered_meth/"
+    },
+    {
+      "text": "Failure is not an obstacle; merely a stepping stone",
+      "author": "ALefty",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/axom1g/advice_why_you_cant_motivate_yourself_to_do/"
+    },
+    {
+      "text": "You can choose how to perceive and respond to any experience. This is easier said than done.",
+      "author": "AvrilAvril",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/8ffrmt/what_ive_learned_from_20_years_of_living_with/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "After almost 3 years off of it, I was offered Meth and I politely declined.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/kd7mbz/after_almost_3_years_off_of_it_i_was_offered_meth/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 1987
+    },
+    {
+      "title": "[Advice] Why you can't motivate yourself to do anything",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/axom1g/advice_why_you_cant_motivate_yourself_to_do/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 582
+    },
+    {
+      "title": "Here\u2019s how to change yourself with consistent small habits with James Clear\u2019s Atomic Habits",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/h9k21k/heres_how_to_change_yourself_with_consistent/",
+      "subreddit": "BettermentBookClub",
+      "score": 275
+    },
+    {
+      "title": "What I've learned from 20 years of living with Depression",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/8ffrmt/what_ive_learned_from_20_years_of_living_with/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 1901
+    },
+    {
+      "title": "Lessons I have to relearn everytime life goes to shit",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/in0n58/lessons_i_have_to_relearn_everytime_life_goes_to/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 1695
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

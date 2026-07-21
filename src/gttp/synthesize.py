@@ -39,7 +39,9 @@ _PAGE_SCHEMA = {
 }
 
 
-def synthesize(book: Book, ranked: list[RankedThread]) -> BookPage:
+def synthesize(
+    book: Book, ranked: list[RankedThread], ranking_used_claude: bool = True
+) -> BookPage:
     top = ranked[: book.synthesis_top_n]
     sources = [
         {
@@ -68,6 +70,11 @@ def synthesize(book: Book, ranked: list[RankedThread]) -> BookPage:
             page = _synthesize_with_claude(book, top)
             page.sources = sources
             page.generated_at = date.today().isoformat()
+            if not ranking_used_claude:
+                # Claude wrote fluent prose, but it was fed heuristic-ranked
+                # (possibly off-topic) threads — don't let that read as a
+                # finalized, locked-in page. See rank_threads() docstring.
+                page.generated_by = "claude_unranked"
             return page
         except Exception as exc:
             print(f"    synthesis: Claude call failed ({exc}); using heuristic")

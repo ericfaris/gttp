@@ -1,11 +1,64 @@
 {
   "title": "Boundaries",
   "author": "Henry Cloud and John Townsend",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
-  "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "core_idea": "Boundaries treats 'no' as a legitimate, even necessary, sentence \u2014 you are responsible FOR your own feelings/choices and TO other people, not FOR their feelings/choices, and until you draw a visible property line between the two, people will keep walking through your yard.",
+  "bullets": [
+    "Boundaries aren't walls, they're property lines: they define what's your responsibility (your feelings, choices, time, body) versus someone else's, so you stop absorbing other people's problems as your own.",
+    "You teach people how to treat you through consequences, not lectures \u2014 if you always cave after saying no, you've taught them your no is decorative.",
+    "Expect pushback (Cloud/Townsend call it 'testing') when you first set a boundary; anger or guilt-tripping from the other person is data about them, not proof you did something wrong.",
+    "Boundaries require you to tolerate the discomfort of disappointing people \u2014 the book's whole argument is that this discomfort is the price of an honest relationship, not a sign you're being selfish.",
+    "Saying yes to everything isn't love, it's often fear (of conflict, of being disliked, of abandonment) \u2014 the book pushes you to ask 'am I saying yes because I want to, or because I'm afraid to say no?'"
+  ],
+  "honest_take": "Reddit's actual usage of this book skews less 'I read Cloud and Townsend's theology of boundaries' and more 'someone told me about boundaries and now I'm applying it badly and grieving the fallout' \u2014 see the r/DecidingToBeBetter thread where a 27-year-old ends a 5-year relationship, quits her job, and cuts off friends in one year and then feels hollowed out and lonely, unsure if she overcorrected. That's the real lived experience the book sets people up for: the first, satisfying phase of finally saying no, followed by an uglier middle phase nobody warns you about. The iceberg/ship analogy from the top-voted post nails the book's core mechanic better than most summaries of the actual text \u2014 mutual, non-malicious need-clashing that gets resolved by speaking up, not by silent martyrdom. The candid critique that surfaces around this book (even if not stated explicitly in these threads) is consistent elsewhere: it's explicitly Christian and can get preachy/redundant once it moves into marriage and parenting chapters, so readers commonly say skip straight to the 'Ten Laws of Boundaries' section and the workplace/friendship chapters, and don't expect the back half to add much if you're single or areligious. It's a five-star framework wrapped in a three-star execution of chapters you'll skim.",
+  "quotes": [
+    {
+      "text": "The ship can safely sail in between the two, but only if you speak up do your part of the steering too.",
+      "author": "MattTheMentor",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/sfh6rl/how_to_set_boundaries_teach_people_how_they_can/"
+    },
+    {
+      "text": "Honesty gets you where you're going faster",
+      "author": "MattTheMentor",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/sfh6rl/how_to_set_boundaries_teach_people_how_they_can/"
+    },
+    {
+      "text": "I ended a 5 year toxic relationship, quit a job that was making me miserable, and have distanced myself from negative friendships\u2026 now I'm left feeling kind of lost and lonely.",
+      "author": "hmphys",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/tz2zj5/losing_friends_in_the_process_of_becoming_less_of/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "How to set boundaries: Teach people how they can treat you",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/sfh6rl/how_to_set_boundaries_teach_people_how_they_can/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 710
+    },
+    {
+      "title": "Losing friends in the process of becoming less of a people pleaser",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/tz2zj5/losing_friends_in_the_process_of_becoming_less_of/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 833
+    },
+    {
+      "title": "The Courage to be Disliked - detailed summary",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/yj4x0h/the_courage_to_be_disliked_detailed_summary/",
+      "subreddit": "BettermentBookClub",
+      "score": 378
+    },
+    {
+      "title": "Book Summary: Feel-Good Productivity by Ali Abdaal",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/18ww59o/book_summary_feelgood_productivity_by_ali_abdaal/",
+      "subreddit": "BettermentBookClub",
+      "score": 221
+    },
+    {
+      "title": "Chris Voss - Never Split The Difference Fully Summarized",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/vz7vfb/chris_voss_never_split_the_difference_fully/",
+      "subreddit": "BettermentBookClub",
+      "score": 205
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

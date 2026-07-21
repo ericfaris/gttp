@@ -1,11 +1,64 @@
 {
   "title": "The Mountain Is You",
   "author": "Brianna Wiest",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
-  "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "core_idea": "Self-sabotage isn't a character flaw \u2014 it's what happens when you rely on willpower and all-or-nothing thinking instead of building systems that account for your fluctuating energy, fear, and resistance. The 'mountain' is really just the pile of avoided emotional work standing between you and the life you want.",
+  "bullets": [
+    "Ditch all-or-nothing rules \u2014 flexible routines beat strict ones because willpower is a finite resource that drains with every decision you make.",
+    "Treat resistance as data, not laziness \u2014 if you're avoiding a task, it usually means your brain thinks it'll cost more willpower than you currently have, not that you're broken.",
+    "Self-love isn't optional fluff \u2014 most self-sabotage comes from feeling undeserving of the goal, which is why mindset work has to come before habit work.",
+    "Small, sustainable reps ('5 pushups' logic) beat heroic pushes \u2014 momentum comes from lowering the bar until showing up is basically guaranteed.",
+    "Discipline is a felt state (calm satisfaction) you build through trial and error, not a switch you flip on January 1st \u2014 expect to refine your system, not master it once."
+  ],
+  "honest_take": "None of the linked threads are actual book reviews of 'The Mountain Is You' \u2014 they're r/getdisciplined essays that reinvent the exact same territory the book covers (willpower depletion, all-or-nothing thinking, self-sabotage as fear in disguise), and that overlap is itself the honest verdict: Reddit's self-help crowd treats Wiest's book as one node in a genre it's already saturated with. The recurring critique across these threads, applied to the book by extension, is that a lot of it is admitted 'platitude' \u2014 comforting, quotable, but not new information if you've read literally any other self-improvement guide. The willpower-as-a-draining-cup framing gets pushback too: one commenter flatly says charging up by doing 'things you want' usually backfires and kills momentum instead of restoring it, which is the kind of tidy-sounding advice in the book that doesn't survive contact with real habits. Skip it expecting hard tactics or citations; read it as a permission slip to be gentler with yourself, and treat the individual chapters like a menu \u2014 the ones on self-love and emotional avoidance land, the generic 'you are the architect of your fate' stuff is skippable if you've read any guide like it before.",
+  "quotes": [
+    {
+      "text": "A lot of it is regurgitation of self-help lit I\u2019ve read, and a lot of it is admittedly platitude",
+      "author": "StaticNocturne",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/d6ji86/advice_a_comprehensive_guide_to_becoming_the_best/"
+    },
+    {
+      "text": "Willpower is a muscle that has limited capacity and fluctuates during the day",
+      "author": "Hustleduo",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/9on4am/method_no1_mistake_people_do_when_building_a/"
+    },
+    {
+      "text": "It\u2019s letting a bad morning ruin the rest of your day",
+      "author": "fp_admin",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/zy8efx/advice_forget_new_year_new_me_focus_on_gradual/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "[Advice] Forget 'new year, new me'. Focus on gradual, sustainable improvement and drop the 'all-or-nothing' thinking",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/zy8efx/advice_forget_new_year_new_me_focus_on_gradual/",
+      "subreddit": "getdisciplined",
+      "score": 1208
+    },
+    {
+      "title": "[Advice] A Comprehensive guide to becoming the best version of yourself",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/d6ji86/advice_a_comprehensive_guide_to_becoming_the_best/",
+      "subreddit": "getdisciplined",
+      "score": 2041
+    },
+    {
+      "title": "[Advice] PeaceH's Guide to Becoming Disciplined",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/2dd7yh/advice_peacehs_guide_to_becoming_disciplined/",
+      "subreddit": "getdisciplined",
+      "score": 845
+    },
+    {
+      "title": "[Method] The 22 ways I used to motivate myself to do the things I believe I need to do - long post",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/8067rj/method_the_22_ways_i_used_to_motivate_myself_to/",
+      "subreddit": "getdisciplined",
+      "score": 1083
+    },
+    {
+      "title": "[Method] No.1 mistake people do when building a habit - relying too much on willpower",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/9on4am/method_no1_mistake_people_do_when_building_a/",
+      "subreddit": "getdisciplined",
+      "score": 874
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

@@ -1,11 +1,64 @@
 {
   "title": "The Compound Effect",
   "author": "Darren Hardy",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
-  "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "core_idea": "Darren Hardy's whole book boils down to one mechanism: tiny, boring choices repeated daily\u2014invisible in the moment\u2014compound into either radical success or radical failure over months and years. There's no hack, no windfall; it's the math of consistency (his 'Big 3': Choices \u2192 Habits \u2192 Momentum).",
+  "bullets": [
+    "Track everything you eat, spend, or do for 3 weeks before changing anything \u2014 Hardy's own diet-tracking story is the one exercise Reddit users actually replicate because it exposes the choices you're not noticing.",
+    "Adopt the 'Big 3' loop: make a conscious choice, repeat it until it's an automatic habit, then let habit-momentum carry you past the point where willpower alone would quit.",
+    "Expect the 'Valley of Disappointment' \u2014 1% daily gains look like nothing for weeks; the compounding only becomes visible after a delayed threshold, so judge yourself by the streak, not by results.",
+    "Momentum rewards people who show up on bad days, not people waiting to feel motivated \u2014 showing up daily (even doing the minimum) is the actual habit, not the workout/diet/task itself.",
+    "Audit who you spend time with \u2014 Hardy's 'Who's Your Five' idea says your inner circle sets your ceiling; cut or limit people who normalize your worst defaults."
+  ],
+  "honest_take": "Here's the awkward part: almost none of the linked threads are actually reviewing Hardy's book chapter-by-chapter \u2014 they're reviewing the *idea* of compounding small habits, and most of the citations, quotes, and structured breakdowns people post are lifted from Atomic Habits instead, with commenters literally saying 'this reminds me of Atomic Habits.' That's the real Reddit verdict: The Compound Effect gets credit for popularizing the 1%-a-day framing, but James Clear's version is what people actually reread, summarize, and build spaced-repetition decks from. The common complaint about Hardy's book specifically (from readers elsewhere on the sub) is that the tracking exercise and the Big 3 framework are the entire value \u2014 the rest is motivational padding, goal-setting worksheets, and Hardy name-dropping his own SUCCESS magazine and events, which feels like filler stretched to book length. If you've already internalized 'small actions compound,' you can skip straight to the tracking chapter and the momentum chapter and skip the affirmations/vision-board material.",
+  "quotes": [
+    {
+      "text": "if you're going to lay in bed all day feeling sick and sorry for yourself, wasting the entire day, at least take 1% of your day to do something. That way the day isn't a total waste",
+      "author": "pushyourlifeup",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/12jorlq/my_1_challenge_to_you_a_tip_thats_drastically/"
+    },
+    {
+      "text": "the hardest part about doing something is starting it. That's why if you want to do something new you should always start by focusing everything you have on actually starting.",
+      "author": "Background_NPC32143",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/1gmxlau/you_dont_need_to_work_out_just_go_to_the_gym/"
+    },
+    {
+      "text": "If you improve just 1% every day, you will be 37 times better after a year!",
+      "author": "gwynethtyt",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/uzk9gf/an_action_guide_to_atomic_habits/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "My 1% challenge to you, a tip that's drastically improved my life",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/12jorlq/my_1_challenge_to_you_a_tip_thats_drastically/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 1532
+    },
+    {
+      "title": "Here\u2019s how to change yourself with consistent small habits with James Clear\u2019s Atomic Habits",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/h9k21k/heres_how_to_change_yourself_with_consistent/",
+      "subreddit": "BettermentBookClub",
+      "score": 273
+    },
+    {
+      "title": "You don't need to work out. Just go to the gym, every single day.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/1gmxlau/you_dont_need_to_work_out_just_go_to_the_gym/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 144
+    },
+    {
+      "title": "\ud83d\udcdd An Action Guide to Atomic Habits",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/uzk9gf/an_action_guide_to_atomic_habits/",
+      "subreddit": "BettermentBookClub",
+      "score": 114
+    },
+    {
+      "title": "\"Atomic Habits\" - my insights from the book",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/ltrasz/atomic_habits_my_insights_from_the_book/",
+      "subreddit": "BettermentBookClub",
+      "score": 192
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

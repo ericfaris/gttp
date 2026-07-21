@@ -1,11 +1,54 @@
 {
   "title": "Why We Sleep",
   "author": "Matthew Walker",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
-  "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "core_idea": "Chronic sleep deprivation isn't a minor inconvenience \u2014 Walker argues it degrades memory, immune function, mood, and lifespan the same way starvation or dehydration would, and most adults are running a sleep debt they've normalized as 'just being tired.'",
+  "bullets": [
+    "Get 7-9 hours; anything less consistently isn't toughness, it's measurable cognitive and physical decline.",
+    "Fix your wake-up time and hold it seven days a week \u2014 sleeping in on weekends doesn't erase a weekday deficit, it just resets your circadian clock again.",
+    "Alcohol knocks you out but destroys REM sleep, so 'I sleep fine after a few drinks' is usually wrong.",
+    "Cool, dark room; caffeine has a longer half-life than people think, so afternoon coffee is still in your system at bedtime.",
+    "Naps and 'catching up' on sleep don't fully repay debt \u2014 prevention beats recovery."
+  ],
+  "honest_take": "Here's the awkward truth: across all these threads, there's exactly one person who actually cites Why We Sleep as changing a behavior \u2014 a fixed wake time \u2014 buried in a list next to Atomic Habits and Meditations. That's the entire 'Reddit discussion' of this specific book in the material given. There's no deep-dive, no chapter-by-chapter debate, no one arguing about which parts to skip. That thinness is itself telling: the book's actual popularity on Reddit rides on one or two sticky, easy-to-implement habits (fixed wake time, cut alcohol/caffeine) rather than the book's denser neuroscience chapters on dreaming, memory consolidation, or evolutionary sleep theory \u2014 those get absorbed into 'yeah sleep is important' and forgotten. If you want the book's real-world value, skip trying to remember the mechanisms and just steal the two or three behavior changes people actually keep: consistent wake time, no alcohol as a sleep aid, protect the last hour before bed. The rest is context you'll nod along to once and never apply.",
+  "quotes": [
+    {
+      "text": "Why We Sleep by Matthew Walker gave me a fixed wake time. Same time every day including weekends. I fought this for months because I thought weekends were for sleeping in. The sleep quality difference was noticeable within 2 weeks.",
+      "author": "StackedMornings",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/1skm8oc/which_book_actually_changed_your_daily_habits_not/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Which book actually changed your daily habits, not just how you think?",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/1skm8oc/which_book_actually_changed_your_daily_habits_not/",
+      "subreddit": "BettermentBookClub",
+      "score": 99
+    },
+    {
+      "title": "A decade ago I was kicked out of college with a 0.9 GPA. Saturday I will graduate Magna Cum Laude with two Engineering degrees and a full tuition scholarship to Law School. I also lost 130 pounds and quit a bad 6 yr cigarette habit during this time. It's never too late. You're never a lost cause.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/gfd9y7/a_decade_ago_i_was_kicked_out_of_college_with_a/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 25329
+    },
+    {
+      "title": "After Drowning in Depression, PTSD, and Addiction for Six Long, Awful Years...I Think I'm Finally Starting to Recover",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/n4ljjb/after_drowning_in_depression_ptsd_and_addiction/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 1670
+    },
+    {
+      "title": "You've got 'discipline' all wrong. Let me Explain: ",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1cle0ag/youve_got_discipline_all_wrong_let_me_explain/",
+      "subreddit": "getdisciplined",
+      "score": 1564
+    },
+    {
+      "title": "I started getting anxious because there's a huge disconnect between where I am right now versus where I want to be. When this happens, remind yourself of what life will be like if you keep going, and that the anxiety is an illusion since you spend ur current life working towards your future life.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/kpyb88/i_started_getting_anxious_because_theres_a_huge/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 1509
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

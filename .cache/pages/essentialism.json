@@ -1,11 +1,64 @@
 {
   "title": "Essentialism",
   "author": "Greg McKeown",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
-  "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "core_idea": "Essentialism argues that trying to do everything means doing nothing well \u2014 real progress comes from ruthlessly identifying the 'vital few' priorities and eliminating almost everything else, rather than cramming more into your schedule.",
+  "bullets": [
+    "Ask 'is this the most essential thing I could be doing right now?' before saying yes to anything \u2014 if it's not a clear yes, treat it as a no.",
+    "Protect sleep as a performance asset, not a productivity tax \u2014 McKeown flips the 'sleep is for the weak' mindset into 'sleep is for high performers.'",
+    "Design your life in Essence \u2192 Explore \u2192 Eliminate \u2192 Execute stages: figure out what matters, explore options widely, cut the non-essential hard, then execute the few things left with minimal friction.",
+    "Build in buffer and slack instead of scheduling every minute \u2014 overcommitted calendars are the enemy of essentialist thinking.",
+    "Say no more, and say it without over-explaining \u2014 protecting your time is treated as a discipline, not a personality trait."
+  ],
+  "honest_take": "The actual Reddit conversation specifically about Essentialism is thin \u2014 basically one enthusiastic post that got zero comments \u2014 while the surrounding threads (Atomic Habits summaries, generic sleep-hygiene lists, 'life lessons' round-ups) show how often this book gets lumped into the broader self-help stack rather than discussed on its own terms. The one piece of it that consistently lands with readers isn't the philosophy chapters, it's the 'Protect the Asset' sleep chapter \u2014 people quote it, apply it, and report real behavior change (earlier bedtimes, earlier wake-ups). The rest of the book's four-part structure (Essence/Explore/Eliminate/Execute) gets far less real-world traction in the wild; it's the kind of framework people nod at but rarely cite specifics from. If you're skimming, the sleep chapter and the core 'right things, not more things' framing are the load-bearing parts \u2014 the explore/execute mechanics read like padding to stretch a single good insight into a full book.",
+  "quotes": [
+    {
+      "text": "Essentialism is not about how to get more things done; it's about how to get the right things done.",
+      "author": "Mr_OTG",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/jgpn1v/essentialism_the_disciplined_pursuit_of_less_how/"
+    },
+    {
+      "text": "One hour more of sleep equals several more hours of much higher productivity.",
+      "author": "Mr_OTG",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/jgpn1v/essentialism_the_disciplined_pursuit_of_less_how/"
+    },
+    {
+      "text": "I qualify \"good books\" not on the quality of the writing ( as a non-English native, it's quite difficult for me to judge) but more on the author's ability to help me make a change.",
+      "author": "Mr_OTG",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/jgpn1v/essentialism_the_disciplined_pursuit_of_less_how/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "\"Essentialism: The Disciplined Pursuit of Less.\" How it has positively changed my sleeping habit.",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/jgpn1v/essentialism_the_disciplined_pursuit_of_less_how/",
+      "subreddit": "BettermentBookClub",
+      "score": 94
+    },
+    {
+      "title": "Here\u2019s how to change yourself with consistent small habits with James Clear\u2019s Atomic Habits",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/h9k21k/heres_how_to_change_yourself_with_consistent/",
+      "subreddit": "BettermentBookClub",
+      "score": 275
+    },
+    {
+      "title": "Many aspects of life can be improved with better sleep",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/10uifeh/many_aspects_of_life_can_be_improved_with_better/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 564
+    },
+    {
+      "title": "10 Useful Life Lessons to Give You a Head Start",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/8gk10q/10_useful_life_lessons_to_give_you_a_head_start/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 660
+    },
+    {
+      "title": "\ud83d\udcdd An Action Guide to Atomic Habits",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/uzk9gf/an_action_guide_to_atomic_habits/",
+      "subreddit": "BettermentBookClub",
+      "score": 114
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

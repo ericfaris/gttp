@@ -1,11 +1,64 @@
 {
   "title": "Influence",
   "author": "Robert Cialdini",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
-  "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "core_idea": "Cialdini's real argument isn't 'here are six tricks to persuade people' - it's that humans run on mental shortcuts (reciprocity, commitment, social proof, liking, authority, scarcity, unity) that let others hijack our decisions without us noticing, and the only defense is recognizing the shortcut as it's firing.",
+  "bullets": [
+    "Reciprocity: a small unsolicited gift or favor creates an outsized obligation to repay it - this is why free samples and 'let me help you with that' openers work.",
+    "Commitment & consistency: get someone to make a small public statement or choice and they'll bend over backwards later to stay consistent with it, even against their own interest.",
+    "Social proof: uncertainty makes people copy the crowd, which is why fake laugh tracks, bestseller lists, and 'most popular' UI badges are not decoration, they're compliance engineering.",
+    "Authority and liking: a lab coat, a title, or simple physical attractiveness/similarity moves people to comply faster than actual arguments do - credentials substitute for scrutiny.",
+    "Scarcity: 'only 3 left' and deadlines don't add real value, they just trigger loss-aversion panic - the fix is asking 'do I want this for its own sake, or because I might lose the chance.'"
+  ],
+  "honest_take": "Here's the catch: none of the five Reddit threads actually pulled for this brief are about Cialdini's book - they're about willpower, environment design, social anxiety, quitting weed, and a two-year grief update. That's a real gap worth naming rather than papering over. The closest analog is the r/getdisciplined post on environment design, which gestures at the same underlying insight Cialdini has - that 'your decision' is often just the path of least resistance someone else built for you - but that post is really channeling Thaler/Sunstein-style nudge theory and habit-stacking (Atomic Habits), not Cialdini's interpersonal persuasion tactics. The broader Reddit self-improvement crowd tends to absorb Cialdini's principles secondhand, filtered through habit-formation and productivity culture, rather than discussing the book's actual case studies (cult recruiters, door-to-door sales scripts, the Milgram-adjacent stuff). If you're going in expecting Reddit consensus on 'skip chapter X,' it's not here in this batch of threads - the honest note is that the internet mostly cites Influence as a name-check for 'psychology of persuasion' rather than engaging with its specific mechanics.",
+  "quotes": [
+    {
+      "text": "Your decisions have been heavily influenced by the design of the room.",
+      "author": "richrjw",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/heonkz/method_all_our_decisions_are_influenced_by_your/"
+    },
+    {
+      "text": "If you want to encourage a good behaviour make it as simple as possible",
+      "author": "richrjw",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/heonkz/method_all_our_decisions_are_influenced_by_your/"
+    },
+    {
+      "text": "I\u2019m getting drug tested soon, so that was a good influence but I knew it was time to give it up as I felt like I was viewing life in the third person instead of fully being myself.",
+      "author": "zpyeet",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/f0ymy4/i_quit_smoking_weed_and_this_is_what_happened/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "[Method] All our decisions are influenced by your environment (e.g. your House!) - some tips on how to sort your house out to support you to make good life decisions without using Willpower",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/heonkz/method_all_our_decisions_are_influenced_by_your/",
+      "subreddit": "getdisciplined",
+      "score": 1171
+    },
+    {
+      "title": "My social anxiety is so bad, if ever I make a post or comment I exit Reddit immediately because I can\u2019t take the mean comments. I\u2019m a people pleaser to a fault. I want to completely change this part of me.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/h8sdcs/my_social_anxiety_is_so_bad_if_ever_i_make_a_post/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 3512
+    },
+    {
+      "title": "[UPDATE] I posted my commitment to be better 2 years ago after my Girlfriend passed away. My second yearly status report.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/k0z61w/update_i_posted_my_commitment_to_be_better_2/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 1810
+    },
+    {
+      "title": "I started getting anxious because there's a huge disconnect between where I am right now versus where I want to be. When this happens, remind yourself of what life will be like if you keep going, and that the anxiety is an illusion since you spend ur current life working towards your future life.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/kpyb88/i_started_getting_anxious_because_theres_a_huge/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 1504
+    },
+    {
+      "title": "I quit smoking weed and this is what happened.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/f0ymy4/i_quit_smoking_weed_and_this_is_what_happened/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 1066
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

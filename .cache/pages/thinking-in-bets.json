@@ -1,11 +1,48 @@
 {
   "title": "Thinking in Bets",
   "author": "Annie Duke",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
+  "core_idea": "These five source threads are all from r/DecidingToBeBetter and are personal transformation stories (sobriety, weight loss, quitting smoking, self-therapy, a listicle of life lessons) \u2014 none of them discuss, mention, or review Annie Duke's 'Thinking in Bets.' There is no book content here to synthesize.",
+  "bullets": [
+    "The supplied threads are about a college comeback story, self-taught psychology/CBT, an '80-year-old man's 50 life lessons' listicle, a 3-days-sober post, and a 7-years-of-unhealthy-habits recovery story.",
+    "None reference Annie Duke, poker, decision-making under uncertainty, or any concept from 'Thinking in Bets' (e.g., resulting, probabilistic thinking, decision pods).",
+    "Because the source material doesn't match the requested book, I can't responsibly extract 'get to the point' bullets or a Reddit consensus about the book from it.",
+    "Producing bullets or an honest_take about 'Thinking in Bets' from unrelated threads would mean inventing content not present in the sources, which breaks the requirement to quote and represent Reddit accurately.",
+    "Recommendation: resend actual r/books, r/getdisciplined, or similar threads that specifically discuss 'Thinking in Bets' by Annie Duke, and I'll synthesize a real two-minute summary with genuine verbatim quotes."
+  ],
+  "honest_take": "I can't give you 'what Reddit really thinks about Thinking in Bets' because none of these five threads are about that book \u2014 they're unrelated personal-growth anecdotes from r/DecidingToBeBetter. Faking a synthesis or inventing quotes attributed to these usernames about a book they never mentioned would be dishonest, so I'm flagging the mismatch instead of fabricating one.",
   "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "sources": [
+    {
+      "title": "A decade ago I was kicked out of college with a 0.9 GPA. Saturday I will graduate Magna Cum Laude with two Engineering degrees and a full tuition scholarship to Law School. I also lost 130 pounds and quit a bad 6 yr cigarette habit during this time. It's never too late. You're never a lost cause.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/gfd9y7/a_decade_ago_i_was_kicked_out_of_college_with_a/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 25321
+    },
+    {
+      "title": "I started studying psychology in my free time to better understand my depression &amp; came to a huge breakthrough",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/g60gtb/i_started_studying_psychology_in_my_free_time_to/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 3390
+    },
+    {
+      "title": "50 life lessons from an 80 yr old man. (For some reasons #14 stuck with me)",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/drm7n0/50_life_lessons_from_an_80_yr_old_man_for_some/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 3096
+    },
+    {
+      "title": "3 days sober. It's not much but I'm giving it all I got.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/j1h7u7/3_days_sober_its_not_much_but_im_giving_it_all_i/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 3071
+    },
+    {
+      "title": "After 7 years of unhealthy habits, I woke up extra early to exercise before work the last two days. I also have slowly quit cigarettes, cut back significantly on alcohol, weed, and other unhealthy vices. I\u2019m ready to break my toxic family cycle.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/i9usqc/after_7_years_of_unhealthy_habits_i_woke_up_extra/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 2033
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

@@ -1,11 +1,64 @@
 {
   "title": "The Courage to Be Disliked",
   "author": "Ichiro Kishimi and Fumitake Koga",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
-  "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "core_idea": "Your unhappiness isn't caused by your past or by other people\u2014it's a choice you keep making, and because it's a choice, you have the freedom (and the burden) to choose differently, starting now, by giving up the need for everyone's approval.",
+  "bullets": [
+    "Trauma doesn't determine you: per Adlerian psychology (this book's whole engine), past events don't cause your current behavior\u2014the meaning you've assigned them does, so you can reassign it.",
+    "Separate your tasks from other people's: whether someone likes you, judges you, or is disappointed in you is *their* task, not yours\u2014stop doing other people's homework.",
+    "All relationship problems are really about vertical thinking: ranking people above/below you (including yourself) breeds anxiety; treat people as horizontal equals ('comrades') instead.",
+    "Stop performing for approval: seeking recognition from others is a life spent living someone else's script; freedom costs the risk of being disliked, and that's the deal.",
+    "Happiness = community feeling, built from three moves: accept yourself as you are, trust others without demanding proof first, and contribute to others without expecting credit."
+  ],
+  "honest_take": "Reddit's actual engagement with this book is thin outside one heavily-upvoted detailed summary post \u2014 most of the 'discussion' around it is people using it as one half of a self-help book-pairing (paired with 'Don't Believe Everything You Think' to loosen self-doubt, or name-dropped alongside Atomic Habits/Awareness-type books). The strongest praise treats the separation-of-tasks and horizontal-relationships ideas as genuinely load-bearing life advice that pays off specifically in real interpersonal conflicts, not just as feel-good theory. The sharpest pushback is on the 'trauma doesn't exist' claim \u2014 readers, including one who works in education, find it hard to swallow when applied to people whose 'wiring' has been altered by real abuse; the book's own framing (it's the story about the event, not the event) doesn't fully land for people watching lived psychological damage. No one in these threads flags specific chapters to skip, but the implicit critique is that the dialogue format can feel repetitive once you've absorbed the three core claims (world is simple, people can change, everyone can be happy) \u2014 the ideas are stated, restated, and dramatized more than argued.",
+  "quotes": [
+    {
+      "text": "The \"trauma does not exist\" thing is still tough for me, though the book tries to explain it. Like, the event isn't the trauma, the story we create about it is. I get that to some extent, but I work in education and some of my kids have clearly had their wiring scrambled by what has happened to them.",
+      "author": "u/[deleted-commenter-on-ToSummarise-thread]",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/yj4x0h/the_courage_to_be_disliked_detailed_summary/"
+    },
+    {
+      "text": "This was one of the most impactful books I've ever read, and I've read a TON of personal development type books.",
+      "author": "u/[deleted-commenter-on-ToSummarise-thread]",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/yj4x0h/the_courage_to_be_disliked_detailed_summary/"
+    },
+    {
+      "text": "Then The Courage to Be Disliked built on that by introducing the idea of separation of tasks in relationships. Because I had already started thinking differently about my thoughts, I was more open to letting go of responsibility for how others feel or act.",
+      "author": "u/Sketchy_eddie",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/1l5kt77/whats_the_best_book_combo_youve_ever_read_that/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "The Courage to be Disliked - detailed summary",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/yj4x0h/the_courage_to_be_disliked_detailed_summary/",
+      "subreddit": "BettermentBookClub",
+      "score": 374
+    },
+    {
+      "title": "What\u2019s the best \u201cbook combo\u201d you\u2019ve ever read that unlocked a deeper understanding of life?",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/1l5kt77/whats_the_best_book_combo_youve_ever_read_that/",
+      "subreddit": "BettermentBookClub",
+      "score": 131
+    },
+    {
+      "title": "My social anxiety is so bad, if ever I make a post or comment I exit Reddit immediately because I can\u2019t take the mean comments. I\u2019m a people pleaser to a fault. I want to completely change this part of me.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/h8sdcs/my_social_anxiety_is_so_bad_if_ever_i_make_a_post/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 3514
+    },
+    {
+      "title": "50 life lessons from an 80 yr old man. (For some reasons #14 stuck with me)",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/drm7n0/50_life_lessons_from_an_80_yr_old_man_for_some/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 3095
+    },
+    {
+      "title": "This Monday marks my month-long streak of brushing my teeth. It's official, I have made it a habit!",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/fkz8rt/this_monday_marks_my_monthlong_streak_of_brushing/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 2182
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

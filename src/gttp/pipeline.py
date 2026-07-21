@@ -61,8 +61,8 @@ def build_book(book: Book, client: RedditClient, force: bool = False) -> BookPag
         print(f"    found {len(threads)} candidate threads")
         kept = filter_threads(threads, book)
         print(f"    {len(kept)} passed filtering")
-        ranked = rank_threads(kept, book)
-        page = synthesize(book, ranked)
+        ranked, ranking_used_claude = rank_threads(kept, book)
+        page = synthesize(book, ranked, ranking_used_claude)
         print(f"    synthesized page ({page.generated_by})")
     except Exception as exc:
         print(f"    ERROR: {exc}")

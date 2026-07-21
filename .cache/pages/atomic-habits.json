@@ -1,36 +1,64 @@
 {
   "title": "Atomic Habits",
   "author": "James Clear",
-  "core_idea": "Atomic Habits summary in 5 points (so you don't have to read all 300 pages).",
+  "core_idea": "Your habits are a byproduct of your systems and environment, not your willpower or goals \u2014 so change the systems and the environment, and behavior change becomes nearly automatic. Identity ('I am a runner') drives habits more reliably than motivation does.",
   "bullets": [
-    "You do not rise to the level of your goals, you fall to the level of your systems. Focus on the process, not the outcome.",
-    "Habits are the compound interest of self-improvement. 1% better every day = ~37x better in a year.",
-    "The 4 laws: make it obvious, make it attractive, make it easy, make it satisfying. Invert them to break a bad habit.",
-    "Identity change is the real lever. Don't aim to 'read a book', aim to 'be a reader'. Every action is a vote for the person you want to become.",
-    "Environment beats willpower. Make good habits the path of least resistance and bad ones annoying to start."
+    "Make bad habits invisible and hard: redesign your environment (delete the app, leave the chips at the store, charge your phone in another room) instead of relying on willpower.",
+    "Make good habits obvious and easy: use the Two-Minute Rule \u2014 shrink any habit down to something doable in 2 minutes (write one sentence, do one dish, put your shoes on) so starting isn't the hard part.",
+    "Stack new habits onto existing ones ('after I pour my coffee, I will...') and use implementation intentions (a specific time+place plan) so you don't have to remember to act.",
+    "Never miss twice \u2014 one skipped day is an accident, two is the start of a new (bad) habit, so treat 'I'll do it tomorrow' as an unreliable promise from a flaky future self.",
+    "Track visibly (habit tracker, marble jar, habit scorecard) \u2014 the physical, satisfying record of progress becomes its own reward and exposes the gap between how consistent you think you are and how consistent you actually are."
   ],
-  "honest_take": "Distilled from the top 2 Reddit threads. Enable an Anthropic API key for a synthesized, opinionated take.",
+  "honest_take": "Reddit's actual verdict: the book is basically three or four ideas \u2014 environment design, the two-minute rule, habit stacking, and 'never miss twice' \u2014 stretched into a full book, and most readers say once you've absorbed those, you can skip the rest. Multiple top comments explicitly say they're leaving out 'Goldilocks Rule,' 'Problem and Solution Phase,' and 'Law of Least Effort' because they just didn't land. Several people also admit the 'four laws of behavior change' framework is more repackaging of common sense than revelation \u2014 one commenter said they'd already been doing the 'point and call' trick for 20 years without ever reading the book. The identity-shift angle ('become a person who...') gets genuine praise as the one conceptually fresh idea, but the tactical stuff (marbles, trackers, environment tweaks) is what people actually implement and keep coming back to on rereads. It's a practical toolbox book, not a deep or original one \u2014 read it for the four or five techniques, don't expect philosophical insight, and don't feel guilty skipping chapters if the intro drags (one ADHD reader flat out couldn't get into it and asked which parts to skip).",
   "quotes": [
     {
-      "text": "The identity-based habits chapter is the only genuinely new idea here. Everything else is Charles Duhigg's The Power of Habit repackaged.",
-      "author": "a commenter",
-      "url": "https://www.reddit.com/r/BettermentBookClub/comments/ah1/atomic_habits_summary/"
+      "text": "Future You is an unreliable twat who cannot be counted on to be responsible. Never delegate important tasks to them. They\u2019re much more likely to fuck off and not do them than Today You is.",
+      "author": "Maximum-Cover-",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/og7ph4/advice_how_i_finally_managed_to_build_a_habit/"
+    },
+    {
+      "text": "There is a lot I'm leaving off of the book. Goldilocks, Problem and Solution Phase, Law of least effort. These things didn't strike me pe",
+      "author": "cowgunjeans",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1t1k9o9/i_read_atomic_habits_heres_my_key_takeaways/"
+    },
+    {
+      "text": "Because I didn't fail at writing a book, I only failed at writing a sentence. For some reason, failure doesn't sting.",
+      "author": "cowgunjeans",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1t1k9o9/i_read_atomic_habits_heres_my_key_takeaways/"
     }
   ],
   "sources": [
     {
-      "title": "Atomic Habits summary in 5 points (so you don't have to read all 300 pages)",
-      "url": "https://www.reddit.com/r/BettermentBookClub/comments/ah1/atomic_habits_summary/",
-      "subreddit": "BettermentBookClub",
-      "score": 4200
+      "title": "How to STICK to HABITS according to Atomic Habits (What I've learned!)",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/u3hdi1/how_to_stick_to_habits_according_to_atomic_habits/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 859
     },
     {
-      "title": "The one Atomic Habits idea that actually changed my life: the two-minute rule",
-      "url": "https://www.reddit.com/r/getdisciplined/comments/ah2/two_minute_rule/",
+      "title": "I read Atomic Habits, Here's my Key Takeaways",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1t1k9o9/i_read_atomic_habits_heres_my_key_takeaways/",
       "subreddit": "getdisciplined",
-      "score": 1800
+      "score": 1604
+    },
+    {
+      "title": "After reading the book \"Atomic Habits\", I developed the habit of going to bed early, and this habit has been extremely helpful for me",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1fa4ml0/after_reading_the_book_atomic_habits_i_developed/",
+      "subreddit": "getdisciplined",
+      "score": 1471
+    },
+    {
+      "title": "[Advice] How I finally managed to build a habit streak",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/og7ph4/advice_how_i_finally_managed_to_build_a_habit/",
+      "subreddit": "getdisciplined",
+      "score": 1646
+    },
+    {
+      "title": "Re-read Atomic Habits and finally tried the marble trick\u2014surprisingly effective!",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1klclw6/reread_atomic_habits_and_finally_tried_the_marble/",
+      "subreddit": "getdisciplined",
+      "score": 1808
     }
   ],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

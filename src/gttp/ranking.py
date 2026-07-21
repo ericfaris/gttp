@@ -56,15 +56,25 @@ def filter_threads(threads: list[RedditThread], book: Book) -> list[RedditThread
     return kept[: book.max_threads_per_book]
 
 
-def rank_threads(threads: list[RedditThread], book: Book) -> list[RankedThread]:
+def rank_threads(
+    threads: list[RedditThread], book: Book
+) -> tuple[list[RankedThread], bool]:
+    """Returns (ranked threads, whether Claude actually did the ranking).
+
+    The second value lets the pipeline avoid treating a page as finalized
+    when ranking silently degraded to the topic-blind heuristic — Claude
+    synthesis fed heuristic-ranked (possibly off-topic) threads can still
+    read as fluent and well-formatted, so quality must be judged on both
+    stages, not synthesis alone.
+    """
     if not threads:
-        return []
+        return [], False
     if anthropic_key():
         try:
-            return _rank_with_claude(threads, book)
+            return _rank_with_claude(threads, book), True
         except Exception as exc:  # fall back rather than fail the whole build
             print(f"    ranking: Claude call failed ({exc}); using heuristic")
-    return _rank_heuristic(threads)
+    return _rank_heuristic(threads), False
 
 
 def _rank_with_claude(threads: list[RedditThread], book: Book) -> list[RankedThread]:
@@ -90,7 +100,7 @@ def _rank_with_claude(threads: list[RedditThread], book: Book) -> list[RankedThr
     )
     resp = client.messages.create(
         model=MODEL,
-        max_tokens=4000,
+        max_tokens=8000,
         output_config={"format": {"type": "json_schema", "schema": _RANK_SCHEMA}},
         messages=[{"role": "user", "content": prompt}],
     )

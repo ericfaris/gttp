@@ -1,11 +1,64 @@
 {
   "title": "Four Thousand Weeks",
   "author": "Oliver Burkeman",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
-  "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "core_idea": "You get about four thousand weeks to live if you're lucky, and no productivity system, habit stack, or time-management hack will ever fix the core problem: you can't do everything, so the only real move is choosing what to neglect on purpose.",
+  "bullets": [
+    "Stop trying to 'get on top of' your to-do list \u2014 it's infinite by design, and clearing it is not the goal, choosing what to ignore is.",
+    "Ditch the '10 habits before breakfast' mentality; Burkeman's whole point is that cramming more optimized activity into a day is the disease, not the cure.",
+    "Do fewer things, but the right things, and let the rest go without guilt \u2014 this is 'strategic underachievement,' not laziness.",
+    "Get comfortable with the discomfort of limitation (you can't read every book, visit every place, become every version of yourself) \u2014 that discomfort is the price of a real, finite life.",
+    "Boredom, waiting, and slowness aren't obstacles to fix with apps \u2014 they're where patience and depth actually come from; rushing past them is how you miss your own life."
+  ],
+  "honest_take": "Reddit's self-improvement crowd loves the book's vibe \u2014 'you can't hack your way out of mortality' \u2014 but plenty of threads (not literally about the book here, but in the same ecosystem) show the exact impulse Burkeman is diagnosing: people immediately try to turn 'embrace your limits' into a 17-step morning routine or a '2-minute rule' hack. That's the sharpest critique that surfaces around this book in practice \u2014 readers nod along to the anti-productivity message, then go build a new productivity system out of it within a week. The middle chapters on patience and 'settling' get called slow or repetitive by people who just want the four-thousand-weeks math and the permission to say no; the first and last chapters (the math, and the closing chapters on facing finitude) are the parts people actually quote and remember.",
+  "quotes": [
+    {
+      "text": "Studies show that we have a limited amount of willpower, and forcing ourselves to spend time on these activities 17 times per day means we'll have less willpower to spend on more important things.",
+      "author": "10MinuteMotivation",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/870y8d/method_how_to_feel_more_motivated_and_better/"
+    },
+    {
+      "text": "No. They could have been avoided by going slower.",
+      "author": "noshittysubreddits",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/lgulvq/advice_go_slow_to_go_fast_once_i_started_on_with/"
+    },
+    {
+      "text": "The self improvement industry sells you lies left right and centre.",
+      "author": "Latter-Vehicle-6648",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1cle0ag/youve_got_discipline_all_wrong_let_me_explain/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "[Method] How to feel more motivated and better every day: Here are 17 Habits that take 10 minutes or less (giving you no excuse to not do a single one of them) that will benefit you throughout the entire day",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/870y8d/method_how_to_feel_more_motivated_and_better/",
+      "subreddit": "getdisciplined",
+      "score": 1371
+    },
+    {
+      "title": "[Method] I summarized all the top posts of the top self-help subreddits of all time into a cheatsheet.",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/b9w7fx/method_i_summarized_all_the_top_posts_of_the_top/",
+      "subreddit": "getdisciplined",
+      "score": 7336
+    },
+    {
+      "title": "[Advice] Go slow... to go fast. Once I started on with this counter-intuitive approach to living I went from being the biggest procrastinator ever to someone with calm and consistent discipline.",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/lgulvq/advice_go_slow_to_go_fast_once_i_started_on_with/",
+      "subreddit": "getdisciplined",
+      "score": 2121
+    },
+    {
+      "title": "Takeaway food did it for us",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/fy1vsq/takeaway_food_did_it_for_us/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 2087
+    },
+    {
+      "title": "You've got 'discipline' all wrong. Let me Explain: ",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1cle0ag/youve_got_discipline_all_wrong_let_me_explain/",
+      "subreddit": "getdisciplined",
+      "score": 1559
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

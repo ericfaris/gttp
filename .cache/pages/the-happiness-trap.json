@@ -1,11 +1,64 @@
 {
   "title": "The Happiness Trap",
   "author": "Russ Harris",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
-  "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "core_idea": "The book's real hook is a paradox: chasing 'happiness' as a constant good feeling is what makes you miserable \u2014 the more you fight or avoid normal pain, boredom, and anxiety, the more they run your life. Wellbeing comes from psychological flexibility (accepting what you can't control, acting on your values anyway), not from eliminating bad feelings.",
+  "bullets": [
+    "Stop treating anxiety/sadness/boredom as malfunctions to fix \u2014 struggling against a feeling usually amplifies it (the 'struggle switch').",
+    "Defuse from thoughts by naming them: 'I'm having the thought that I'm a failure' instead of just 'I'm a failure.' Small language trick, real distance.",
+    "Pick values, not just goals. A goal ('get promoted') can be achieved and still leave you empty; a value ('be a generous colleague') gives you something to act on today regardless of mood.",
+    "Accept discomfort as the toll for actually doing things that matter \u2014 avoidance shrinks your life to protect you from feelings that weren't going to kill you anyway.",
+    "Mindfulness here isn't relaxation, it's observation: watch your thoughts and urges pass without obeying them, then act on your values anyway."
+  ],
+  "honest_take": "Being blunt: none of the threads you gave actually discuss 'The Happiness Trap' by name \u2014 they're Atomic Habits, Carnegie, a Yale wellbeing course, and generic 'life lessons' posts. So the honest Reddit temperature check here is indirect: the r/DecidingToBeBetter crowd is visibly exhausted by the genre this book gets lumped into. MattTheMentor's viral post basically re-derives the book's thesis on his own dime \u2014 'happiness is a perspective\u2026 you can choose at any time' \u2014 without citing Harris at all, which tells you the idea has leaked into pop-self-help osmosis. Meanwhile one commenter in that same thread torches the whole shelf this book sits on: these motivational reads mostly just give you 'a fake sense of worth\u2026 kinda gave me dopamine.' That skepticism is worth carrying into The Happiness Trap itself \u2014 its ACT techniques (thought-labeling, defusion exercises) are more evidence-backed than most of what gets summarized in these threads, but readers of the actual book elsewhere often flag the middle stretch of diffusion drills as repetitive workbook filler you can skim once you get the concept. The concept is the payload; the exercises are optional reinforcement.",
+  "quotes": [
+    {
+      "text": "I am done waiting for the universe's permission to be happy.",
+      "author": "MattTheMentor",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/hy6tzc/im_not_optimizing_my_life_for_success_anymore_im/"
+    },
+    {
+      "text": "Happiness is not something anyone has to earn.",
+      "author": "MattTheMentor",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/hy6tzc/im_not_optimizing_my_life_for_success_anymore_im/"
+    },
+    {
+      "text": "our minds' strongest intuitions about how much we will like something and how happy it will make us (OR how unhappy it will make us) are often wrong",
+      "author": "candrade2261",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/ghrgz5/summary_of_yales_famous_science_of_wellbeing/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Here\u2019s how to change yourself with consistent small habits with James Clear\u2019s Atomic Habits",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/h9k21k/heres_how_to_change_yourself_with_consistent/",
+      "subreddit": "BettermentBookClub",
+      "score": 272
+    },
+    {
+      "title": "I'm not optimizing my life for success anymore. I\u2019m optimizing it for maximum happy moments.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/hy6tzc/im_not_optimizing_my_life_for_success_anymore_im/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 2725
+    },
+    {
+      "title": "Summary of Yale's famous Science of Well-Being Course",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/ghrgz5/summary_of_yales_famous_science_of_wellbeing/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 231
+    },
+    {
+      "title": "How to Win Friends and Influence People - Dale Carnegie",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/u654a1/how_to_win_friends_and_influence_people_dale/",
+      "subreddit": "BettermentBookClub",
+      "score": 220
+    },
+    {
+      "title": "50 life lessons from an 80 yr old man. (For some reasons #14 stuck with me)",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/drm7n0/50_life_lessons_from_an_80_yr_old_man_for_some/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 3100
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

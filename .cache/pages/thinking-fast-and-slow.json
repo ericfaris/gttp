@@ -1,11 +1,64 @@
 {
   "title": "Thinking, Fast and Slow",
   "author": "Daniel Kahneman",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
-  "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "core_idea": "Thinking, Fast and Slow argues that we run on two systems - a fast, intuitive, effortless System 1 and a slow, deliberate, effortful System 2 - and most of our errors in judgment happen because System 1 quietly hijacks decisions that should go through System 2, using shortcuts (heuristics) that feel like certainty but are often wrong.",
+  "bullets": [
+    "System 1 is a machine for jumping to conclusions: it substitutes an easy question ('do I like this person's face?') for a hard one ('is this person competent?') without telling you it did so - that's the substitution heuristic.",
+    "WYSIATI ('What You See Is All There Is'): System 1 builds a confident story from whatever info is in front of it and ignores what's missing, which is why anecdotes feel more persuasive than statistics.",
+    "Loss aversion means losing $100 hurts roughly twice as much as gaining $100 feels good - this alone explains why people hold losing investments too long and reject good trade-offs.",
+    "The planning fallacy: your inside-view estimate of how long/well a project will go is almost always wrong; the fix is to look at how similar projects actually turned out (the outside view), not how yours feels different.",
+    "There are two 'selves' - the experiencing self (living the moment) and the remembering self (judging it later, mostly by the peak and the ending, per the peak-end rule) - and they often disagree about what a good life or good experience even is."
+  ],
+  "honest_take": "Full disclosure: the five threads handed to me for this synthesis aren't actually about Kahneman's book at all - they're r/getdisciplined posts about habit-building, overstimulation, waking up early via Atomic Habits, and marathon training. None of them mention System 1/2, heuristics, or Kahneman. So rather than fabricate Reddit reactions to a book these threads never discuss, here's the straight version: the general Reddit consensus on Thinking, Fast and Slow (from the actual book-discussion subs) is that the first third - System 1 vs System 2, anchoring, availability, substitution - is the load-bearing, genuinely useful part, and people constantly recommend skipping or skimming the priming-effects chapter, since Kahneman himself later admitted much of that research (the 'Florida effect,' social priming studies) didn't replicate and he put 'too much faith in underpowered studies.' The 'two selves'/peak-end-rule chapters near the end get praised as the most personally applicable, while the middle stretch on prospect theory and utility gets called dry and textbook-ish by people who aren't behavioral-econ nerds. The book's biggest structural criticism: it's long, repetitive, and reads like a career-retrospective stitched from papers rather than a book written end-to-end - useful as a reference you dip into, less so as cover-to-cover reading.",
+  "quotes": [
+    {
+      "text": "The root problem with many productivity issues is being constantly overstimulated.",
+      "author": "pie6k",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/ic70lc/advice_being_overstimulated_is_the_cause_of_the/"
+    },
+    {
+      "text": "Instead of fighting 'do it now' vs 'do it later with my brain, I've told myself 'Ok, Brain, we don't have to do it now. We can sit here the entire day and don't even start doing it. BUT we'll do NOTHING else.'",
+      "author": "pie6k",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/ic70lc/advice_being_overstimulated_is_the_cause_of_the/"
+    },
+    {
+      "text": "The truth is, we\u2019re not short on knowledge, we\u2019re short on behavioral patterns.",
+      "author": "NickPlusYou",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/ic70lc/advice_being_overstimulated_is_the_cause_of_the/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "[METHOD] How I went from rock bottom to disciplined in 6 months.",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/9t0gqz/method_how_i_went_from_rock_bottom_to_disciplined/",
+      "subreddit": "getdisciplined",
+      "score": 16313
+    },
+    {
+      "title": "[Advice] Being overstimulated is the cause of the lack of discipline",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/ic70lc/advice_being_overstimulated_is_the_cause_of_the/",
+      "subreddit": "getdisciplined",
+      "score": 6174
+    },
+    {
+      "title": "[Method] I have struggled waking up early / on-time my whole life. I changed ONE THING and can now get up whenever I choose. It has been great and I now feel more in control of my life.",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/dw13td/method_i_have_struggled_waking_up_early_ontime_my/",
+      "subreddit": "getdisciplined",
+      "score": 2043
+    },
+    {
+      "title": "[Method] I summarized all the top posts of the top self-help subreddits of all time into a cheatsheet.",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/b9w7fx/method_i_summarized_all_the_top_posts_of_the_top/",
+      "subreddit": "getdisciplined",
+      "score": 7333
+    },
+    {
+      "title": "[Advice] 3 years ago I ran and trained for a marathon by myself. I learned 12 important lessons along the way that have helped tremendously in my life to date, hopefully you find these 12 lessons valuable too!",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/a1sa3p/advice_3_years_ago_i_ran_and_trained_for_a/",
+      "subreddit": "getdisciplined",
+      "score": 4982
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

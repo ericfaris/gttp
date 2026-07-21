@@ -1,11 +1,48 @@
 {
   "title": "How to Begin",
   "author": "Michael Bungay Stanier",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
+  "core_idea": "\"How to Begin\" by Michael Bungay Stanier argues that most people stall out not from lack of willpower but from lack of a genuinely worthy goal \u2014 so the book is a toolkit for defining a goal that's Thrilling, Important, and Daunting (TID) enough to pull you forward, then taking one small, imperfect first step toward it.",
+  "bullets": [
+    "Run any goal through the TID test: does it feel Thrilling, is it truly Important to you, and is it Daunting (not just hard)? If it fails all three, it's not worth your energy.",
+    "Write your goal as a single 'Worthy Goal sentence' \u2014 a specific, active statement, not a vague aspiration \u2014 so you can say it out loud and test if it still excites you.",
+    "Expect and name your inner 'Critical Voice' before it derails you; the book frames self-doubt as a predictable obstacle to manage, not a sign you picked the wrong goal.",
+    "Recruit a 'Great Ally' \u2014 someone who will hold you accountable to the goal, not just cheerlead you \u2014 because solo willpower is treated as the weakest lever in the system.",
+    "Take the 'First and Fast and Fine' step: start now, start small, and accept the first attempt will be imperfect \u2014 the book explicitly de-emphasizes planning in favor of momentum."
+  ],
+  "honest_take": "Full disclosure: the Reddit threads handed to me for this task are not about 'How to Begin' \u2014 there's no overlap in subject matter, so I can't honestly report 'what Reddit thinks' about this specific book from this batch of sources, and I won't fabricate quotes or usernames to fake that coverage. What I can say from general awareness of how Bungay Stanier's work (especially 'The Coaching Habit') tends to land online: readers who like his stuff praise the brevity and the concrete frameworks (TID test, the Worthy Goal sentence) as more actionable than typical goal-setting fluff, while critics call the acronyms and worksheet-y structure gimmicky and say the book restates ideas he's already covered in his earlier titles with a new label. If you want a genuinely sourced 'Reddit consensus,' that requires threads that actually discuss the book \u2014 these don't.",
   "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "sources": [
+    {
+      "title": "50 life lessons from an 80 yr old man. (For some reasons #14 stuck with me)",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/drm7n0/50_life_lessons_from_an_80_yr_old_man_for_some/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 3096
+    },
+    {
+      "title": "[Advice] Summary of Atomic Habits",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/alqpx4/advice_summary_of_atomic_habits/",
+      "subreddit": "getdisciplined",
+      "score": 384
+    },
+    {
+      "title": "Here\u2019s how to change yourself with consistent small habits with James Clear\u2019s Atomic Habits",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/h9k21k/heres_how_to_change_yourself_with_consistent/",
+      "subreddit": "BettermentBookClub",
+      "score": 276
+    },
+    {
+      "title": "How to Win Friends and Influence People - Dale Carnegie",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/u654a1/how_to_win_friends_and_influence_people_dale/",
+      "subreddit": "BettermentBookClub",
+      "score": 224
+    },
+    {
+      "title": "Chris Voss - Never Split The Difference Fully Summarized",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/vz7vfb/chris_voss_never_split_the_difference_fully/",
+      "subreddit": "BettermentBookClub",
+      "score": 208
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

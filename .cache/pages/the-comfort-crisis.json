@@ -1,11 +1,59 @@
 {
   "title": "The Comfort Crisis",
   "author": "Michael Easter",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
-  "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "core_idea": "Michael Easter's thesis is that modern life has engineered nearly all discomfort out of existence \u2014 no cold, no hunger, no boredom, no physical struggle \u2014 and that this comfort has made us weaker, more anxious, and less satisfied; deliberately choosing hardship (cold, hunger, hard walks, boredom, physical effort) is the fix.",
+  "bullets": [
+    "Do one 'misogi' a year: pick a physical challenge so hard there's a real chance you fail (Easter's own is a multi-day solo hike hauling a 25kg rock through the Alaskan backcountry).",
+    "Ruck instead of jog: walking with a loaded backpack builds strength and endurance with less joint damage than running, and it's Easter's actual go-to.",
+    "Get uncomfortable on a schedule: cold showers, skipped meals, no AC in summer \u2014 small voluntary discomfort resets your baseline so everyday life feels easier by comparison.",
+    "Kill 'rewarding' behaviors that erase friction: stop taking elevators/escalators, stop pre-chewing your food with delivery apps, let some tasks stay hard on purpose.",
+    "Sit with boredom instead of numbing it: leave your phone in another room sometimes \u2014 idle, understimulated time is where your brain actually processes and recovers."
+  ],
+  "honest_take": "None of the linked threads are actually about this book \u2014 they're Atomic Habits summaries, sleep-hygiene checklists, and a 'what I learned at sniper school' post that happens to preach the exact same gospel Easter does. That's telling: on Reddit, the Comfort Crisis thesis shows up constantly as recycled wisdom (get uncomfortable, adversity builds you, comfort is the enemy) without people engaging with the book's specific chapters \u2014 the caribou hunt in Alaska, the misogi concept, the deep dives into boredom and attention. The sharpest implicit criticism across this genre of posts is the pattern itself: people upvote, bookmark, say 'thanks, needed this today,' and then nothing changes \u2014 the sniper-school post got bookmarked 'for whenever I feel a little overwhelmed,' which is exactly the passive consumption Easter's book argues against. If you're going to read it, skip straight to the misogi/rucking chapters (the actionable spine) and treat the extended memoir-y wilderness-hunt sections as skippable atmosphere unless you like nature writing.",
+  "quotes": [
+    {
+      "text": "Get comfortable being uncomfortable.",
+      "author": "troffis",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/3qpy7k/what_i_learned_at_sniper_school/"
+    },
+    {
+      "text": "The person beyond our comfort zone is awesome.",
+      "author": "troffis",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/3qpy7k/what_i_learned_at_sniper_school/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "This is how I learned to wake up early near 100% of the time with a bunch of biohacking.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/7d4kua/this_is_how_i_learned_to_wake_up_early_near_100/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 761
+    },
+    {
+      "title": "Here\u2019s how to change yourself with consistent small habits with James Clear\u2019s Atomic Habits",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/h9k21k/heres_how_to_change_yourself_with_consistent/",
+      "subreddit": "BettermentBookClub",
+      "score": 273
+    },
+    {
+      "title": "What I Learned At Sniper School.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/3qpy7k/what_i_learned_at_sniper_school/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 271
+    },
+    {
+      "title": "Many aspects of life can be improved with better sleep",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/10uifeh/many_aspects_of_life_can_be_improved_with_better/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 561
+    },
+    {
+      "title": "I Know This Will Help Someone",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/c5vjgq/i_know_this_will_help_someone/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 1138
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

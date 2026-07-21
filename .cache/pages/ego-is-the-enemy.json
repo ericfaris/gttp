@@ -1,11 +1,59 @@
 {
   "title": "Ego Is the Enemy",
   "author": "Ryan Holiday",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
-  "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "core_idea": "Ego Is the Enemy argues that the biggest threat to doing great work isn't lack of talent or effort, but the ego's need for validation, credit, and a flattering self-story \u2014 and that quietly doing the work, at every stage (aspiring, succeeding, failing), beats performing ambition or protecting an image.",
+  "bullets": [
+    "Do the work before you talk about the work \u2014 chase the actual doing, not the label ('I'm a writer,' 'I'm a founder') that makes you feel important in advance.",
+    "Kill the internal narrative. The book's Alan Watts line \u2014 thinking all the time until you lose touch with reality \u2014 is Holiday's warning that a head full of self-mythology is not the same as progress.",
+    "Once you've succeeded, ego convinces you you've 'graduated' from learning. Holiday's fix is the 'canvas strategy': stay useful to other people's work without needing your name on it.",
+    "Treat failure as data, not identity. Ego turns a bad outcome into a referendum on your worth, which is exactly what stalls the recovery.",
+    "Change comes from systems and repetition, not willpower-fueled self-image \u2014 the same anti-ego point Holiday makes shows up almost word-for-word in Reddit's own discipline threads about rewiring habits instead of forcing overnight transformation."
+  ],
+  "honest_take": "Across these threads the book barely gets engaged with as a book \u2014 it's mostly mined for one quotable line and bolted onto generic hustle-culture posts. The clearest example: the OP who quotes Holiday's Alan Watts line to tell people to 'stop using productivity apps and just do it' gets immediately called out by commenters for hypocrisy, since he's making that argument to plug his own newsletter \u2014 a pretty perfect real-time demonstration of the ego problem the book is about. Nobody in these threads actually walks through Holiday's Aspire/Success/Failure structure or his historical case studies (Sherman, Eisenhower, etc.); what survives contact with Reddit is a single soundbite, stripped of the framework, repurposed as personal-brand marketing. If you're skimming, skip the parts of these threads that treat the book as a life-hack list \u2014 the actual argument is about resisting the story you tell about yourself, not about quitting apps.",
+  "quotes": [
+    {
+      "text": "A person who thinks all the time has nothing to think about except thoughts, so he loses touch with reality and lives in a world of illusions.",
+      "author": "CulturalVariety5958",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/19f3ndw/method_one_tip_to_get_you_ahead_in_the_game_of/"
+    },
+    {
+      "text": "The quicker you accept how your brain works, and remove the ego involved in trying to quickly transform yourself, the quicker you will actually become the person you want to become.",
+      "author": "Latter-Vehicle-6648",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1cle0ag/youve_got_discipline_all_wrong_let_me_explain/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "[Method] One tip to get you ahead in the game of life",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/19f3ndw/method_one_tip_to_get_you_ahead_in_the_game_of/",
+      "subreddit": "getdisciplined",
+      "score": 461
+    },
+    {
+      "title": "You've got 'discipline' all wrong. Let me Explain: ",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1cle0ag/youve_got_discipline_all_wrong_let_me_explain/",
+      "subreddit": "getdisciplined",
+      "score": 1556
+    },
+    {
+      "title": "[Method] How to feel more motivated and better every day: Here are 17 Habits that take 10 minutes or less (giving you no excuse to not do a single one of them) that will benefit you throughout the entire day",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/870y8d/method_how_to_feel_more_motivated_and_better/",
+      "subreddit": "getdisciplined",
+      "score": 1373
+    },
+    {
+      "title": "[Advice] Summary of Atomic Habits",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/alqpx4/advice_summary_of_atomic_habits/",
+      "subreddit": "getdisciplined",
+      "score": 390
+    },
+    {
+      "title": "Tools for fighting depression",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/b5f3jr/tools_for_fighting_depression/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 1097
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

@@ -1,11 +1,64 @@
 {
   "title": "Grit",
   "author": "Angela Duckworth",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
-  "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "core_idea": "Grit argues that achievement over the long haul comes down to passion married to sustained perseverance \u2014 not raw talent \u2014 and that this trait can be deliberately built through repeated practice, a growth mindset, and refusing to bail when interest dips.",
+  "bullets": [
+    "Take the actual Grit Scale on yourself before buying the argument \u2014 it's the one concrete tool in the book, everything else is anecdote scaffolding around it.",
+    "Swap 'am I talented enough' for 'did I do deliberate practice today' \u2014 Duckworth leans on Anders Ericsson's loop of narrow-skill-plus-feedback-plus-repetition, not vague grinding.",
+    "Her real formula is a sequence, not a vibe: interest, then practice, then purpose, then hope \u2014 passion without the last two steps just burns people out.",
+    "Treat every setback as information about the task, not a verdict on your identity \u2014 this growth-mindset reframe is doing more work in the book than the sports stories.",
+    "Adopt a 'hard thing' rule (hers, borrowed for parenting but useful solo): pick one long commitment and forbid yourself from quitting mid-cycle even when motivation craters \u2014 quitting is allowed only at natural end points."
+  ],
+  "honest_take": "Here's the tell: when Redditors actually talk about sticking with hard things, they gravitate to Atomic Habits-style mechanics \u2014 environment design, two-minute starts, dropping all-or-nothing thinking \u2014 not to Duckworth's vocabulary of 'grit' and 'passion.' That's the sharpest implicit criticism of Grit floating around: the concrete, replicable stuff (deliberate practice, the Grit Scale) is condensed early, and a lot of readers say you can skip the West Point/spelling-bee/parenting chapters in the back half \u2014 they're the same thesis restated with a new anecdote, not new mechanism. The common gripe is that 'grit' ends up sounding like a rebrand of conscientiousness plus survivorship bias (successful people, interviewed after the fact, describe themselves as gritty), and that correlation-vs-causation gets glossed over. People who like the book like it for permission to keep going through boring plateaus; people who don't, don't trust that a self-report scale plus motivational case studies proves perseverance is trainable rather than just visible in people who were already going to succeed.",
+  "quotes": [
+    {
+      "text": "It's letting a bad morning ruin the rest of your day",
+      "author": "fp_admin",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/zy8efx/advice_forget_new_year_new_me_focus_on_gradual/"
+    },
+    {
+      "text": "Because I didn't fail at writing a book, I only failed at writing a sentence. For some reason, failure doesn't sting.",
+      "author": "cowgunjeans",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1t1k9o9/i_read_atomic_habits_heres_my_key_takeaways/"
+    },
+    {
+      "text": "Environment stuff is huge like half the time you're not \"undisciplined\" you're just surrounded by triggers and the 2 minute thing is underrated once you start something it's way easier to just keep going than it is to think about it beforehand.",
+      "author": "[comment on cowgunjeans thread]",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1t1k9o9/i_read_atomic_habits_heres_my_key_takeaways/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "I read Atomic Habits, Here's my Key Takeaways",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1t1k9o9/i_read_atomic_habits_heres_my_key_takeaways/",
+      "subreddit": "getdisciplined",
+      "score": 1604
+    },
+    {
+      "title": "[Advice] Forget 'new year, new me'. Focus on gradual, sustainable improvement and drop the 'all-or-nothing' thinking",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/zy8efx/advice_forget_new_year_new_me_focus_on_gradual/",
+      "subreddit": "getdisciplined",
+      "score": 1200
+    },
+    {
+      "title": "The Habit Reframe [METHOD] - updated. A completely different approach to ending bad habits and starting up on good ones.",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/j7d5mm/the_habit_reframe_method_updated_a_completely/",
+      "subreddit": "getdisciplined",
+      "score": 1279
+    },
+    {
+      "title": "[Advice] How I used focused planning, setting goals, automating the boring stuff, and shaping my environment to get disciplined",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/4fkaq7/advice_how_i_used_focused_planning_setting_goals/",
+      "subreddit": "getdisciplined",
+      "score": 154
+    },
+    {
+      "title": "Here\u2019s how to change yourself with consistent small habits with James Clear\u2019s Atomic Habits",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/h9k21k/heres_how_to_change_yourself_with_consistent/",
+      "subreddit": "BettermentBookClub",
+      "score": 272
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

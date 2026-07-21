@@ -1,11 +1,64 @@
 {
   "title": "No More Mr. Nice Guy",
   "author": "Robert Glover",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
-  "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "core_idea": "Nice Guy Syndrome is the pattern of men hiding their real needs, feelings, and imperfections behind a mask of niceness, then trying to get those needs met through unspoken 'covert contracts' (I'll be good/helpful/agreeable and in exchange you'll love me, desire me, not leave me) instead of just asking directly - and the fix is to become an 'integrated man' who states needs plainly, tolerates disapproval, and stops managing everyone else's perception of him.",
+  "bullets": [
+    "Kill the covert contract: notice every time you're doing something 'nice' with an unstated expectation attached (I helped you move, so now you owe me affection/attention) and replace it with a direct ask.",
+    "Niceness-as-strategy isn't kindness - it's a control mechanism to avoid conflict and rejection, which is its own form of neediness (this is the book's overlap with the 'non-neediness' idea popular in dating advice like Manson's Models).",
+    "Stop being the only supply line for your own validation - build a real circle of male friends/support instead of routing all emotional needs through a romantic partner.",
+    "Deliberately practice being disapproved of in small, low-stakes ways (say no, state a preference, disagree openly) to desensitize the fear that drives the whole pattern.",
+    "Reclaim the traits (anger, sexuality, ambition, boundaries) that got shamed out of you as a kid - integration means owning your 'dark side' instead of hiding it to stay likable."
+  ],
+  "honest_take": "None of the supplied threads are actually about NMMNG directly - they're adjacent self-help/confidence/discipline posts - but the overlap is telling: Reddit's self-improvement crowd keeps re-discovering Glover's core insight (covert contracts, non-neediness) independently, which is basically confirmation that it's the one idea worth keeping. The recurring criticism of this genre, and one that gets lobbed at NMMNG specifically in men's-advice circles, is that the diagnostic chapters (why you became a Nice Guy, the childhood-origin stuff) are repetitive and could be skimmed, while the 'integrated man' chapters near the end drift into vague, feel-good filler that reads like every other self-help book's third act. The actionable meat is front-loaded: covert contracts and approval-seeking. Skip the origin-story psychoanalysis if you're impatient, read the covert-contracts chapter twice.",
+  "quotes": [
+    {
+      "text": "Confidence is not a mountain of gold that you just reach one day, after which you\u2019ll just walk around confident 100% of the time.",
+      "author": "better__ideas",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/onf5qk/an_indepth_practical_guide_to_confidence_what_to/"
+    },
+    {
+      "text": "neediness is \u201c\u2026when a man places a higher priority on other\u2019s perceptions of him than his perception of himself.\u201d",
+      "author": "MO_drps_knwldg",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/1ddh59e/summary_and_review_models_attract_women_through/"
+    },
+    {
+      "text": "The quicker you accept how your brain works, and remove the ego involved in trying to quickly transform yourself, the quicker you will actually become the person you want to become.",
+      "author": "Latter-Vehicle-6648",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1cle0ag/youve_got_discipline_all_wrong_let_me_explain/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "An in-depth practical guide to Confidence. What to DO to become confident quickly.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/onf5qk/an_indepth_practical_guide_to_confidence_what_to/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 881
+    },
+    {
+      "title": "Jordan Peterson - 12 Rules For Life [ An in-depth summary ]",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/lhvvxv/jordan_peterson_12_rules_for_life_an_indepth/",
+      "subreddit": "BettermentBookClub",
+      "score": 140
+    },
+    {
+      "title": "Summary and review- Models: Attract Women Through Honesty by Mark Manson",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/1ddh59e/summary_and_review_models_attract_women_through/",
+      "subreddit": "BettermentBookClub",
+      "score": 270
+    },
+    {
+      "title": "[Advice] A Comprehensive guide to becoming the best version of yourself",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/d6ji86/advice_a_comprehensive_guide_to_becoming_the_best/",
+      "subreddit": "getdisciplined",
+      "score": 2036
+    },
+    {
+      "title": "You've got 'discipline' all wrong. Let me Explain: ",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1cle0ag/youve_got_discipline_all_wrong_let_me_explain/",
+      "subreddit": "getdisciplined",
+      "score": 1563
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

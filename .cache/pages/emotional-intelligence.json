@@ -1,11 +1,48 @@
 {
   "title": "Emotional Intelligence",
   "author": "Daniel Goleman",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
+  "core_idea": "Goleman's central claim is that raw IQ is a weak predictor of life success compared to emotional intelligence \u2014 the ability to recognize, regulate, and use emotions (in yourself and others) \u2014 and that unlike IQ, EQ can be taught and improved at any age.",
+  "bullets": [
+    "Self-awareness first: you can't manage an emotion you can't name \u2014 Goleman leans hard on labeling feelings as step one.",
+    "The amygdala can 'hijack' rational thought in seconds; the fix is building a pause between stimulus and reaction, not suppressing emotion.",
+    "EQ is trainable through practice (self-monitoring, impulse control, perspective-taking), not a fixed trait like IQ.",
+    "Empathy and social skill, not technical brilliance, are what actually predict who gets promoted, keeps friends, and leads well.",
+    "Kids who learn emotional regulation early (via schools, parenting) show better outcomes than kids who are just academically pushed \u2014 this is Goleman's policy pitch, not just a personal-development one."
+  ],
+  "honest_take": "Here's the problem: the threads handed over for this synthesis contain zero discussion of Goleman's book \u2014 not one comment mentions EQ, the amygdala hijack, or the book by name. What Reddit self-help culture broadly signals (visible in these threads) is a preference for mechanistic, biology-first explanations \u2014 tryptophan pathways, adenosine, cortisol \u2014 over the softer, more anecdotal case-study style Goleman is famous (and sometimes mocked) for. If you extrapolate that appetite to how this crowd usually treats 'Emotional Intelligence,' the common critique elsewhere on Reddit is that the book is repetitive, uses selective anecdotes as if they were data, and could be cut to a third of its length \u2014 the neuroscience chapters on the amygdala are the most cited as worth keeping, while the later chapters extending EQ into schools, marriages, and health outcomes are the ones people say drag and start to feel like padding to hit a page count. But none of that comes from the sources given here \u2014 it's general knowledge about the book's reputation, not something I can back with a real quote from these threads.",
   "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "sources": [
+    {
+      "title": "How to un-fuck your sleep [for good]",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1hoh2lu/how_to_unfuck_your_sleep_for_good/",
+      "subreddit": "getdisciplined",
+      "score": 1270
+    },
+    {
+      "title": "[Method] I summarized all the top posts of the top self-help subreddits of all time into a cheatsheet.",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/b9w7fx/method_i_summarized_all_the_top_posts_of_the_top/",
+      "subreddit": "getdisciplined",
+      "score": 7347
+    },
+    {
+      "title": "[Discussion] Screw motivation - what you need is discipline.",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/2scdwz/discussion_screw_motivation_what_you_need_is/",
+      "subreddit": "getdisciplined",
+      "score": 1596
+    },
+    {
+      "title": "Tips from therapy that have massively helped me get through my breakup",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/no6sbl/tips_from_therapy_that_have_massively_helped_me/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 1553
+    },
+    {
+      "title": "[Advice] Why chronic stress wipes out discipline - Part 1: the Tryptophan-Kynurenine Pathway",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/phiqkz/advice_why_chronic_stress_wipes_out_discipline/",
+      "subreddit": "getdisciplined",
+      "score": 1473
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

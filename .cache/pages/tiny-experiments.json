@@ -1,11 +1,48 @@
 {
   "title": "Tiny Experiments",
   "author": "Anne-Laure Le Cunff",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
+  "core_idea": "Le Cunff's real argument is that you should stop chasing fixed, SMART-style goals and instead run small, curiosity-driven 'experiments' on your own life \u2014 actions that are Purposeful, Actionable, Continuous, and Trackable (her PACT framework) \u2014 treating uncertainty as data rather than failure.",
+  "bullets": [
+    "Replace 'goals' with PACT experiments: Purposeful, Actionable, Continuous, Trackable \u2014 a 2-4 week trial you can measure, not a lifetime commitment.",
+    "Judge an experiment by what you learned, not whether you hit a target; a 'failed' experiment that teaches you something is a win.",
+    "Use scheduled 'pause points' (weekly/monthly check-ins) to review data and decide whether to continue, tweak, or kill the experiment \u2014 instead of white-knuckling through a plan that isn't working.",
+    "Plateaus and boredom are signals to change variables, not proof you lack discipline \u2014 treat your life like a lab notebook, not a report card.",
+    "Start absurdly small and specific (e.g., '10 minutes of X, 3x this week') so the experiment is actually testable, then scale only what the data supports."
+  ],
+  "honest_take": "Important caveat: none of the provided threads actually discuss 'Tiny Experiments' by Anne-Laure Le Cunff \u2014 they're about James Clear's Atomic Habits, a biohacking mega-post, a wake-up-early routine, a motivation breakdown, and breakup therapy tips. There's no genuine Reddit sentiment on this specific book in the material given, so any 'what Reddit thinks' claim about Tiny Experiments here would be fabricated. What the adjacent threads do show is a pattern worth noting: r/BettermentBookClub and r/getdisciplined readers respond well to concrete, lagging-measure framing (Atomic Habits' 'outcomes are a lagging measure of your habits') and to small-step, low-friction advice, which is the same lane Le Cunff's PACT framework sits in \u2014 but that's an inference, not evidence about her book's reception.",
   "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "sources": [
+    {
+      "title": "Here\u2019s how to change yourself with consistent small habits with James Clear\u2019s Atomic Habits",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/h9k21k/heres_how_to_change_yourself_with_consistent/",
+      "subreddit": "BettermentBookClub",
+      "score": 272
+    },
+    {
+      "title": "How to Unf*ck your brain after months of feeling like shit",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1l4vlph/how_to_unfck_your_brain_after_months_of_feeling/",
+      "subreddit": "getdisciplined",
+      "score": 1680
+    },
+    {
+      "title": "This is how I learned to wake up early near 100% of the time with a bunch of biohacking.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/7d4kua/this_is_how_i_learned_to_wake_up_early_near_100/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 760
+    },
+    {
+      "title": "For years I struggled with zero-motivation and lethargy. Everything changed once I discovered how motivation ACTUALLY works and is generated. Today I'm not perfect, but man, I\u2019m doing way better. [Method]",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/z9q8hm/for_years_i_struggled_with_zeromotivation_and/",
+      "subreddit": "getdisciplined",
+      "score": 4215
+    },
+    {
+      "title": "Tips from therapy that have massively helped me get through my breakup",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/no6sbl/tips_from_therapy_that_have_massively_helped_me/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 1553
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

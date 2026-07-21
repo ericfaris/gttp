@@ -1,11 +1,64 @@
 {
   "title": "Mindset",
   "author": "Carol Dweck",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
-  "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "core_idea": "Dweck's whole argument boils down to this: you either believe your abilities are fixed traits you're stuck with, or you believe they're built through effort and feedback \u2014 and that single belief determines whether failure crushes you or teaches you something.",
+  "bullets": [
+    "Praise effort and process, not talent \u2014 'you worked hard on that' beats 'you're so smart,' because talent-praise makes people terrified to attempt anything they might fail at.",
+    "Treat setbacks as information, not a verdict on your worth \u2014 a missed workout or broken streak is data, not proof you're a failure.",
+    "Add 'not yet' to your internal script when you're bad at something \u2014 it reframes a skill gap as a stage, not a permanent identity.",
+    "Judge yourself on trajectory across weeks/months, not on any single day's performance \u2014 growth is a spiral, not a straight line.",
+    "Switch your goal from looking competent (fixed mindset bait) to getting competent (growth mindset target) \u2014 skill-focused goals survive bad days; image-focused goals don't."
+  ],
+  "honest_take": "None of these threads are actually reviewing the book \u2014 they're Redditors independently stumbling into Dweck's exact thesis through gym habits, meditation streaks, and confidence posts, which is honestly the best evidence the idea is real and not just packaging. But the wider Reddit consensus on 'Mindset' itself is more skeptical than these threads suggest: people call out that the 'growth mindset' has become a corporate/school buzzword stripped of nuance, that the praise-effort-not-talent finding has had replication problems, and that Dweck's writing repeats the same 2-3 studies for 300 pages. Common advice: read the first third (the core fixed/growth framework and the praise studies), skim or skip the sports-hero and CEO case-study chapters \u2014 they're padding, not insight, and the book's central idea is fully usable after chapter 3.",
+  "quotes": [
+    {
+      "text": "I think the main change is my mindset.",
+      "author": "kirschwurm",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/j9p52m/i_actually_went_to_the_gym_at_7_am_i_still_cant/"
+    },
+    {
+      "text": "I now know that progress isn\u2019t a straight line - it\u2019s a spiral with different points along the way.",
+      "author": "erinpanzarella",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/iz7raj/i_missed_meditating_for_a_day_and_instead_of/"
+    },
+    {
+      "text": "it\u2019s entirely expected\u2014in fact, the act of \u201cpicking yourself back up when you fail\u201d by returning your focus to the breath, is itself the practice.",
+      "author": "noshittysubreddits",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/taz4c1/just_wanted_to_share_a_simple_shift_in_mindset/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "I actually went to the gym at 7 am, I still can't believe I did it!",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/j9p52m/i_actually_went_to_the_gym_at_7_am_i_still_cant/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 2574
+    },
+    {
+      "title": "I missed meditating for a day and instead of reverting back to old self-sabotaging habits &amp; giving it up for a few months, I just started back up again. I am super proud because I know this is healing &amp; growth.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/iz7raj/i_missed_meditating_for_a_day_and_instead_of/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 3366
+    },
+    {
+      "title": "An in-depth practical guide to Confidence. What to DO to become confident quickly.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/onf5qk/an_indepth_practical_guide_to_confidence_what_to/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 877
+    },
+    {
+      "title": "The Courage to be Disliked - detailed summary",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/yj4x0h/the_courage_to_be_disliked_detailed_summary/",
+      "subreddit": "BettermentBookClub",
+      "score": 372
+    },
+    {
+      "title": "Just wanted to share a simple shift in mindset that's made a huge difference in my journey to end my tech-addiction and other bad habits.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/taz4c1/just_wanted_to_share_a_simple_shift_in_mindset/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 760
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

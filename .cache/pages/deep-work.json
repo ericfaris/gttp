@@ -1,36 +1,64 @@
 {
   "title": "Deep Work",
   "author": "Cal Newport",
-  "core_idea": "Deep Work key takeaways \u2014 the whole book in one post.",
+  "core_idea": "Deep Work's actual thesis is that the capacity to focus without distraction on a cognitively demanding task is becoming rare precisely as it becomes valuable \u2014 and that this skill can be trained like a muscle through scheduling, ritual, and the deliberate removal of shallow, reactive work (email, social media, meetings) from your day.",
   "bullets": [
-    "Deep work (focused, cognitively demanding, no distraction) is becoming rare exactly as it becomes valuable. That's the whole thesis.",
-    "Shallow work (email, meetings, Slack) feels productive but is low-value and easy to replicate.",
-    "You have a finite amount of deep-work capacity per day (~4 hours even for experts). Protect it.",
-    "Four philosophies of scheduling deep work: monastic, bimodal, rhythmic (same block daily), journalistic. Pick one that fits your life.",
-    "Embrace boredom: if you can't tolerate a queue without your phone, you've trained your brain to crave distraction. Schedule your internet use."
+    "Schedule every minute of your day in advance, including 'deep work blocks' \u2014 Newport's core mechanism is that undefined time defaults to shallow work.",
+    "Quit social media (or go on a 'digital declutter') if you can't articulate a specific, high-value use for it \u2014 the book argues most people use it out of habit, not benefit.",
+    "Ritualize deep work: same location, same start time, same rules (no wifi, no phone) so your brain doesn't have to decide to focus each time.",
+    "Embrace boredom on purpose \u2014 Newport says the inability to sit with an unstimulated mind is what destroys your capacity for deep concentration, not lack of willpower.",
+    "Drain the shallow: batch email, set office hours for messages, and stop treating 'busy' as a proxy for 'important.'"
   ],
-  "honest_take": "Distilled from the top 2 Reddit threads. Enable an Anthropic API key for a synthesized, opinionated take.",
+  "honest_take": "Here's the catch: none of the five threads you gave me are actually about Deep Work or Cal Newport. They're r/getdisciplined posts about biohacking brain fog (CO2 monitors, ferritin, vitamin D), Atomic Habits-style habit tricks, dopamine/overstimulation theory via Huberman, and a bathroom-alarm wake-up hack. Newport's book isn't named once. What Reddit is actually doing in this corner of the internet is reinventing Deep Work's conclusions from adjacent angles \u2014 the 'phone in another room' experiment in the top thread is literally the same Ward et al. 2017 JACR study Newport cites in the book, and the entire 'overstimulation causes lack of discipline' post is Deep Work's shallow-work argument dressed in dopamine-detox language. If you want the real Reddit consensus on Deep Work specifically: people generally agree the core insight (schedule focus, kill the phone) is correct and useful, but the book is criticized elsewhere for being repetitive after the first 100 pages, preachy about social media (Newport has zero social media and it shows), and light on actual neuroscience compared to how confidently it's presented \u2014 this batch of threads shows people patching that gap by DIYing citations from Huberman, Ferritin studies, and self-tracking instead of trusting Newport's assertions wholesale.",
   "quotes": [
     {
-      "text": "The 4-hours-of-deep-work-max claim is the single most freeing idea. Stop feeling guilty about the other 4 hours.",
-      "author": "a commenter",
-      "url": "https://www.reddit.com/r/productivity/comments/dw1/deep_work_takeaways/"
+      "text": "Ward et al. 2017 in JACR showed the mere presence of a smartphone on your desk reduces available cognitive capacity even face down and on silent.",
+      "author": "Sureokgo",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1s1cz5n/i_tracked_my_brain_fog_for_6_months_and_tested/"
+    },
+    {
+      "text": "The root problem with many productivity issues is being constantly overstimulated.",
+      "author": "pie6k",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/ic70lc/advice_being_overstimulated_is_the_cause_of_the/"
+    },
+    {
+      "text": "Don't start your day with a high dopamine activity.",
+      "author": "CalmFear",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/qajv29/method_what_finally_made_it_click_dopamine_control/"
     }
   ],
   "sources": [
     {
-      "title": "Deep Work key takeaways \u2014 the whole book in one post",
-      "url": "https://www.reddit.com/r/productivity/comments/dw1/deep_work_takeaways/",
-      "subreddit": "productivity",
-      "score": 3100
+      "title": "I tracked my brain fog for 6 months and tested everything. Here is what actually moved the needle.",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1s1cz5n/i_tracked_my_brain_fog_for_6_months_and_tested/",
+      "subreddit": "getdisciplined",
+      "score": 2458
     },
     {
-      "title": "Deep Work in a nutshell for people who won't read it",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/dw2/nutshell/",
-      "subreddit": "DecidingToBeBetter",
-      "score": 1400
+      "title": "[METHOD] How I went from rock bottom to disciplined in 6 months.",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/9t0gqz/method_how_i_went_from_rock_bottom_to_disciplined/",
+      "subreddit": "getdisciplined",
+      "score": 16306
+    },
+    {
+      "title": "[Advice] Being overstimulated is the cause of the lack of discipline",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/ic70lc/advice_being_overstimulated_is_the_cause_of_the/",
+      "subreddit": "getdisciplined",
+      "score": 6177
+    },
+    {
+      "title": "[Method] What finally made it click. Dopamine control.",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/qajv29/method_what_finally_made_it_click_dopamine_control/",
+      "subreddit": "getdisciplined",
+      "score": 2531
+    },
+    {
+      "title": "[Method] I have struggled waking up early / on-time my whole life. I changed ONE THING and can now get up whenever I choose. It has been great and I now feel more in control of my life.",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/dw13td/method_i_have_struggled_waking_up_early_ontime_my/",
+      "subreddit": "getdisciplined",
+      "score": 2048
     }
   ],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }

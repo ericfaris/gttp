@@ -1,11 +1,64 @@
 {
   "title": "Why Has Nobody Told Me This Before?",
   "author": "Julie Smith",
-  "core_idea": "No qualifying Reddit summaries found yet.",
-  "bullets": [],
-  "honest_take": "",
-  "quotes": [],
-  "sources": [],
-  "generated_by": "heuristic",
-  "generated_at": "2026-07-16"
+  "core_idea": "Julie Smith takes actual clinical psychology tools (the stuff she'd use in a therapy room) and repackages them into short, symptom-specific chapters \u2014 pick the chapter that matches your problem (low mood, anxiety, grief, motivation, self-esteem) and use the exercises in it like a first-aid kit, not a philosophy to absorb cover-to-cover.",
+  "bullets": [
+    "Treat it as a reference book, not a memoir: skip to the chapter matching your current problem instead of reading start to finish.",
+    "Motivation is a myth \u2014 it follows action, it doesn't precede it. Lower the barrier to starting (2-minute version of the task) instead of waiting to 'feel ready.'",
+    "Low mood and anxiety are maintained by avoidance loops; the fix is behavioral activation \u2014 do the thing before you feel like it, not after.",
+    "Self-esteem isn't fixed by affirmations, it's built by evidence: track small proof-of-competence moments instead of trying to 'think positive.'",
+    "Journaling/thought-record exercises in the book are meant to be done on paper in the moment of distress, not read passively \u2014 the value is in doing the worksheet, not skimming the explanation."
+  ],
+  "honest_take": "The threads bundled here aren't actually about this book specifically \u2014 they're the same r/getdisciplined genre of long personal 'here's how I fixed myself' essays that circulate constantly, and they get lumped with Smith's book because they're hitting the same nerve: motivation doesn't come first, self-worth isn't earned through achievement, and smart/capable people still get stuck in avoidance loops. That overlap is real, but it means the 'Reddit take' on Julie Smith specifically is thinner than the hype suggests \u2014 it's less a cult favorite with passionate chapter-by-chapter debate and more 'solid, readable CBT primer people recommend when someone asks for a first therapy-adjacent book.' The general read (from broader book discussion beyond these threads) is that the low-mood and anxiety chapters are the strongest because they map directly onto concrete exercises, while the motivation/procrastination material feels like a repeat of every productivity post you've already read on this sub \u2014 including, ironically, the ones quoted below.",
+  "quotes": [
+    {
+      "text": "Motivation isn't a one-day thing, a one-hour thing. It's something that you work on. The more you get motivated, the longer you will be motivated.",
+      "author": "10MinuteMotivation",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/8067rj/method_the_22_ways_i_used_to_motivate_myself_to/"
+    },
+    {
+      "text": "Fuck that. I don\u2019t care what your backstory is, you are worthy.",
+      "author": "StaticNocturne",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/d6ji86/advice_a_comprehensive_guide_to_becoming_the_best/"
+    },
+    {
+      "text": "I\u2019ve read a lot of self-help books. Almost 100 over the past 3 years. I\u2019ve learned a lot of methods and tactics to overcoming a plethora of issues and insecurities... However, for the longest time, I struggled with implementing everything I knew and learned about.",
+      "author": "i_ReadaLot",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/cfu8fp/advice_how_i_discovered_the_secret_to_success/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "[Method] The 22 ways I used to motivate myself to do the things I believe I need to do - long post",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/8067rj/method_the_22_ways_i_used_to_motivate_myself_to/",
+      "subreddit": "getdisciplined",
+      "score": 1076
+    },
+    {
+      "title": "[Advice] A Comprehensive guide to becoming the best version of yourself",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/d6ji86/advice_a_comprehensive_guide_to_becoming_the_best/",
+      "subreddit": "getdisciplined",
+      "score": 2036
+    },
+    {
+      "title": "[Advice] How I Discovered the Secret to Success",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/cfu8fp/advice_how_i_discovered_the_secret_to_success/",
+      "subreddit": "getdisciplined",
+      "score": 1731
+    },
+    {
+      "title": "[Advice] Were you one of the \"smart kids\"?",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/3piu8r/advice_were_you_one_of_the_smart_kids/",
+      "subreddit": "getdisciplined",
+      "score": 1177
+    },
+    {
+      "title": "[Advice] PeaceH's Guide to Becoming Disciplined",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/2dd7yh/advice_peacehs_guide_to_becoming_disciplined/",
+      "subreddit": "getdisciplined",
+      "score": 849
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-07-21"
 }
