@@ -12,11 +12,20 @@ from gttp.reddit_client import FixtureRedditClient
 
 
 @pytest.fixture(autouse=True)
-def _force_heuristic(monkeypatch):
+def _force_heuristic(monkeypatch, tmp_path):
     # This suite exercises the offline/heuristic path; keep it independent of
     # (and off the network from) whatever ANTHROPIC_API_KEY may be in the env.
     monkeypatch.setattr(ranking, "anthropic_key", lambda: None)
     monkeypatch.setattr(synthesize, "anthropic_key", lambda: None)
+    # Isolate the page/thread cache so a real committed .cache/pages/ entry
+    # (e.g. a genuinely finalized "Atomic Habits" page, generated_by=claude)
+    # never short-circuits build_book()'s "already finalized, skipping"
+    # check before a test reaches the fixture-driven path it's meant to
+    # exercise. Same isolation already used explicitly below in
+    # test_thread_and_page_cache_roundtrip / test_build_book_isolates_errors
+    # — applied module-wide here instead of duplicated per-test.
+    monkeypatch.setattr(cache, "THREADS_DIR", tmp_path / "threads")
+    monkeypatch.setattr(cache, "PAGES_DIR", tmp_path / "pages")
 
 
 def _book(title="Atomic Habits"):
