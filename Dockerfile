@@ -7,7 +7,7 @@ WORKDIR /app
 # path so the container can run as a non-root user (uid 1000) and still launch
 # Chromium.
 ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
-RUN apt-get update && apt-get install -y --no-install-recommends xvfb \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends xvfb \
     && rm -rf /var/lib/apt/lists/* \
     # Xvfb writes its socket here; make it world-writable for the non-root user.
     && mkdir -p /tmp/.X11-unix && chmod 1777 /tmp/.X11-unix
