@@ -1,0 +1,369 @@
+/*
+  gttp — "Marginalia" design system
+  =================================
+  Direction: a warm literary-annotation aesthetic. The site's whole metaphor
+  is a reader marking up a book to find the one idea worth keeping — so the
+  UI borrows the vocabulary of marginalia: highlighter strokes, underlines,
+  asterisks, sticky annotations. See /DESIGN.md at the repo root for the full
+  rationale, mood board, and component inventory. This file is the single
+  source of truth for tokens + components; the static showcase page at
+  /design-system.html renders every token/component live from these rules.
+*/
+
+/* ---------------------------------------------------------------------- */
+/* 1. Tokens                                                               */
+/* ---------------------------------------------------------------------- */
+
+:root {
+  /* Color — dominant + surfaces */
+  --color-bg: #FBF8F4;
+  --color-surface: #FFFFFF;
+  --color-surface-2: #F3EEE7;
+  --color-ink: #1B2233;
+  --color-muted: #63697A;
+  --color-border: rgba(27, 34, 51, .12);
+  --color-border-strong: rgba(27, 34, 51, .22);
+
+  /* Color — accent (the "highlighter") */
+  --color-accent: #E4571C;
+  --color-accent-ink: #B8420F;
+  --color-accent-tint: rgba(228, 87, 28, .10);
+  --color-accent-highlight: rgba(228, 87, 28, .16); /* the marker-stroke tint */
+
+  /* Color — semantic (used sparingly: the "not yet summarized" state) */
+  --color-quiet: var(--color-muted);
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgba(27, 34, 51, .06);
+  --shadow: 0 1px 2px rgba(27, 34, 51, .06), 0 10px 28px -14px rgba(27, 34, 51, .20);
+  --shadow-lg: 0 2px 4px rgba(27, 34, 51, .08), 0 16px 34px -16px rgba(27, 34, 51, .30);
+  --shadow-cover: 0 6px 16px -10px rgba(27, 34, 51, .5);
+  --shadow-cover-lg: 0 12px 30px -14px rgba(27, 34, 51, .55);
+
+  /* Radius scale */
+  --radius-sm: 9px;
+  --radius: 14px;
+  --radius-lg: 18px;
+  --radius-pill: 999px;
+
+  /* Spacing scale (used loosely — most layout still uses local values tuned
+     per component, but new/updated rules pull from this scale) */
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-14: 3.5rem;
+
+  /* Type */
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* Type scale: size / line-height, one token per step */
+  --text-xs: 400 .75rem/1.4 var(--font-body);      /* eyebrow labels, tags */
+  --text-sm: 400 .85rem/1.5 var(--font-body);       /* footer, metadata, "gen" line */
+  --text-base: 400 1.0625rem/1.65 var(--font-body); /* body copy */
+  --text-md: 700 1.08rem/1.25 var(--font-display);  /* card titles */
+  --text-lg: 700 1.4rem/1.3 var(--font-display);    /* h2 section headers */
+  --text-xl: 700 clamp(1.9rem, 4.5vw, 2.6rem)/1.15 var(--font-display); /* book title h1 */
+  --text-2xl: 700 clamp(2rem, 5vw, 2.75rem)/1.12 var(--font-display);  /* index h1 */
+  --text-quote: 400 1.35rem/1.4 var(--font-display); /* core-idea pull quote */
+
+  /* Motion */
+  --duration-fast: 120ms;
+  --duration: 150ms;
+  --duration-slow: 400ms;
+  --ease-standard: cubic-bezier(.2, .7, .3, 1);
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-bg: #0F1522;
+    --color-surface: #161D2C;
+    --color-surface-2: #1E2637;
+    --color-ink: #ECE9E3;
+    --color-muted: #98A0B2;
+    --color-border: rgba(236, 233, 227, .12);
+    --color-border-strong: rgba(236, 233, 227, .24);
+    --color-accent: #F97A45;
+    --color-accent-ink: #FB8C5C;
+    --color-accent-tint: rgba(249, 122, 69, .16);
+    --color-accent-highlight: rgba(249, 122, 69, .22);
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px -16px rgba(0, 0, 0, .65);
+    --shadow-lg: 0 2px 4px rgba(0, 0, 0, .45), 0 18px 38px -18px rgba(0, 0, 0, .7);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --color-bg: #0F1522;
+  --color-surface: #161D2C;
+  --color-surface-2: #1E2637;
+  --color-ink: #ECE9E3;
+  --color-muted: #98A0B2;
+  --color-border: rgba(236, 233, 227, .12);
+  --color-border-strong: rgba(236, 233, 227, .24);
+  --color-accent: #F97A45;
+  --color-accent-ink: #FB8C5C;
+  --color-accent-tint: rgba(249, 122, 69, .16);
+  --color-accent-highlight: rgba(249, 122, 69, .22);
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px -16px rgba(0, 0, 0, .65);
+  --shadow-lg: 0 2px 4px rgba(0, 0, 0, .45), 0 18px 38px -18px rgba(0, 0, 0, .7);
+  color-scheme: dark;
+}
+:root[data-theme="light"] { color-scheme: light; }
+
+/* Back-compat aliases: the tokens above are the documented source of truth,
+   but a few short names are kept so any inline markup still referencing the
+   pre-uplift variable names keeps working. */
+:root {
+  --bg: var(--color-bg);
+  --surface: var(--color-surface);
+  --surface-2: var(--color-surface-2);
+  --ink: var(--color-ink);
+  --muted: var(--color-muted);
+  --border: var(--color-border);
+  --border-strong: var(--color-border-strong);
+  --accent: var(--color-accent);
+  --accent-ink: var(--color-accent-ink);
+  --accent-tint: var(--color-accent-tint);
+}
+
+/* ---------------------------------------------------------------------- */
+/* 2. Base                                                                 */
+/* ---------------------------------------------------------------------- */
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font: var(--text-base);
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+main.content { max-width: 64rem; margin: var(--space-10) auto; padding: 0 var(--space-5); }
+main.reading { max-width: 46rem; }
+
+h1 { font-family: var(--font-display); line-height: 1.12; letter-spacing: -.01em; font-weight: 700; }
+
+/* The "marginalia" motif: every h2 gets a short highlighter dash above it,
+   standing in for a marker underline a reader would draw beside a heading. */
+h2 {
+  font: var(--text-lg);
+  letter-spacing: -.01em;
+  margin: 2.4rem 0 .6rem;
+  padding-top: .2rem;
+}
+h2::before {
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--color-accent);
+  margin-bottom: .6rem;
+}
+a { color: var(--color-accent-ink); text-decoration-color: var(--color-border-strong); text-underline-offset: 2px; }
+a:hover { text-decoration-color: var(--color-accent); }
+.sub { color: var(--color-muted); margin: .4rem 0 0; }
+.author { color: var(--color-muted); }
+
+/* ---------------------------------------------------------------------- */
+/* 3. Header / footer / theme toggle                                      */
+/* ---------------------------------------------------------------------- */
+
+.site-header {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--space-4); padding: .8rem var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+.site-title { display: inline-flex; text-decoration: none; }
+.site-title img {
+  display: block; width: 250px; max-width: 56vw; height: auto;
+  background: #fff; border-radius: 10px; padding: 5px 12px;
+}
+
+.theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 2.4rem; height: 2.4rem; flex-shrink: 0; cursor: pointer;
+  color: var(--color-ink); background: var(--color-surface);
+  border: 1px solid var(--color-border-strong); border-radius: var(--radius-sm);
+  transition: background var(--duration) var(--ease-standard),
+              border-color var(--duration) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard);
+}
+.theme-toggle:hover { border-color: var(--color-accent); background: var(--color-accent-tint); }
+.theme-toggle:active { transform: scale(.94); }
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .theme-toggle .icon-sun { display: block; }
+  :root:not([data-theme]) .theme-toggle .icon-moon { display: none; }
+}
+
+.site-footer {
+  max-width: 64rem; margin: var(--space-14) auto var(--space-8);
+  padding: var(--space-5) var(--space-5) 0;
+  border-top: 1px solid var(--color-border); color: var(--color-muted); font: var(--text-sm);
+}
+.site-footer a { color: var(--color-accent-ink); }
+
+/* ---------------------------------------------------------------------- */
+/* 4. Index page                                                          */
+/* ---------------------------------------------------------------------- */
+
+.intro { margin: .5rem 0 1.75rem; }
+.intro h1 { font: var(--text-2xl); margin: .2rem 0 0; }
+
+.search {
+  font: inherit; width: 100%; box-sizing: border-box; margin: 0 0 1.75rem;
+  padding: .7rem .9rem; border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface-2); color: inherit;
+}
+.search::placeholder { color: var(--color-muted); }
+.search:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; border-color: var(--color-accent); }
+
+.books {
+  list-style: none; padding: 0; margin: 0; display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)); gap: var(--space-4);
+}
+.books li {
+  display: flex; gap: var(--space-4); align-items: flex-start; margin: 0;
+  padding: var(--space-4); border-radius: var(--radius);
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  box-shadow: var(--shadow);
+  transition: transform var(--duration) var(--ease-standard),
+              border-color var(--duration) var(--ease-standard),
+              box-shadow var(--duration) var(--ease-standard);
+}
+.books li:hover { transform: translateY(-2px); border-color: var(--color-accent); box-shadow: var(--shadow-lg); }
+.card-body { min-width: 0; flex: 1; }
+.card-body a {
+  text-decoration: none; color: var(--color-ink);
+  font: var(--text-md); display: inline-block;
+}
+.card-body a:hover strong { color: var(--color-accent-ink); }
+.card-body strong { font-weight: 700; }
+.books p { color: var(--color-muted); margin: .35rem 0 0; font-size: .95rem; }
+.card.empty { opacity: .55; }
+
+.cover {
+  display: block; object-fit: cover; aspect-ratio: 2 / 3;
+  border-radius: 8px; border: 1px solid var(--color-border);
+  background: var(--color-surface-2); box-shadow: var(--shadow-cover);
+}
+.cover-thumb { width: 4.75rem; height: auto; flex-shrink: 0; }
+.cover-detail { width: 12rem; height: auto; flex-shrink: 0; border-radius: var(--radius); box-shadow: var(--shadow-cover-lg); }
+
+.tag {
+  display: inline-block; font: var(--text-xs); margin: .35rem .35rem 0 0;
+  padding: .15rem .55rem; border-radius: var(--radius-pill); color: var(--color-muted);
+  background: var(--color-surface-2); border: 1px solid var(--color-border);
+}
+.tags { margin-top: .3rem !important; }
+
+/* ---------------------------------------------------------------------- */
+/* 5. Book detail page                                                    */
+/* ---------------------------------------------------------------------- */
+
+.book-hero {
+  display: grid; grid-template-columns: auto 1fr; gap: 1.75rem;
+  align-items: start; margin: .5rem 0 var(--space-8);
+}
+.hero-body h1 { margin-top: 0; font: var(--text-xl); }
+
+/* The pull-quote core idea is the site's signature control: the single
+   sentence a reader would highlight in the margin. Rendered with a marker
+   underline (::after) instead of a plain border to keep the annotation
+   metaphor consistent with the h2 dash and the marginalia asterisk below. */
+blockquote.core {
+  position: relative;
+  font: var(--text-quote);
+  padding: .6rem 0 .8rem 1.1rem;
+  margin: 1rem 0 0;
+  background: var(--color-accent-tint);
+  border-radius: 0 8px 8px 0;
+}
+blockquote.core::before {
+  content: "";
+  position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--color-accent);
+}
+blockquote.core::after {
+  content: "*";
+  position: absolute; right: .6rem; top: .3rem;
+  font-family: var(--font-display); font-size: 1.4rem; color: var(--color-accent);
+}
+blockquote {
+  border-left: 3px solid var(--color-border-strong); padding: .2rem 0 .2rem 1.1rem;
+  margin: 1.2rem 0; color: var(--color-ink);
+}
+blockquote footer { color: var(--color-muted); font: var(--text-sm); margin-top: .4rem; }
+
+.toc {
+  margin: 1.5rem 0; padding: var(--space-4) 1.2rem; border-radius: var(--radius);
+  background: var(--color-surface); border: 1px solid var(--color-border);
+}
+.toc-title {
+  margin: 0 0 .5rem; font: var(--text-xs); letter-spacing: .08em;
+  text-transform: uppercase; font-weight: 600; color: var(--color-muted);
+}
+.toc ol { margin: 0; padding-left: 1.3rem; }
+.toc li { margin: .25rem 0; }
+.toc a { text-decoration: none; color: var(--color-accent-ink); }
+.toc a:hover { text-decoration: underline; }
+
+li[id^='idea-'] { scroll-margin-top: 3.5rem; margin: .5rem 0; }
+.gen { color: var(--color-muted); font: var(--text-sm); margin-top: var(--space-10); }
+.back {
+  font-size: .9rem; margin: 0 0 1.25rem; position: sticky; top: 0; z-index: 1;
+  padding: .5rem 0; background: var(--color-bg);
+}
+.back a { color: var(--color-muted); text-decoration: none; }
+.back a:hover { color: var(--color-accent-ink); }
+
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; border-radius: 4px; }
+
+/* ---------------------------------------------------------------------- */
+/* 6. Buttons (showcase + any future CTA use the same primary/ghost pair)  */
+/* ---------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font: 600 .95rem/1 var(--font-body);
+  padding: .7rem 1.2rem; border-radius: var(--radius-pill);
+  border: 1px solid transparent; cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration) var(--ease-standard),
+              background var(--duration) var(--ease-standard);
+}
+.btn-primary { background: var(--color-accent); color: #fff; box-shadow: var(--shadow-sm); }
+.btn-primary:hover { background: var(--color-accent-ink); box-shadow: var(--shadow); }
+.btn-primary:active { transform: scale(.97); }
+.btn-ghost { background: transparent; color: var(--color-accent-ink); border-color: var(--color-border-strong); }
+.btn-ghost:hover { border-color: var(--color-accent); background: var(--color-accent-tint); }
+.btn:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* ---------------------------------------------------------------------- */
+/* 7. Responsive + motion accessibility                                   */
+/* ---------------------------------------------------------------------- */
+
+@media (max-width: 30rem) {
+  .book-hero { grid-template-columns: 1fr; }
+  .cover-detail { width: 9rem; }
+  main.content { margin: 1.5rem auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+  .books li:hover { transform: none; }
+}

@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gttp — Design System</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/style.css">
+<script>(function(){try{var t=localStorage.getItem('gttp-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<style>
+  /* Showcase-only chrome: none of this is part of the shipped design
+     system — it exists purely to lay out the specimens on this page. Every
+     value shown *inside* a specimen comes from style.css, not from here. */
+  .ds-main { max-width: 74rem; }
+  .ds-lede { color: var(--color-muted); max-width: 42rem; }
+  .ds-section { margin: 3.5rem 0; }
+  .ds-section > h2 { margin-top: 0; }
+  .ds-grid { display: grid; gap: 1rem; }
+  .ds-grid-swatch { grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); }
+  .ds-grid-2 { grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+  .ds-swatch { border: 1px solid var(--color-border); border-radius: var(--radius); overflow: hidden; background: var(--color-surface); box-shadow: var(--shadow-sm); }
+  .ds-swatch-color { height: 4.5rem; }
+  .ds-swatch-label { padding: .6rem .75rem; font: var(--text-xs); }
+  .ds-swatch-label b { display: block; font: var(--text-sm); font-weight: 600; color: var(--color-ink); margin-bottom: .15rem; }
+  .ds-swatch-label code { color: var(--color-muted); }
+  .ds-type-row { padding: 1.1rem 0; border-top: 1px solid var(--color-border); display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; align-items: baseline; }
+  .ds-type-row:first-of-type { border-top: none; }
+  .ds-type-meta { font: var(--text-xs); color: var(--color-muted); line-height: 1.6; }
+  .ds-type-meta code { display: block; }
+  .ds-scale-row { display: flex; align-items: center; gap: 1rem; margin: .6rem 0; }
+  .ds-scale-box { background: var(--color-accent); border-radius: 4px; flex-shrink: 0; }
+  .ds-scale-radius { background: var(--color-surface-2); border: 1px solid var(--color-border-strong); flex-shrink: 0; width: 3.5rem; height: 3.5rem; }
+  .ds-scale-label { font: var(--text-sm); color: var(--color-muted); }
+  .ds-card-demo { padding: 1.5rem; border-radius: var(--radius); background: var(--color-surface-2); }
+  .ds-shadow-card { background: var(--color-surface); border-radius: var(--radius); padding: 1.25rem; text-align: center; font: var(--text-sm); color: var(--color-muted); }
+  .ds-motion-demo { display: inline-flex; align-items: center; justify-content: center; width: 6rem; height: 6rem; border-radius: var(--radius); background: var(--color-surface); border: 1px solid var(--color-border); cursor: pointer; font: var(--text-xs); color: var(--color-muted); text-align: center; }
+  .ds-motion-demo:hover { transform: translateY(-6px) scale(1.04); border-color: var(--color-accent); }
+  .ds-motion-fast:hover { transition: transform var(--duration-fast) var(--ease-standard); }
+  .ds-motion-base:hover { transition: transform var(--duration) var(--ease-standard); }
+  .ds-motion-slow:hover { transition: transform var(--duration-slow) var(--ease-standard); }
+  .ds-btn-row { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+  .ds-input-row { display: grid; gap: .75rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+  .ds-note { font: var(--text-sm); color: var(--color-muted); margin-top: .5rem; }
+  .ds-swatch-color.checker {
+    background-image: linear-gradient(45deg, var(--color-border) 25%, transparent 25%),
+      linear-gradient(-45deg, var(--color-border) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, var(--color-border) 75%),
+      linear-gradient(-45deg, transparent 75%, var(--color-border) 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+  }
+  .ds-texture { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--color-border); }
+  .ds-texture img { display: block; width: 100%; height: 8rem; object-fit: cover; }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a class="site-title" href="index.html">
+    <img src="logo.png" alt="Get To The Point" width="250">
+  </a>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle theme">
+    <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+  </button>
+</header>
+
+<main class="content ds-main">
+  <div class="ds-lede" style="margin: 2rem 0 0;">
+    <p class="tag" style="margin-bottom: .75rem;">Marginalia — v1.0</p>
+    <h1>Design system</h1>
+    <p class="sub">Every token and component below is rendered live from
+      <code>/style.css</code> — the same stylesheet the real site pages
+      (<a href="index.html">index</a>, <a href="books/atomic-habits.html">book
+      pages</a>) load. Nothing on this page is hand-duplicated; if a value
+      here looks wrong, the fix belongs in <code>static/style.css</code>, and
+      it will show up on both this page and the live site the next time
+      <code>gttp build</code> runs. Full rationale in
+      <code>DESIGN.md</code> at the repo root.</p>
+  </div>
+
+  <!-- COLOR ==================================================== -->
+  <section class="ds-section">
+    <h2>Color</h2>
+    <p class="ds-lede">Dominant cream/navy with a single burnt-orange accent
+      used like a highlighter — never diluted into a second competing hue.
+      Every token is a CSS custom property; the whole palette flips
+      automatically for dark mode (try the toggle, top right).</p>
+    <div class="ds-grid ds-grid-swatch" id="color-swatches"></div>
+  </section>
+
+  <!-- TYPE ======================================================= -->
+  <section class="ds-section">
+    <h2>Type</h2>
+    <p class="ds-lede">Two faces: <b>Iowan Old Style</b> (display — book
+      titles, headings, the pull-quote) for literary warmth, and the system
+      sans (body) for legibility at reading length. No webfont download: both
+      resolve from each OS's built-in serif/sans stack, keeping the site
+      fast and license-free.</p>
+    <div id="type-scale"></div>
+  </section>
+
+  <!-- SPACING & RADIUS =========================================== -->
+  <section class="ds-section">
+    <h2>Spacing &amp; radius</h2>
+    <div class="ds-grid ds-grid-2">
+      <div>
+        <p class="ds-lede">Spacing scale (rem)</p>
+        <div id="spacing-scale"></div>
+      </div>
+      <div>
+        <p class="ds-lede">Radius scale</p>
+        <div id="radius-scale" style="display:flex; gap:1.25rem; flex-wrap:wrap; align-items:center;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHADOW & MOTION ============================================ -->
+  <section class="ds-section">
+    <h2>Shadow &amp; motion</h2>
+    <div class="ds-grid ds-grid-2">
+      <div>
+        <p class="ds-lede">Elevation</p>
+        <div class="ds-grid" style="grid-template-columns: repeat(auto-fit,minmax(9rem,1fr)); gap:1rem;">
+          <div class="ds-shadow-card" style="box-shadow: var(--shadow-sm);">--shadow-sm</div>
+          <div class="ds-shadow-card" style="box-shadow: var(--shadow);">--shadow</div>
+          <div class="ds-shadow-card" style="box-shadow: var(--shadow-lg);">--shadow-lg</div>
+          <div class="ds-shadow-card" style="box-shadow: var(--shadow-cover);">--shadow-cover</div>
+        </div>
+      </div>
+      <div>
+        <p class="ds-lede">Motion — hover each box, it's the real transition, not a description</p>
+        <div class="ds-btn-row">
+          <div class="ds-motion-demo ds-motion-fast">fast<br>120ms</div>
+          <div class="ds-motion-demo ds-motion-base">base<br>150ms</div>
+          <div class="ds-motion-demo ds-motion-slow">slow<br>400ms</div>
+        </div>
+        <p class="ds-note">Easing: <code>--ease-standard: cubic-bezier(.2,.7,.3,1)</code>. All motion collapses under <code>prefers-reduced-motion: reduce</code> — try it in your OS/browser settings.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPONENTS ================================================= -->
+  <section class="ds-section">
+    <h2>Components</h2>
+
+    <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">Buttons</h3>
+    <div class="ds-card-demo ds-btn-row">
+      <button class="btn btn-primary">Primary</button>
+      <button class="btn btn-primary" disabled>Primary (disabled)</button>
+      <button class="btn btn-ghost">Ghost</button>
+      <button class="btn btn-ghost" disabled>Ghost (disabled)</button>
+    </div>
+
+    <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">Search input</h3>
+    <div class="ds-input-row">
+      <input type="search" class="search" placeholder="Search books…" aria-label="Search books demo">
+      <input type="search" class="search" value="atomic" aria-label="Search books demo, filled">
+    </div>
+
+    <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">Tags</h3>
+    <div class="ds-card-demo">
+      <span class="tag">r/getdisciplined</span>
+      <span class="tag">r/DecidingToBeBetter</span>
+      <span class="tag">r/BettermentBookClub</span>
+    </div>
+
+    <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">Book card (default vs. empty state)</h3>
+    <ul class="books" style="max-width:44rem;">
+      <li class="card">
+        <img class="cover cover-thumb" src="covers/atomic-habits.jpg" alt="Cover of Atomic Habits" loading="lazy" width="72" height="108">
+        <div class="card-body">
+          <a href="books/atomic-habits.html"><strong>Atomic Habits</strong> — James Clear</a>
+          <p>Small habits compound into big results.</p>
+          <p class="tags"><span class="tag">r/getdisciplined</span></p>
+        </div>
+      </li>
+      <li class="card empty">
+        <img class="cover cover-thumb" src="covers/how-to-begin.jpg" alt="Cover, no summary yet" loading="lazy" width="72" height="108">
+        <div class="card-body">
+          <a href="index.html"><strong>Not Yet Summarized</strong></a>
+          <p>No qualifying Reddit summaries found yet.</p>
+        </div>
+      </li>
+    </ul>
+    <p class="ds-note">The dimmed "empty" card is the only semantic-color
+      moment in the system: <code>.card.empty { opacity: .55 }</code> — a
+      quiet, non-alarming way to say "nothing here yet" without introducing a
+      second accent color.</p>
+
+    <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">The signature control — the annotated pull-quote</h3>
+    <p class="ds-lede">This is the one thing every visitor reads: the book's
+      core idea, styled like a sentence a reader would highlight and mark
+      with an asterisk in the margin. It is the single most load-bearing
+      component in the system — everything else (the h2 dash, the tag
+      pills, the underline color) is drawn from the same "marker" vocabulary
+      it establishes.</p>
+    <div style="max-width: 34rem;">
+      <blockquote class="core">Small habits compound into big results — the
+        system you build matters more than the goal you set.</blockquote>
+    </div>
+
+    <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">Section heading</h3>
+    <div style="max-width: 34rem;">
+      <h2 style="margin-top:0;">The 5-bullet version</h2>
+      <p class="ds-note">Every <code>&lt;h2&gt;</code> gets the same short
+        highlighter dash above it (<code>::before</code>) instead of a plain
+        underline — a smaller echo of the same annotation mark.</p>
+    </div>
+
+    <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">Table of contents ("In this book")</h3>
+    <nav class="toc" aria-label="Ideas demo" style="max-width:26rem;">
+      <p class="toc-title">In this book</p>
+      <ol>
+        <li><a href="#">Make bad habits invisible and hard…</a></li>
+        <li><a href="#">Make good habits obvious and easy…</a></li>
+      </ol>
+    </nav>
+
+    <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">Theme toggle</h3>
+    <p class="ds-lede">The sun/moon control in the header, above. Persists to
+      <code>localStorage</code>, respects OS preference by default, and is a
+      real focusable button (<kbd>Tab</kbd> to it, <code>:focus-visible</code>
+      shows the accent-color ring used everywhere in the system).</p>
+  </section>
+
+  <!-- ASSETS ====================================================== -->
+  <section class="ds-section">
+    <h2>Brand assets</h2>
+    <div class="ds-grid ds-grid-2">
+      <div class="ds-swatch">
+        <div style="padding:1.5rem; background:#fff;"><img src="logo.png" alt="gttp wordmark" style="width:100%; height:auto;"></div>
+        <div class="ds-swatch-label"><b>logo.png</b><code>static/logo.png</code></div>
+      </div>
+      <div class="ds-swatch">
+        <div style="padding:1.5rem; display:flex; gap:1rem; align-items:center; background:#fff;">
+          <img src="icon-512.png" alt="gttp icon" style="width:64px; height:64px;">
+          <img src="favicon-32x32.png" alt="gttp favicon" style="width:32px; height:32px;">
+          <img src="favicon-16x16.png" alt="gttp favicon small" style="width:16px; height:16px;">
+        </div>
+        <div class="ds-swatch-label"><b>Favicon / app icon</b><code>static/icon-512.png, favicon-*.png, favicon.ico</code></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  Design system for <a href="index.html">Get To The Point</a>. See
+  <code>DESIGN.md</code> at the repo root for the full write-up.
+</footer>
+
+<script>(function(){
+  var b=document.getElementById('theme-toggle');
+  function cur(){var a=document.documentElement.getAttribute('data-theme');if(a)return a;return (window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}
+  function sync(){b.setAttribute('aria-pressed',cur()==='dark');}
+  sync();
+  b.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);try{localStorage.setItem('gttp-theme',n);}catch(e){}sync();});
+})();
+
+// Build the color, type, and spacing sections by reading the *actual*
+// computed custom properties from :root — so this page can never drift out
+// of sync with style.css.
+(function(){
+  var root = getComputedStyle(document.documentElement);
+  function v(name){ return root.getPropertyValue(name).trim(); }
+
+  var colors = [
+    ['--color-bg', 'Background'], ['--color-surface', 'Surface'], ['--color-surface-2', 'Surface 2'],
+    ['--color-ink', 'Ink (text)'], ['--color-muted', 'Muted text'],
+    ['--color-border', 'Border'], ['--color-border-strong', 'Border (strong)'],
+    ['--color-accent', 'Accent'], ['--color-accent-ink', 'Accent ink'], ['--color-accent-tint', 'Accent tint'],
+    ['--color-accent-highlight', 'Accent highlight']
+  ];
+  var swatchHtml = colors.map(function(c){
+    var val = v(c[0]);
+    var checker = /rgba/.test(val) ? ' checker' : '';
+    return '<div class="ds-swatch">' +
+      '<div class="ds-swatch-color' + checker + '" style="background:' + val + '"></div>' +
+      '<div class="ds-swatch-label"><b>' + c[1] + '</b><code>' + c[0] + '</code><br><code>' + val + '</code></div>' +
+    '</div>';
+  }).join('');
+  document.getElementById('color-swatches').innerHTML = swatchHtml;
+
+  var typeSteps = [
+    ['--text-xs', 'xs — tags, eyebrows'], ['--text-sm', 'sm — metadata, footer'],
+    ['--text-base', 'base — body copy'], ['--text-md', 'md — card titles'],
+    ['--text-lg', 'lg — section h2'], ['--text-quote', 'quote — pull-quote'],
+    ['--text-xl', 'xl — book title h1'], ['--text-2xl', '2xl — index h1']
+  ];
+  var typeHtml = typeSteps.map(function(t){
+    var val = v(t[0]);
+    return '<div class="ds-type-row">' +
+      '<div class="ds-type-meta"><code>' + t[0] + '</code><span>' + t[1] + '</span></div>' +
+      '<div style="font:' + val + '; overflow-wrap:anywhere;">get to the point</div>' +
+    '</div>';
+  }).join('');
+  document.getElementById('type-scale').innerHTML = typeHtml;
+
+  var spaces = ['--space-1','--space-2','--space-3','--space-4','--space-5','--space-6','--space-8','--space-10','--space-14'];
+  var spaceHtml = spaces.map(function(s){
+    var val = v(s);
+    return '<div class="ds-scale-row"><div class="ds-scale-box" style="width:' + val + '; height:1rem;"></div><span class="ds-scale-label"><code>' + s + '</code> = ' + val + '</span></div>';
+  }).join('');
+  document.getElementById('spacing-scale').innerHTML = spaceHtml;
+
+  var radii = ['--radius-sm','--radius','--radius-lg','--radius-pill'];
+  var radiusHtml = radii.map(function(r){
+    var val = v(r);
+    var w = r === '--radius-pill' ? '5.5rem' : '3.5rem';
+    return '<div style="text-align:center;">' +
+      '<div class="ds-scale-radius" style="border-radius:' + val + '; width:' + w + ';"></div>' +
+      '<span class="ds-scale-label"><code>' + r + '</code></span>' +
+    '</div>';
+  }).join('');
+  document.getElementById('radius-scale').innerHTML = radiusHtml;
+})();
+</script>
+</body></html>
