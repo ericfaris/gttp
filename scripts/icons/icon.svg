@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<defs><filter id="sh" x="-30%" y="-30%" width="160%" height="160%">
+  <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#000" flood-opacity=".45"/></filter>
+<radialGradient id="bgg" cx="50%" cy="35%" r="75%"><stop offset="0" stop-color="#33405f"/><stop offset="1" stop-color="#121725"/></radialGradient><radialGradient id="paper" cx="50%" cy="40%" r="75%"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#ece4d8"/></radialGradient></defs>
+<g id="bg"><rect width="512" height="512" fill="url(#bgg)"/></g>
+<g id="mark"><g filter="url(#sh)"><circle cx="236" cy="276" r="178" fill="url(#paper)"/><circle cx="236" cy="276" r="140" fill="#E4571C"/><circle cx="236" cy="276" r="102" fill="url(#paper)"/><circle cx="236" cy="276" r="64" fill="#E4571C"/><circle cx="236" cy="276" r="28" fill="url(#paper)"/><circle cx="236" cy="276" r="178" fill="none" stroke="#1B2233" stroke-opacity=".25" stroke-width="4"/></g>
+<g filter="url(#sh)" transform="translate(236 276) rotate(-45)">
+  <line x1="0" y1="0" x2="250" y2="0" stroke="#FBF8F4" stroke-width="30" stroke-linecap="round"/>
+  <line x1="0" y1="0" x2="250" y2="0" stroke="#1B2233" stroke-width="16" stroke-linecap="round"/>
+  <path d="M168 -6 L206 -44 L262 -44 L226 -6Z" fill="#E4571C" stroke="#FBF8F4" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M168 6 L206 44 L262 44 L226 6Z" fill="#B8420F" stroke="#FBF8F4" stroke-width="6" stroke-linejoin="round"/>
+  <circle cx="0" cy="0" r="12" fill="#1B2233"/>
+</g></g>
+<g id="mark-small"><g transform="translate(256 256) scale(1.12) translate(-252 -262)"><g filter="url(#sh)"><circle cx="236" cy="276" r="178" fill="url(#paper)"/><circle cx="236" cy="276" r="140" fill="#E4571C"/><circle cx="236" cy="276" r="102" fill="url(#paper)"/><circle cx="236" cy="276" r="64" fill="#E4571C"/><circle cx="236" cy="276" r="28" fill="url(#paper)"/><circle cx="236" cy="276" r="178" fill="none" stroke="#1B2233" stroke-opacity=".25" stroke-width="4"/></g>
+<g filter="url(#sh)" transform="translate(236 276) rotate(-45)">
+  <line x1="0" y1="0" x2="250" y2="0" stroke="#FBF8F4" stroke-width="30" stroke-linecap="round"/>
+  <line x1="0" y1="0" x2="250" y2="0" stroke="#1B2233" stroke-width="16" stroke-linecap="round"/>
+  <path d="M168 -6 L206 -44 L262 -44 L226 -6Z" fill="#E4571C" stroke="#FBF8F4" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M168 6 L206 44 L262 44 L226 6Z" fill="#B8420F" stroke="#FBF8F4" stroke-width="6" stroke-linejoin="round"/>
+  <circle cx="0" cy="0" r="12" fill="#1B2233"/>
+</g></g></g>
+</svg>

@@ -2,10 +2,10 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>gttp — Design System</title>
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1B2233">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
 <link rel="stylesheet" href="/style.css">
 <script>(function(){try{var t=localStorage.getItem('gttp-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <style>
@@ -234,11 +234,12 @@
       </div>
       <div class="ds-swatch">
         <div style="padding:1.5rem; display:flex; gap:1rem; align-items:center; background:#fff;">
-          <img src="icon-512.png" alt="gttp icon" style="width:64px; height:64px;">
-          <img src="favicon-32x32.png" alt="gttp favicon" style="width:32px; height:32px;">
-          <img src="favicon-16x16.png" alt="gttp favicon small" style="width:16px; height:16px;">
+          <img src="icon-512.png" alt="gttp icon" style="width:96px; height:96px;">
+          <img src="icon-maskable-512.png" alt="gttp maskable icon" style="width:64px; height:64px; border-radius:50%;">
+          <img src="favicon.ico" alt="gttp favicon" style="width:32px; height:32px;">
+          <img src="favicon.ico" alt="gttp favicon small" style="width:16px; height:16px;">
         </div>
-        <div class="ds-swatch-label"><b>Favicon / app icon</b><code>static/icon-512.png, favicon-*.png, favicon.ico</code></div>
+        <div class="ds-swatch-label"><b>Favicon / app icon</b><code>scripts/icons/icon.svg → static/ (python3 scripts/icons/build.py)</code></div>
       </div>
     </div>
   </section>

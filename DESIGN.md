@@ -226,7 +226,7 @@ low-opacity `background-image` on `body`.
 | `static/style.css` | The design system: all tokens + component CSS. Copied to `site/style.css` at build time, linked from every page. |
 | `static/design-system.html` | The showcase page (new). Copied to `site/design-system.html`. |
 | `static/logo.png` | Wordmark (book + orange arrow + "get to the point."), pre-existing, kept as-is — it already matches this direction's palette exactly. |
-| `static/favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, `favicon-48x48.png`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png` | Favicon/app icon set, pre-existing (added in `3be7239`) — checked against the global "every project needs a real icon" rule and found already on-brand; not regenerated. |
+| `static/favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`, `manifest.webmanifest` | App icon on the house standard shared with every mooseflip app (2026-10-16): an arrow dead centre in an ink/orange bullseye ("get to the point") on an ink-navy tile. Rendered from `scripts/icons/icon.svg` by `python3 scripts/icons/build.py`; `tests/test_icons.py` guards the wiring. |
 | `src/gttp/publish.py` | Site generator — `_HTML_SHELL` now links `/style.css` instead of embedding an inline `<style>` block. |
 
 Mood-board images generated this session (Ideogram, not committed to the
