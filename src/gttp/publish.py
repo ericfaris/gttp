@@ -54,7 +54,7 @@ def render_markdown(page: BookPage) -> str:
         lines.append("## Worth quoting")
         for q in page.quotes:
             lines.append(f"> {q['text']}")
-            lines.append(f">")
+            lines.append(">")
             lines.append(f"> — [{q['author']}]({q['url']})")
             lines.append("")
     if page.sources:
@@ -231,7 +231,7 @@ def _render_index_html(pages: list[BookPage], covers_dir: Path) -> str:
 
 
 def _render_book_html(page: BookPage, covers_dir: Path) -> str:
-    parts = [f"<p class='back'><a href='../index.html'>← all books</a></p>"]
+    parts = ["<p class='back'><a href='../index.html'>← all books</a></p>"]
     cover = _cover_tile(page, covers_dir, "../", "cover cover-detail")
     hero = [cover, '<div class="hero-body">']
     hero.append(f"<h1>{html.escape(page.title)}</h1>")
