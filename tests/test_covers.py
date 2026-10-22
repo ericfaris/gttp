@@ -3,7 +3,6 @@
 All network calls are mocked — these tests never hit Open Library.
 """
 
-import pytest
 import requests
 
 from gttp import cli, covers
