@@ -61,6 +61,7 @@
   ],
   "generated_by": "claude",
   "generated_at": "2026-07-21",
+  "model": "",
   "verdict": "Read chapters 1-3 only; the rest is case-study padding and the core idea fits on this page.",
   "try_today": "Next time someone (including you) does something well, say 'you worked hard on that' instead of 'you're so smart' \u2014 practice it once today on yourself or another person.",
   "for_who": "Someone who ties their self-worth to single setbacks (missed workouts, bad days) and wants a reframe that actually sticks.",
@@ -71,5 +72,6 @@
     "The famous praise-effort-not-talent study has had replication problems, so don't treat it as settled science.",
     "The book itself repeats the same 2-3 studies for 300 pages \u2014 the whole usable idea is done by chapter 3."
   ],
-  "enriched_at": "2026-10-25"
+  "enriched_at": "2026-10-25",
+  "enrich_model": ""
 }

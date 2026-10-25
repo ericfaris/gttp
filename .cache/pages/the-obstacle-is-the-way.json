@@ -61,6 +61,7 @@
   ],
   "generated_by": "claude",
   "generated_at": "2026-07-21",
+  "model": "",
   "verdict": "Skip the book; this page is the whole framework \u2014 people only ever use the mantra, not the stories.",
   "try_today": "Pick one thing stressing you out right now and do the smallest possible physical action on it \u2014 write one sentence, send one text, do one pushup \u2014 before you feel ready.",
   "for_who": "Someone stuck in a loop of overthinking a setback who needs a quick mental reset, not a philosophy class.",
@@ -71,5 +72,6 @@
     "The ideas are old Stoic basics repackaged, not original \u2014 people reach the same conclusions without ever citing Holiday.",
     "The book's real value is packaging and marketing a mantra, not depth, so don't expect insight beyond the framework."
   ],
-  "enriched_at": "2026-10-25"
+  "enriched_at": "2026-10-25",
+  "enrich_model": ""
 }

@@ -61,6 +61,7 @@
   ],
   "generated_by": "claude",
   "generated_at": "2026-07-21",
+  "model": "",
   "verdict": "Skip the book \u2014 the three habits that matter are summarized above, the rest is corporate filler.",
   "try_today": "Write down one thing that annoyed you today and rewrite it as 'I chose to react by X' instead of 'X made me feel Y.'",
   "for_who": "Someone who reacts to every fire drill at work and never steps back to plan their week.",
@@ -71,5 +72,6 @@
     "Sharpen the Saw is basically 'sleep and exercise' dressed up as a whole habit.",
     "The book's ideas spread everywhere even though almost nobody reads it anymore \u2014 you've likely absorbed the useful parts already."
   ],
-  "enriched_at": "2026-10-25"
+  "enriched_at": "2026-10-25",
+  "enrich_model": ""
 }

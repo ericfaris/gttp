@@ -61,6 +61,7 @@
   ],
   "generated_by": "claude",
   "generated_at": "2026-07-21",
+  "model": "",
   "verdict": "Skip the book \u2014 the one-page mechanism (schedule it, ritualize it, kill the phone) is the whole payload.",
   "try_today": "Open your calendar right now and block a 60-90 minute slot tomorrow morning labeled 'Deep Work' with your phone physically in another room for that window.",
   "for_who": "Someone who constantly feels busy but can't point to deep, cognitively demanding output at the end of the day.",
@@ -71,5 +72,6 @@
     "Reddit confirms the core trick (phone in another room) works and is backed by real research, so that part isn't hype.",
     "The book itself gets criticized for being repetitive, preachy about quitting social media, and thinner on neuroscience than its confident tone suggests."
   ],
-  "enriched_at": "2026-10-25"
+  "enriched_at": "2026-10-25",
+  "enrich_model": ""
 }

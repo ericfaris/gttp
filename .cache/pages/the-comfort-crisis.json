@@ -56,6 +56,7 @@
   ],
   "generated_by": "claude",
   "generated_at": "2026-07-21",
+  "model": "",
   "verdict": "This page is enough \u2014 the ideas are simple, repeated everywhere, and the book's value is mostly memoir padding.",
   "try_today": "Take the stairs instead of the elevator/escalator right now, and leave your phone in another room for the next 10 minutes instead of scrolling.",
   "for_who": "Someone who feels soft, restless, or over-optimized and actually wants a nudge to do a hard thing, not just read about it.",
@@ -66,5 +67,6 @@
     "If you do read it, skip to the misogi and rucking chapters \u2014 that's the actionable core, not the Alaska hunting memoir.",
     "Knowing the thesis isn't the hard part; doing one uncomfortable thing today is."
   ],
-  "enriched_at": "2026-10-25"
+  "enriched_at": "2026-10-25",
+  "enrich_model": ""
 }

@@ -61,6 +61,7 @@
   ],
   "generated_by": "claude",
   "generated_at": "2026-07-21",
+  "model": "",
   "verdict": "Skip the book \u2014 this page has the one chapter (sleep) that actually changes behavior; the rest is padding.",
   "try_today": "Pick one commitment on tomorrow's calendar and cancel or decline it with a one-line 'no' and no explanation.",
   "for_who": "Someone whose calendar is packed but who can't name their top one or two priorities.",
@@ -71,5 +72,6 @@
     "The Essence/Explore/Eliminate/Execute framework gets nods but no real citations \u2014 nobody describes using it specifically.",
     "If you only take two things: protect your sleep, and ask 'right things, not more things' before saying yes."
   ],
-  "enriched_at": "2026-10-25"
+  "enriched_at": "2026-10-25",
+  "enrich_model": ""
 }

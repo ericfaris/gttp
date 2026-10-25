@@ -61,6 +61,7 @@
   ],
   "generated_by": "claude",
   "generated_at": "2026-07-21",
+  "model": "",
   "verdict": "Skip the book; this page is 80% platitudes you already know, 20% actually useful tricks.",
   "try_today": "Pick one task you've been postponing until you 'feel ready,' and do the very first physical step of it right now \u2014 send the email, open the doc, make the call.",
   "for_who": "Someone with real skills who's stalling on a goal out of fear, not lack of a plan.",
@@ -71,5 +72,6 @@
     "Belief without a system is just vibes \u2014 you need habit design and environment control to make it stick.",
     "Skip the motivational chapters that just say 'aim higher' in new words without giving you a next physical step."
   ],
-  "enriched_at": "2026-10-25"
+  "enriched_at": "2026-10-25",
+  "enrich_model": ""
 }

@@ -61,6 +61,7 @@
   ],
   "generated_by": "claude",
   "generated_at": "2026-07-21",
+  "model": "",
   "verdict": "Skip the book \u2014 the core trick (stop fighting feelings, act on values anyway) fits on this page.",
   "try_today": "Write down one uncomfortable thought you had today as 'I'm having the thought that ___' instead of stating it as fact, then do one small values-aligned action anyway (e.g. send that email, say hi to a coworker).",
   "for_who": "Someone stuck avoiding things because they're waiting to 'feel ready' or feel better first.",
@@ -71,5 +72,6 @@
     "The middle of the book is reportedly repetitive workbook drills \u2014 skim once you get the concept.",
     "The concept is the payload; the exercises are optional reinforcement, not required reading."
   ],
-  "enriched_at": "2026-10-25"
+  "enriched_at": "2026-10-25",
+  "enrich_model": ""
 }

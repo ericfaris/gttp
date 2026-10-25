@@ -45,10 +45,12 @@
   ],
   "generated_by": "claude",
   "generated_at": "2026-07-21",
+  "model": "",
   "verdict": "",
   "try_today": "",
   "for_who": "",
   "skip_if": "",
   "take_points": [],
-  "enriched_at": ""
+  "enriched_at": "",
+  "enrich_model": ""
 }

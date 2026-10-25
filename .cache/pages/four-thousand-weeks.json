@@ -61,6 +61,7 @@
   ],
   "generated_by": "claude",
   "generated_at": "2026-07-21",
+  "model": "",
   "verdict": "Skip the book; the core insight\u2014pick what to neglect on purpose\u2014is already fully here.",
   "try_today": "Open your to-do list right now and cross off three items you'll never actually do, permanently, no guilt.",
   "for_who": "Someone drowning in to-dos who keeps hoping the right app will finally make time feel like enough.",
@@ -71,5 +72,6 @@
     "The math (four thousand weeks) and the finitude chapters are what people actually remember and quote.",
     "The real test isn't nodding along \u2014 it's whether you stop building new systems out of the anti-system message."
   ],
-  "enriched_at": "2026-10-25"
+  "enriched_at": "2026-10-25",
+  "enrich_model": ""
 }

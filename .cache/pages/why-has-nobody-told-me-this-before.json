@@ -61,6 +61,7 @@
   ],
   "generated_by": "claude",
   "generated_at": "2026-07-21",
+  "model": "",
   "verdict": "Skip the book, keep one page \u2014 it's a CBT exercise toolkit, not a narrative worth cover-to-cover reading.",
   "try_today": "Pick the task you're avoiding and write down a 2-minute version of it on paper right now, then start that 2-minute version before you feel ready.",
   "for_who": "Someone currently stuck in a specific problem (low mood, anxiety, procrastination) who wants a worksheet, not a philosophy.",
@@ -71,5 +72,6 @@
     "The motivation/procrastination chapter is the weakest \u2014 it's the same advice you've already read a dozen times.",
     "It's a solid first therapy-adjacent read, not a passionate favorite people debate chapter by chapter."
   ],
-  "enriched_at": "2026-10-25"
+  "enriched_at": "2026-10-25",
+  "enrich_model": ""
 }

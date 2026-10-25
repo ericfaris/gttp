@@ -56,6 +56,7 @@
   ],
   "generated_by": "claude",
   "generated_at": "2026-07-21",
+  "model": "",
   "verdict": "Skip the book; the one real idea \u2014 stop narrating yourself, just work \u2014 fits in a sentence.",
   "try_today": "Pick one task you've been talking about doing (a project, a title, a post) and do 10 minutes of the actual work on it instead of describing it to anyone, including yourself.",
   "for_who": "Someone who notices they talk about their ambitions/identity more than they actually produce.",
@@ -66,5 +67,6 @@
     "The one surviving idea is solid: a head full of self-mythology isn't progress.",
     "If you're skimming summaries, skip the hustle-culture repackaging \u2014 the real point is dropping the self-story, not quitting apps."
   ],
-  "enriched_at": "2026-10-25"
+  "enriched_at": "2026-10-25",
+  "enrich_model": ""
 }

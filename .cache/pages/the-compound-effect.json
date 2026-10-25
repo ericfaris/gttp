@@ -61,6 +61,7 @@
   ],
   "generated_by": "claude",
   "generated_at": "2026-07-21",
+  "model": "",
   "verdict": "Skip the book; this page plus Atomic Habits covers everything useful Hardy actually offers.",
   "try_today": "Grab your phone's notes app right now and log every single thing you eat or spend for the next 3 hours \u2014 start the tracking habit immediately, don't wait for tomorrow.",
   "for_who": "Someone who has never tracked their own daily habits and needs a concrete wake-up call about invisible choices.",
@@ -71,5 +72,6 @@
     "The Big 3 loop (choice \u2192 habit \u2192 momentum) is the real framework; everything else is padding.",
     "Expect goal-setting worksheets, affirmations, and Hardy promoting his own magazine/events \u2014 skip those parts guilt-free."
   ],
-  "enriched_at": "2026-10-25"
+  "enriched_at": "2026-10-25",
+  "enrich_model": ""
 }

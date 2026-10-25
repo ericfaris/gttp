@@ -56,6 +56,7 @@
   ],
   "generated_by": "claude",
   "generated_at": "2026-07-21",
+  "model": "",
   "verdict": "Skip the book; this page already has the one idea and the one quote it's built on.",
   "try_today": "Write down one recurring coincidence or 'sign' you've noticed this week and name the comfortable thing (job, relationship, routine) it might be nudging you to leave.",
   "for_who": "Someone who needs permission, in parable form, to treat quitting a safe situation as brave rather than reckless.",
@@ -66,5 +67,6 @@
     "The treasure at the end is a punchline; what you pick up along the way is supposedly the actual point, so don't read for resolution.",
     "Collecting summaries like this one proves the skeptic's point \u2014 quoting 'the universe conspires' does nothing if you're still 20 books in and haven't moved."
   ],
-  "enriched_at": "2026-10-25"
+  "enriched_at": "2026-10-25",
+  "enrich_model": ""
 }

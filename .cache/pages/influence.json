@@ -61,6 +61,7 @@
   ],
   "generated_by": "claude",
   "generated_at": "2026-07-21",
+  "model": "",
   "verdict": "This page covers the six levers well enough \u2014 skip the book unless you need the full case studies.",
   "try_today": "Next time you feel pressure to decide fast because 'only a few left' or a deadline looms, pause and ask out loud: 'Do I want this for itself, or because I might lose the chance?'",
   "for_who": "Someone who gets talked into things (sales pitches, upsells, group pressure) and wants to notice it happening in real time.",
@@ -71,5 +72,6 @@
     "The closest real connection found was to nudge/habit-stacking theory (Thaler, Atomic Habits), not Cialdini's actual material like cult recruiting or door-to-door sales scripts.",
     "Most online references to this book are name-drops for 'psychology of persuasion' rather than engagement with its specific mechanics, so don't assume secondhand summaries capture it."
   ],
-  "enriched_at": "2026-10-25"
+  "enriched_at": "2026-10-25",
+  "enrich_model": ""
 }

@@ -45,6 +45,7 @@
   ],
   "generated_by": "claude",
   "generated_at": "2026-07-21",
+  "model": "",
   "verdict": "This page is enough \u2014 the core trick (PACT experiments, 2-4 weeks, judge by learning not targets) fits in one paragraph.",
   "try_today": "Write down one tiny experiment right now: pick a behavior, commit to '10 minutes of X, 3x this week,' and put the first check-in date on your calendar.",
   "for_who": "Someone who keeps abandoning goals because life got messy and wants permission to treat setbacks as data instead of failure.",
@@ -55,5 +56,6 @@
     "Note: the supposed Reddit sentiment behind this summary is fabricated \u2014 the source threads were about Atomic Habits and unrelated topics, not this book.",
     "Treat this honest-take caveat seriously: there's no real evidence here of how readers actually received Tiny Experiments."
   ],
-  "enriched_at": "2026-10-25"
+  "enriched_at": "2026-10-25",
+  "enrich_model": ""
 }

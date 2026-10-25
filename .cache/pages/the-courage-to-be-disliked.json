@@ -61,6 +61,7 @@
   ],
   "generated_by": "claude",
   "generated_at": "2026-07-21",
+  "model": "",
   "verdict": "Skip the book; the five core ideas fit on one page and the dialogue just repeats them.",
   "try_today": "Write down one thing you're doing right now to earn someone's approval, then cross out the word 'should' and replace it with what you'd actually choose if their opinion didn't count.",
   "for_who": "Someone stuck people-pleasing or over-ranking themselves against others in relationships.",
@@ -71,5 +72,6 @@
     "The book states its three core claims, then restates and dramatizes them for hundreds of pages instead of arguing them further.",
     "Most people online aren't deeply engaging with it alone \u2014 they're pairing it with other self-help books rather than treating it as a standalone must-read."
   ],
-  "enriched_at": "2026-10-25"
+  "enriched_at": "2026-10-25",
+  "enrich_model": ""
 }

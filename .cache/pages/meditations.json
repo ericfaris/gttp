@@ -61,6 +61,7 @@
   ],
   "generated_by": "claude",
   "generated_at": "2026-07-21",
+  "model": "",
   "verdict": "Skip cover-to-cover reading \u2014 extract the two core drills and dip in occasionally instead.",
   "try_today": "Write down one thing that could go wrong today and exactly how you'll respond to it, in 3 minutes, before you start your day.",
   "for_who": "Someone who wants a couple of durable mental habits (control vs. no control, premeditate adversity) without committing to a full philosophy text.",
@@ -71,5 +72,6 @@
     "It's repetitive journal entries with no arc, so reading it start-to-finish is where most people quit.",
     "The honest move is to skim for the control/no-control split and the premeditation habit, and treat the rest as wallpaper."
   ],
-  "enriched_at": "2026-10-25"
+  "enriched_at": "2026-10-25",
+  "enrich_model": ""
 }

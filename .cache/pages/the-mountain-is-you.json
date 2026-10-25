@@ -61,6 +61,7 @@
   ],
   "generated_by": "claude",
   "generated_at": "2026-07-21",
+  "model": "",
   "verdict": "Skip the book, this page covers the genre-standard ideas it reshuffles \u2014 nothing here is new if you've read any self-help.",
   "try_today": "Pick your most avoided task right now and shrink it to a version so small you can't say no \u2014 '5 pushups' logic \u2014 then do that tiny version in the next 10 minutes.",
   "for_who": "Someone who's never examined self-sabotage before and needs a gentle, quotable reframe to stop beating themselves up.",
@@ -71,5 +72,6 @@
     "The willpower-as-a-draining-cup idea gets pushback \u2014 'recharging' with stuff you want can kill momentum instead of restoring it.",
     "Treat it like a menu, not a cover-to-cover read: the self-love and emotional-avoidance chapters land, the generic 'architect of your fate' stuff is skippable."
   ],
-  "enriched_at": "2026-10-25"
+  "enriched_at": "2026-10-25",
+  "enrich_model": ""
 }

@@ -45,6 +45,7 @@
   ],
   "generated_by": "claude",
   "generated_at": "2026-07-21",
+  "model": "",
   "verdict": "Skip the book, keep the amygdala-hijack concept \u2014 that's the one idea worth your time.",
   "try_today": "Next time you feel irritated today, pause and name the emotion out loud or in a note (e.g. 'I'm frustrated right now') before reacting.",
   "for_who": "Someone who reacts impulsively under stress and wants a mental model for pausing before responding.",
@@ -55,5 +56,6 @@
     "Common knock on the book: repetitive, leans on selective anecdotes, could lose two-thirds of its length.",
     "The neuroscience chapters (amygdala hijack) are the most defensible part; the later chapters on schools, marriage, health are called padding."
   ],
-  "enriched_at": "2026-10-25"
+  "enriched_at": "2026-10-25",
+  "enrich_model": ""
 }

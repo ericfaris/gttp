@@ -61,6 +61,7 @@
   ],
   "generated_by": "claude",
   "generated_at": "2026-07-21",
+  "model": "",
   "verdict": "Skip the origin-story chapters; the covert-contract idea is the whole book, and you already have it here.",
   "try_today": "Text one friend right now and ask directly for something you actually want from them, with zero 'I did X for you so...' framing attached.",
   "for_who": "Men who constantly over-give, avoid conflict, and quietly resent people for not reading their mind.",
@@ -71,5 +72,6 @@
     "The late 'integrated man' chapters drift into vague feel-good self-help mush like every other book's third act.",
     "People on Reddit keep reinventing this exact idea independently, which is a decent sign it's the one worth keeping."
   ],
-  "enriched_at": "2026-10-25"
+  "enriched_at": "2026-10-25",
+  "enrich_model": ""
 }
