@@ -14,7 +14,7 @@ import json
 from dataclasses import replace
 from datetime import date
 
-from .claude import response_text
+from .claude import record_usage, response_text
 from .config import MODEL, anthropic_key
 from .models import BookPage
 
@@ -104,6 +104,7 @@ def _enrich_with_claude(page: BookPage) -> dict:
         },
         messages=[{"role": "user", "content": prompt}],
     )
+    record_usage(resp, "enrich", page.title)
     data = json.loads(response_text(resp))
     data["model"] = resp.model
     return data

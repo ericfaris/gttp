@@ -11,7 +11,7 @@ from __future__ import annotations
 import json
 import re
 
-from .claude import response_text
+from .claude import record_usage, response_text
 from .config import MODEL, Book, anthropic_key
 from .models import RankedThread, RedditThread
 
@@ -135,6 +135,7 @@ def _rank_with_claude(threads: list[RedditThread], book: Book) -> list[RankedThr
         output_config={"format": {"type": "json_schema", "schema": _RANK_SCHEMA}},
         messages=[{"role": "user", "content": prompt}],
     )
+    record_usage(resp, "rank", book.title)
     text = response_text(resp)
     scored = {r["id"]: r for r in json.loads(text)["rankings"]}
     by_id = {t.id: t for t in threads}

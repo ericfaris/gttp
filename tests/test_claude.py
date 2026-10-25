@@ -108,3 +108,27 @@ def test_old_cached_pages_still_load(tmp_path, monkeypatch):
     }))
     page = cache.load_cached_page("grit")
     assert page.model == "" and page.enrich_model == ""
+
+
+def test_record_usage_logs_tokens_and_cost(capsys):
+    from gttp import claude
+
+    resp = SimpleNamespace(
+        model="claude-sonnet-5-5",
+        usage=SimpleNamespace(input_tokens=30000, output_tokens=5000,
+                              cache_creation_input_tokens=0, cache_read_input_tokens=0),
+    )
+    claude.record_usage(resp, "rank", "Grit")
+    line = json.loads(claude.USAGE_LOG.read_text())
+    assert line["book"] == "Grit" and line["step"] == "rank"
+    assert line["usd"] == 0.11  # 30k x $2/M + 5k x $10/M
+    assert "~$0.110" in capsys.readouterr().out
+
+
+def test_record_usage_tolerates_missing_usage_and_unknown_model():
+    from gttp import claude
+
+    claude.record_usage(SimpleNamespace(model="x"), "rank", "Grit")  # no usage: no-op
+    resp = SimpleNamespace(model="mystery", usage=SimpleNamespace(input_tokens=1, output_tokens=2))
+    claude.record_usage(resp, "rank", "Grit")
+    assert json.loads(claude.USAGE_LOG.read_text())["usd"] is None

@@ -11,7 +11,7 @@ from __future__ import annotations
 import json
 from datetime import date
 
-from .claude import response_text
+from .claude import record_usage, response_text
 from .config import MODEL, Book, anthropic_key
 from .models import BookPage, RankedThread
 
@@ -125,6 +125,7 @@ def _synthesize_with_claude(book: Book, top: list[RankedThread]) -> BookPage:
         },
         messages=[{"role": "user", "content": prompt}],
     )
+    record_usage(resp, "synthesize", book.title)
     text = response_text(resp)
     data = json.loads(text)
     return BookPage(
