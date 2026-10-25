@@ -43,7 +43,10 @@ One model for ranking, synthesis and enrich: `MODEL` in
 the model that served them (`BookPage.model`, `enrich_model`, shown in the
 "Synthesized by" line). The 29 existing pages predate this and show no model.
 Pages are locked, so a refresh is explicit, run inside the container
-(`docker compose exec -T app …`), then commit the changed page:
+(`docker compose exec -T app …`), then commit the changed page. Each call
+prints its tokens and cost and appends to `.cache/usage.jsonl`. Real cost on
+2026-10-25: about $0.05 per book (17 books for $0.90), and up to ~$0.10 for a
+book with 30-40 relevant threads, since ranking dominates.
 `gttp build --only "<title>" --force` (full re-synthesis) or
 `gttp enrich --only "<title>" --force` (verdict layer only). A refusal,
 truncation or API failure falls back to the heuristic path, and the
@@ -59,10 +62,14 @@ in DESIGN.md), and every new component goes into the showcase.
 
 ## Open items (priority order)
 
-1. **Re-synthesize the books built from off-topic threads** (see LESSONS,
-   2026-10-25). The filter is fixed; each needs
-   `gttp build --only "<title>" --force` (about $0.10-0.20 each). Books with no
-   relevant cached threads would drop to the "no summaries yet" page.
+1. **7 pages still lack real Reddit evidence** (needs fresh threads, so it's
+   blocked on item 2): Why Has Nobody Told Me This Before?, The Magic of
+   Thinking Big, How to Begin, The Mountain Is You, The Comfort Crisis (no
+   relevant threads cached), and Emotional Intelligence and Boundaries
+   (re-synthesized 2026-10-25, but from generic posts; both pages say so).
+   Thinking, Fast and Slow and The 7 Habits rest on 2-3 thin "best books"
+   list threads. Decide whether to keep these or swap in the "no summaries
+   yet" page.
 2. **Live Reddit fetching is blocked** ("blocked by network security", 403
    behind a JS challenge). The thread cache is from 2026-07-11. The legitimate
    fix is Reddit's official API (needs an approved app).

@@ -47,10 +47,15 @@
   - Sentinel's push-to-main deploy runs in the dev checkout, which conflicted
     with the deploy-clone rule. Five pushes in one session flipped the live
     container between the two checkouts (resolved below).
-  - Cost (Sonnet 5.5, measured inputs): a 40-thread book is about 33k input
-    tokens (rank ~27-30k, synth ~5-6k, enrich ~1k), roughly $0.15-0.20 with
-    output. Ranking is ~80% of input. Nothing rebuilds automatically, so
-    there's no recurring cost.
+  - Cost, measured with usage logging: re-synthesizing 17 books took 51 calls
+    and $0.90 (about $0.05 per book; Boundaries, with 30 threads, cost $0.10).
+    My token-count estimate was 3x too high because output and thinking were
+    far below the max_tokens caps. Ranking scales with thread count. Nothing
+    rebuilds automatically, so there's no recurring cost.
+  - Matching on the title alone fails for everyday-phrase titles
+    ("Boundaries", "Emotional Intelligence"): they match generic advice. Use
+    the per-book `require_author` flag. A blanket rule would be too strict:
+    Mindset and Grit threads rarely name the author.
 - **2026-10-25 — Retired the separate deploy clone.** Every lab app runs
   from `~/projects/<name>` because Sentinel's `/api/deploy` resolves repos
   there. gttp's July clone (`~/deploy/gttp`) only worked until the push-to-main
