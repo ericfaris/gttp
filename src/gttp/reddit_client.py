@@ -229,6 +229,11 @@ class PlaywrightRedditClient(_RedditSearchBase):
         self._warmed = False
         self._degraded: FixtureRedditClient | None = None
 
+    @property
+    def degraded(self) -> bool:
+        """True once the browser failed and searches come from fixtures."""
+        return self._degraded is not None
+
     def search(self, book: Book) -> list[RedditThread]:
         if self._degraded is not None:
             return self._degraded.search(book)
@@ -354,6 +359,16 @@ class CachingRedditClient:
             if cached is not None:
                 return cached
         threads = self.inner.search(book)
+        # A blocked/failed fetch (the browser client degrades to fixtures) or
+        # an empty result must never overwrite real cached threads: on
+        # 2026-10-25 a --refresh while Reddit was blocking replaced 80 cached
+        # threads with [].
+        if getattr(self.inner, "degraded", False) or not threads:
+            cached = load_cached_threads(book.slug)
+            if cached:
+                print("    fetch failed or empty; keeping the cached threads")
+                return cached
+            return threads
         save_threads(book.slug, threads)
         return threads
 

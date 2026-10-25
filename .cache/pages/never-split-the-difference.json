@@ -61,6 +61,7 @@
   ],
   "generated_by": "claude",
   "generated_at": "2026-07-21",
+  "model": "",
   "verdict": "Skip the book, use the five tactics on this page \u2014 that's the reusable 80% anyway.",
   "try_today": "In your next conversation today, mirror the last 3 words someone says to you in a curious tone and stay silent \u2014 watch them elaborate.",
   "for_who": "Anyone who negotiates regularly (salary, deals, even family arguments) and wants practical phrasing, not theory.",
@@ -71,5 +72,6 @@
     "The 'Black Swan' chapter on hidden information is widely considered the weakest, most skippable part.",
     "The real value is the core four: mirroring, labeling emotions, chasing 'that's right,' and calibrated how/what questions."
   ],
-  "enriched_at": "2026-10-25"
+  "enriched_at": "2026-10-25",
+  "enrich_model": ""
 }
