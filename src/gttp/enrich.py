@@ -14,6 +14,7 @@ import json
 from dataclasses import replace
 from datetime import date
 
+from .claude import response_text
 from .config import MODEL, anthropic_key
 from .models import BookPage
 
@@ -58,6 +59,7 @@ def enrich(page: BookPage) -> BookPage:
         skip_if=data["skip_if"].strip(),
         take_points=[p.strip() for p in data["take_points"] if p.strip()][:4],
         enriched_at=date.today().isoformat(),
+        enrich_model=data.get("model", ""),
     )
 
 
@@ -102,5 +104,6 @@ def _enrich_with_claude(page: BookPage) -> dict:
         },
         messages=[{"role": "user", "content": prompt}],
     )
-    text = next(b.text for b in resp.content if b.type == "text")
-    return json.loads(text)
+    data = json.loads(response_text(resp))
+    data["model"] = resp.model
+    return data

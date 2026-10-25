@@ -26,6 +26,18 @@ live site (this happened on 2026-07-11).
   when `site/` is empty, so a restart alone keeps serving the old HTML.
   Last deployed: `06295e0` (2026-10-25).
 
+## Claude usage
+
+One model for ranking, synthesis and enrich: `MODEL` in
+`src/gttp/config.py` (`claude-sonnet-5-5` since 2026-10-25). New pages record
+the model that served them (`BookPage.model`, `enrich_model`, shown in the
+"Synthesized by" line). The 29 existing pages predate this and show no model.
+Pages are locked, so a refresh is explicit, run inside the container:
+`gttp build --only "<title>" --force` (full re-synthesis) or
+`gttp enrich --only "<title>" --force` (verdict layer only). A refusal,
+truncation or API failure falls back to the heuristic path, and the
+quality guard then keeps the cached page.
+
 ## Design system
 
 `DESIGN.md` ("Switched On" v2) is the source of truth. Tokens and components

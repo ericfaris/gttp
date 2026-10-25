@@ -11,6 +11,7 @@ from __future__ import annotations
 import json
 from datetime import date
 
+from .claude import response_text
 from .config import MODEL, Book, anthropic_key
 from .models import BookPage, RankedThread
 
@@ -115,7 +116,7 @@ def _synthesize_with_claude(book: Book, top: list[RankedThread]) -> BookPage:
         model=MODEL,
         # Adaptive thinking at high effort can spend several thousand tokens
         # reasoning before ever emitting the JSON output; 4000 was tuned for
-        # Opus and left no room on Sonnet 4.6, causing empty responses.
+        # Opus and left no room on Sonnet, causing empty responses.
         max_tokens=12000,
         thinking={"type": "adaptive"},
         output_config={
@@ -124,7 +125,7 @@ def _synthesize_with_claude(book: Book, top: list[RankedThread]) -> BookPage:
         },
         messages=[{"role": "user", "content": prompt}],
     )
-    text = next(b.text for b in resp.content if b.type == "text")
+    text = response_text(resp)
     data = json.loads(text)
     return BookPage(
         title=book.title,
@@ -135,6 +136,7 @@ def _synthesize_with_claude(book: Book, top: list[RankedThread]) -> BookPage:
         quotes=data.get("quotes", [])[:3],
         sources=[],
         generated_by="claude",
+        model=resp.model,  # the model that actually served the request
     )
 
 

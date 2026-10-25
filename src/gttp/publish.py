@@ -159,9 +159,10 @@ def _has_summary(page: BookPage) -> bool:
 
 
 def _generated_line(page: BookPage) -> str:
+    by = f"{page.generated_by} ({page.model})" if page.model else page.generated_by
     if page.generated_at:
-        return f"Synthesized by: {page.generated_by} on {page.generated_at}"
-    return f"Synthesized by: {page.generated_by}"
+        return f"Synthesized by: {by} on {page.generated_at}"
+    return f"Synthesized by: {by}"
 
 
 def _render_header(root: str) -> str:
