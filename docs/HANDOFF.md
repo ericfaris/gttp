@@ -24,7 +24,7 @@ live site (this happened on 2026-07-11).
   (or use the `deploy` skill, but run it in the deploy clone, not here).
   Then `docker compose exec -T app gttp build`: the entrypoint only builds
   when `site/` is empty, so a restart alone keeps serving the old HTML.
-  Last deployed: `23bae02` (2026-10-25).
+  Last deployed: `06295e0` (2026-10-25).
 
 ## Design system
 
