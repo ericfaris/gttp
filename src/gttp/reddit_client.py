@@ -143,20 +143,31 @@ class _RedditSearchBase:
         raise NotImplementedError
 
     def search(self, book: Book) -> list[RedditThread]:
+        # Every subreddit is searched. Before 2026-10-25 the loop stopped at
+        # 80 posts of any kind, so the first subreddits filled the quota with
+        # generic matches and r/books was never searched for any book. Now
+        # only posts that name the book count, and only they cost a comments
+        # request.
+        from .ranking import mentions_book
+
         found: dict[str, RedditThread] = {}
+        seen: set[str] = set()
         for subreddit in book.subreddits:
             for query in book.search_queries():
                 data = self._fetch_search(subreddit, query)
                 for post in _posts_from_search(data or {}, subreddit):
                     pid = post.get("id", "")
-                    if pid in found:
+                    if pid in seen:
+                        continue
+                    seen.add(pid)
+                    if not mentions_book(_thread_from_post(post, subreddit, []), book):
                         continue
                     time.sleep(self.REQUEST_INTERVAL)
                     comments = _comments_from_json(
                         self._fetch_comments(post.get("permalink", ""))
                     )
                     found[pid] = _thread_from_post(post, subreddit, comments)
-                    if len(found) >= book.max_threads_per_book * 2:
+                    if len(found) >= book.max_threads_per_book:
                         return list(found.values())
                 time.sleep(self.REQUEST_INTERVAL)
         return list(found.values())
@@ -369,6 +380,11 @@ class CachingRedditClient:
                 print("    fetch failed or empty; keeping the cached threads")
                 return cached
             return threads
+        # Merge with what's cached (fresh copies win): a partial fetch, e.g.
+        # an archive subreddit that kept timing out, must not lose threads.
+        merged = {t.id: t for t in (load_cached_threads(book.slug) or [])}
+        merged.update({t.id: t for t in threads})
+        threads = list(merged.values())
         save_threads(book.slug, threads)
         return threads
 

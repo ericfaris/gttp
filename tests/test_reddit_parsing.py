@@ -112,5 +112,42 @@ def test_refresh_saves_a_real_fetch(monkeypatch, tmp_path):
     cache, book, _ = _caching_setup(monkeypatch, tmp_path)
     fresh = [RedditThread(id="n", title="Grit", subreddit="s", author="a",
                           score=9, permalink="/q", selftext="y")]
-    CachingRedditClient(_FakeInner(fresh), refresh=True).search(book)
-    assert [t.id for t in cache.load_cached_threads(book.slug)] == ["n"]
+    got = CachingRedditClient(_FakeInner(fresh), refresh=True).search(book)
+    # A refresh merges with the cache, so a partial fetch never loses threads.
+    assert {t.id for t in got} == {"g", "n"}
+    assert {t.id for t in cache.load_cached_threads(book.slug)} == {"g", "n"}
+
+
+def test_browser_search_covers_every_subreddit_and_skips_off_topic_comments(monkeypatch):
+    """Regression: the loop used to stop at 80 posts of any kind, so the
+    first subreddits filled the quota and r/books was never searched."""
+    from gttp import reddit_client
+    from gttp.config import Book
+
+    monkeypatch.setattr(reddit_client.time, "sleep", lambda s: None)
+    book = Book(title="Deep Work", author="Cal Newport", subreddits=["a", "b", "books"],
+                queries=['"{title}" summary'], max_threads_per_book=5)
+
+    def post(pid, title):
+        return {"data": {"id": pid, "title": title, "selftext": "body " * 100, "score": 10,
+                         "permalink": f"/r/x/{pid}"}}
+
+    class Fake(reddit_client._RedditSearchBase):
+        def __init__(self):
+            self.searched, self.comment_calls = [], []
+
+        def _fetch_search(self, sub, query):
+            self.searched.append(sub)
+            off = [post(f"{sub}{i}", f"Discipline tips {i}") for i in range(100)]
+            on = [post(f"{sub}-dw", "Deep Work notes")]
+            return {"data": {"children": off + on}}
+
+        def _fetch_comments(self, permalink):
+            self.comment_calls.append(permalink)
+            return []
+
+    fake = Fake()
+    threads = fake.search(book)
+    assert fake.searched == ["a", "b", "books"]
+    assert sorted(t.id for t in threads) == ["a-dw", "b-dw", "books-dw"]
+    assert len(fake.comment_calls) == 3  # none spent on off-topic posts

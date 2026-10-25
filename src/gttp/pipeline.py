@@ -8,6 +8,9 @@ in isolation — one failure never sinks the whole run.
 
 from __future__ import annotations
 
+import os
+
+from .arctic import ArcticShiftClient
 from .cache import is_final, load_cached_page, page_quality, save_page
 from .config import OFFLINE_SITE_DIR, Book, slugify
 from .enrich import can_enrich, enrich, is_enriched
@@ -26,9 +29,13 @@ from .synthesize import synthesize
 def make_reddit_client(offline: bool, refresh: bool = False) -> RedditClient:
     if offline:
         return FixtureRedditClient()
-    # Live Reddit blocks raw HTTP clients, so fetch through a real browser; the
-    # client degrades to fixtures on its own if the browser can't launch.
-    return CachingRedditClient(PlaywrightRedditClient(), refresh=refresh)
+    # Reddit blocks the lab's IP from its data endpoints (2026-10-25), so the
+    # default source is the Arctic Shift archive. GTTP_REDDIT_SOURCE=browser
+    # switches back to the headed-browser client (which degrades to fixtures
+    # on its own if Reddit refuses it).
+    if os.environ.get("GTTP_REDDIT_SOURCE", "arctic") == "browser":
+        return CachingRedditClient(PlaywrightRedditClient(), refresh=refresh)
+    return CachingRedditClient(ArcticShiftClient(), refresh=refresh)
 
 
 def match_books(books: list[Book], only: str | None) -> list[Book]:
