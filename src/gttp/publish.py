@@ -7,6 +7,7 @@ site generator. Point Hugo/Jekyll/Astro at the Markdown if you want more.
 
 from __future__ import annotations
 
+import hashlib
 import html
 import json
 import shutil
@@ -111,6 +112,10 @@ def write_site(
                 shutil.copy2(asset, site_dir / asset.name)
             elif asset.is_dir():  # e.g. static/fonts/
                 shutil.copytree(asset, site_dir / asset.name, dirs_exist_ok=True)
+    css_version = _css_version(site_dir)
+    showcase = site_dir / "design-system.html"
+    if showcase.is_file():
+        showcase.write_text(_version_css(showcase.read_text(), css_version))
 
     for page in pages:
         slug = slugify(page.title)
@@ -120,12 +125,33 @@ def write_site(
             shutil.copy2(src, site_covers / f"{slug}.jpg")
         (books_dir / f"{slug}.md").write_text(render_markdown(page))
         (books_dir / f"{slug}.html").write_text(
-            _render_book_html(page, covers_dir)
+            _version_css(_render_book_html(page, covers_dir), css_version)
         )
 
     index = site_dir / "index.html"
-    index.write_text(_render_index_html(pages, covers_dir))
+    index.write_text(_version_css(_render_index_html(pages, covers_dir), css_version))
     return index
+
+
+_CSS_LINK = '<link rel="stylesheet" href="/style.css">'
+
+
+def _css_version(site_dir: Path) -> str:
+    """Short content hash of the built stylesheet. The CDN caches style.css
+    for hours, so pages link `/style.css?v=<hash>`: a changed stylesheet gets
+    a new URL and is never served stale against new markup."""
+    css = site_dir / "style.css"
+    if not css.is_file():
+        return ""
+    return hashlib.sha256(css.read_bytes()).hexdigest()[:10]
+
+
+def _version_css(page_html: str, version: str) -> str:
+    if not version:
+        return page_html
+    return page_html.replace(
+        _CSS_LINK, f'<link rel="stylesheet" href="/style.css?v={version}">'
+    )
 
 
 def _has_summary(page: BookPage) -> bool:

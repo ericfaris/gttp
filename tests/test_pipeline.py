@@ -202,3 +202,26 @@ def test_index_card_author_is_its_own_line(tmp_path):
     assert '<span class="card-author">Cal Newport</span>' in index
     assert "</strong> — Cal Newport" not in index
     assert 'class="no-results"' in index
+
+
+def test_stylesheet_link_is_content_versioned(tmp_path):
+    """Pages link /style.css?v=<hash of the built stylesheet> so a CDN-cached
+    old stylesheet is never served against new markup."""
+    import hashlib
+
+    page = BookPage(
+        title="Deep Work",
+        author=None,
+        core_idea="Focus.",
+        bullets=["b"],
+        honest_take="",
+        quotes=[],
+        sources=[],
+    )
+    write_site([page], tmp_path, covers_dir=tmp_path / "none")
+    version = hashlib.sha256((tmp_path / "style.css").read_bytes()).hexdigest()[:10]
+    link = f'href="/style.css?v={version}"'
+    for f in ["index.html", "books/deep-work.html", "design-system.html"]:
+        text = (tmp_path / f).read_text()
+        assert link in text, f
+        assert 'href="/style.css"' not in text, f
