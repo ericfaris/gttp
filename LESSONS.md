@@ -67,4 +67,14 @@
   a build-and-restart deploy always serves fresh HTML. Lesson: a safety rule
   that lives only in docs and memory drifts when automation changes; enforce
   it in code.
-
+- **2026-10-25 — Reddit via the Arctic Shift archive.** Reddit blocks the
+  lab IP and official API access wasn't granted, so new threads come from
+  arctic-shift.photon-reddit.com (free, keyless, asks for polite use). Its
+  title search is "not supported with very active subreddits": r/books,
+  r/getdisciplined and r/productivity answer 422 "Timeout" within a second,
+  whatever the limit or date range. Retry once, then skip the subreddit for
+  the run. Results vary between runs (The Mountain Is You found 2, then 5
+  threads), which is why `--refresh` merges rather than replaces.
+  - Everyday-phrase titles keep turning up ("How to Begin" matched "how to
+    begin to like myself?"). When a page's core idea opens with "Caveat:"
+    the sources are off-topic: add `require_author` and keep the old page.

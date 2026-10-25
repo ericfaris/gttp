@@ -62,17 +62,21 @@ in DESIGN.md), and every new component goes into the showcase.
 
 ## Open items (priority order)
 
-1. **7 pages still lack real Reddit evidence** (needs fresh threads, so it's
-   blocked on item 2): Why Has Nobody Told Me This Before?, The Magic of
-   Thinking Big, How to Begin, The Mountain Is You, The Comfort Crisis (no
-   relevant threads cached), and Emotional Intelligence and Boundaries
-   (re-synthesized 2026-10-25, but from generic posts; both pages say so).
-   Thinking, Fast and Slow and The 7 Habits rest on 2-3 thin "best books"
-   list threads. Decide whether to keep these or swap in the "no summaries
-   yet" page.
-2. **Live Reddit fetching is blocked** ("blocked by network security", 403
-   behind a JS challenge). The thread cache is from 2026-07-11. The legitimate
-   fix is Reddit's official API (needs an approved app).
+1. **3 pages still lack real Reddit evidence:** Why Has Nobody Told Me This
+   Before? and Boundaries (nothing in the Arctic Shift archive) and How to
+   Begin (the archive only had generic "how to begin" posts). Their pages
+   come from the July run. Decide whether to keep them or swap in the "no
+   summaries yet" page. Thin but on-topic (1-3 threads): The Mountain Is You,
+   The Magic of Thinking Big, Emotional Intelligence, The 7 Habits, Thinking
+   Fast and Slow, Tiny Experiments.
+2. **Reddit data source:** Reddit blocks the lab IP (403, "blocked by network
+   security"), and official API access isn't available to us (tried
+   2026-10-25), so don't pursue it. Live search uses the Arctic Shift
+   archive (`src/gttp/arctic.py`, the default; `GTTP_REDDIT_SOURCE=browser`
+   switches back). Its title search refuses very active subreddits (r/books,
+   r/getdisciplined, r/productivity usually return 422 within a second) and
+   results vary run to run. A `--refresh` merges into the cache, so
+   re-running adds threads.
 3. Idea from LESSONS: a weekly push of one try-today experiment (Google Task
    via goose-cli) with a keep/drop check-in.
 4. `the-courage-to-be-disliked` has no stored cover. Run `gttp covers` in
