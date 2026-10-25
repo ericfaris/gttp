@@ -60,5 +60,16 @@
     }
   ],
   "generated_by": "claude",
-  "generated_at": "2026-07-21"
+  "generated_at": "2026-07-21",
+  "verdict": "Skip cover-to-cover reading \u2014 extract the two core drills and dip in occasionally instead.",
+  "try_today": "Write down one thing that could go wrong today and exactly how you'll respond to it, in 3 minutes, before you start your day.",
+  "for_who": "Someone who wants a couple of durable mental habits (control vs. no control, premeditate adversity) without committing to a full philosophy text.",
+  "skip_if": "You want a structured argument or narrative \u2014 this is a repetitive journal with no chapter logic worth following in order.",
+  "take_points": [
+    "Reddit mostly skips the actual text and just credits Marcus by osmosis for general 'stoicism vibes.'",
+    "The one real habit people kept is the morning premeditation drill, not the whole book.",
+    "It's repetitive journal entries with no arc, so reading it start-to-finish is where most people quit.",
+    "The honest move is to skim for the control/no-control split and the premeditation habit, and treat the rest as wallpaper."
+  ],
+  "enriched_at": "2026-10-25"
 }

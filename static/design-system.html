@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>gttp — Design System</title>
-<meta name="theme-color" content="#1B2233">
+<meta name="theme-color" content="#14213D">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/manifest.webmanifest">
@@ -57,7 +57,8 @@
 <body>
 <header class="site-header">
   <a class="site-title" href="index.html">
-    <img src="logo.png" alt="Get To The Point" width="250">
+    <img class="logo-light" src="logo.svg" alt="gttp — get to the point" width="128" height="60">
+    <img class="logo-dark" src="logo-dark.svg" alt="gttp — get to the point" width="128" height="60">
   </a>
   <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle theme">
     <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
@@ -67,7 +68,7 @@
 
 <main class="content ds-main">
   <div class="ds-lede" style="margin: 2rem 0 0;">
-    <p class="tag" style="margin-bottom: .75rem;">Marginalia — v1.0</p>
+    <p class="tag" style="margin-bottom: .75rem;">Switched On — v2.0</p>
     <h1>Design system</h1>
     <p class="sub">Every token and component below is rendered live from
       <code>/style.css</code> — the same stylesheet the real site pages
@@ -82,21 +83,23 @@
   <!-- COLOR ==================================================== -->
   <section class="ds-section">
     <h2>Color</h2>
-    <p class="ds-lede">Dominant cream/navy with a single burnt-orange accent
-      used like a highlighter — never diluted into a second competing hue.
-      Every token is a CSS custom property; the whole palette flips
-      automatically for dark mode (try the toggle, top right).</p>
+    <p class="ds-lede">Cream paper and navy ink, with one marigold light that
+      marks wherever the point is: halos, the marker stroke, the sticky note,
+      the primary button. Burnt orange stays for links and small sparks. Every
+      token is a CSS custom property and the palette flips for dark mode (try
+      the toggle, top right).</p>
     <div class="ds-grid ds-grid-swatch" id="color-swatches"></div>
   </section>
 
   <!-- TYPE ======================================================= -->
   <section class="ds-section">
     <h2>Type</h2>
-    <p class="ds-lede">Two faces: <b>Iowan Old Style</b> (display — book
-      titles, headings, the pull-quote) for literary warmth, and the system
-      sans (body) for legibility at reading length. No webfont download: both
-      resolve from each OS's built-in serif/sans stack, keeping the site
-      fast and license-free.</p>
+    <p class="ds-lede">Three self-hosted faces (all OFL, in
+      <code>static/fonts/</code>): <b>Young Serif</b> for display (titles,
+      headings, the core idea), <b>Instrument Sans</b> for body text, and
+      <b>Caveat</b> for handwritten margin notes ("Today's idea", "Try this
+      today", "For / Skip it if"). The wordmark's letters are Young Serif
+      outlines.</p>
     <div id="type-scale"></div>
   </section>
 
@@ -126,16 +129,17 @@
           <div class="ds-shadow-card" style="box-shadow: var(--shadow);">--shadow</div>
           <div class="ds-shadow-card" style="box-shadow: var(--shadow-lg);">--shadow-lg</div>
           <div class="ds-shadow-card" style="box-shadow: var(--shadow-cover);">--shadow-cover</div>
+          <div class="ds-shadow-card" style="box-shadow: var(--shadow-sticky);">--shadow-sticky</div>
         </div>
       </div>
       <div>
         <p class="ds-lede">Motion — hover each box, it's the real transition, not a description</p>
         <div class="ds-btn-row">
           <div class="ds-motion-demo ds-motion-fast">fast<br>120ms</div>
-          <div class="ds-motion-demo ds-motion-base">base<br>150ms</div>
-          <div class="ds-motion-demo ds-motion-slow">slow<br>400ms</div>
+          <div class="ds-motion-demo ds-motion-base">base<br>180ms</div>
+          <div class="ds-motion-demo ds-motion-slow">slow<br>480ms</div>
         </div>
-        <p class="ds-note">Easing: <code>--ease-standard: cubic-bezier(.2,.7,.3,1)</code>. All motion collapses under <code>prefers-reduced-motion: reduce</code> — try it in your OS/browser settings.</p>
+        <p class="ds-note">Easings: <code>--ease-standard: cubic-bezier(.2,.7,.3,1)</code> for most moves, <code>--ease-spring</code> for card lifts and the tick. The glow "switch-on" runs for <code>--duration-glow</code> (900ms). All motion collapses under <code>prefers-reduced-motion: reduce</code> — try it in your OS/browser settings.</p>
       </div>
     </div>
   </section>
@@ -150,6 +154,34 @@
       <button class="btn btn-primary" disabled>Primary (disabled)</button>
       <button class="btn btn-ghost">Ghost</button>
       <button class="btn btn-ghost" disabled>Ghost (disabled)</button>
+    </div>
+
+    <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">The signature moment: today's idea</h3>
+    <p class="ds-lede">The homepage hero. The glow behind it switches on (with a
+      little flicker) when the page loads and again on every Shuffle.</p>
+    <section class="today" style="max-width:44rem;">
+      <img class="cover cover-detail" src="covers/atomic-habits.jpg" alt="" width="144" height="216">
+      <div class="today-body">
+        <p class="today-label hand">Today's idea</p>
+        <h2><a href="books/atomic-habits.html">Atomic Habits</a></h2>
+        <p class="author">by James Clear</p>
+        <p class="verdict"><span>Four techniques in a 300-page book. This page is enough.</span></p>
+        <p class="today-try"><b>Try today</b>Move your phone charger out of the bedroom tonight.</p>
+        <div class="today-actions"><a class="btn btn-primary" href="books/atomic-habits.html">Read it in 2 minutes</a><button class="btn btn-ghost" type="button">Shuffle</button></div>
+      </div>
+    </section>
+
+    <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">Try this today (sticky note) and "I tried it"</h3>
+    <div style="max-width: 34rem; padding-top: 1rem;">
+      <section class="try" aria-label="Try this today demo">
+        <p class="try-label">Try this today</p>
+        <p class="try-text">Move your phone charger out of the bedroom tonight.</p>
+        <button class="tried" type="button" aria-pressed="false"><span class="box"></span><span>I tried it</span></button>
+        <button class="tried" type="button" aria-pressed="true"><span class="box"></span><span>Tried it. Nice.</span></button>
+      </section>
+      <p class="ds-note">Ticking it is remembered in the browser
+        (<code>localStorage['gttp-tried-&lt;slug&gt;']</code>) and shows a
+        "Tried it" badge on that book's index card.</p>
     </div>
 
     <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">Search input</h3>
@@ -188,13 +220,9 @@
       quiet, non-alarming way to say "nothing here yet" without introducing a
       second accent color.</p>
 
-    <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">The signature control — the annotated pull-quote</h3>
-    <p class="ds-lede">This is the one thing every visitor reads: the book's
-      core idea, styled like a sentence a reader would highlight and mark
-      with an asterisk in the margin. It is the single most load-bearing
-      component in the system — everything else (the h2 dash, the tag
-      pills, the underline color) is drawn from the same "marker" vocabulary
-      it establishes.</p>
+    <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">Core idea (lit pull-quote)</h3>
+    <p class="ds-lede">The book's one idea, in the display face on a paper
+      card with a marigold edge, like a page with its key line lit.</p>
     <div style="max-width: 34rem;">
       <blockquote class="core">Small habits compound into big results — the
         system you build matters more than the goal you set.</blockquote>
@@ -204,18 +232,34 @@
     <div style="max-width: 34rem;">
       <h2 style="margin-top:0;">The 5-bullet version</h2>
       <p class="ds-note">Every <code>&lt;h2&gt;</code> gets the same short
-        highlighter dash above it (<code>::before</code>) instead of a plain
-        underline — a smaller echo of the same annotation mark.</p>
+        marigold marker dash above it (<code>::before</code>), tilted slightly
+        like a quick pen stroke.</p>
     </div>
 
-    <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">Table of contents ("In this book")</h3>
-    <nav class="toc" aria-label="Ideas demo" style="max-width:26rem;">
-      <p class="toc-title">In this book</p>
-      <ol>
-        <li><a href="#">Make bad habits invisible and hard…</a></li>
-        <li><a href="#">Make good habits obvious and easy…</a></li>
-      </ol>
-    </nav>
+    <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">Verdict</h3>
+    <div style="max-width: 34rem;">
+      <p class="verdict"><span>Read this page, skip the book — it's four techniques stretched to 300 pages.</span></p>
+      <p class="ds-note">The one line under the title that answers "do I need
+        the book?". The marigold marker stroke draws itself in when the page
+        opens.</p>
+    </div>
+
+    <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">For / skip it if</h3>
+    <dl class="fit" style="max-width: 34rem;">
+      <div><dt>For</dt><dd>People who keep restarting the same habit.</dd></div>
+      <div><dt>Skip it if</dt><dd>You already track your habits.</dd></div>
+    </dl>
+
+    <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">Folded section</h3>
+    <div style="max-width: 34rem;">
+      <details class="more"><summary>Read the full take</summary>
+        <p>Supporting material — the full honest take, quotes, sources —
+          stays on the page but folded, out of the way of the two-minute read.</p>
+      </details>
+      <details class="more" open><summary>Sources (2 Reddit threads)</summary>
+        <ul><li><a href="#">I read Atomic Habits, here are my key takeaways</a> — r/getdisciplined (812 upvotes)</li></ul>
+      </details>
+    </div>
 
     <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">Theme toggle</h3>
     <p class="ds-lede">The sun/moon control in the header, above. Persists to
@@ -229,8 +273,13 @@
     <h2>Brand assets</h2>
     <div class="ds-grid ds-grid-2">
       <div class="ds-swatch">
-        <div style="padding:1.5rem; background:#fff;"><img src="logo.png" alt="gttp wordmark" style="width:100%; height:auto;"></div>
-        <div class="ds-swatch-label"><b>logo.png</b><code>static/logo.png</code></div>
+        <div style="padding:1.5rem; background:#FBF6EC;"><img src="logo.svg" alt="gttp wordmark" style="width:100%; max-width:16rem; height:auto;"></div>
+        <div style="padding:1.5rem; background:#0F1526;"><img src="logo-dark.svg" alt="gttp wordmark, dark" style="width:100%; max-width:16rem; height:auto;"></div>
+        <div class="ds-swatch-label"><b>Wordmark</b><code>static/logo.svg</code> · <code>static/logo-dark.svg</code></div>
+      </div>
+      <div class="ds-swatch">
+        <div style="padding:1.5rem; background:#FBF6EC; display:flex; gap:1rem; align-items:center;"><img src="mark.svg" alt="gttp speech-bubble mark" style="width:96px; height:96px;"><img src="mark.svg" alt="" style="width:32px; height:32px;"></div>
+        <div class="ds-swatch-label"><b>Mark: say it in one point</b><code>static/mark.svg</code></div>
       </div>
       <div class="ds-swatch">
         <div style="padding:1.5rem; display:flex; gap:1rem; align-items:center; background:#fff;">
@@ -271,7 +320,10 @@
     ['--color-ink', 'Ink (text)'], ['--color-muted', 'Muted text'],
     ['--color-border', 'Border'], ['--color-border-strong', 'Border (strong)'],
     ['--color-accent', 'Accent'], ['--color-accent-ink', 'Accent ink'], ['--color-accent-tint', 'Accent tint'],
-    ['--color-accent-highlight', 'Accent highlight']
+    ['--color-marigold', 'Marigold (the light)'], ['--color-glow', 'Glow (halos)'],
+    ['--color-highlight', 'Marker highlight'], ['--color-sticky', 'Sticky note'],
+    ['--color-sticky-ink', 'Sticky-note ink'], ['--color-done', 'Done (tried it)'],
+    ['--color-accent-highlight', 'Accent highlight (alias)']
   ];
   var swatchHtml = colors.map(function(c){
     var val = v(c[0]);
@@ -287,7 +339,8 @@
     ['--text-xs', 'xs — tags, eyebrows'], ['--text-sm', 'sm — metadata, footer'],
     ['--text-base', 'base — body copy'], ['--text-md', 'md — card titles'],
     ['--text-lg', 'lg — section h2'], ['--text-quote', 'quote — pull-quote'],
-    ['--text-xl', 'xl — book title h1'], ['--text-2xl', '2xl — index h1']
+    ['--text-xl', 'xl — book title h1'], ['--text-2xl', '2xl — index h1'],
+    ['--text-hand', 'hand — margin notes']
   ];
   var typeHtml = typeSteps.map(function(t){
     var val = v(t[0]);

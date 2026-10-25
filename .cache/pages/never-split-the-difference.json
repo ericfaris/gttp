@@ -60,5 +60,16 @@
     }
   ],
   "generated_by": "claude",
-  "generated_at": "2026-07-21"
+  "generated_at": "2026-07-21",
+  "verdict": "Skip the book, use the five tactics on this page \u2014 that's the reusable 80% anyway.",
+  "try_today": "In your next conversation today, mirror the last 3 words someone says to you in a curious tone and stay silent \u2014 watch them elaborate.",
+  "for_who": "Anyone who negotiates regularly (salary, deals, even family arguments) and wants practical phrasing, not theory.",
+  "skip_if": "You already know mirroring, labeling, and calibrated questions \u2014 the hostage-crisis stories won't teach you much more.",
+  "take_points": [
+    "The examples are mostly FBI hostage negotiations, which are vivid but don't map cleanly onto asking for a raise.",
+    "Voss is confident every tactic worked because he's the one telling the story \u2014 take the success claims with a grain of salt.",
+    "The 'Black Swan' chapter on hidden information is widely considered the weakest, most skippable part.",
+    "The real value is the core four: mirroring, labeling emotions, chasing 'that's right,' and calibrated how/what questions."
+  ],
+  "enriched_at": "2026-10-25"
 }

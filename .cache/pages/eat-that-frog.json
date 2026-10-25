@@ -60,5 +60,16 @@
     }
   ],
   "generated_by": "claude",
-  "generated_at": "2026-07-21"
+  "generated_at": "2026-07-21",
+  "verdict": "This page is enough \u2014 the whole book is one paragraph stretched into 21 chapters you already know.",
+  "try_today": "Write down tomorrow's single most important, most uncomfortable task on a sticky note right now, and put it on your keyboard so it's the first thing you see before opening email.",
+  "for_who": "Someone who procrastinates on one big scary task by doing fifty small easy ones first.",
+  "skip_if": "You already use any prioritization system (ABCDE, 80/20, big rocks) or have read Atomic Habits.",
+  "take_points": [
+    "No Reddit thread actually discusses this book by name \u2014 people cite the same idea via 'big rocks' or Pareto instead.",
+    "The core insight is one paragraph: do the hard important thing first, before anything else.",
+    "Only two parts are genuinely useful: the ABCDE ranking method and the 80/20 chapter \u2014 the rest is padding.",
+    "The book alone doesn't create lasting change \u2014 people who stick with it pair it with habit tracking, not just the 'frog' framing."
+  ],
+  "enriched_at": "2026-10-25"
 }

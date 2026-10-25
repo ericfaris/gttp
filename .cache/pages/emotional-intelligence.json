@@ -44,5 +44,16 @@
     }
   ],
   "generated_by": "claude",
-  "generated_at": "2026-07-21"
+  "generated_at": "2026-07-21",
+  "verdict": "Skip the book, keep the amygdala-hijack concept \u2014 that's the one idea worth your time.",
+  "try_today": "Next time you feel irritated today, pause and name the emotion out loud or in a note (e.g. 'I'm frustrated right now') before reacting.",
+  "for_who": "Someone who reacts impulsively under stress and wants a mental model for pausing before responding.",
+  "skip_if": "You already know the amygdala-hijack concept or prefer dense, data-driven books over anecdote-heavy ones.",
+  "take_points": [
+    "The sources reviewed don't actually discuss this book at all, so this take is extrapolated, not sourced.",
+    "Reddit's self-help crowd generally prefers mechanistic, biology-first explanations over Goleman's case-study style.",
+    "Common knock on the book: repetitive, leans on selective anecdotes, could lose two-thirds of its length.",
+    "The neuroscience chapters (amygdala hijack) are the most defensible part; the later chapters on schools, marriage, health are called padding."
+  ],
+  "enriched_at": "2026-10-25"
 }

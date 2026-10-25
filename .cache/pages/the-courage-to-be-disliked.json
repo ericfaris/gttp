@@ -60,5 +60,16 @@
     }
   ],
   "generated_by": "claude",
-  "generated_at": "2026-07-21"
+  "generated_at": "2026-07-21",
+  "verdict": "Skip the book; the five core ideas fit on one page and the dialogue just repeats them.",
+  "try_today": "Write down one thing you're doing right now to earn someone's approval, then cross out the word 'should' and replace it with what you'd actually choose if their opinion didn't count.",
+  "for_who": "Someone stuck people-pleasing or over-ranking themselves against others in relationships.",
+  "skip_if": "You've dealt with real trauma or abuse \u2014 the 'past doesn't cause you' framing can feel dismissive and won't match your lived experience.",
+  "take_points": [
+    "The separation-of-tasks and horizontal-relationships ideas are the real payoff \u2014 they work in actual conflicts, not just in theory.",
+    "The 'trauma doesn't exist, only the meaning you assign it' claim is the weakest link, especially for anyone who's seen real psychological damage up close.",
+    "The book states its three core claims, then restates and dramatizes them for hundreds of pages instead of arguing them further.",
+    "Most people online aren't deeply engaging with it alone \u2014 they're pairing it with other self-help books rather than treating it as a standalone must-read."
+  ],
+  "enriched_at": "2026-10-25"
 }

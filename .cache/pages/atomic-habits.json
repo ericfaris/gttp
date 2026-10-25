@@ -60,5 +60,16 @@
     }
   ],
   "generated_by": "claude",
-  "generated_at": "2026-07-21"
+  "generated_at": "2026-07-21",
+  "verdict": "This page covers the four ideas that matter; skip the book unless you love rereading the same point four ways.",
+  "try_today": "Pick your most annoying bad habit and physically remove one trigger for it right now \u2014 delete the app, unplug the device, or move the snack out of the house.",
+  "for_who": "Someone who wants a quick toolbox of habit tricks without needing deep theory or motivation.",
+  "skip_if": "You already know environment design, the two-minute rule, habit stacking, and 'never miss twice' \u2014 you're done here.",
+  "take_points": [
+    "It's really three or four ideas (environment design, two-minute rule, habit stacking, never miss twice) padded into a full book.",
+    "Readers openly skip the Goldilocks Rule, Problem/Solution Phase, and Law of Least Effort \u2014 they just didn't land.",
+    "The 'four laws' framework is mostly repackaged common sense, not a revelation \u2014 some people were already doing this stuff for decades.",
+    "The identity-shift idea is the one genuinely fresh concept; the tactical tools (trackers, marbles, tweaks) are what people actually use and revisit."
+  ],
+  "enriched_at": "2026-10-25"
 }

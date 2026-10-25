@@ -44,5 +44,16 @@
     }
   ],
   "generated_by": "claude",
-  "generated_at": "2026-07-21"
+  "generated_at": "2026-07-21",
+  "verdict": "Skip the book, the TID test plus one sentence above is basically the whole toolkit.",
+  "try_today": "Write your Worthy Goal as one specific, active sentence and say it out loud \u2014 if it doesn't feel thrilling, important, and daunting, rewrite it until it does.",
+  "for_who": "Someone with a vague ambition who keeps stalling and needs a sharper, more honest way to state the goal.",
+  "skip_if": "You already have a clear goal and just need to execute, not reframe it.",
+  "take_points": [
+    "No sourced Reddit take exists for this specific book, so don't trust anyone claiming otherwise.",
+    "Fans of Bungay Stanier like the brevity and frameworks (TID test, Worthy Goal sentence) for being more concrete than typical goal-setting advice.",
+    "Critics call the acronyms and worksheet structure gimmicky and say it rehashes his earlier books under new labels.",
+    "Bottom line: useful if you need language to clarify a goal, skippable if you've read his other work already."
+  ],
+  "enriched_at": "2026-10-25"
 }

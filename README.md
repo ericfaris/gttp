@@ -130,6 +130,27 @@ what happens to the local cache or container.
 
 Nothing in this repo runs a build on a schedule. All builds are manual.
 
+## The "get to the point" layer
+
+Each summarized page leads with what to *do* with the book, not just what it
+says: a one-line **verdict** (read it, or is this page enough?), one concrete
+thing to **try today**, and **who it's for / skip it if**. The honest take is
+shown as a few short points. Everything else (the full take, quotes, sources)
+is still on the page, folded under expandable sections.
+
+That layer is added by a separate `enrich` step that reads only the finished
+summary and **only adds fields**. Core idea, bullets, take, quotes and
+sources are never changed, so it's safe on finalized pages without `--force`:
+
+```bash
+gttp enrich                    # enrich every summarized book that isn't yet
+gttp enrich --only "Deep Work" # just one
+gttp enrich --force            # redo already-enriched books (e.g. after a prompt change)
+```
+
+New books get enriched automatically right after synthesis. If that call
+fails, the page is saved without the layer and `gttp enrich` fills it in later.
+
 ## Covers
 
 Book cover images come from [Open Library](https://openlibrary.org/). A cover is
@@ -168,10 +189,11 @@ src/gttp/
   reddit_client.py swappable fetch layer (fixture + HTTP)
   ranking.py       Claude thread scoring (+ heuristic fallback)
   synthesize.py    Claude page synthesis (+ heuristic fallback)
+  enrich.py        verdict / try-today / for-who layer on top of a finished page
   publish.py       Markdown + static-site rendering
   pipeline.py      orchestration
   covers.py        Open Library cover fetch + SVG placeholder
-  cli.py           `gttp add` / `gttp build` / `gttp list` / `gttp covers`
+  cli.py           `gttp add` / `gttp build` / `gttp enrich` / `gttp list` / `gttp covers`
 fixtures/          offline sample data
 books.yaml         seed catalog
 covers/            committed book cover images (<slug>.jpg)

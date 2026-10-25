@@ -50,5 +50,16 @@
     }
   ],
   "generated_by": "claude",
-  "generated_at": "2026-07-21"
+  "generated_at": "2026-07-21",
+  "verdict": "Skip the book \u2014 set a fixed wake time and cut late alcohol/caffeine; that's the whole payoff people actually use.",
+  "try_today": "Set a daily alarm for the same wake-up time, including weekends, and turn it on right now before you forget.",
+  "for_who": "Someone who's normalized constant tiredness and wants one or two changes that actually stick.",
+  "skip_if": "You just want the neuroscience of dreaming and memory consolidation, not behavior change.",
+  "take_points": [
+    "Only one person in the discussion cited an actual behavior change from this book: a fixed wake time.",
+    "There's no real chapter-by-chapter debate \u2014 the 'discussion' is thin, which tells you something.",
+    "The book's popularity rides on two or three sticky habits, not its denser science chapters.",
+    "Skip trying to remember the mechanisms; just steal consistent wake time, no alcohol as a sleep aid, and protecting the last hour before bed."
+  ],
+  "enriched_at": "2026-10-25"
 }

@@ -4,8 +4,8 @@
   "description": "Crowd-vetted summaries of self-help books.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FBF8F4",
-  "theme_color": "#1B2233",
+  "background_color": "#FBF6EC",
+  "theme_color": "#14213D",
   "icons": [
     {
       "src": "/icon-192.png",

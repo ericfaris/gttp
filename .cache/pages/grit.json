@@ -60,5 +60,16 @@
     }
   ],
   "generated_by": "claude",
-  "generated_at": "2026-07-21"
+  "generated_at": "2026-07-21",
+  "verdict": "Skip the book, take the Grit Scale and the hard-thing rule \u2014 rest is anecdotes restating the same thesis.",
+  "try_today": "Take the Grit Scale on yourself right now (search 'Angela Duckworth Grit Scale', it's a quick 10-item self-test) and write down your score plus one takeaway.",
+  "for_who": "Someone stuck on a long boring plateau who needs permission and a framework to keep going instead of quitting.",
+  "skip_if": "You already use Atomic Habits-style systems (environment design, small starts) \u2014 you're covering the same ground with better mechanics.",
+  "take_points": [
+    "The only genuinely concrete tool is the Grit Scale and the deliberate-practice loop; everything else is anecdote scaffolding.",
+    "Redditors who actually stick with hard things lean on habit-mechanics, not Duckworth's 'grit/passion' vocabulary \u2014 that's the sharpest critique of the book.",
+    "The back-half chapters (West Point, spelling bees, parenting) restate the same thesis with a new story, not a new mechanism \u2014 skip them.",
+    "Critics note 'grit' may just be conscientiousness plus survivorship bias: successful people call themselves gritty in hindsight, and the book glosses over correlation vs causation."
+  ],
+  "enriched_at": "2026-10-25"
 }

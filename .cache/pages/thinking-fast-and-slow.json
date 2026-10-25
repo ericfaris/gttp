@@ -60,5 +60,16 @@
     }
   ],
   "generated_by": "claude",
-  "generated_at": "2026-07-21"
+  "generated_at": "2026-07-21",
+  "verdict": "Read the first third and the ending; skip or skim the dry middle and the priming chapter Kahneman himself walked back.",
+  "try_today": "Pick one decision you're currently putting off (a purchase, a project estimate, or an investment) and write down the 'outside view' - how similar cases actually turned out for others - instead of trusting your gut feeling about it.",
+  "for_who": "Someone who wants durable mental models for decision-making and doesn't mind a long, repetitive, textbook-style read.",
+  "skip_if": "You're not into behavioral econ or just want practical takeaways - a summary of the first third plus the peak-end rule covers most of the value.",
+  "take_points": [
+    "The real Reddit consensus is about the book itself, not habit-building threads that got mixed in by mistake.",
+    "The System 1/2, anchoring, and substitution material in the first third is considered the genuinely load-bearing part.",
+    "The priming-effects chapter is widely flagged as weak since Kahneman admitted the underlying studies didn't replicate.",
+    "Structurally it's criticized as long and repetitive, more a stitched-together career retrospective than a tight narrative - better as a reference to dip into than a cover-to-cover read."
+  ],
+  "enriched_at": "2026-10-25"
 }

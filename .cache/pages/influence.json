@@ -60,5 +60,16 @@
     }
   ],
   "generated_by": "claude",
-  "generated_at": "2026-07-21"
+  "generated_at": "2026-07-21",
+  "verdict": "This page covers the six levers well enough \u2014 skip the book unless you need the full case studies.",
+  "try_today": "Next time you feel pressure to decide fast because 'only a few left' or a deadline looms, pause and ask out loud: 'Do I want this for itself, or because I might lose the chance?'",
+  "for_who": "Someone who gets talked into things (sales pitches, upsells, group pressure) and wants to notice it happening in real time.",
+  "skip_if": "You already instinctively question urgency, free gifts, and 'everyone's doing it' claims before acting on them.",
+  "take_points": [
+    "The book's real point is that these aren't tricks to use on others, they're shortcuts others use on you, and the only fix is catching the shortcut firing.",
+    "The summary this is based on didn't actually come from discussions of the book itself \u2014 it's five unrelated Reddit threads, so treat the 'Reddit consensus' framing skeptically.",
+    "The closest real connection found was to nudge/habit-stacking theory (Thaler, Atomic Habits), not Cialdini's actual material like cult recruiting or door-to-door sales scripts.",
+    "Most online references to this book are name-drops for 'psychology of persuasion' rather than engagement with its specific mechanics, so don't assume secondhand summaries capture it."
+  ],
+  "enriched_at": "2026-10-25"
 }

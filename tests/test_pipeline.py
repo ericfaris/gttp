@@ -168,8 +168,11 @@ def test_write_site_html_features(tmp_path):
 
     book = (tmp_path / "books" / "atomic-habits.html").read_text()
     assert 'id="idea-1"' in book  # per-idea anchor
-    assert 'class="toc"' in book  # jump list
-    assert 'href="#idea-1"' in book
+    # Not enriched: no verdict/try-today, and the honest take renders as-is.
+    assert "class='try'" not in book and "class='verdict'" not in book
+    assert "<p>Solid.</p>" in book
+    # Supporting material is folded, not removed.
+    assert "<summary>Sources (1 Reddit threads)</summary>" in book
     assert "site-header" in book and "site-footer" in book
     # Detail page references the cover one directory up.
     assert "../covers/atomic-habits.jpg" in book

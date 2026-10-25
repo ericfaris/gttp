@@ -10,6 +10,7 @@ from __future__ import annotations
 
 from .cache import is_final, load_cached_page, page_quality, save_page
 from .config import Book, slugify
+from .enrich import can_enrich, enrich, is_enriched
 from .models import BookPage
 from .publish import write_site
 from .ranking import filter_threads, rank_threads
@@ -64,6 +65,7 @@ def build_book(book: Book, client: RedditClient, force: bool = False) -> BookPag
         ranked, ranking_used_claude = rank_threads(kept, book)
         page = synthesize(book, ranked, ranking_used_claude)
         print(f"    synthesized page ({page.generated_by})")
+        page = _try_enrich(page)
     except Exception as exc:
         print(f"    ERROR: {exc}")
         page = _error_page(book, exc)
@@ -122,6 +124,49 @@ def build_all(
     built = len(targets) if only else len(books)
     print(f"\nBuilt {built} book(s), wrote {len(ordered)} pages. Open {index}")
     return ordered
+
+
+def _try_enrich(page: BookPage) -> BookPage:
+    """Enrich a fresh Claude page; a failure just leaves it un-enriched
+    (`gttp enrich` can fill it in later)."""
+    if not can_enrich(page):
+        return page
+    try:
+        return enrich(page)
+    except Exception as exc:
+        print(f"    enrich: skipped ({exc}); run `gttp enrich` later")
+        return page
+
+
+def enrich_all(
+    books: list[Book], only: str | None = None, force: bool = False
+) -> tuple[int, int]:
+    """Add the verdict / try-today layer to cached pages, then re-render the
+    site. Only adds fields — the summary itself is never touched, so this is
+    safe on finalized pages. Already-enriched pages are skipped unless
+    `force`. Returns (enriched, failed)."""
+    targets = {b.slug for b in match_books(books, only)}
+    done = failed = 0
+    pages: list[BookPage] = []
+    for book in books:
+        page = load_cached_page(book.slug)
+        if page is None:
+            continue
+        if book.slug in targets and can_enrich(page) and (
+            force or not is_enriched(page)
+        ):
+            print(f"  {book.title}")
+            try:
+                page = enrich(page)
+                save_page(book.slug, page)
+                done += 1
+            except Exception as exc:
+                print(f"    ERROR: {exc}")
+                failed += 1
+        pages.append(page)
+    index = write_site(pages)
+    print(f"\nEnriched {done} page(s), {failed} failed. Open {index}")
+    return done, failed
 
 
 def _error_page(book: Book, exc: Exception) -> BookPage:

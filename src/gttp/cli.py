@@ -1,4 +1,4 @@
-"""Command-line entry point: `gttp add`, `gttp build`, `gttp list`."""
+"""Command-line entry point: `gttp add`, `gttp build`, `gttp enrich`, `gttp list`."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ import time
 from . import __version__
 from .config import add_book, load_catalog, slugify
 from .covers import cover_file, fetch_cover
-from .pipeline import build_all, match_books
+from .pipeline import build_all, enrich_all, match_books
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -43,6 +43,18 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="resummarize even a book that's already finalized (real Claude "
         "synthesis is otherwise locked and never silently rebuilt/degraded)",
+    )
+
+    p_enrich = sub.add_parser(
+        "enrich",
+        help="add the verdict / try-today layer to summarized books "
+        "(never changes the summary itself)",
+    )
+    p_enrich.add_argument(
+        "--only", metavar="TITLE", help="enrich just the matching book"
+    )
+    p_enrich.add_argument(
+        "--force", action="store_true", help="redo already-enriched books"
     )
 
     sub.add_parser("list", help="list catalog books")
@@ -92,6 +104,14 @@ def main(argv: list[str] | None = None) -> int:
             suffix = f" — {book.author}" if book.author else ""
             print(f"- {book.title}{suffix}")
         return 0
+
+    if args.command == "enrich":
+        books = load_catalog()
+        if args.only and not match_books(books, args.only):
+            print(f"No catalog book matches '{args.only}'.")
+            return 1
+        _, failed = enrich_all(books, only=args.only, force=args.force)
+        return 1 if failed else 0
 
     if args.command == "build":
         books = load_catalog()

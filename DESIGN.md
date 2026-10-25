@@ -1,259 +1,292 @@
 # gttp — Design System
 
-**Direction:** Marginalia — v1.0
+**Direction:** Switched On — v2.0 (evolved from v1 "Marginalia")
 **Status:** live, wired into `static/style.css`, shown at `/design-system.html`
 
 ## What gttp is
 
 gttp ("Get To The Point") finds the highest-signal Reddit threads about a
 self-help book, ranks and synthesizes them with Claude, and publishes a
-one-page "get to the point" digest per book: one core idea, a 5-bullet
-version, an honest take, and the sharpest quotes with sources. It's a
-static-site batch job — no accounts, no interactivity beyond a client-side
-search box and a light/dark toggle. The audience is someone deciding whether
-a 300-page book is worth their time, or wanting the substance without it.
+one-page digest per book. Each page leads with what to *do* with the book:
+a one-line verdict, one thing to try today, and who it's for. Then come the
+core idea, the 5-bullet version and the honest take, with the full take,
+quotes and sources folded below. It's a static site: no accounts, no server
+state. The only interactivity is search, today's-idea shuffle, an "I tried
+it" tick saved in the browser, and a light/dark toggle.
+
+The audience has usually collected self-help ideas without applying them.
+The design's job is to make opening a page feel like a small, exciting
+"lightbulb" moment and to make the try-today action the thing you remember.
 
 ## Direction narrative
 
-**Marginalia**: the whole product is "a reader annotating a book to find the
-one idea worth keeping," so the UI borrows the literal vocabulary of
-marginalia — a highlighter stroke under the thing that matters, a hand-drawn
-underline, an asterisk in the margin, a sticky note tint. This isn't a new
-identity: the project already had a warm cream/navy/orange editorial palette
-from an earlier redesign (`b074aaa`), which was already strong and
-correctly-brand-toned — this uplift's job was to give that existing palette
-a *reason*, tighten it into one coherent metaphor, turn it into real
-documented/reusable tokens (it was previously a giant inline `<style>` block
-baked into `publish.py`'s Python strings), and make it visible/checkable via
-a showcase page.
+**Switched On**: the moment an idea lights up. Warm cream paper and deep navy
+ink (carried over from v1) with one sunny **marigold** light that marks
+wherever the point is:
 
-### Mood boards considered
+- the period in the wordmark (a small sun) and the full stop in the mark
+- the glow behind today's idea and behind each book's cover
+- the marker stroke under a verdict, drawing itself in
+- the sticky note that says what to try today
 
-Three directions were generated via Ideogram (no user available in this
-batch run to pick interactively, per the task); images live in this
-session's scratchpad and are described here so a future pass can regenerate
-consistent follow-up assets:
+Handwritten notes in **Caveat** ("Today's idea", "Try this today", "For",
+"Skip it if") read like a reader's own margin annotations. Burnt orange
+stays as the secondary accent for links, the wordmark's swipe and the sparks
+when you tick "I tried it".
 
-1. **Marginalia** (chosen) — cream paper, navy ink, one orange accent used
-   as a highlighter/underline/asterisk annotation. Serif display headline
-   with a hand-drawn underline, marginal asterisk and question-mark doodles.
-   *Why chosen*: it's the only direction that turns the site's actual
-   metaphor (distilling a book down to the one idea worth keeping) into a
-   visual language, and it's a natural, low-risk tightening of the palette
-   already in production — no wholesale rebrand risk, maximum payoff.
-2. **Reading Room** — deep navy background, brass-orange accent, book-spine
-   stripes, library-placard serif, wax-seal/"EST. MMXXV" stamp. Handsome and
-   bookish, but a dark-by-default UI fights a "quick, skimmable digest"
-   product — better suited to a slower, more ceremonial reading app.
-3. **Digest Zine** — off-white/black/orange, cut-and-paste magazine
-   lettering, torn paper, halftone, rubber-stamp "SUMMARIZED" tag. Punchy
-   and distinctive, but the irreverent collage energy undersells the
-   product's actual selling point (curated, vetted, "honest take" — not
-   meme-tier chaos), and torn-edge/collage textures don't hold up well at
-   long-form reading sizes (5-bullet lists, honest-take paragraphs).
+The user picked this from three Ideogram mood boards: Switched On (chosen),
+Spark Studio (loud yellow, toy-like) and Golden Hour Desk (twilight amber).
+Switched On won because it adds warmth and excitement without fighting
+long-form reading, and it builds on v1's palette instead of replacing it.
 
-Prompts used (for regenerating consistent follow-up assets later):
-- Marginalia: *"Design system mood board for "Marginalia" — a warm literary
-  annotation aesthetic for a book-summary website called "Get To The Point".
-  Cream paper background (#FBF8F4), deep navy ink text (#1B2233), one sharp
-  burnt-orange accent (#E4571C) used like a highlighter underline and
-  marginal note. … hand-drawn orange underline beneath key words, small
-  annotation marks and asterisks in the margin like a reader's marginalia.
-  A rounded orange pill button labeled "Read the summary". Subtle
-  paper-grain texture. Mood: literary, warm, confident, distilled."*
-- Reading Room / Digest Zine prompts: see git history of this file's first
-  version, or regenerate from the one-line summaries above.
+Mood-board prompt (for consistent follow-up assets):
+*"Design system mood board, 16:9 presentation board, for "Switched On", a
+joyful book-idea website called "Get To The Point". Warm cream paper
+background, deep navy ink, sunny marigold yellow glow, one burnt-orange
+accent. Big friendly serif display headline "Get To The Point" with a
+glowing lightbulb doodle and hand-drawn rays. Palette swatch chips, a rounded
+marigold pill button labeled "Light up an idea", a book card with a soft
+yellow halo glow, sticky-note card with a checkbox reading "Try this today".
+Subtle paper grain. Mood: bright, curious, optimistic. Design presentation
+board."* (Ideogram 4.0, 2560x1440.)
 
 ### Key moments this was designed around
 
-1. **The index scan** — a grid of book cards; the core-idea one-liner under
-   each title is the thing being evaluated ("is this book worth two
-   minutes?").
-2. **Landing on a book page** — the pull-quote core idea is the single most
-   important sentence on the whole site.
-3. **Scanning the 5-bullet version** via the "In this book" jump list.
-4. **Deciding to trust it** — the honest take + real Reddit sources with
-   upvote counts, which is what makes this feel curated rather than
-   AI-invented.
-5. **Light/dark switch** — a small but real moment of control; used while
-   reading at night.
+1. **Landing on the homepage**: the "Today's idea" card. Its glow switches
+   on with a small flicker. It shows one book's verdict and try-today, with
+   a marigold "Read it in 2 minutes" button and a Shuffle button.
+2. **Shuffle**: draws another book; the glow flickers on again and the
+   verdict's marker stroke redraws.
+3. **Opening a book page**: the cover sits in a pool of light and the
+   verdict's marker stroke draws in.
+4. **"I tried it"**: the sticky note's button ticks with a spring and a
+   burst of orange and marigold sparks; the book's index card then shows
+   "✓ Tried it".
+5. **Scanning the grid**: hovering a card lights it with a marigold halo.
 
 ## Color
 
-All colors are CSS custom properties in `static/style.css`, flip completely
-under `prefers-color-scheme: dark` or an explicit `data-theme` attribute.
+All colors are CSS custom properties in `static/style.css` and flip under
+`prefers-color-scheme: dark` or an explicit `data-theme` attribute.
 
 | Token | Light | Dark | Role |
 |---|---|---|---|
-| `--color-bg` | `#FBF8F4` | `#0F1522` | Page background (warm cream / ink navy) |
-| `--color-surface` | `#FFFFFF` | `#161D2C` | Cards, header controls, TOC box |
-| `--color-surface-2` | `#F3EEE7` | `#1E2637` | Search input, tag pills, cover placeholder bg |
-| `--color-ink` | `#1B2233` | `#ECE9E3` | Primary text |
-| `--color-muted` | `#63697A` | `#98A0B2` | Secondary text, metadata, footer |
-| `--color-border` | `rgba(27,34,51,.12)` | `rgba(236,233,227,.12)` | Hairline borders |
-| `--color-border-strong` | `rgba(27,34,51,.22)` | `rgba(236,233,227,.24)` | Input/toggle borders |
-| `--color-accent` | `#E4571C` | `#F97A45` | The "highlighter" — links, CTA, h2 dash, focus ring |
-| `--color-accent-ink` | `#B8420F` | `#FB8C5C` | Accent on hover / higher-contrast accent text |
-| `--color-accent-tint` | `rgba(228,87,28,.10)` | `rgba(249,122,69,.16)` | Pull-quote background wash |
-| `--color-accent-highlight` | `rgba(228,87,28,.16)` | `rgba(249,122,69,.22)` | Reserved: a stronger marker-stroke tint for future inline highlight use |
+| `--color-bg` | `#FBF6EC` | `#0F1526` | Page background (cream paper / night navy), with `--grain` |
+| `--color-surface` | `#FFFDF8` | `#172038` | Cards, today card, search, core-idea card |
+| `--color-surface-2` | `#F4ECDD` | `#1E2944` | Tag pills, cover placeholder, folded-section toggles |
+| `--color-ink` | `#14213D` | `#F5EEDF` | Primary text; today card's border and hard shadow |
+| `--color-muted` | `#5B6176` | `#A4ABBE` | Secondary text, metadata, footer |
+| `--color-border` | `rgba(20,33,61,.12)` | `rgba(245,238,223,.12)` | Hairline borders |
+| `--color-border-strong` | `rgba(20,33,61,.24)` | `rgba(245,238,223,.24)` | Input/toggle borders, dashed dividers |
+| `--color-marigold` | `#F5C518` | `#F7CF3D` | **The light.** Primary button, h2 dash, core-idea edge, focus ring |
+| `--color-marigold-ink` | `#14213D` | `#14213D` | Text and hard shadow on marigold (same in both themes) |
+| `--color-glow` | `rgba(245,197,24,.42)` | `rgba(247,207,61,.26)` | Halos: today card, cover, card hover |
+| `--color-highlight` | `rgba(245,197,24,.45)` | `rgba(247,207,61,.30)` | Marker stroke under the verdict and the index h1 |
+| `--color-accent` | `#E4571C` | `#F07A45` | Bullet markers, sparks |
+| `--color-accent-ink` | `#B8420F` | `#F6A27C` | Links, handwritten labels |
+| `--color-accent-tint` | `rgba(228,87,28,.10)` | `rgba(240,122,69,.14)` | Reserved tint |
+| `--color-sticky` | `#FFE27A` | `#F2D56B` | Try-this-today sticky note |
+| `--color-sticky-ink` | `#2A2306` | `#1F1A04` | Text and "I tried it" button on the sticky note |
+| `--color-done` | `#2F7D4F` | `#7BD49C` | "✓ Tried it" badge on index cards |
+| `--color-accent-highlight` | alias of `--color-highlight` | | Kept for older markup |
 
-**Semantic color**: this product has no forms/validation, so there is
-deliberately no red/green error-success pair. The one semantic state is "not
-yet summarized" (`.card.empty { opacity: .55 }`) — dimming rather than a
-second accent color, so the one-accent rule (dominant + one sharp accent)
-holds throughout.
+**Semantic color**: the only states are "not yet summarized"
+(`.card.empty { opacity: .55 }`) and "tried it" (`--color-done`). There are
+no forms, so there is no error red.
 
-**Contrast**: body text `--color-ink` on `--color-bg` is `#1B2233` on
-`#FBF8F4` ≈ 14.8:1 (light) and `#ECE9E3` on `#0F1522` ≈ 14.2:1 (dark) — both
-comfortably exceed WCAG AAA (7:1) for body text. `--color-accent-ink` on
-`--color-bg` (link color) ≈ 6.6:1 light / `--color-accent-ink` on
-`--color-bg` dark ≈ 7.9:1 — both pass AA for normal text and AAA for large
-text.
+**Contrast** (WCAG, computed):
+
+| Pair | Light | Dark |
+|---|---|---|
+| ink on bg | 14.8:1 | 15.7:1 |
+| muted on bg | 5.7:1 | 7.9:1 |
+| accent-ink (links) on bg | 5.1:1 | 9.0:1 |
+| navy on marigold (primary button) | 9.8:1 | 9.8:1 |
+| sticky-ink on sticky | 12.2:1 | 12.0:1 |
+| done on bg | 4.7:1 | 10.2:1 |
+
+Everything passes AA for normal text; body text passes AAA.
 
 ## Type
 
-Two faces, both self-resolving from OS font stacks (no webfont download —
-keeps the static site fast and license-free, in keeping with "no server, no
-database" simplicity):
+Three self-hosted faces, all SIL Open Font License, served from
+`static/fonts/` (copied to `site/fonts/` at build) with `font-display: swap`:
 
-- **Display** — `--font-display`: `"Iowan Old Style", "Palatino Linotype",
-  Palatino, "Book Antiqua", Georgia, "Times New Roman", serif`. Used for
-  headings, card titles, and the pull-quote — the literary, editorial voice.
-- **Body** — `--font-body`: `system-ui, -apple-system, "Segoe UI", Roboto,
-  Helvetica, Arial, sans-serif`. Used for paragraphs, metadata, UI chrome —
-  optimized for long-form reading legibility on every platform.
+- **Display**: `--font-display`: `"Young Serif", "Iowan Old Style",
+  Palatino, Georgia, serif`. One weight (400), which already reads bold:
+  headings, card titles, the core idea, folded-section summaries. The
+  wordmark's letters are Young Serif outlines.
+- **Body**: `--font-body`: `"Instrument Sans", system-ui, …, sans-serif`.
+  Variable 400–700 plus italic: paragraphs, UI, buttons, the verdict (600).
+- **Hand**: `--font-hand`: `"Caveat", "Segoe Print", "Bradley Hand",
+  cursive`. 600 only: margin notes ("Today's idea", "Try this today",
+  "For", "Skip it if", "29 ideas and counting").
 
 ### Type scale
 
 | Token | Value | Use |
 |---|---|---|
-| `--text-xs` | `400 .75rem/1.4` sans | Tags, eyebrow labels |
-| `--text-sm` | `400 .85rem/1.5` sans | Footer, "Synthesized by…" line, metadata |
-| `--text-base` | `400 1.0625rem/1.65` sans | Body copy (bullets, honest take, quotes) |
-| `--text-md` | `700 1.08rem/1.25` serif | Book card titles on the index |
-| `--text-lg` | `700 1.4rem/1.3` serif | Section headings (`h2`: "The 5-bullet version," etc.) |
-| `--text-quote` | `400 1.35rem/1.4` serif | The core-idea pull-quote |
-| `--text-xl` | `700 clamp(1.9rem,4.5vw,2.6rem)/1.15` serif | Book detail page `h1` |
-| `--text-2xl` | `700 clamp(2rem,5vw,2.75rem)/1.12` serif | Index page `h1` ("Get To The Point") |
+| `--text-xs` | `600 .75rem/1.4` sans | Tags, uppercase eyebrows ("TRY TODAY") |
+| `--text-sm` | `400 .875rem/1.5` sans | Footer, "Synthesized by…" line |
+| `--text-base` | `400 1.0625rem/1.65` sans | Body copy |
+| `--text-md` | `400 1.15rem/1.25` serif | Card titles, folded-section summaries |
+| `--text-lg` | `400 1.5rem/1.25` serif | Section `h2` |
+| `--text-quote` | `400 1.18rem/1.55` serif | The core-idea card |
+| `--text-xl` | `400 clamp(2rem,5vw,2.9rem)/1.08` serif | Book `h1`, today's-idea title |
+| `--text-2xl` | `400 clamp(2.3rem,6vw,3.4rem)/1.04` serif | Index `h1` |
+| `--text-hand` | `600 1.45rem/1.1` Caveat | Margin notes |
 
 ## Spacing, radius, shadow, motion
 
-**Spacing** (`--space-1` … `--space-14`, rem): `.25, .5, .75, 1, 1.25, 1.5, 2,
-2.5, 3.5`. Most existing layout rules keep component-tuned local values
-(carried over from the prior redesign) rather than being force-migrated onto
-the scale — new/touched rules pull from it, and the showcase page renders
-every step so drift is visible.
+**Spacing** (`--space-1` … `--space-14`, rem): `.25, .5, .75, 1, 1.25, 1.5,
+2, 2.5, 3.5`.
 
-**Radius**: `--radius-sm: 9px` (inputs, theme toggle), `--radius: 14px`
-(cards, TOC box, pull-quote corner), `--radius-lg: 18px` (reserved for
-future larger surfaces), `--radius-pill: 999px` (tags, buttons).
+**Radius**: `--radius-sm: 9px`, `--radius: 14px` (cards), `--radius-lg:
+22px` (today card), `--radius-pill: 999px` (buttons, search, tags, theme
+toggle). The sticky note uses a one-off `3px 3px 18px 3px` for a curled
+corner.
 
-**Shadow**: `--shadow-sm` (subtle button lift), `--shadow` (default card
-elevation), `--shadow-lg` (card hover), `--shadow-cover` /
-`--shadow-cover-lg` (book cover images, thumb vs. detail size).
+**Shadow**: `--shadow-sm`, `--shadow` (cards), `--shadow-lg` (card hover),
+`--shadow-cover` / `--shadow-cover-lg` (covers), `--shadow-sticky` (sticky
+note lift). The today card and primary button use a **hard offset ink
+shadow** (`6px 6px 0` / `3px 3px 0`) for a tactile, pressable feel; pressing
+the button translates it into its shadow.
 
-**Motion**: `--duration-fast: 120ms` (button press/active), `--duration:
-150ms` (hover transitions — card lift, theme toggle), `--duration-slow:
-400ms` (reserved for larger reveals). Easing: `--ease-standard:
-cubic-bezier(.2,.7,.3,1)`. All motion collapses under `prefers-reduced-motion:
-reduce` (see Accessibility below).
+**Motion**:
+
+| Token | Value | For |
+|---|---|---|
+| `--duration-fast` | 120ms | Button press, toggle press |
+| `--duration` | 180ms | Hovers, the tick pop |
+| `--duration-slow` | 480ms | Verdict marker draw-in, page-load rise |
+| `--duration-glow` | 900ms | Glow switch-on / flicker |
+| `--ease-standard` | `cubic-bezier(.2,.7,.3,1)` | Most motion |
+| `--ease-spring` | `cubic-bezier(.34,1.56,.64,1)` | Card lift, checkmark pop, toggle rotate |
+
+Keyframes: `switch-on` (glow fades in with one flicker), `flicker` (the
+shuffle re-light), `marker` (highlight grows left to right), `pop`
+(checkmark), `spark` (burst particles), `rise` (load-in, staggered with
+`.rise-2` / `.rise-3`). Every animation ends in a visible state; nothing
+waits at opacity 0.
 
 ## Components
 
-All defined in `static/style.css`; every one is rendered live, in every
-state, on `/design-system.html`.
+All defined in `static/style.css` and rendered live on `/design-system.html`.
 
-- **Buttons** (`.btn`, `.btn-primary`, `.btn-ghost`) — new addition for this
-  uplift (the app previously had no styled button, only links and the
-  header icon-toggle). Primary is solid accent/white text for the one loud
-  CTA a future page might need (a "Read the summary" style action); ghost is
-  a bordered, transparent-background secondary. Both have `:hover`,
-  `:active` (press-scale), and `:disabled` states.
-- **Search input** (`.search`) — full-width, `--color-surface-2` fill,
-  `:focus-visible` ring in the accent color.
-- **Tag pill** (`.tag`) — small pill for subreddit provenance
-  (`r/getdisciplined`, etc.) on index cards.
-- **Book card** (`.books li`, `.card`, `.card.empty`) — cover thumbnail +
-  title + core-idea line + tags; the whole card lifts and gains an accent
-  border on hover; `.card.empty` dims for the not-yet-summarized state.
-- **The signature control — the annotated pull-quote** (`blockquote.core`):
-  the single most load-bearing component. It renders the book's core idea
-  with an accent-tint background wash, a left marker-stroke bar
-  (`::before`), and a marginal asterisk (`::after`) — literally the
-  "highlight + annotate" gesture the whole direction is named for. Every
-  other annotation cue in the system (the `h2::before` dash, the pull-quote
-  bar) is drawn from the same vocabulary this component establishes.
-- **Section heading** (`h2::before`) — a short 2rem accent dash above every
-  `h2`, a smaller echo of the pull-quote's marker stroke.
-- **Table of contents / jump list** (`.toc`) — "In this book" box linking to
-  each bullet's `#idea-N` anchor.
-- **Theme toggle** (`.theme-toggle`, `#theme-toggle`) — sun/moon icon
-  button, persists to `localStorage['gttp-theme']`, defaults to
-  `prefers-color-scheme`.
-- **Header / footer** (`.site-header`, `.site-footer`) — logo, theme toggle,
-  and the persistent footer link back to the index.
+- **Today's idea** (`.today`): the signature moment. A surface card with a
+  2px ink border, hard offset shadow and a radial marigold glow
+  (`::before`). Contains a tilted cover, a Caveat "Today's idea" label with
+  a spark icon, the title, author, verdict, a "TRY TODAY" line, and two
+  buttons. The pick rotates once a day (`pick_today()` in `publish.py`, the
+  same formula in the page script with the viewer's local date); Shuffle
+  picks a random different book client-side from the embedded `#ideas`
+  JSON. Only enriched books are candidates; without any, the hero is left
+  out.
+- **Buttons** (`.btn-primary`, `.btn-ghost`): primary is a marigold pill
+  with an ink border and hard shadow that presses in on `:active`; ghost is
+  a surface pill with a strong border. Both have hover, active and disabled
+  states.
+- **Book card** (`.books li`, `.card`, `.card.empty`): cover thumb, title,
+  core idea clamped to 3 lines (`.card-idea`), subreddit tags. The whole
+  card is the link (`a::after` overlay). Hover and focus-within light it
+  with a marigold halo. A "✓ Tried it" badge (`.tried-badge`) appears when
+  the viewer has ticked that book.
+- **Verdict** (`.verdict`): 600-weight sans with a marigold marker stroke
+  that draws in.
+- **Core idea** (`blockquote.core`): display face on a surface card with a
+  6px marigold left edge.
+- **Try this today** (`.try`): a yellow sticky note, rotated -0.8°, with a
+  translucent tape strip (`::before`), a Caveat label, and the **"I tried
+  it"** toggle (`.tried`, `aria-pressed`). Ticking it saves
+  `localStorage['gttp-tried-<slug>']`, pops a checkmark and bursts ten
+  `.spark` particles (skipped under reduced motion).
+- **For / skip it if** (`.fit`): Caveat labels beside short lines; stacks
+  on phones.
+- **Folded section** (`details.more`): dashed top rule, round `+` toggle
+  that turns marigold and rotates to `−` when open.
+- **Section heading** (`h2::before`): a 6px marigold dash, tilted -2°.
+- **Search** (`.search`): surface pill, marigold focus ring.
+- **Tag pill** (`.tag`), **theme toggle** (`.theme-toggle`, round), and
+  **header/footer** (`.site-header` with the SVG wordmark swapped per theme
+  via `.logo-light` / `.logo-dark`; `.site-footer` with a dashed rule).
+
+## Logo
+
+Picked by the user from an Ideogram round (alongside a sliced page stack, a
+book-to-a-point and a lightbulb dot) and redrawn as clean SVG:
+
+- **Wordmark** (`static/logo.svg`, `static/logo-dark.svg`): "gttp" in Young
+  Serif outlines (extracted with fontTools, slightly tightened). The period
+  is a marigold sun with four rays above it and a burnt-orange swipe under
+  it, so everything leads to the point. Navy letters on light, cream
+  `#F5EEDF` on dark. Used in the header at 128px wide.
+- **Mark, "say it in one point"** (`static/mark.svg`): a speech bubble
+  holding one marigold full stop with a small sparkle. On the app tile
+  (`scripts/icons/icon.svg`) it's a cream bubble on the house-standard navy
+  tile with a soft marigold glow; `#mark-small` drops the sparkle and scales
+  up for favicons. Rebuild with `python3 scripts/icons/build.py`.
 
 ## Backgrounds & texture
 
-No generated background art in this pass — the "paper grain" cue from the
-Marginalia mood board is represented through color/typography (cream
-surface, serif display, highlighter-tint wash) rather than an actual raster
-texture, to keep the static site's page weight minimal and keep every
-surface crisp at any zoom/print size. If a future pass wants an actual paper
-grain, regenerate from the Marginalia prompt above with "seamless tiling
-paper grain texture, cream, very subtle, no vignette" and apply it as a
-low-opacity `background-image` on `body`.
+- **Paper grain** (`--grain`): a 160px SVG `feTurbulence` tile as a data URI,
+  ~5% navy, layered on `body` with `background-attachment: fixed`. No
+  raster file. (The book page's back link is deliberately not sticky: any
+  bar over the grain showed as a visible box.)
+- **Glows**: radial gradients from `--color-glow` on `.today::before` and
+  `.cover-glow::before`. `main.content` clips horizontal overflow
+  (`overflow-x: clip` with a 1.25rem clip margin) so the halos never widen
+  the page on phones.
 
 ## Accessibility notes
 
-- Contrast ratios noted under Color are all AA-or-better; body text is AAA
-  in both themes.
-- Every interactive element (`theme-toggle`, `.search`, `.btn`, links) has a
-  visible `:focus-visible` ring in the accent color (`outline: 2px solid
-  var(--color-accent)`), not just a hover state.
-- `@media (prefers-reduced-motion: reduce)` disables all transitions and the
-  card hover lift, and forces `scroll-behavior: auto` (the site uses smooth
-  scroll for the "In this book" jump list).
-- Theme control: the toggle is a real `<button>` with `aria-pressed` kept in
-  sync, not a div; it respects system preference by default and only
-  overrides via explicit user action (persisted, not forced).
-- No sound in this product; no mute control needed.
+- Contrast table above; all text pairs pass AA.
+- Focus ring everywhere: `outline: 3px solid var(--color-marigold)`. Cards
+  show the halo on `:focus-within`.
+- `prefers-reduced-motion: reduce` disables every animation and transition
+  (including glows, marker and sparks) and smooth scrolling.
+- The "I tried it" control is a real `<button>` with `aria-pressed` and a
+  text change ("Tried it. Nice."). The today's-idea cover link is
+  `aria-hidden` and `tabindex=-1` because the title link goes to the same
+  page.
+- Theme toggle: real `<button>` with `aria-pressed`, persists to
+  `localStorage['gttp-theme']`, defaults to the OS preference.
+- No sound.
 
 ## Asset inventory
 
 | File | Role |
 |---|---|
-| `static/style.css` | The design system: all tokens + component CSS. Copied to `site/style.css` at build time, linked from every page. |
-| `static/design-system.html` | The showcase page (new). Copied to `site/design-system.html`. |
-| `static/logo.png` | Wordmark (book + orange arrow + "get to the point."), pre-existing, kept as-is — it already matches this direction's palette exactly. |
-| `static/favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`, `manifest.webmanifest` | App icon on the house standard shared with every mooseflip app (2026-10-16): an arrow dead centre in an ink/orange bullseye ("get to the point") on an ink-navy tile. Rendered from `scripts/icons/icon.svg` by `python3 scripts/icons/build.py`; `tests/test_icons.py` guards the wiring. |
-| `src/gttp/publish.py` | Site generator — `_HTML_SHELL` now links `/style.css` instead of embedding an inline `<style>` block. |
-
-Mood-board images generated this session (Ideogram, not committed to the
-repo — regenerate from the prompts above if needed for a future pass):
-Marginalia, Reading Room, Digest Zine (all titled "get to the point" design
-system boards, 1:1, `QUALITY`/default rendering).
+| `static/style.css` | All tokens and components. Copied to `site/style.css`. |
+| `static/design-system.html` | Live showcase page. |
+| `static/fonts/young-serif.woff2` | Display face (OFL, Google Fonts latin subset). |
+| `static/fonts/instrument-sans.woff2`, `instrument-sans-italic.woff2` | Body face, variable 400–700 (OFL). |
+| `static/fonts/caveat-600.woff2` | Handwritten face (OFL). |
+| `static/logo.svg`, `static/logo-dark.svg` | Wordmark, light and dark. |
+| `static/mark.svg` | Speech-bubble mark, standalone. |
+| `scripts/icons/icon.svg` → `static/favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`, `manifest.webmanifest` | App icon on the house standard. `tests/test_icons.py` guards the wiring. |
+| `src/gttp/publish.py` | Site generator: header, today's idea, shuffle and tried scripts. |
 
 ## Changelog
 
-- **2026-09-13** — Initial design system uplift. Extracted the prior
-  inline `<style>` block (from `b074aaa`'s "warm editorial palette"
-  redesign) out of `publish.py` into `static/style.css` as documented,
-  named CSS custom properties; named and committed to the **Marginalia**
-  direction (annotation/highlighter motif) as a tightening of that existing
-  palette rather than a replacement; added `.btn`/`.btn-primary`/`.btn-ghost`
-  components (previously no styled button existed); gave the pull-quote its
-  signature marker-stroke + asterisk treatment; built
-  `static/design-system.html` as a live showcase page reading tokens
-  straight from computed CSS custom properties; confirmed the existing
-  favicon/logo set already fits the direction and left it untouched.
+- **2026-09-13** — v1 **Marginalia**. Extracted the inline `<style>` from
+  `publish.py` into `static/style.css` as named tokens; committed to an
+  annotation/highlighter motif on the existing cream/navy/orange palette;
+  added buttons; built the showcase page.
+- **2026-10-25** — Point-first book page: verdict, try-today card, for/skip
+  lines, folded sections for the full take, quotes and sources; removed the
+  "In this book" TOC, which repeated the bullets below it.
+- **2026-10-25** — v2 **Switched On**. Added marigold as "the light", plus
+  glow, highlight, sticky and done tokens; self-hosted Young Serif,
+  Instrument Sans and Caveat; new SVG wordmark and speech-bubble mark
+  (replacing `logo.png` and the bullseye icon); homepage "Today's idea"
+  hero with daily rotation and Shuffle; sticky-note try-today with "I tried
+  it"; card halos, line-clamped card text, paper grain, and switch-on,
+  marker and spark motion.
 
 ## Where to look
 
-- Tokens + components: `static/style.css`
-- Showcase page: `static/design-system.html` → served at
-  `<site>/design-system.html` after any `gttp build` (e.g.
-  `site/design-system.html` locally, or wherever the container/Pages deploy
-  serves the site root from).
-- Site generator wiring: `src/gttp/publish.py` (`_HTML_SHELL`,
-  `_render_header`, `_render_footer`, `_cover_tile`, etc.)
+- Tokens and components: `static/style.css`
+- Showcase page: `static/design-system.html`, served at
+  `<site>/design-system.html` after `gttp build`
+- Site generator: `src/gttp/publish.py` (`_HTML_SHELL`, `_render_header`,
+  `_render_today`, `_INDEX_SCRIPT`, `_BOOK_SCRIPT`, `_cover_tile`)
