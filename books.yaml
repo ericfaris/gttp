@@ -7,10 +7,10 @@ defaults:
   - selfimprovement
   - books
   queries:
-  - '{title} summary'
-  - '{title} key takeaways'
-  - '{title} in a nutshell'
-  - '{title} main points'
+  - '"{title}" summary'
+  - '"{title}" key takeaways'
+  - '"{title}" in a nutshell'
+  - '"{title}" main points'
   min_score: 10
   min_chars: 400
   max_threads_per_book: 40

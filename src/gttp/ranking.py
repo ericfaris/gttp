@@ -9,6 +9,7 @@ heuristic otherwise so the pipeline always produces a ranking.
 from __future__ import annotations
 
 import json
+import re
 
 from .claude import response_text
 from .config import MODEL, Book, anthropic_key
@@ -44,14 +45,43 @@ _RANK_SCHEMA = {
 }
 
 
+def _norm(text: str) -> str:
+    return " " + re.sub(r"[^a-z0-9]+", " ", text.lower()).strip() + " "
+
+
+def _book_keys(book: Book) -> list[str]:
+    """Phrases that mark a thread as being about this book: the title without
+    a leading article, and the (first) author's full name."""
+    title = re.sub(r"^ (the|a|an) ", " ", _norm(book.title))
+    keys = [title]
+    if book.author:
+        keys.append(_norm(re.split(r" and |,|&", book.author)[0]))
+    return [k for k in keys if k.strip()]
+
+
+def mentions_book(thread: RedditThread, book: Book) -> bool:
+    text = _norm(f"{thread.title} {thread.selftext}")
+    return any(k in text for k in _book_keys(book))
+
+
 def filter_threads(threads: list[RedditThread], book: Book) -> list[RedditThread]:
-    """Drop low-signal candidates before spending tokens on ranking."""
+    """Drop low-signal and off-topic candidates before spending tokens on
+    ranking.
+
+    Reddit search with sort=top returns each subreddit's most popular posts
+    that match any query word, so most candidates aren't about the book.
+    Keeping the top N by upvotes alone let those crowd out the few real
+    summaries (2026-10-25: 10 of 20 books were synthesized from off-topic
+    posts). Only threads that name the book or its author survive; a book
+    with none gets the honest "no summaries yet" page, never a made-up one.
+    """
     kept = [
         t
         for t in threads
         if t.score >= book.min_score
         and t.char_count >= book.min_chars
         and t.selftext not in ("[deleted]", "[removed]", "")
+        and mentions_book(t, book)
     ]
     kept.sort(key=lambda t: t.score, reverse=True)
     return kept[: book.max_threads_per_book]

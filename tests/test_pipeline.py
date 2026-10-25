@@ -225,3 +225,41 @@ def test_stylesheet_link_is_content_versioned(tmp_path):
         text = (tmp_path / f).read_text()
         assert link in text, f
         assert 'href="/style.css"' not in text, f
+
+
+def _thread(tid, title, score, body="x " * 300):
+    return RedditThread(
+        id=tid, title=title, subreddit="s", author="a", score=score,
+        permalink=f"/r/s/{tid}", selftext=body,
+    )
+
+
+def test_filter_keeps_on_topic_threads_over_popular_off_topic_ones():
+    """Regression (2026-10-25): sorting by upvotes alone let 40 popular
+    discipline posts crowd out the only real summaries of the book."""
+    book = Book(title="Never Split the Difference", author="Chris Voss")
+    off_topic = [_thread(f"o{i}", f"How I got disciplined #{i}", 20000 - i) for i in range(60)]
+    on_topic = [
+        _thread("n1", "Chris Voss - Never Split The Difference Fully Summarized", 203),
+        _thread("n2", "Negotiation insights", 91, body="From Never Split the Difference: " + "x " * 300),
+    ]
+    kept = filter_threads(off_topic + on_topic, book)
+    assert [t.id for t in kept] == ["n1", "n2"]
+
+
+def test_filter_matches_title_without_article_or_author_name():
+    book = Book(title="The Courage to Be Disliked", author="Ichiro Kishimi and Fumitake Koga")
+    a = _thread("a", "courage to be disliked, my notes", 50)
+    b = _thread("b", "Notes", 40, body="Ichiro Kishimi's dialogue format... " + "x " * 300)
+    c = _thread("c", "Courage and being liked", 60)
+    assert {t.id for t in filter_threads([a, b, c], book)} == {"a", "b"}
+
+
+def test_filter_with_no_on_topic_threads_returns_nothing():
+    book = Book(title="How to Begin", author="Michael Bungay Stanier")
+    assert filter_threads([_thread("o", "Discipline tips", 5000)], book) == []
+
+
+def test_default_queries_quote_the_title():
+    queries = load_catalog()[0].search_queries()
+    assert queries and all(q.startswith('"') for q in queries)
