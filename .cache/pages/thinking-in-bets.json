@@ -1,56 +1,77 @@
 {
   "title": "Thinking in Bets",
   "author": "Annie Duke",
-  "core_idea": "These five source threads are all from r/DecidingToBeBetter and are personal transformation stories (sobriety, weight loss, quitting smoking, self-therapy, a listicle of life lessons) \u2014 none of them discuss, mention, or review Annie Duke's 'Thinking in Bets.' There is no book content here to synthesize.",
+  "core_idea": "Good decisions are bets made with hidden information and some luck, not chess moves with a guaranteed result. Judge yourself by the quality of your reasoning rather than by how things turned out, and use the outcomes to update your beliefs.",
   "bullets": [
-    "The supplied threads are about a college comeback story, self-taught psychology/CBT, an '80-year-old man's 50 life lessons' listicle, a 3-days-sober post, and a 7-years-of-unhealthy-habits recovery story.",
-    "None reference Annie Duke, poker, decision-making under uncertainty, or any concept from 'Thinking in Bets' (e.g., resulting, probabilistic thinking, decision pods).",
-    "Because the source material doesn't match the requested book, I can't responsibly extract 'get to the point' bullets or a Reddit consensus about the book from it.",
-    "Producing bullets or an honest_take about 'Thinking in Bets' from unrelated threads would mean inventing content not present in the sources, which breaks the requirement to quote and represent Reddit accurately.",
-    "Recommendation: resend actual r/books, r/getdisciplined, or similar threads that specifically discuss 'Thinking in Bets' by Annie Duke, and I'll synthesize a real two-minute summary with genuine verbatim quotes."
+    "Treat life like poker, not chess: you never see all the information and luck is always in the mix, so a bad outcome doesn't prove a bad decision and a good one doesn't prove a good decision.",
+    "Call every decision a bet on one possible future. It rests on your beliefs, which are often biased, and it costs you the alternatives you passed up. State your confidence as odds instead of certainties.",
+    "Don't judge a decision by its result alone. Split what you controlled (your reasoning) from what you didn't (luck), and stop crediting yourself for lucky wins or blaming yourself for unlucky losses.",
+    "Build a learning loop: look at each result, update your beliefs and adapt to changing circumstances. The book's point is that experience only teaches you if you do something with it.",
+    "Use the time-travel techniques from the final chapter before you commit: picture how the decision could fail or succeed in the future, and work backward from there. Redditors call these the most useful, practical part."
   ],
-  "honest_take": "I can't give you 'what Reddit really thinks about Thinking in Bets' because none of these five threads are about that book \u2014 they're unrelated personal-growth anecdotes from r/DecidingToBeBetter. Faking a synthesis or inventing quotes attributed to these usernames about a book they never mentioned would be dishonest, so I'm flagging the mismatch instead of fabricating one.",
-  "quotes": [],
+  "honest_take": "Be honest about the Reddit evidence: it's thin. Most mentions are one-line entries in 'best books of the year' lists (\"change the way you think about decisions\"), plus one fan summary that drew polite thank-yous and no real argument. Nobody tears the book apart, but nobody defends it in depth either. The only chapter advice anywhere is from the summary's author, who says that if you're short on time you can skip the long setup and go straight to the last chapter on time-travel techniques. That implies the opening chapters on poker and uncertainty are the part to skim, and the tools at the end are the part you'll use. One more caution: even the summary's author admits that knowing these ideas isn't enough, because the biases are too ingrained. So expect a book about how to think, not a shortcut. If you're a first-time self-help reader, other redditors would tell you to stop agonizing over the perfect first pick and just start reading.",
+  "quotes": [
+    {
+      "text": "DISCLAIMER: If you don't have time to read about the whole context, skip to the last chapter, about the time-travel techniques to make smarter decisions, they're important ones and highly useful:)",
+      "author": "playforthoughts",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/va6wg3/book_summary_annie_duke_thinking_in_bets_how_to/"
+    },
+    {
+      "text": "making decisions is more like playing poker than chess",
+      "author": "playforthoughts",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/va6wg3/book_summary_annie_duke_thinking_in_bets_how_to/"
+    },
+    {
+      "text": "Change the way you think about decision decision making and have better ones by thinking about your decisions like bets",
+      "author": "Mysterea101",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/1nzdkk4/best_books_youve_read_this_year/"
+    }
+  ],
   "sources": [
     {
-      "title": "A decade ago I was kicked out of college with a 0.9 GPA. Saturday I will graduate Magna Cum Laude with two Engineering degrees and a full tuition scholarship to Law School. I also lost 130 pounds and quit a bad 6 yr cigarette habit during this time. It's never too late. You're never a lost cause.",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/gfd9y7/a_decade_ago_i_was_kicked_out_of_college_with_a/",
-      "subreddit": "DecidingToBeBetter",
-      "score": 25321
+      "title": "\ud83d\udcda Book Summary: Annie Duke - \"Thinking in Bets: How To Make Smarter Decisions\"",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/va6wg3/book_summary_annie_duke_thinking_in_bets_how_to/",
+      "subreddit": "BettermentBookClub",
+      "score": 100
     },
     {
-      "title": "I started studying psychology in my free time to better understand my depression &amp; came to a huge breakthrough",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/g60gtb/i_started_studying_psychology_in_my_free_time_to/",
-      "subreddit": "DecidingToBeBetter",
-      "score": 3390
+      "title": "Best books you\u2019ve read this year",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/1nzdkk4/best_books_youve_read_this_year/",
+      "subreddit": "BettermentBookClub",
+      "score": 75
     },
     {
-      "title": "50 life lessons from an 80 yr old man. (For some reasons #14 stuck with me)",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/drm7n0/50_life_lessons_from_an_80_yr_old_man_for_some/",
-      "subreddit": "DecidingToBeBetter",
-      "score": 3096
+      "title": "Book Reading in 2021",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/rkuknc/book_reading_in_2021/",
+      "subreddit": "BettermentBookClub",
+      "score": 42
     },
     {
-      "title": "3 days sober. It's not much but I'm giving it all I got.",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/j1h7u7/3_days_sober_its_not_much_but_im_giving_it_all_i/",
-      "subreddit": "DecidingToBeBetter",
-      "score": 3071
+      "title": "Late 20\u2019s struggling with motivation and looking for job, looking for 1st self help book to be a great one",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/12epw0q/late_20s_struggling_with_motivation_and_looking/",
+      "subreddit": "BettermentBookClub",
+      "score": 31
     },
     {
-      "title": "After 7 years of unhealthy habits, I woke up extra early to exercise before work the last two days. I also have slowly quit cigarettes, cut back significantly on alcohol, weed, and other unhealthy vices. I\u2019m ready to break my toxic family cycle.",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/i9usqc/after_7_years_of_unhealthy_habits_i_woke_up_extra/",
-      "subreddit": "DecidingToBeBetter",
-      "score": 2033
+      "title": "4 x 'Best Books of the Year' Lists",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/rsp8rh/4_x_best_books_of_the_year_lists/",
+      "subreddit": "BettermentBookClub",
+      "score": 64
     }
   ],
   "generated_by": "claude",
-  "generated_at": "2026-07-21",
-  "model": "",
-  "verdict": "",
-  "try_today": "",
-  "for_who": "",
-  "skip_if": "",
-  "take_points": [],
-  "enriched_at": "",
-  "enrich_model": ""
+  "generated_at": "2026-10-25",
+  "model": "claude-sonnet-5-5",
+  "verdict": "This page covers the core idea; if you read more, skip to the final chapter's time-travel tools, since the Reddit evidence is thin.",
+  "try_today": "Pick one decision you're facing now, write down your confidence in it as a percentage, then spend a few minutes imagining it failed a year from now and list the reasons why.",
+  "for_who": "Someone who judges their decisions by how they turned out and wants practical tools for thinking in odds.",
+  "skip_if": "You already separate luck from reasoning, or you want a quick fix, since even the summary's author admits knowing these ideas won't beat ingrained biases.",
+  "take_points": [
+    "The Reddit evidence is thin: mostly one-line mentions in best-of-the-year lists and one fan summary that got polite thank-yous.",
+    "Nobody trashes the book, but nobody defends it in depth either.",
+    "The only chapter advice says to skip the long setup and go straight to the final chapter on time-travel techniques.",
+    "Expect a book about how to think, not a shortcut, because even the summary's author admits knowing these ideas isn't enough against ingrained biases."
+  ],
+  "enriched_at": "2026-10-25",
+  "enrich_model": "claude-sonnet-5-5"
 }

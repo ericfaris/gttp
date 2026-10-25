@@ -1,33 +1,45 @@
 {
   "title": "Deep Work",
   "author": "Cal Newport",
-  "core_idea": "Deep Work's actual thesis is that the capacity to focus without distraction on a cognitively demanding task is becoming rare precisely as it becomes valuable \u2014 and that this skill can be trained like a muscle through scheduling, ritual, and the deliberate removal of shallow, reactive work (email, social media, meetings) from your day.",
+  "core_idea": "Focused, distraction-free work on hard things is getting rarer just as the economy pays more for it, so protecting long blocks of undivided attention is the best career and life lever you have.",
   "bullets": [
-    "Schedule every minute of your day in advance, including 'deep work blocks' \u2014 Newport's core mechanism is that undefined time defaults to shallow work.",
-    "Quit social media (or go on a 'digital declutter') if you can't articulate a specific, high-value use for it \u2014 the book argues most people use it out of habit, not benefit.",
-    "Ritualize deep work: same location, same start time, same rules (no wifi, no phone) so your brain doesn't have to decide to focus each time.",
-    "Embrace boredom on purpose \u2014 Newport says the inability to sit with an unstimulated mind is what destroys your capacity for deep concentration, not lack of willpower.",
-    "Drain the shallow: batch email, set office hours for messages, and stop treating 'busy' as a proxy for 'important.'"
+    "Run the depth test on your tasks: ask how many months it would take to train a smart recent grad with no specialized training to do this. If the answer is short, it's shallow work, so cap it and don't let it fill your day.",
+    "Schedule a protected deep block, with 90 minutes as the working unit, and put your phone in another room. Even a silent, face-down phone on the desk drains attention.",
+    "Start the day phone-free. The top routine Redditors pull from the book is a phone-free morning block before any inbox or feed.",
+    "Finish with a shutdown ritual. When the workday ends, close open loops and stop, so rest is real and tomorrow's deep session isn't running on fumes.",
+    "Pick a few targets that matter and treat the rest as noise. Clarity about what matters tells you what to ignore, and for email, ask what project a message represents and the cheapest way to finish it."
   ],
-  "honest_take": "Here's the catch: none of the five threads you gave me are actually about Deep Work or Cal Newport. They're r/getdisciplined posts about biohacking brain fog (CO2 monitors, ferritin, vitamin D), Atomic Habits-style habit tricks, dopamine/overstimulation theory via Huberman, and a bathroom-alarm wake-up hack. Newport's book isn't named once. What Reddit is actually doing in this corner of the internet is reinventing Deep Work's conclusions from adjacent angles \u2014 the 'phone in another room' experiment in the top thread is literally the same Ward et al. 2017 JACR study Newport cites in the book, and the entire 'overstimulation causes lack of discipline' post is Deep Work's shallow-work argument dressed in dopamine-detox language. If you want the real Reddit consensus on Deep Work specifically: people generally agree the core insight (schedule focus, kill the phone) is correct and useful, but the book is criticized elsewhere for being repetitive after the first 100 pages, preachy about social media (Newport has zero social media and it shows), and light on actual neuroscience compared to how confidently it's presented \u2014 this batch of threads shows people patching that gap by DIYing citations from Huberman, Ferritin studies, and self-tracking instead of trusting Newport's assertions wholesale.",
+  "honest_take": "The honest read is that these threads are thin on actual Deep Work criticism. Nobody here tells you which chapters to skip, and I won't invent that. The book is treated as a respected reference, mostly through summaries and routine templates, with no real debate over its claims. The one useful point is that Part 1 exists to convince you the hypothesis is true, and Part 2 is the how-to. If you already buy the premise, that split suggests skimming the persuasion and spending your time on the tactics. That's my inference, not a Reddit verdict. The sharpest pushback is about execution, not the book: one poster admits knowing the concepts cold and still failing to stick to them, and a commenter says none of it matters if you don't do the thing. Expect to get more from one simple, repeatable block than from perfect theory. One thread is also an app pitch, so take its habit-tracking stats with salt.",
   "quotes": [
+    {
+      "text": "The deep work hypothesis: the ability to perform deep work is becoming increasingly rare at the same time it is becoming increasingly valuable in our economy.",
+      "author": "JSilva-blog",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/kb6of5/deep_work_by_cal_newport_summary_of_one_of_my/"
+    },
     {
       "text": "Ward et al. 2017 in JACR showed the mere presence of a smartphone on your desk reduces available cognitive capacity even face down and on silent.",
       "author": "Sureokgo",
       "url": "https://www.reddit.com/r/getdisciplined/comments/1s1cz5n/i_tracked_my_brain_fog_for_6_months_and_tested/"
     },
     {
-      "text": "The root problem with many productivity issues is being constantly overstimulated.",
-      "author": "pie6k",
-      "url": "https://www.reddit.com/r/getdisciplined/comments/ic70lc/advice_being_overstimulated_is_the_cause_of_the/"
-    },
-    {
-      "text": "Don't start your day with a high dopamine activity.",
-      "author": "CalmFear",
-      "url": "https://www.reddit.com/r/getdisciplined/comments/qajv29/method_what_finally_made_it_click_dopamine_control/"
+      "text": "The gap between reading and doing is brutal.",
+      "author": "StackedMornings",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/1smk81d/turned_71_selfimprovement_books_into_daily/"
     }
   ],
   "sources": [
+    {
+      "title": "Turned 71 self-improvement books into daily routines. Here's what 3 habits from each one actually looks like.",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/1smk81d/turned_71_selfimprovement_books_into_daily/",
+      "subreddit": "BettermentBookClub",
+      "score": 226
+    },
+    {
+      "title": "Deep Work by Cal Newport - summary of one of my favorite books",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/kb6of5/deep_work_by_cal_newport_summary_of_one_of_my/",
+      "subreddit": "BettermentBookClub",
+      "score": 88
+    },
     {
       "title": "I tracked my brain fog for 6 months and tested everything. Here is what actually moved the needle.",
       "url": "https://www.reddit.com/r/getdisciplined/comments/1s1cz5n/i_tracked_my_brain_fog_for_6_months_and_tested/",
@@ -35,43 +47,31 @@
       "score": 2458
     },
     {
-      "title": "[METHOD] How I went from rock bottom to disciplined in 6 months.",
-      "url": "https://www.reddit.com/r/getdisciplined/comments/9t0gqz/method_how_i_went_from_rock_bottom_to_disciplined/",
-      "subreddit": "getdisciplined",
-      "score": 16306
+      "title": "[UPDATE] I posted my commitment to be better 2 years ago after my Girlfriend passed away. My second yearly status report.",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/k0z61w/update_i_posted_my_commitment_to_be_better_2/",
+      "subreddit": "DecidingToBeBetter",
+      "score": 1810
     },
     {
-      "title": "[Advice] Being overstimulated is the cause of the lack of discipline",
-      "url": "https://www.reddit.com/r/getdisciplined/comments/ic70lc/advice_being_overstimulated_is_the_cause_of_the/",
+      "title": "How to Unf*ck your brain after months of feeling like shit",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1l4vlph/how_to_unfck_your_brain_after_months_of_feeling/",
       "subreddit": "getdisciplined",
-      "score": 6177
-    },
-    {
-      "title": "[Method] What finally made it click. Dopamine control.",
-      "url": "https://www.reddit.com/r/getdisciplined/comments/qajv29/method_what_finally_made_it_click_dopamine_control/",
-      "subreddit": "getdisciplined",
-      "score": 2531
-    },
-    {
-      "title": "[Method] I have struggled waking up early / on-time my whole life. I changed ONE THING and can now get up whenever I choose. It has been great and I now feel more in control of my life.",
-      "url": "https://www.reddit.com/r/getdisciplined/comments/dw13td/method_i_have_struggled_waking_up_early_ontime_my/",
-      "subreddit": "getdisciplined",
-      "score": 2048
+      "score": 1686
     }
   ],
   "generated_by": "claude",
-  "generated_at": "2026-07-21",
-  "model": "",
-  "verdict": "Skip the book \u2014 the one-page mechanism (schedule it, ritualize it, kill the phone) is the whole payload.",
-  "try_today": "Open your calendar right now and block a 60-90 minute slot tomorrow morning labeled 'Deep Work' with your phone physically in another room for that window.",
-  "for_who": "Someone who constantly feels busy but can't point to deep, cognitively demanding output at the end of the day.",
-  "skip_if": "You already schedule focus blocks, batch your email, and don't doomscroll without a reason.",
+  "generated_at": "2026-10-25",
+  "model": "claude-sonnet-5-5",
+  "verdict": "This page is mostly enough; read Part 2's tactics only if you already buy the premise, because doing beats knowing.",
+  "try_today": "Put your phone in another room, set a timer for 90 minutes, and spend it on the single hardest task on your list, with no inbox or feed open.",
+  "for_who": "Someone who already believes focus matters but keeps failing to protect long blocks of undivided attention for hard work.",
+  "skip_if": "You already know the concepts cold and just need to start one repeatable block instead of reading more theory.",
   "take_points": [
-    "The actual thesis fits on an index card: undefined time defaults to shallow work, so pre-schedule your day including deep blocks.",
-    "Boredom tolerance, not willpower, is the real bottleneck \u2014 if you can't sit unstimulated, you can't concentrate.",
-    "Reddit confirms the core trick (phone in another room) works and is backed by real research, so that part isn't hype.",
-    "The book itself gets criticized for being repetitive, preachy about quitting social media, and thinner on neuroscience than its confident tone suggests."
+    "Threads are thin on real criticism of Deep Work, and nobody says which chapters to skip, so treat the book as a respected reference rather than a debated one.",
+    "Part 1 exists to convince you the hypothesis is true and Part 2 is the how-to, so if you buy the premise, skim the persuasion and spend your time on tactics (that's an inference, not a Reddit verdict).",
+    "The sharpest pushback is about execution: one poster knows the concepts cold and still can't stick to them, and a commenter says none of it matters if you don't do the thing.",
+    "Expect more from one simple, repeatable block than from perfect theory, and take the habit-tracking stats from the app-pitch thread with salt."
   ],
   "enriched_at": "2026-10-25",
-  "enrich_model": ""
+  "enrich_model": "claude-sonnet-5-5"
 }

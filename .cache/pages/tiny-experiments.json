@@ -1,61 +1,54 @@
 {
   "title": "Tiny Experiments",
   "author": "Anne-Laure Le Cunff",
-  "core_idea": "Le Cunff's real argument is that you should stop chasing fixed, SMART-style goals and instead run small, curiosity-driven 'experiments' on your own life \u2014 actions that are Purposeful, Actionable, Continuous, and Trackable (her PACT framework) \u2014 treating uncertainty as data rather than failure.",
+  "core_idea": "Stop treating life as a set of big goals with deadlines and outcomes. Run small, time-boxed experiments (a specific action, a fixed duration, then a review), and treat the results as data about what fits you, not as a pass/fail verdict on you.",
   "bullets": [
-    "Replace 'goals' with PACT experiments: Purposeful, Actionable, Continuous, Trackable \u2014 a 2-4 week trial you can measure, not a lifetime commitment.",
-    "Judge an experiment by what you learned, not whether you hit a target; a 'failed' experiment that teaches you something is a win.",
-    "Use scheduled 'pause points' (weekly/monthly check-ins) to review data and decide whether to continue, tweak, or kill the experiment \u2014 instead of white-knuckling through a plan that isn't working.",
-    "Plateaus and boredom are signals to change variables, not proof you lack discipline \u2014 treat your life like a lab notebook, not a report card.",
-    "Start absurdly small and specific (e.g., '10 minutes of X, 3x this week') so the experiment is actually testable, then scale only what the data supports."
+    "Write a PACT: one specific action with a fixed end date, such as a 6-episode podcast season instead of 'starting a podcast,' or learning one new dish a week for 3 months. When the time is up you can stop without it counting as quitting.",
+    "Run the loop in order: Observation \u2192 Question \u2192 Hypothesis \u2192 PACT \u2192 Reflect. Don't skip Reflect, because that step is where the learning happens.",
+    "Before designing anything, spend 24 hours observing your own life like an anthropologist. Note what gives you energy and what drains it, and look for patterns you never chose on purpose.",
+    "Track internal signals next to external metrics. Views, revenue, and growth can all look good while you hate the work, which Le Cunff calls 'planning your own misery.' Her YouTube attempt is the example: the numbers were fine, but she hated talking to a camera, so she stopped.",
+    "Experiment by subtracting as well as adding (for example, no phone in the bedroom for two weeks). When an experiment works, let it graduate into a habit or an ongoing project instead of turning it into a goal with a deadline."
   ],
-  "honest_take": "Important caveat: none of the provided threads actually discuss 'Tiny Experiments' by Anne-Laure Le Cunff \u2014 they're about James Clear's Atomic Habits, a biohacking mega-post, a wake-up-early routine, a motivation breakdown, and breakup therapy tips. There's no genuine Reddit sentiment on this specific book in the material given, so any 'what Reddit thinks' claim about Tiny Experiments here would be fabricated. What the adjacent threads do show is a pattern worth noting: r/BettermentBookClub and r/getdisciplined readers respond well to concrete, lagging-measure framing (Atomic Habits' 'outcomes are a lagging measure of your habits') and to small-step, low-friction advice, which is the same lane Le Cunff's PACT framework sits in \u2014 but that's an inference, not evidence about her book's reception.",
-  "quotes": [],
+  "honest_take": "The threads are warm, and no one in them argues against the book. Posters call it the best book they read this year, say it was 'exactly what I needed,' and like the goals-vs-projects framing. I found no chapter-by-chapter criticism and no skip list, so I won't make one up. The criticism I can offer comes from reading the threads themselves. The evidence is mostly Le Cunff's own anecdotes (the YouTube story) plus community self-reports like 'almost everyone who tries it reports better sleep.' That is charming, not rigorous. The framework is also fairly simple (try something small, set a deadline, look at what happened), and one of the fan posts shows how easy it is to enjoy the structure without finishing it: the 'Reflect' step is still a placeholder. The most credible detail is that she slid back into control-freak habits (bestseller-list obsession, comparisons) once the book deal arrived and had to use her own method to get out. Read it for the permission and the structure, not for new science. The summaries describe it as short and practical, so little is lost by skimming whatever doesn't resonate.",
+  "quotes": [
+    {
+      "text": "Goals create artificial pressure tied to a date and outcome. Projects let you chip away at something week by week.",
+      "author": "GiulioMichelon",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/1ro3v5p/interview_notes_from_tiny_experiments_by/"
+    },
+    {
+      "text": "Tiny. Low cost. Almost everyone who tries it reports better sleep and wellbeing.",
+      "author": "GiulioMichelon",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/1ro3v5p/interview_notes_from_tiny_experiments_by/"
+    }
+  ],
   "sources": [
     {
-      "title": "Here\u2019s how to change yourself with consistent small habits with James Clear\u2019s Atomic Habits",
-      "url": "https://www.reddit.com/r/BettermentBookClub/comments/h9k21k/heres_how_to_change_yourself_with_consistent/",
+      "title": "Interview notes from \"Tiny Experiments\" by Anne-Laure Le Cunff \u2014 key takeaways and why goals are the wrong frame",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/1ro3v5p/interview_notes_from_tiny_experiments_by/",
       "subreddit": "BettermentBookClub",
-      "score": 272
+      "score": 25
     },
     {
-      "title": "How to Unf*ck your brain after months of feeling like shit",
-      "url": "https://www.reddit.com/r/getdisciplined/comments/1l4vlph/how_to_unfck_your_brain_after_months_of_feeling/",
-      "subreddit": "getdisciplined",
-      "score": 1680
-    },
-    {
-      "title": "This is how I learned to wake up early near 100% of the time with a bunch of biohacking.",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/7d4kua/this_is_how_i_learned_to_wake_up_early_near_100/",
-      "subreddit": "DecidingToBeBetter",
-      "score": 760
-    },
-    {
-      "title": "For years I struggled with zero-motivation and lethargy. Everything changed once I discovered how motivation ACTUALLY works and is generated. Today I'm not perfect, but man, I\u2019m doing way better. [Method]",
-      "url": "https://www.reddit.com/r/getdisciplined/comments/z9q8hm/for_years_i_struggled_with_zeromotivation_and/",
-      "subreddit": "getdisciplined",
-      "score": 4215
-    },
-    {
-      "title": "Tips from therapy that have massively helped me get through my breakup",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/no6sbl/tips_from_therapy_that_have_massively_helped_me/",
-      "subreddit": "DecidingToBeBetter",
-      "score": 1553
+      "title": "How Tiny Experiments Can Lead to a Happier Life \ud83d\ude80",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/1j7h0pf/how_tiny_experiments_can_lead_to_a_happier_life/",
+      "subreddit": "BettermentBookClub",
+      "score": 53
     }
   ],
   "generated_by": "claude",
-  "generated_at": "2026-07-21",
-  "model": "",
-  "verdict": "This page is enough \u2014 the core trick (PACT experiments, 2-4 weeks, judge by learning not targets) fits in one paragraph.",
-  "try_today": "Write down one tiny experiment right now: pick a behavior, commit to '10 minutes of X, 3x this week,' and put the first check-in date on your calendar.",
-  "for_who": "Someone who keeps abandoning goals because life got messy and wants permission to treat setbacks as data instead of failure.",
-  "skip_if": "Skip it if you already run small experiments on yourself or just need a habit-tracker app, not a mindset shift.",
+  "generated_at": "2026-10-25",
+  "model": "claude-sonnet-5-5",
+  "verdict": "This page covers the core framework; read the book only if you want the permission and warmth, since it's simple and anecdote-based.",
+  "try_today": "Write one PACT right now: pick a single small action with a fixed end date, like 'no phone in the bedroom for two weeks,' and put the end date and a calendar reminder to Reflect on it.",
+  "for_who": "Someone who keeps stalling on big goals and wants permission and a simple structure to try small things without it counting as failure.",
+  "skip_if": "You want rigorous evidence or new science, or you already run small time-boxed trials and actually review them.",
   "take_points": [
-    "The real argument is simple: stop setting rigid goals, start running small trackable experiments instead.",
-    "A plateau or 'failed' experiment isn't proof you lack discipline \u2014 it's just data telling you to change a variable.",
-    "Note: the supposed Reddit sentiment behind this summary is fabricated \u2014 the source threads were about Atomic Habits and unrelated topics, not this book.",
-    "Treat this honest-take caveat seriously: there's no real evidence here of how readers actually received Tiny Experiments."
+    "The threads are warm and nobody argues against the book; posters call it the best they read this year and exactly what they needed.",
+    "The evidence is mostly Le Cunff's own anecdotes (like the YouTube story) and community self-reports such as better sleep, which is charming rather than rigorous.",
+    "The framework is simple: try something small, set a deadline, look at what happened, and it's easy to enjoy the structure without finishing it, as one fan post whose Reflect step is still a placeholder shows.",
+    "Her most credible detail is that she slid back into control-freak habits after the book deal and had to use her own method to get out."
   ],
   "enriched_at": "2026-10-25",
-  "enrich_model": ""
+  "enrich_model": "claude-sonnet-5-5"
 }

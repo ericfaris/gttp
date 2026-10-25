@@ -1,15 +1,15 @@
 {
   "title": "Essentialism",
   "author": "Greg McKeown",
-  "core_idea": "Essentialism argues that trying to do everything means doing nothing well \u2014 real progress comes from ruthlessly identifying the 'vital few' priorities and eliminating almost everything else, rather than cramming more into your schedule.",
+  "core_idea": "Essentialism is about getting the right things done, not more things done. You do that by deliberately cutting everything that isn't a clear, high-value priority, so your limited time goes to the few things that matter most.",
   "bullets": [
-    "Ask 'is this the most essential thing I could be doing right now?' before saying yes to anything \u2014 if it's not a clear yes, treat it as a no.",
-    "Protect sleep as a performance asset, not a productivity tax \u2014 McKeown flips the 'sleep is for the weak' mindset into 'sleep is for high performers.'",
-    "Design your life in Essence \u2192 Explore \u2192 Eliminate \u2192 Execute stages: figure out what matters, explore options widely, cut the non-essential hard, then execute the few things left with minimal friction.",
-    "Build in buffer and slack instead of scheduling every minute \u2014 overcommitted calendars are the enemy of essentialist thinking.",
-    "Say no more, and say it without over-explaining \u2014 protecting your time is treated as a discipline, not a personality trait."
+    "Follow the book's four-part arc: Essence (decide what actually matters), Explore (find the vital few), Eliminate (cut the rest), Execute (make the remaining work low-friction).",
+    "Treat every yes as a trade-off. Saying yes to one thing means giving up something else, so only take on what is a clear yes and decline the rest.",
+    "Protect yourself as your main asset. The Explore chapter on sleep argues that cutting an hour of sleep to gain an hour of work is a bad trade, and one reader moved bedtime to about 9:30-10 pm and wakes at 5 am.",
+    "Do not cram in the 'do it all' mindset. Be honest about the cost of the stuff you add, and drop things that merely feel productive.",
+    "Apply it as you read: after each chapter, write down one change to test for 24 hours, then review weekly whether it stuck. Otherwise it's just inspiration reading."
   ],
-  "honest_take": "The actual Reddit conversation specifically about Essentialism is thin \u2014 basically one enthusiastic post that got zero comments \u2014 while the surrounding threads (Atomic Habits summaries, generic sleep-hygiene lists, 'life lessons' round-ups) show how often this book gets lumped into the broader self-help stack rather than discussed on its own terms. The one piece of it that consistently lands with readers isn't the philosophy chapters, it's the 'Protect the Asset' sleep chapter \u2014 people quote it, apply it, and report real behavior change (earlier bedtimes, earlier wake-ups). The rest of the book's four-part structure (Essence/Explore/Eliminate/Execute) gets far less real-world traction in the wild; it's the kind of framework people nod at but rarely cite specifics from. If you're skimming, the sleep chapter and the core 'right things, not more things' framing are the load-bearing parts \u2014 the explore/execute mechanics read like padding to stretch a single good insight into a full book.",
+  "honest_take": "The threads are thin and mostly fan-flavored, so don't expect a roast. The one real Essentialism post is a convert's testimonial, where the sleep chapter (\"Protect the Asset\") changed a habit, and the poster also says it's well written. There is no thread debating which chapters to skip, so I can't tell you Reddit has a skip-list; that would be invented. The sharpest criticism is indirect: in a thread on self-help reading, Essentialism sits on a list of books that someone read and nodded along to without changing their routines. The critique is aimed at passive reading, not the book itself. My read: the sleep chapter's tidy 'Non-Essentialist thinks / Essentialist knows' lists are a bit black-and-white, and the book's main idea is simple enough that you can get most of it from a summary. The value is in actually saying no, not in underlining.",
   "quotes": [
     {
       "text": "Essentialism is not about how to get more things done; it's about how to get the right things done.",
@@ -17,14 +17,14 @@
       "url": "https://www.reddit.com/r/BettermentBookClub/comments/jgpn1v/essentialism_the_disciplined_pursuit_of_less_how/"
     },
     {
-      "text": "One hour more of sleep equals several more hours of much higher productivity.",
+      "text": "One of the most common ways people \u2013 especially ambitious, successful people \u2013 damage this asset is through a lack of sleep.",
       "author": "Mr_OTG",
       "url": "https://www.reddit.com/r/BettermentBookClub/comments/jgpn1v/essentialism_the_disciplined_pursuit_of_less_how/"
     },
     {
-      "text": "I qualify \"good books\" not on the quality of the writing ( as a non-English native, it's quite difficult for me to judge) but more on the author's ability to help me make a change.",
-      "author": "Mr_OTG",
-      "url": "https://www.reddit.com/r/BettermentBookClub/comments/jgpn1v/essentialism_the_disciplined_pursuit_of_less_how/"
+      "text": "Reading had become another form of procrastination\u2014growth-flavored, but still passive.",
+      "author": "FunSolid310",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/1jkj403/the_hardest_part_of_reading_selfimprovement_books/"
     }
   ],
   "sources": [
@@ -35,43 +35,37 @@
       "score": 94
     },
     {
-      "title": "Here\u2019s how to change yourself with consistent small habits with James Clear\u2019s Atomic Habits",
-      "url": "https://www.reddit.com/r/BettermentBookClub/comments/h9k21k/heres_how_to_change_yourself_with_consistent/",
+      "title": "The hardest part of reading self-improvement books isn\u2019t understanding\u2014it\u2019s applying",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/1jkj403/the_hardest_part_of_reading_selfimprovement_books/",
       "subreddit": "BettermentBookClub",
-      "score": 275
+      "score": 80
     },
     {
-      "title": "Many aspects of life can be improved with better sleep",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/10uifeh/many_aspects_of_life_can_be_improved_with_better/",
-      "subreddit": "DecidingToBeBetter",
-      "score": 564
-    },
-    {
-      "title": "10 Useful Life Lessons to Give You a Head Start",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/8gk10q/10_useful_life_lessons_to_give_you_a_head_start/",
-      "subreddit": "DecidingToBeBetter",
-      "score": 660
-    },
-    {
-      "title": "\ud83d\udcdd An Action Guide to Atomic Habits",
-      "url": "https://www.reddit.com/r/BettermentBookClub/comments/uzk9gf/an_action_guide_to_atomic_habits/",
+      "title": "[Book Summary] Barking Up the Wrong Tree by Eric Barker",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/gniqfo/book_summary_barking_up_the_wrong_tree_by_eric/",
       "subreddit": "BettermentBookClub",
-      "score": 114
+      "score": 54
+    },
+    {
+      "title": "Top 10 Posts/Users - The Best of the Betterment Book Club - 2022",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/zyh1tz/top_10_postsusers_the_best_of_the_betterment_book/",
+      "subreddit": "BettermentBookClub",
+      "score": 73
     }
   ],
   "generated_by": "claude",
-  "generated_at": "2026-07-21",
-  "model": "",
-  "verdict": "Skip the book \u2014 this page has the one chapter (sleep) that actually changes behavior; the rest is padding.",
-  "try_today": "Pick one commitment on tomorrow's calendar and cancel or decline it with a one-line 'no' and no explanation.",
-  "for_who": "Someone whose calendar is packed but who can't name their top one or two priorities.",
-  "skip_if": "You already protect your sleep and routinely say no without guilt \u2014 you've got the core already.",
+  "generated_at": "2026-10-25",
+  "model": "claude-sonnet-5-5",
+  "verdict": "This page covers most of it; the idea is simple, so read the book only if you'll actually start saying no.",
+  "try_today": "Open your calendar or to-do list, pick one commitment that isn't a clear yes, and decline or delete it with a short message or a strike-through. Then write down what you just freed up time for.",
+  "for_who": "Someone who is overcommitted, says yes by default, and will actually test one change at a time rather than just underline.",
+  "skip_if": "You already say no easily, or you only want the main idea, since this summary gets you most of the way there.",
   "take_points": [
-    "The real Reddit discussion on this book is thin \u2014 one post, zero comments, mostly lumped into generic self-help roundups.",
-    "The 'Protect the Asset' sleep chapter is the part people actually quote and apply, with real reported changes like earlier bedtimes.",
-    "The Essence/Explore/Eliminate/Execute framework gets nods but no real citations \u2014 nobody describes using it specifically.",
-    "If you only take two things: protect your sleep, and ask 'right things, not more things' before saying yes."
+    "The threads are thin and mostly fan-flavored, so don't expect a roast; the one real post is a convert's testimonial.",
+    "The sleep chapter ('Protect the Asset') changed a habit for that poster, and they also say the book is well written.",
+    "The sharpest criticism is indirect: it shows up on a list of books people nodded along to without changing their routines, which is about passive reading, not the book itself.",
+    "The 'Non-Essentialist thinks / Essentialist knows' lists are a bit black-and-white, and the core idea is simple enough to get from a summary, so the value is in actually saying no, not in underlining."
   ],
   "enriched_at": "2026-10-25",
-  "enrich_model": ""
+  "enrich_model": "claude-sonnet-5-5"
 }

@@ -36,6 +36,7 @@ books:
   author: Julie Smith
 - title: Boundaries
   author: Henry Cloud and John Townsend
+  require_author: true  # "boundaries" alone matches generic advice posts
 - title: Eat That Frog!
   author: Brian Tracy
 - title: Tiny Experiments
@@ -72,5 +73,6 @@ books:
   author: Oliver Burkeman
 - title: Emotional Intelligence
   author: Daniel Goleman
+  require_author: true  # the phrase alone matches other EQ books and posts
 - title: The Compound Effect
   author: Darren Hardy

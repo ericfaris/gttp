@@ -1,23 +1,39 @@
 {
   "title": "Why We Sleep",
   "author": "Matthew Walker",
-  "core_idea": "Chronic sleep deprivation isn't a minor inconvenience \u2014 Walker argues it degrades memory, immune function, mood, and lifespan the same way starvation or dehydration would, and most adults are running a sleep debt they've normalized as 'just being tired.'",
+  "core_idea": "Sleep is not a luxury you can trim. Chronic short sleep degrades brain and body, lost sleep can never be fully \"slept back\", and the practical fix is protecting a consistent, long-enough night built around your body clock.",
   "bullets": [
-    "Get 7-9 hours; anything less consistently isn't toughness, it's measurable cognitive and physical decline.",
-    "Fix your wake-up time and hold it seven days a week \u2014 sleeping in on weekends doesn't erase a weekday deficit, it just resets your circadian clock again.",
-    "Alcohol knocks you out but destroys REM sleep, so 'I sleep fine after a few drinks' is usually wrong.",
-    "Cool, dark room; caffeine has a longer half-life than people think, so afternoon coffee is still in your system at bedtime.",
-    "Naps and 'catching up' on sleep don't fully repay debt \u2014 prevention beats recovery."
+    "Fix your wake time and bedtime, weekends included. This is the habit Redditors say stuck, with noticeable change in about two weeks. Set an alarm for bedtime, not just for waking.",
+    "Treat caffeine as a long-lasting drug. Its half-life is roughly 5-7 hours, so a dinner-time coffee is still half active around 1:30 a.m. Move your last cup well before afternoon.",
+    "Respect the two systems behind sleep. Adenosine builds the longer you stay awake, and a circadian rhythm of slightly more than 24 hours runs separately. Keep the rhythm anchored with daylight, regular meals, exercise, cool temperatures and regularly timed social contact.",
+    "Don't shave the end of the night. Cutting 2 of 8 hours (25%) can cost 60-90% of your REM sleep, because REM is concentrated late. You can't repay that debt with a weekend lie-in.",
+    "Build a wind-down that quiets your head. Redditors report meditation, sleepcasts and light stretching helped them fall asleep faster. One commenter admits falling asleep to videos, which is the habit the book argues against."
   ],
-  "honest_take": "Here's the awkward truth: across all these threads, there's exactly one person who actually cites Why We Sleep as changing a behavior \u2014 a fixed wake time \u2014 buried in a list next to Atomic Habits and Meditations. That's the entire 'Reddit discussion' of this specific book in the material given. There's no deep-dive, no chapter-by-chapter debate, no one arguing about which parts to skip. That thinness is itself telling: the book's actual popularity on Reddit rides on one or two sticky, easy-to-implement habits (fixed wake time, cut alcohol/caffeine) rather than the book's denser neuroscience chapters on dreaming, memory consolidation, or evolutionary sleep theory \u2014 those get absorbed into 'yeah sleep is important' and forgotten. If you want the book's real-world value, skip trying to remember the mechanisms and just steal the two or three behavior changes people actually keep: consistent wake time, no alcohol as a sleep aid, protect the last hour before bed. The rest is context you'll nod along to once and never apply.",
+  "honest_take": "Reddit's reception is warm but thinner than you'd expect for a mega-bestseller. The most upvoted contribution is a 7-minute summary whose own advice is basically: if you just want to sleep better, read the actionable points, and if you need convincing, read the parts on what sleep loss does to you. That is a polite way of saying the sleep-phase detail and the animal-sleep tangents (birds, dolphins, half-brain sleep) are skippable unless you're a neuroscience nerd. The sharpest criticism is about trust and payoff. One commenter loved it on release, then ran into Alexey Guzey's critique of the book's claims and soured on it. Another thought Walker's Joe Rogan interview beat the book and finished it still not knowing why we sleep. A third group is realistic about real life: night owls who can't make an 11pm bedtime work even with a sleep specialist, and people whose commute and study load leave no room for eight hours. Verdict: take the practical advice (fixed schedule, caffeine cutoff, protect your sleep), but treat the book's alarming statistics with some skepticism and don't feel obliged to read every chapter.",
   "quotes": [
     {
-      "text": "Why We Sleep by Matthew Walker gave me a fixed wake time. Same time every day including weekends. I fought this for months because I thought weekends were for sleeping in. The sleep quality difference was noticeable within 2 weeks.",
+      "text": "If you just want to sleep better, just read the Actionable points.",
+      "author": "OptionalBooks",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/bay94k/booksummary_why_we_sleep_by_matthew_walker_7/"
+    },
+    {
+      "text": "Same time every day including weekends. I fought this for months because I thought weekends were for sleeping in. The sleep quality difference was noticeable within 2 weeks.",
       "author": "StackedMornings",
       "url": "https://www.reddit.com/r/BettermentBookClub/comments/1skm8oc/which_book_actually_changed_your_daily_habits_not/"
+    },
+    {
+      "text": "Caffeine has an average half-life of five to seven hours.",
+      "author": "swapagarwal",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/eie8ph/notes_from_the_remaining_books_13_25_i_read_in/"
     }
   ],
   "sources": [
+    {
+      "title": "[BookSummary] Why We Sleep by Matthew Walker (7 minute read)",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/bay94k/booksummary_why_we_sleep_by_matthew_walker_7/",
+      "subreddit": "BettermentBookClub",
+      "score": 93
+    },
     {
       "title": "Which book actually changed your daily habits, not just how you think?",
       "url": "https://www.reddit.com/r/BettermentBookClub/comments/1skm8oc/which_book_actually_changed_your_daily_habits_not/",
@@ -25,43 +41,37 @@
       "score": 99
     },
     {
-      "title": "A decade ago I was kicked out of college with a 0.9 GPA. Saturday I will graduate Magna Cum Laude with two Engineering degrees and a full tuition scholarship to Law School. I also lost 130 pounds and quit a bad 6 yr cigarette habit during this time. It's never too late. You're never a lost cause.",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/gfd9y7/a_decade_ago_i_was_kicked_out_of_college_with_a/",
-      "subreddit": "DecidingToBeBetter",
-      "score": 25329
+      "title": "Why We Sleep by Matthew Walker \u2013 Summary",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/pms57x/why_we_sleep_by_matthew_walker_summary/",
+      "subreddit": "BettermentBookClub",
+      "score": 51
     },
     {
-      "title": "After Drowning in Depression, PTSD, and Addiction for Six Long, Awful Years...I Think I'm Finally Starting to Recover",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/n4ljjb/after_drowning_in_depression_ptsd_and_addiction/",
-      "subreddit": "DecidingToBeBetter",
-      "score": 1670
+      "title": "Notes from the remaining books (#13 - #25) I read in 2019",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/eie8ph/notes_from_the_remaining_books_13_25_i_read_in/",
+      "subreddit": "BettermentBookClub",
+      "score": 28
     },
     {
-      "title": "You've got 'discipline' all wrong. Let me Explain: ",
-      "url": "https://www.reddit.com/r/getdisciplined/comments/1cle0ag/youve_got_discipline_all_wrong_let_me_explain/",
-      "subreddit": "getdisciplined",
-      "score": 1564
-    },
-    {
-      "title": "I started getting anxious because there's a huge disconnect between where I am right now versus where I want to be. When this happens, remind yourself of what life will be like if you keep going, and that the anxiety is an illusion since you spend ur current life working towards your future life.",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/kpyb88/i_started_getting_anxious_because_theres_a_huge/",
-      "subreddit": "DecidingToBeBetter",
-      "score": 1509
+      "title": "[BookSummary] How to Live on 24 Hours a Day by Arnold Bennett (6 minute read)",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/bjmvpp/booksummary_how_to_live_on_24_hours_a_day_by/",
+      "subreddit": "BettermentBookClub",
+      "score": 90
     }
   ],
   "generated_by": "claude",
-  "generated_at": "2026-07-21",
-  "model": "",
-  "verdict": "Skip the book \u2014 set a fixed wake time and cut late alcohol/caffeine; that's the whole payoff people actually use.",
-  "try_today": "Set a daily alarm for the same wake-up time, including weekends, and turn it on right now before you forget.",
-  "for_who": "Someone who's normalized constant tiredness and wants one or two changes that actually stick.",
-  "skip_if": "You just want the neuroscience of dreaming and memory consolidation, not behavior change.",
+  "generated_at": "2026-10-25",
+  "model": "claude-sonnet-5-5",
+  "verdict": "This page is enough; skip the full book unless you need convincing, since the advice is simple and the statistics deserve skepticism.",
+  "try_today": "Set a recurring daily alarm on your phone for your bedtime, 8 hours before the wake time you'll keep every day, weekends included.",
+  "for_who": "Someone who routinely shortchanges sleep, needs convincing about what sleep loss does, or enjoys neuroscience for its own sake.",
+  "skip_if": "You just want to sleep better and are happy to act on a short list of practical points.",
   "take_points": [
-    "Only one person in the discussion cited an actual behavior change from this book: a fixed wake time.",
-    "There's no real chapter-by-chapter debate \u2014 the 'discussion' is thin, which tells you something.",
-    "The book's popularity rides on two or three sticky habits, not its denser science chapters.",
-    "Skip trying to remember the mechanisms; just steal consistent wake time, no alcohol as a sleep aid, and protecting the last hour before bed."
+    "Reddit's reception is warm but thinner than you'd expect for a mega-bestseller.",
+    "The sleep-phase detail and animal-sleep tangents (birds, dolphins, half-brain sleep) are skippable unless you're a neuroscience nerd.",
+    "Some readers soured after Alexey Guzey's critique of the book's claims, and another felt the Joe Rogan interview beat the book.",
+    "Real life pushes back: night owls can't always make an 11pm bedtime work, and commutes and study loads can crowd out eight hours."
   ],
   "enriched_at": "2026-10-25",
-  "enrich_model": ""
+  "enrich_model": "claude-sonnet-5-5"
 }

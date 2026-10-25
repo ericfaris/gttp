@@ -314,3 +314,23 @@ def test_render_site_uses_cache_only(monkeypatch):
 
     assert pipeline.render_site(books) == 1
     assert [p.title for p in written[0]] == ["Atomic Habits"]
+
+
+def test_require_author_for_generic_titles():
+    book = Book(title="Emotional Intelligence", author="Daniel Goleman", require_author=True)
+    generic = _thread("g", "Emotional Intelligence 2.0 by Travis Bradberry", 300)
+    goleman = _thread("d", "Notes", 40, body="Emotional intelligence, as Goleman puts it, " + "x " * 300)
+    assert [t.id for t in filter_threads([generic, goleman], book)] == ["d"]
+    # Off by default: a distinctive title needs no author mention.
+    assert filter_threads([generic], Book(title="Emotional Intelligence")) == [generic]
+
+
+def test_require_author_matches_any_coauthor_surname():
+    book = Book(title="Boundaries", author="Henry Cloud and John Townsend", require_author=True)
+    t = _thread("t", "Boundaries notes", 50, body="Townsend's chapter on " + "x " * 300)
+    assert filter_threads([t], book) == [t]
+
+
+def test_catalog_flags_generic_titles():
+    flagged = {b.title for b in load_catalog() if b.require_author}
+    assert {"Boundaries", "Emotional Intelligence"} <= flagged

@@ -59,9 +59,18 @@ def _book_keys(book: Book) -> list[str]:
     return [k for k in keys if k.strip()]
 
 
+def _author_surnames(book: Book) -> list[str]:
+    names = re.split(r" and |,|&", book.author or "")
+    return [_norm(n.split()[-1]) for n in names if n.strip()]
+
+
 def mentions_book(thread: RedditThread, book: Book) -> bool:
     text = _norm(f"{thread.title} {thread.selftext}")
-    return any(k in text for k in _book_keys(book))
+    if not any(k in text for k in _book_keys(book)):
+        return False
+    if book.require_author:
+        return any(s in text for s in _author_surnames(book))
+    return True
 
 
 def filter_threads(threads: list[RedditThread], book: Book) -> list[RedditThread]:

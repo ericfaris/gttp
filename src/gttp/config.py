@@ -41,6 +41,10 @@ class Book:
     min_chars: int = 400
     max_threads_per_book: int = 40
     synthesis_top_n: int = 5
+    # For titles that are everyday phrases ("Boundaries", "Emotional
+    # Intelligence"): a thread must also name an author's surname to count
+    # as being about the book.
+    require_author: bool = False
 
     @property
     def slug(self) -> str:
@@ -75,6 +79,7 @@ def load_catalog(path: Path = BOOKS_FILE) -> list[Book]:
                 min_chars=int(merged.get("min_chars", 400)),
                 max_threads_per_book=int(merged.get("max_threads_per_book", 40)),
                 synthesis_top_n=int(merged.get("synthesis_top_n", 5)),
+                require_author=bool(merged.get("require_author", False)),
             )
         )
     return books

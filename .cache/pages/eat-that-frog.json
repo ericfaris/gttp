@@ -1,77 +1,65 @@
 {
   "title": "Eat That Frog!",
   "author": "Brian Tracy",
-  "core_idea": "Brian Tracy's whole book boils down to one move: identify the single most important, most uncomfortable task on your list (the 'frog') and do it first thing in the morning, before email, before meetings, before anything else \u2014 because willpower is highest early and lowest by 3pm.",
+  "core_idea": "Identify your single most important, most dreaded task and do it first, before anything easy or pleasant. Your day's results depend on whether the high-value work gets done, not on how busy you were.",
   "bullets": [
-    "Use the ABCDE method: rank every task A (serious consequences if not done) through E (no consequences), and never touch a B task while an A task is undone.",
-    "Pick the single ugliest, highest-value task on your list and do it before you open email or Slack \u2014 that's 'eating the frog.'",
-    "Apply 80/20: 20% of your tasks produce 80% of your results, so most of your to-do list is filler you can ignore or delete.",
-    "Single-task. Tracy is explicit that multitasking is a productivity myth \u2014 pick one frog, finish it, then move to the next.",
-    "Plan tomorrow's frog the night before so you're not deciding what to work on when your willpower is already spent."
+    "Pick your frog: the one task that matters most and that you're most tempted to dodge. Do it before anything else.",
+    "Rank your to-do list from most to least important and work down it in that order, so that when time runs out, only the unimportant stuff is left undone.",
+    "Stop choosing tasks by what you feel like doing. Easy, enjoyable work is how a day fills up with busyness while the important things slide.",
+    "Accept that there will never be enough hours to do everything. The skill is deciding what gets dropped, not squeezing in more.",
+    "Schedule your hardest, most mentally demanding work for the morning, when energy is highest and procrastination has the least pull."
   ],
-  "honest_take": "None of the linked threads are actually a discussion of 'Eat That Frog!' by name \u2014 Reddit's self-help crowd talks about the same underlying idea (do the hard important thing first, prioritize ruthlessly) constantly, but they credit it to the 'big rocks in the jar' analogy, Pareto's 80/20, or lump it in with Atomic Habits and The Slight Edge rather than citing Tracy directly. That's actually the sharpest implicit criticism of the book floating around self-help circles: the core insight is one paragraph long and everyone already half-knows it from other sources, so the book gets padded to 21 short chapters restating 'prioritize and start' in slightly different language. The genuinely useful chapters are the ABCDE method and the 80/20 chapter \u2014 those give you a repeatable system. The rest (the chapters on 'upgrading your key skills,' 'technology,' single-tasking pep talks) read as filler that most people skip after the first read-through. The bigger consensus from actual habit-focused threads is that Tracy's book is a motivation-flavored kickstart, but the people who stick with it long-term are the ones who pair it with discipline-based habit tracking (bullet journals, small non-negotiable daily minimums) rather than relying on the 'frog' framing alone.",
+  "honest_take": "The Reddit verdict is that the idea is sound and the book is mostly a vehicle for it. Fans call it wonderful, but even the summary posts boil it down to one line, which tells you how much of the book you actually need. Nobody in these threads names specific chapters to skip, so I won't invent a skip list. The implication is that if you've absorbed 'rank tasks, do the worst one first,' the rest is reinforcement. The one real pushback is that frog-first isn't a law. One poster argues that ego depletion and nagging small tasks (an overdue bill) can wreck your focus, so clearing a few easy wins first can build momentum. A carpenter in the comments does the same, saving the hardest job for after a few quick wins so a setback doesn't leave him with nothing done. The bottom line is that you should treat Tracy's rule as a strong default rather than gospel, and that the advice is as old as time-management books themselves. One commenter even found the morning-for-hard-work idea in The War of Art before meeting it in Eat That Frog.",
   "quotes": [
     {
-      "text": "Well, the most important tasks are the big rocks and the jar is your to-do list.",
-      "author": "tinmmayer",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/90fj60/my_team_is_overwhelmed_with_stress_at_work/"
+      "text": "Rank your tasks from most important to least important and complete them in that order.",
+      "author": "308ar10",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/igfb62/what_can_these_3_books_teach_us_about_time/"
     },
     {
-      "text": "Motivation fades. Discipline is forever.",
-      "author": "The_Wolf_Pack",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/cv5gng/30_days_and_what_ive_learnedearned/"
+      "text": "if you eat your biggest frog first, everything else in the day will be easier",
+      "author": "bvolkl",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/2wn5km/ego_depletion_and_the_low_hanging_fruit/"
     },
     {
-      "text": "DON'T TRUST MOTIVATION. Motivation is good if it's there but it shouldn't be the foundation of the habits you create.",
-      "author": "luuk0987",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/9t0hqd/what_ive_learned_working_my_way_up_from_rock/"
+      "text": "I learned to do mentally intensive work in the morning when my energy was high, to prevent any desire to procrastinate",
+      "author": "domocke",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/5v7zdo/suggestion_a_weeklymonthly_thread_dedicated_to/"
     }
   ],
   "sources": [
     {
-      "title": "A week before the lockdowns began I did a one week no procrastination challenge: no distractions, no phone, no TV, nothing unplanned. Now might be the best time for you to try it too! It's a great way of catching up on a lot of work in a short amount of time. Here's my method and takeaways.",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/fnhfji/a_week_before_the_lockdowns_began_i_did_a_one/",
-      "subreddit": "DecidingToBeBetter",
-      "score": 443
-    },
-    {
-      "title": "My Team is Overwhelmed with Stress at Work",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/90fj60/my_team_is_overwhelmed_with_stress_at_work/",
-      "subreddit": "DecidingToBeBetter",
-      "score": 131
-    },
-    {
-      "title": "Here\u2019s how to change yourself with consistent small habits with James Clear\u2019s Atomic Habits",
-      "url": "https://www.reddit.com/r/BettermentBookClub/comments/h9k21k/heres_how_to_change_yourself_with_consistent/",
+      "title": "What can these 3 books teach us about Time Management?",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/igfb62/what_can_these_3_books_teach_us_about_time/",
       "subreddit": "BettermentBookClub",
-      "score": 274
+      "score": 48
     },
     {
-      "title": "30 days and what Ive learned/earned.",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/cv5gng/30_days_and_what_ive_learnedearned/",
+      "title": "Ego Depletion and the Low Hanging Fruit",
+      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/2wn5km/ego_depletion_and_the_low_hanging_fruit/",
       "subreddit": "DecidingToBeBetter",
-      "score": 570
+      "score": 60
     },
     {
-      "title": "What I've learned working my way up from rock bottom",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/9t0hqd/what_ive_learned_working_my_way_up_from_rock/",
-      "subreddit": "DecidingToBeBetter",
-      "score": 565
+      "title": "Suggestion: A weekly/monthly thread dedicated to people posting how they used advice from books in their lives.",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/5v7zdo/suggestion_a_weeklymonthly_thread_dedicated_to/",
+      "subreddit": "BettermentBookClub",
+      "score": 72
     }
   ],
   "generated_by": "claude",
-  "generated_at": "2026-07-21",
-  "model": "",
-  "verdict": "This page is enough \u2014 the whole book is one paragraph stretched into 21 chapters you already know.",
-  "try_today": "Write down tomorrow's single most important, most uncomfortable task on a sticky note right now, and put it on your keyboard so it's the first thing you see before opening email.",
-  "for_who": "Someone who procrastinates on one big scary task by doing fifty small easy ones first.",
-  "skip_if": "You already use any prioritization system (ABCDE, 80/20, big rocks) or have read Atomic Habits.",
+  "generated_at": "2026-10-25",
+  "model": "claude-sonnet-5-5",
+  "verdict": "This page is enough; the book is one idea stretched out, so just rank your tasks and do the worst first.",
+  "try_today": "Write down tomorrow's to-do list, circle the one task that matters most and that you most want to dodge, and put it first on your calendar for tomorrow morning.",
+  "for_who": "Someone who stays busy all day with easy tasks while the important work keeps slipping.",
+  "skip_if": "You already rank tasks by importance and tackle the hardest one first.",
   "take_points": [
-    "No Reddit thread actually discusses this book by name \u2014 people cite the same idea via 'big rocks' or Pareto instead.",
-    "The core insight is one paragraph: do the hard important thing first, before anything else.",
-    "Only two parts are genuinely useful: the ABCDE ranking method and the 80/20 chapter \u2014 the rest is padding.",
-    "The book alone doesn't create lasting change \u2014 people who stick with it pair it with habit tracking, not just the 'frog' framing."
+    "The idea is sound: pick your most important, most dreaded task and do it before anything easy.",
+    "The book is mostly a vehicle for that one idea, which is why even Reddit's summary posts boil it down to a single line.",
+    "Frog-first isn't a law; one poster says nagging small tasks like an overdue bill can wreck focus, and a carpenter does a few quick wins first so a setback doesn't leave him with nothing done.",
+    "Treat Tracy's rule as a strong default, not gospel, and know the advice is old; one commenter found morning-for-hard-work in The War of Art first."
   ],
   "enriched_at": "2026-10-25",
-  "enrich_model": ""
+  "enrich_model": "claude-sonnet-5-5"
 }
