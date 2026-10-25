@@ -1,72 +1,65 @@
 {
   "title": "The Comfort Crisis",
   "author": "Michael Easter",
-  "core_idea": "Michael Easter's thesis is that modern life has engineered nearly all discomfort out of existence \u2014 no cold, no hunger, no boredom, no physical struggle \u2014 and that this comfort has made us weaker, more anxious, and less satisfied; deliberately choosing hardship (cold, hunger, hard walks, boredom, physical effort) is the fix.",
+  "core_idea": "Modern life has engineered out boredom, silence, hunger, exertion and risk, and Easter argues we're worse off for it. His fix is to choose small, deliberate doses of discomfort, and he tests this himself on a month-long caribou hunt in the Alaskan Arctic.",
   "bullets": [
-    "Do one 'misogi' a year: pick a physical challenge so hard there's a real chance you fail (Easter's own is a multi-day solo hike hauling a 25kg rock through the Alaskan backcountry).",
-    "Ruck instead of jog: walking with a loaded backpack builds strength and endurance with less joint damage than running, and it's Easter's actual go-to.",
-    "Get uncomfortable on a schedule: cold showers, skipped meals, no AC in summer \u2014 small voluntary discomfort resets your baseline so everyday life feels easier by comparison.",
-    "Kill 'rewarding' behaviors that erase friction: stop taking elevators/escalators, stop pre-chewing your food with delivery apps, let some tasks stay hard on purpose.",
-    "Sit with boredom instead of numbing it: leave your phone in another room sometimes \u2014 idle, understimulated time is where your brain actually processes and recovers."
+    "Get real quiet: about two hours a day of no podcasts, no lo-fi, no input (earplugs or noise-canceling headphones if you live in a city). The book cites research linking quiet to new cell growth in a brain region that fights depression.",
+    "Let yourself be bored and let your mind wander. Don't fill every gap with a screen.",
+    "Swap eating for \"calorie-negative\" stress responses like a walk, shadow-boxing, stretching or meditation. The book's claim is that people at a steady weight just handle stress differently.",
+    "Drop the checklist mindset (promotion, car, next goal). The satisfaction you expect never arrives, so you just write a new list.",
+    "Get outside, move more, and think about your own death daily. The book frames this as a way to stop living on autopilot and regretting it later."
   ],
-  "honest_take": "None of the linked threads are actually about this book \u2014 they're Atomic Habits summaries, sleep-hygiene checklists, and a 'what I learned at sniper school' post that happens to preach the exact same gospel Easter does. That's telling: on Reddit, the Comfort Crisis thesis shows up constantly as recycled wisdom (get uncomfortable, adversity builds you, comfort is the enemy) without people engaging with the book's specific chapters \u2014 the caribou hunt in Alaska, the misogi concept, the deep dives into boredom and attention. The sharpest implicit criticism across this genre of posts is the pattern itself: people upvote, bookmark, say 'thanks, needed this today,' and then nothing changes \u2014 the sniper-school post got bookmarked 'for whenever I feel a little overwhelmed,' which is exactly the passive consumption Easter's book argues against. If you're going to read it, skip straight to the misogi/rucking chapters (the actionable spine) and treat the extended memoir-y wilderness-hunt sections as skippable atmosphere unless you like nature writing.",
+  "honest_take": "The Reddit verdict is mostly warm but thin. Readers call it enjoyable, and the Alaska survival-and-hunting narrative is what sets it apart from the usual non-fiction. Several people said they loved it or bumped it up their reading list. The sharpest pushback is on the science. One commenter called the book's weight claim flat-out false, saying genetics, NEAT (unconscious movement) and metabolic history really do change how many calories two same-sized people burn. The \"calorie-negative stress response\" bullet is therefore the one to treat as a nudge rather than gospel. A reviewer also warns vegans and vegetarians off because of the hunting. Nobody in these threads says which chapters to skip, so I can't name any without making it up. The author's follow-up, Scarcity Brain, got mocked as self-help with \"a very thin veneer of science.\" Even that skeptic liked The Comfort Crisis, and the same criticism, anecdote over evidence, could fairly be turned on this book. The r/getdisciplined thread is general venting about comfort and phones, not a book discussion.",
   "quotes": [
     {
-      "text": "Get comfortable being uncomfortable.",
-      "author": "troffis",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/3qpy7k/what_i_learned_at_sniper_school/"
+      "text": "What made this book different from other non-fiction books is that he depicted his experience of surviving and hunting in the wilds of Alaska's Arctic for 1 month.",
+      "author": "eieireddit",
+      "url": "https://www.reddit.com/r/books/comments/17rx965/"
     },
     {
-      "text": "The person beyond our comfort zone is awesome.",
-      "author": "troffis",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/3qpy7k/what_i_learned_at_sniper_school/"
+      "text": "Two hours of the type of quiet we can find at home (perhaps with earplugs in or noise-canceling headphones on, if you live in a city) was shown to lead to the production of more cells in an area of the brain that fights depression.",
+      "author": "eieireddit",
+      "url": "https://www.reddit.com/r/books/comments/17rx965/"
+    },
+    {
+      "text": "Easter knows as much about neuroscience as a pigeon.",
+      "author": "Unlikely-Loan-4175",
+      "url": "https://www.reddit.com/r/books/comments/195laod/"
     }
   ],
   "sources": [
     {
-      "title": "This is how I learned to wake up early near 100% of the time with a bunch of biohacking.",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/7d4kua/this_is_how_i_learned_to_wake_up_early_near_100/",
-      "subreddit": "DecidingToBeBetter",
-      "score": 761
+      "title": "Review of \"The Comfort Crisis\" by Michael Easter (Non-fiction)",
+      "url": "https://www.reddit.com/r/books/comments/17rx965/",
+      "subreddit": "books",
+      "score": 13
     },
     {
-      "title": "Here\u2019s how to change yourself with consistent small habits with James Clear\u2019s Atomic Habits",
-      "url": "https://www.reddit.com/r/BettermentBookClub/comments/h9k21k/heres_how_to_change_yourself_with_consistent/",
-      "subreddit": "BettermentBookClub",
-      "score": 273
+      "title": "Are we living in a comfort crisis?",
+      "url": "https://www.reddit.com/r/getdisciplined/comments/1he8253/",
+      "subreddit": "getdisciplined",
+      "score": 150
     },
     {
-      "title": "What I Learned At Sniper School.",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/3qpy7k/what_i_learned_at_sniper_school/",
-      "subreddit": "DecidingToBeBetter",
-      "score": 271
-    },
-    {
-      "title": "Many aspects of life can be improved with better sleep",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/10uifeh/many_aspects_of_life_can_be_improved_with_better/",
-      "subreddit": "DecidingToBeBetter",
-      "score": 561
-    },
-    {
-      "title": "I Know This Will Help Someone",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/c5vjgq/i_know_this_will_help_someone/",
-      "subreddit": "DecidingToBeBetter",
-      "score": 1138
+      "title": "I'm a sucker for self-help books but Michael Easter's Scarcity Brain has maybe jumped the shark?",
+      "url": "https://www.reddit.com/r/books/comments/195laod/",
+      "subreddit": "books",
+      "score": 13
     }
   ],
   "generated_by": "claude",
-  "generated_at": "2026-07-21",
-  "model": "",
-  "verdict": "This page is enough \u2014 the ideas are simple, repeated everywhere, and the book's value is mostly memoir padding.",
-  "try_today": "Take the stairs instead of the elevator/escalator right now, and leave your phone in another room for the next 10 minutes instead of scrolling.",
-  "for_who": "Someone who feels soft, restless, or over-optimized and actually wants a nudge to do a hard thing, not just read about it.",
-  "skip_if": "You already deliberately do hard things (cold exposure, fasting, rucking, phone-free time) \u2014 you don't need the pep talk.",
+  "generated_at": "2026-10-25",
+  "model": "claude-sonnet-5-5",
+  "verdict": "This page covers the ideas; read the book only if the Alaska hunting story appeals, since the science is thin.",
+  "try_today": "Put on earplugs or noise-canceling headphones with nothing playing, sit somewhere without your phone, and let your mind wander for 10 minutes.",
+  "for_who": "Someone who likes survival-and-hunting narrative mixed into their self-improvement reading and wants a nudge to tolerate more discomfort.",
+  "skip_if": "You're vegan or vegetarian and dislike hunting stories, or you want rigorous science rather than anecdote.",
   "take_points": [
-    "The linked 'sources' for this book summary weren't even about this book \u2014 same recycled 'comfort is bad' wisdom everywhere.",
-    "That pattern is the actual indictment: people bookmark this stuff 'for later' and change nothing, which is exactly what Easter warns against.",
-    "If you do read it, skip to the misogi and rucking chapters \u2014 that's the actionable core, not the Alaska hunting memoir.",
-    "Knowing the thesis isn't the hard part; doing one uncomfortable thing today is."
+    "Readers mostly found it enjoyable, and the Alaska survival-and-hunting narrative is what sets it apart from typical non-fiction.",
+    "The core nudge is to choose small doses of discomfort like quiet, boredom, and movement instead of filling every gap with a screen.",
+    "Treat the 'calorie-negative stress response' weight claim as a nudge, not gospel, since a commenter called it false, citing genetics, NEAT, and metabolic history.",
+    "The same anecdote-over-evidence criticism aimed at Scarcity Brain could fairly apply here, though even that skeptic liked this book."
   ],
   "enriched_at": "2026-10-25",
-  "enrich_model": ""
+  "enrich_model": "claude-sonnet-5-5"
 }

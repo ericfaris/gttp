@@ -55,6 +55,7 @@ books:
   author: Marcus Aurelius
 - title: How to Begin
   author: Michael Bungay Stanier
+  require_author: true  # "how to begin" matches generic how-to posts
 - title: Why We Sleep
   author: Matthew Walker
 - title: The Obstacle Is the Way

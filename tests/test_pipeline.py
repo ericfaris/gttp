@@ -333,4 +333,4 @@ def test_require_author_matches_any_coauthor_surname():
 
 def test_catalog_flags_generic_titles():
     flagged = {b.title for b in load_catalog() if b.require_author}
-    assert {"Boundaries", "Emotional Intelligence"} <= flagged
+    assert {"Boundaries", "Emotional Intelligence", "How to Begin"} <= flagged

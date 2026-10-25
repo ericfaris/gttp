@@ -1,71 +1,42 @@
 {
   "title": "Emotional Intelligence",
   "author": "Daniel Goleman",
-  "core_idea": "Goleman's argument is that how well you read and manage emotions, yours and other people's, predicts life and work success at least as much as raw IQ does, and unlike IQ it can be trained. The mechanism is that emotion fires before reasoning, so the skill lies in noticing the feeling and choosing your response rather than being hijacked by it.",
+  "core_idea": "IQ alone doesn't explain who thrives: a separate set of skills (self-awareness, self-discipline, empathy) often matters more, and unlike IQ you can build them in adulthood.",
   "bullets": [
-    "Know the five domains from Goleman's framework: self-awareness, self-regulation, motivation, empathy and social skill. Your weakest one is your starting point.",
-    "Treat emotion as the first signal, not the enemy. Feelings arrive before thoughts, so train yourself to name what you feel before you act on it.",
-    "Build a gap between trigger and reaction. When you feel flooded (Goleman's 'amygdala hijack'), pause, cool off, then respond.",
-    "Practice empathy as a skill: read tone, facial expressions and what is left unsaid in meetings and conflicts, not just the words people use.",
-    "Choose one domain and rehearse it in real scenarios like feedback, conflict and stress. Reread and retest after a few months, since EQ improves with repetition rather than insight alone."
+    "Stop treating IQ as the whole story. Goleman's starting point is that high-IQ people often flounder while people with modest IQ do surprisingly well, so check which emotional skills are missing before blaming a lack of raw talent.",
+    "Start with self-awareness. Notice and name what you're feeling as it happens, because the other skills depend on it.",
+    "Practice self-discipline as emotional regulation: manage impulses and moods instead of acting on whatever you feel first.",
+    "Build empathy deliberately. Read what other people are feeling, since that drives how your relationships and your work go.",
+    "Treat all of this as trainable. Childhood shapes it, but it isn't fixed at birth, and working on it pays off in your health, relationships and work."
   ],
-  "honest_take": "Heads-up: the supplied Reddit threads barely discuss Goleman's book. The closest is a review of a different book, Bradberry and Graves' Emotional Intelligence 2.0, whose reader gives it a strong recommendation as a practical, easy follow-on with an assessment code. The other threads are about phone habits, negotiation, Stoicism and Adam Grant, and mention EQ only in passing. That means there is no Reddit verdict here on Goleman's pacing, studies or chapters to skip, and I won't invent one. What the threads do show is that people value EQ as a practical, trainable skill and a counterweight to 'no emotions' grindset culture. They also suggest readers prefer workbook-style, test-and-retest books over big-picture ones. If you want the actionable version rather than the research tour, the EQ 2.0 review is the book Reddit actually praises. Treat the chapter-skipping question as unanswered until you find threads that name Goleman's book.",
+  "honest_take": "This thread has no real discussion to synthesize. It's a single post that pastes the publisher-style blurb and links to a YouTube summary and a podcast, and it has no comments. So there is no Reddit criticism, no verdict on the book's weak spots, and no list of chapters to skip, and I won't invent one. All you can take from it is the book's pitch, plus the fact that people share it in a book club mostly through summaries. The bullets above restate that pitch and say nothing about whether the book delivers. If you want a real verdict, look for threads with actual commenters before deciding which parts are worth your time.",
   "quotes": [
     {
-      "text": "You're LITERALLY hard-wired to feel before you can think.",
-      "author": "308ar10",
-      "url": "https://www.reddit.com/r/BettermentBookClub/comments/hehi58/emotional_intelligence_20_by_travis_bradberry/"
-    },
-    {
-      "text": "It\u2019s a mark of emotional intelligence to avoid internalizing every feeling that enters your heart.",
-      "author": "duked828",
-      "url": "https://www.reddit.com/r/BettermentBookClub/comments/syo3m3/takeaways_think_again_by_adam_grant/"
+      "text": "These factors, which include self-awareness, self-discipline, and empathy, add up to a different way of being smart\u2014and they aren\u2019t fixed at birth.",
+      "author": "n5tonhf",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/pf87t5/"
     }
   ],
   "sources": [
     {
-      "title": "Emotional Intelligence 2.0 by Travis Bradberry &amp; Jean Graves",
-      "url": "https://www.reddit.com/r/BettermentBookClub/comments/hehi58/emotional_intelligence_20_by_travis_bradberry/",
+      "title": "Emotional Intelligence by Daniel Goleman",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/pf87t5/",
       "subreddit": "BettermentBookClub",
-      "score": 36
-    },
-    {
-      "title": "7 Bad Habits to Avoid",
-      "url": "https://www.reddit.com/r/DecidingToBeBetter/comments/9m82vl/7_bad_habits_to_avoid/",
-      "subreddit": "DecidingToBeBetter",
-      "score": 234
-    },
-    {
-      "title": "Chris Voss - Never Split The Difference Fully Summarized",
-      "url": "https://www.reddit.com/r/BettermentBookClub/comments/vz7vfb/chris_voss_never_split_the_difference_fully/",
-      "subreddit": "BettermentBookClub",
-      "score": 209
-    },
-    {
-      "title": "Is Stoicism misunderstood as emotional suppression?",
-      "url": "https://www.reddit.com/r/BettermentBookClub/comments/1kqzeu3/is_stoicism_misunderstood_as_emotional_suppression/",
-      "subreddit": "BettermentBookClub",
-      "score": 24
-    },
-    {
-      "title": "TAKEAWAYS: Think Again By Adam Grant",
-      "url": "https://www.reddit.com/r/BettermentBookClub/comments/syo3m3/takeaways_think_again_by_adam_grant/",
-      "subreddit": "BettermentBookClub",
-      "score": 34
+      "score": 11
     }
   ],
   "generated_by": "claude",
   "generated_at": "2026-10-25",
   "model": "claude-sonnet-5-5",
-  "verdict": "This page is enough for the core idea; Reddit never actually reviewed Goleman's book, so the full read is unproven.",
-  "try_today": "Set a 5-minute timer and write down the last strong emotion you felt, naming it in one word and noting what triggered it. Then write one sentence on what you'd do differently if you paused before reacting.",
-  "for_who": "Someone who wants to treat emotional skill as trainable and is willing to practice it in real feedback, conflict and stress.",
-  "skip_if": "You want a workbook-style, test-and-retest guide, since Reddit praises Bradberry and Graves' Emotional Intelligence 2.0 for that instead.",
+  "verdict": "This page covers the pitch, but it can't say whether the book delivers, so don't pick it up or skip it based on this alone.",
+  "try_today": "Set a 5-minute timer, write down what you're feeling right now in one or two specific words (like 'anxious about the deadline,' not just 'bad'), then note what triggered it.",
+  "for_who": "Someone who suspects talent alone isn't carrying them and wants to work on self-awareness, self-control and empathy.",
+  "skip_if": "You already buy the idea that emotional skills are trainable and just want a verdict on the book's quality, because this thread can't give you one.",
   "take_points": [
-    "The supplied Reddit threads barely discuss Goleman's book, so there is no verdict on its pacing, studies or chapters to skip.",
-    "The closest match is a review of a different book, Emotional Intelligence 2.0, which one reader strongly recommends as practical and easy, with an assessment code.",
-    "People value EQ as a practical, trainable skill and a counterweight to 'no emotions' grindset culture.",
-    "Readers seem to prefer workbook-style, test-and-retest books over big-picture ones, so treat the chapter-skipping question as unanswered."
+    "This thread is a single post with a publisher-style blurb, links to a YouTube summary and a podcast, and zero comments.",
+    "So there's no Reddit criticism, no list of weak spots, and no chapters to skip, and nothing here was invented to fill that gap.",
+    "The pitch is that self-awareness, self-discipline and empathy often matter more than IQ, and that you can build them as an adult.",
+    "Whether the book actually delivers is unknown from this page, so look for a thread with real commenters before committing your time."
   ],
   "enriched_at": "2026-10-25",
   "enrich_model": "claude-sonnet-5-5"
