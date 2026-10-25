@@ -35,7 +35,7 @@ cp .env.example .env          # optional: add your Anthropic key
 
 # Runs fully offline from bundled fixtures — no browser or keys needed:
 gttp build --offline
-open site/index.html          # or serve site/ however you like
+open site-offline/index.html  # or serve site-offline/ however you like
 
 # Live: fetch real Reddit threads and synthesize a book end-to-end:
 gttp add "Deep Work"
@@ -45,6 +45,9 @@ gttp build
 - **Offline mode** (`--offline`) reads Reddit threads from `fixtures/` and
   synthesizes pages with a deterministic heuristic — zero network calls, no
   browser. Use it to see the pipeline work before wiring up anything.
+  It is sandboxed: output goes to `site-offline/` and nothing is saved to
+  `.cache/`, so it can't touch what the production container serves from
+  this checkout.
 - **Online mode** fetches live Reddit threads through a real browser (see
   Configuration) and uses Claude for ranking + synthesis. Missing an Anthropic
   key falls back to the heuristic synthesizer, and a missing/unlaunchable
@@ -169,7 +172,7 @@ network — fetching only happens in `gttp add` and `gttp covers`.
 
 ## Deploying (GitHub Pages)
 
-`.github/workflows/build.yml` publishes `site/` to GitHub Pages, but builds
+`.github/workflows/build.yml` publishes `site-offline/` to GitHub Pages, but builds
 **offline** (`gttp build --offline`): a headless datacenter runner can't drive a
 real browser and Reddit blocks such IPs anyway, so live refreshes happen on the
 self-hosted container above. To enable Pages:
@@ -193,7 +196,7 @@ src/gttp/
   publish.py       Markdown + static-site rendering
   pipeline.py      orchestration
   covers.py        Open Library cover fetch + SVG placeholder
-  cli.py           `gttp add` / `gttp build` / `gttp enrich` / `gttp list` / `gttp covers`
+  cli.py           `gttp add` / `gttp build` / `gttp enrich` / `gttp render` / `gttp list` / `gttp covers`
 fixtures/          offline sample data
 books.yaml         seed catalog
 covers/            committed book cover images (<slug>.jpg)

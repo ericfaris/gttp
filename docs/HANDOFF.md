@@ -5,12 +5,21 @@
 Static site of point-first self-help book digests built from Reddit threads
 and Claude synthesis. Production: Docker container on `127.0.0.1:8100`, public
 at https://gttp.mooseflip.com through the mooseflip Cloudflare tunnel (no
-Access gate). It rebuilds the catalog on a timer (`POLL_INTERVAL_HOURS`).
+Access gate). Nothing builds automatically: every `gttp build` is run by
+hand inside the container.
 
-**Production runs from a separate clone, `/home/eric/deploy/gttp`.** Never run
-`docker compose` or `gttp build` from `/home/eric/projects/gttp`: the compose
-file bind-mounts `./site` and `./.cache`, so a dev build would overwrite the
-live site (this happened on 2026-07-11).
+**Production runs from this checkout, `/home/eric/projects/gttp`,** like
+every other lab app. The compose file bind-mounts `./site`, `./.cache`,
+`./books.yaml` and `./covers`, so the live container reads and writes these
+directly. Rules:
+- `gttp build --offline` is sandboxed: it writes `site-offline/` and never
+  saves to `.cache/`. Use it freely.
+- A plain `gttp build` here (outside the container) **updates the live site**
+  and may spend Claude credits. Run builds inside the container instead.
+- Pages re-synthesized in production land in `.cache/pages/` (tracked in
+  git). Commit them, because Sentinel refuses to deploy into a dirty checkout.
+- `/home/eric/deploy/gttp` is the retired separate clone (used until
+  2026-10-25). It's kept for now as a fallback and is safe to delete.
 
 ## Commands
 
@@ -19,12 +28,13 @@ live site (this happened on 2026-07-11).
 - Local preview without touching `site/`: call `publish.write_site(pages,
   <scratch dir>)` on the cached `.cache/pages/*.json`, then serve that dir
   from its root (the pages use absolute `/style.css` paths).
-- Deploy: merge to `main`, then in `/home/eric/deploy/gttp` run
-  `git pull --ff-only origin main && docker compose build --pull && docker compose up -d`
-  (or use the `deploy` skill, but run it in the deploy clone, not here).
-  Then `docker compose exec -T app gttp build`: the entrypoint only builds
-  when `site/` is empty, so a restart alone keeps serving the old HTML.
-  Last deployed: `06295e0` (2026-10-25).
+- Deploy: push to `main`. `test.yml` runs the tests, then its `deploy` job
+  (self-hosted runner `gha-runner-gttp`) has Sentinel (`/api/deploy`) pull,
+  `docker compose build --pull` and `up -d` here. On start the container
+  runs `gttp render` (cached pages only, no network, no API), so the new
+  code's HTML is live immediately. Manual equivalent:
+  `docker compose build --pull && docker compose up -d`.
+- Re-render without deploying: `docker compose exec -T app gttp render`.
 
 ## Claude usage
 
@@ -32,7 +42,8 @@ One model for ranking, synthesis and enrich: `MODEL` in
 `src/gttp/config.py` (`claude-sonnet-5-5` since 2026-10-25). New pages record
 the model that served them (`BookPage.model`, `enrich_model`, shown in the
 "Synthesized by" line). The 29 existing pages predate this and show no model.
-Pages are locked, so a refresh is explicit, run inside the container:
+Pages are locked, so a refresh is explicit, run inside the container
+(`docker compose exec -T app …`), then commit the changed page:
 `gttp build --only "<title>" --force` (full re-synthesis) or
 `gttp enrich --only "<title>" --force` (verdict layer only). A refusal,
 truncation or API failure falls back to the heuristic path, and the
@@ -48,29 +59,24 @@ in DESIGN.md), and every new component goes into the showcase.
 
 ## Open items (priority order)
 
-1. **Resolve the deploy-path conflict (blocks pushing).** `test.yml`'s
-   `deploy` job makes Sentinel (`/api/deploy`, repo `gttp`) run compose in
-   `~/projects/gttp`, the dev checkout, on every push to `main`. That
-   remounts the live container onto dev's `site/` and `.cache/`, which the
-   deploy-clone rule exists to prevent. On 2026-10-25 this served a stale page
-   and wrote into dev's cache. Choose one: point Sentinel's gttp deploy at
-   `/home/eric/deploy/gttp`, or drop the separate clone and protect dev
-   another way. Until then, deploy by hand from the deploy clone after any
-   push, and check with
-   `docker inspect gttp-app-1 --format '{{index .Config.Labels "com.docker.compose.project.working_dir"}}'`.
-2. **Re-synthesize the books built from off-topic threads** (see LESSONS,
+1. **Re-synthesize the books built from off-topic threads** (see LESSONS,
    2026-10-25). The filter is fixed; each needs
    `gttp build --only "<title>" --force` (about $0.10-0.20 each). Books with no
    relevant cached threads would drop to the "no summaries yet" page.
-3. **Live Reddit fetching is blocked** ("blocked by network security", 403
+2. **Live Reddit fetching is blocked** ("blocked by network security", 403
    behind a JS challenge). The thread cache is from 2026-07-11. The legitimate
    fix is Reddit's official API (needs an approved app).
-4. Idea from LESSONS: a weekly push of one try-today experiment (Google Task
+3. Idea from LESSONS: a weekly push of one try-today experiment (Google Task
    via goose-cli) with a keep/drop check-in.
-5. `the-courage-to-be-disliked` has no stored cover. Run `gttp covers` in
-   the deploy clone, or accept the on-brand placeholder.
+4. `the-courage-to-be-disliked` has no stored cover. Run `gttp covers` in
+   the container, or accept the on-brand placeholder.
 
 ## Gotchas
+
+- Sentinel finds the repo at `~/projects/<name>` (`resolveRepoDirByName`,
+  set in its code), so production must live in this checkout. After a
+  deploy, `docker inspect gttp-app-1 --format '{{index .Config.Labels "com.docker.compose.project.working_dir"}}'`
+  should print `/home/eric/projects/gttp`.
 
 - Cloudflare caches static assets (`.css`, fonts, images) for 4h, and the
   `mooseflip` token **can't purge cache**. Pages link

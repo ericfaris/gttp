@@ -1,4 +1,4 @@
-"""Command-line entry point: `gttp add`, `gttp build`, `gttp enrich`, `gttp list`."""
+"""Command-line entry point: `gttp add`, `gttp build`, `gttp enrich`, `gttp render`, `gttp list`."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ import time
 from . import __version__
 from .config import add_book, load_catalog, slugify
 from .covers import cover_file, fetch_cover
-from .pipeline import build_all, enrich_all, match_books
+from .pipeline import build_all, enrich_all, match_books, render_site
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -58,6 +58,10 @@ def main(argv: list[str] | None = None) -> int:
     )
 
     sub.add_parser("list", help="list catalog books")
+    sub.add_parser(
+        "render",
+        help="re-render the site from cached pages only (no network, no API)",
+    )
 
     p_covers = sub.add_parser(
         "covers", help="fetch missing cover images from Open Library"
@@ -112,6 +116,10 @@ def main(argv: list[str] | None = None) -> int:
             return 1
         _, failed = enrich_all(books, only=args.only, force=args.force)
         return 1 if failed else 0
+
+    if args.command == "render":
+        render_site(load_catalog())
+        return 0
 
     if args.command == "build":
         books = load_catalog()

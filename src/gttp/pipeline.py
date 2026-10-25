@@ -9,7 +9,7 @@ in isolation — one failure never sinks the whole run.
 from __future__ import annotations
 
 from .cache import is_final, load_cached_page, page_quality, save_page
-from .config import Book, slugify
+from .config import OFFLINE_SITE_DIR, Book, slugify
 from .enrich import can_enrich, enrich, is_enriched
 from .models import BookPage
 from .publish import write_site
@@ -86,9 +86,17 @@ def build_all(
     refresh: bool = False,
     force: bool = False,
 ) -> list[BookPage]:
+    """Build the targeted books and render the site.
+
+    Offline builds are sandboxed: pages stay in memory (nothing is saved to
+    .cache/pages/) and the site goes to OFFLINE_SITE_DIR, not the site/ that
+    production serves. On 2026-07-11 an offline build in the shared checkout
+    replaced 17 live summaries with fixture/heuristic pages.
+    """
     targets = match_books(books, only)
     target_slugs = {b.slug for b in targets}
     client = make_reddit_client(offline, refresh)
+    save = (lambda slug, page: None) if offline else save_page
 
     pages: dict[str, BookPage] = {}
     try:
@@ -99,7 +107,7 @@ def build_all(
             before = load_cached_page(book.slug)
             page = build_book(book, client, force=force)
             if page is not before:
-                save_page(book.slug, page)
+                save(book.slug, page)
             pages[book.slug] = page
 
         # Fill in the rest from cache so the index stays complete; build any
@@ -110,7 +118,7 @@ def build_all(
             cached = load_cached_page(book.slug)
             if cached is None:
                 page = build_book(book, client)
-                save_page(book.slug, page)
+                save(book.slug, page)
                 cached = page
             pages[book.slug] = cached
     finally:
@@ -120,7 +128,7 @@ def build_all(
             close()
 
     ordered = [pages[b.slug] for b in books]
-    index = write_site(ordered)
+    index = write_site(ordered, OFFLINE_SITE_DIR) if offline else write_site(ordered)
     built = len(targets) if only else len(books)
     print(f"\nBuilt {built} book(s), wrote {len(ordered)} pages. Open {index}")
     return ordered
@@ -167,6 +175,17 @@ def enrich_all(
     index = write_site(pages)
     print(f"\nEnriched {done} page(s), {failed} failed. Open {index}")
     return done, failed
+
+
+def render_site(books: list[Book]) -> int:
+    """Re-render the site from cached pages only: no Reddit, no Claude, no
+    cache writes. The container runs this on every start, so a deploy (which
+    only rebuilds and restarts) always serves pages rendered by the new code.
+    Returns the number of pages rendered."""
+    pages = [p for p in (load_cached_page(b.slug) for b in books) if p is not None]
+    index = write_site(pages)
+    print(f"Rendered {len(pages)} cached page(s). Open {index}")
+    return len(pages)
 
 
 def _error_page(book: Book, exc: Exception) -> BookPage:

@@ -19,6 +19,10 @@ ROOT = Path(__file__).resolve().parents[2]
 BOOKS_FILE = ROOT / "books.yaml"
 FIXTURES_DIR = ROOT / "fixtures"
 SITE_DIR = ROOT / "site"
+# `gttp build --offline` writes here and never saves pages to the cache. The
+# production container serves site/ and .cache/ from this same checkout, so
+# an offline (fixtures/heuristic) build must not be able to touch either.
+OFFLINE_SITE_DIR = ROOT / "site-offline"
 STATIC_DIR = ROOT / "static"
 
 # The model used for ranking and synthesis.

@@ -28,6 +28,11 @@ for i in $(seq 1 50); do
 done
 
 mkdir -p site
+# Re-render the site from cached pages on every start (no network, no API):
+# a deploy only rebuilds + restarts the container, and without this it would
+# keep serving HTML rendered by the previous code.
+echo "[gttp] rendering site from cached pages"
+gttp render || echo "[gttp] render failed, serving the existing site/"
 python3 -m http.server "$PORT" --directory site &
 SERVER_PID=$!
 

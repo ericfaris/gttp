@@ -263,3 +263,54 @@ def test_filter_with_no_on_topic_threads_returns_nothing():
 def test_default_queries_quote_the_title():
     queries = load_catalog()[0].search_queries()
     assert queries and all(q.startswith('"') for q in queries)
+
+
+def test_offline_build_never_touches_cache_or_served_site(tmp_path, monkeypatch):
+    """Regression (2026-07-11): an offline build in the checkout production
+    serves from replaced live summaries with fixture/heuristic pages."""
+    from gttp import pipeline
+
+    served, offline_dir = tmp_path / "site", tmp_path / "site-offline"
+    monkeypatch.setattr(pipeline, "OFFLINE_SITE_DIR", offline_dir)
+    writes = []
+    monkeypatch.setattr(
+        pipeline, "write_site",
+        lambda pages, site_dir=served: writes.append(site_dir) or site_dir / "index.html",
+    )
+    final = BookPage(
+        title="Atomic Habits", author="James Clear", core_idea="Real summary.",
+        bullets=["b"], honest_take="h", quotes=[], sources=[{"url": "u"}],
+        generated_by="claude",
+    )
+    cache.save_page("atomic-habits", final)
+    books = [_book(), Book(title="Deep Work", author="Cal Newport")]
+
+    pipeline.build_all(books, offline=True, force=True)
+
+    assert writes == [offline_dir]
+    assert cache.load_cached_page("atomic-habits") == final  # untouched despite --force
+    assert cache.load_cached_page("deep-work") is None  # new book not persisted
+
+
+def test_render_site_uses_cache_only(monkeypatch):
+    """`gttp render` (run on every container start) must never fetch, call
+    Claude or write the cache; it only re-renders cached pages."""
+    from gttp import pipeline
+
+    def no_network(*a, **k):
+        raise AssertionError("render must not build or fetch")
+
+    monkeypatch.setattr(pipeline, "build_book", no_network)
+    monkeypatch.setattr(pipeline, "make_reddit_client", no_network)
+    monkeypatch.setattr(pipeline, "save_page", no_network)
+    written = []
+    monkeypatch.setattr(pipeline, "write_site", lambda pages: written.append(pages) or "index")
+    page = BookPage(
+        title="Atomic Habits", author="James Clear", core_idea="c", bullets=["b"],
+        honest_take="h", quotes=[], sources=[], generated_by="claude",
+    )
+    cache.save_page("atomic-habits", page)
+    books = [_book(), Book(title="Deep Work", author="Cal Newport")]
+
+    assert pipeline.render_site(books) == 1
+    assert [p.title for p in written[0]] == ["Atomic Habits"]

@@ -44,10 +44,22 @@
   - A failed `--refresh` (Reddit blocked) saved `[]` over the cached threads.
     The caching client now refuses to overwrite with a degraded or empty
     fetch.
-  - Sentinel's push-to-main deploy runs in the dev checkout, which conflicts
-    with the deploy-clone rule (see HANDOFF open item 1). Five pushes in one
-    session flipped the live container between the two checkouts.
+  - Sentinel's push-to-main deploy runs in the dev checkout, which conflicted
+    with the deploy-clone rule. Five pushes in one session flipped the live
+    container between the two checkouts (resolved below).
   - Cost (Sonnet 5.5, measured inputs): a 40-thread book is about 33k input
     tokens (rank ~27-30k, synth ~5-6k, enrich ~1k), roughly $0.15-0.20 with
-    output. Ranking is ~80% of input; finalized pages cost nothing on the
-    weekly rebuild.
+    output. Ranking is ~80% of input. Nothing rebuilds automatically, so
+    there's no recurring cost.
+- **2026-10-25 — Retired the separate deploy clone.** Every lab app runs
+  from `~/projects/<name>` because Sentinel's `/api/deploy` resolves repos
+  there. gttp's July clone (`~/deploy/gttp`) only worked until the push-to-main
+  deploy job arrived, and after that each push silently switched production
+  back to the dev checkout. Instead of a second checkout, the July risk is
+  now guarded in code: `--offline` builds go to `site-offline/` and never
+  save to `.cache/`, finalized pages are locked, and failed fetches can't
+  overwrite the thread cache. The container runs `gttp render` on start, so
+  a build-and-restart deploy always serves fresh HTML. Lesson: a safety rule
+  that lives only in docs and memory drifts when automation changes; enforce
+  it in code.
+

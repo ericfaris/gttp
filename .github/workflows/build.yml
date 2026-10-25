@@ -1,7 +1,7 @@
 name: Build and publish gttp
 
 # Runs the offline build (fixtures + already-finalized cached pages) and
-# publishes site/ to GitHub Pages. Manual only — trigger from the Actions tab.
+# publishes site-offline/ to GitHub Pages. Manual only — trigger from the Actions tab.
 # Nothing in this repo builds on a schedule; see README's "Summaries are
 # permanent" section for why.
 on:
@@ -46,7 +46,7 @@ jobs:
 
       - uses: actions/upload-pages-artifact@v5
         with:
-          path: site
+          path: site-offline
 
       - id: deploy
         uses: actions/deploy-pages@v5
