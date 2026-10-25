@@ -21,7 +21,10 @@ live site (this happened on 2026-07-11).
   from its root (the pages use absolute `/style.css` paths).
 - Deploy: merge to `main`, then in `/home/eric/deploy/gttp` run
   `git pull --ff-only origin main && docker compose build --pull && docker compose up -d`
-  (or use the `deploy` skill).
+  (or use the `deploy` skill, but run it in the deploy clone, not here).
+  Then `docker compose exec -T app gttp build`: the entrypoint only builds
+  when `site/` is empty, so a restart alone keeps serving the old HTML.
+  Last deployed: `23bae02` (2026-10-25).
 
 ## Design system
 
@@ -33,15 +36,19 @@ in DESIGN.md), and every new component goes into the showcase.
 
 ## Open items (priority order)
 
-1. Deploy the 2026-10-25 compliance pass (placeholder cover, card author
-   line, radius token, showcase fixes). It's committed but not yet deployed.
-2. Idea from LESSONS: a weekly push of one try-today experiment (Google Task
+1. Idea from LESSONS: a weekly push of one try-today experiment (Google Task
    via goose-cli) with a keep/drop check-in.
-3. `the-courage-to-be-disliked` has no stored cover. Run `gttp covers` in
+2. `the-courage-to-be-disliked` has no stored cover. Run `gttp covers` in
    the deploy clone, or accept the on-brand placeholder.
 
 ## Gotchas
 
+- Cloudflare caches static assets (`.css`, fonts, images) for 4h, and the
+  `mooseflip` token **can't purge cache**. Pages link
+  `/style.css?v=<content hash>` (`publish._css_version`), so CSS changes
+  always reach viewers. A changed font, logo or icon under the same filename
+  will still be served stale for up to 4 hours. Rename the file or purge it
+  from the dashboard.
 - Finalized pages are locked. Per-book additions go through the additive
   `gttp enrich` step, and new `BookPage` fields need defaults.
 - Decorative glows can widen the page on phones. Check

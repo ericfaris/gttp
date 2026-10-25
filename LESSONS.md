@@ -26,3 +26,10 @@
   Any sticky bar painted over the paper-grain background shows as a visible
   box, so the back link is no longer sticky. `write_site` used to copy only
   top-level static files; it now copies subfolders too (fonts).
+- **2026-10-25 — Deploy shipped new HTML with stale CSS.** Cloudflare
+  cached `/style.css` (4h TTL), and the mooseflip API token has no Cache
+  Purge scope, so the new markup was served against the old stylesheet.
+  The fix is a content hash on the stylesheet URL (`?v=`), added at build time.
+  Also: the deploy clone was 10 commits behind (the earlier redesign was
+  never deployed), and a container restart doesn't rebuild `site/`. Run
+  `gttp build` inside the container after `up -d`.
