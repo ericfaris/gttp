@@ -14,6 +14,7 @@
      value shown *inside* a specimen comes from style.css, not from here. */
   .ds-main { max-width: 74rem; }
   .ds-lede { color: var(--color-muted); max-width: 42rem; }
+  .ds-main code { font-size: .88em; }
   .ds-section { margin: 3.5rem 0; }
   .ds-section > h2 { margin-top: 0; }
   .ds-grid { display: grid; gap: 1rem; }
@@ -39,6 +40,11 @@
   .ds-motion-fast:hover { transition: transform var(--duration-fast) var(--ease-standard); }
   .ds-motion-base:hover { transition: transform var(--duration) var(--ease-standard); }
   .ds-motion-slow:hover { transition: transform var(--duration-slow) var(--ease-standard); }
+  .ds-motion-spring:hover { transition: transform var(--duration) var(--ease-spring); }
+  .ds-motion-glow { position: relative; isolation: isolate; }
+  .ds-motion-glow::before { content: ""; position: absolute; z-index: -1; inset: -40%; background: radial-gradient(closest-side, var(--color-glow), transparent); }
+  .ds-motion-glow.flicker::before { animation: flicker var(--duration-glow) var(--ease-standard) both; }
+  .ds-motion-glow:hover { transform: none; }
   .ds-btn-row { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
   .ds-input-row { display: grid; gap: .75rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
   .ds-note { font: var(--text-sm); color: var(--color-muted); margin-top: .5rem; }
@@ -67,10 +73,10 @@
 </header>
 
 <main class="content ds-main">
-  <div class="ds-lede" style="margin: 2rem 0 0;">
+  <div class="intro" style="margin: 2rem 0 0;">
     <p class="tag" style="margin-bottom: .75rem;">Switched On — v2.0</p>
     <h1>Design system</h1>
-    <p class="sub">Every token and component below is rendered live from
+    <p class="sub ds-lede">Every token and component below is rendered live from
       <code>/style.css</code> — the same stylesheet the real site pages
       (<a href="index.html">index</a>, <a href="books/atomic-habits.html">book
       pages</a>) load. Nothing on this page is hand-duplicated; if a value
@@ -129,6 +135,7 @@
           <div class="ds-shadow-card" style="box-shadow: var(--shadow);">--shadow</div>
           <div class="ds-shadow-card" style="box-shadow: var(--shadow-lg);">--shadow-lg</div>
           <div class="ds-shadow-card" style="box-shadow: var(--shadow-cover);">--shadow-cover</div>
+          <div class="ds-shadow-card" style="box-shadow: var(--shadow-cover-lg);">--shadow-cover-lg</div>
           <div class="ds-shadow-card" style="box-shadow: var(--shadow-sticky);">--shadow-sticky</div>
         </div>
       </div>
@@ -138,6 +145,8 @@
           <div class="ds-motion-demo ds-motion-fast">fast<br>120ms</div>
           <div class="ds-motion-demo ds-motion-base">base<br>180ms</div>
           <div class="ds-motion-demo ds-motion-slow">slow<br>480ms</div>
+          <div class="ds-motion-demo ds-motion-spring">spring<br>180ms</div>
+          <div class="ds-motion-demo ds-motion-glow" tabindex="0" role="button" aria-label="Replay the glow switch-on">glow<br>900ms</div>
         </div>
         <p class="ds-note">Easings: <code>--ease-standard: cubic-bezier(.2,.7,.3,1)</code> for most moves, <code>--ease-spring</code> for card lifts and the tick. The glow "switch-on" runs for <code>--duration-glow</code> (900ms). All motion collapses under <code>prefers-reduced-motion: reduce</code> — try it in your OS/browser settings.</p>
       </div>
@@ -162,7 +171,7 @@
     <section class="today" style="max-width:44rem;">
       <img class="cover cover-detail" src="covers/atomic-habits.jpg" alt="" width="144" height="216">
       <div class="today-body">
-        <p class="today-label hand">Today's idea</p>
+        <p class="today-label hand"><svg width='18' height='18' viewBox='0 0 24 24' aria-hidden='true'><path d='M12 2q1.2 8.8 10 10q-8.8 1.2-10 10q-1.2-8.8-10-10q8.8-1.2 10-10z' fill='currentColor'/></svg>Today's idea</p>
         <h2><a href="books/atomic-habits.html">Atomic Habits</a></h2>
         <p class="author">by James Clear</p>
         <p class="verdict"><span>Four techniques in a 300-page book. This page is enough.</span></p>
@@ -202,23 +211,26 @@
       <li class="card">
         <img class="cover cover-thumb" src="covers/atomic-habits.jpg" alt="Cover of Atomic Habits" loading="lazy" width="72" height="108">
         <div class="card-body">
-          <a href="books/atomic-habits.html"><strong>Atomic Habits</strong> — James Clear</a>
-          <p>Small habits compound into big results.</p>
+          <a href="books/atomic-habits.html"><strong>Atomic Habits</strong><span class="card-author">James Clear</span></a>
+          <p class="card-idea">Small habits compound into big results.</p>
           <p class="tags"><span class="tag">r/getdisciplined</span></p>
+          <p class="tried-badge">✓ Tried it</p>
         </div>
       </li>
       <li class="card empty">
-        <img class="cover cover-thumb" src="covers/how-to-begin.jpg" alt="Cover, no summary yet" loading="lazy" width="72" height="108">
+        <svg class="cover cover-thumb cover-placeholder" viewBox="0 0 60 90" role="img" aria-label="Cover of Not Yet Summarized" preserveAspectRatio="xMidYMid slice"><rect class="ph-bg" width="60" height="90" fill="#14213D"/><text class="ph-letter" x="30" y="57" fill="#FBF6EC" font-size="34" text-anchor="middle" font-family="'Young Serif', Georgia, serif">N<tspan class="ph-dot" fill="#F5C518">.</tspan></text></svg>
         <div class="card-body">
-          <a href="index.html"><strong>Not Yet Summarized</strong></a>
-          <p>No qualifying Reddit summaries found yet.</p>
+          <a href="index.html"><strong>Not Yet Summarized</strong><span class="card-author">Some Author</span></a>
+          <p class="card-idea">No qualifying Reddit summaries found yet.</p>
         </div>
       </li>
     </ul>
-    <p class="ds-note">The dimmed "empty" card is the only semantic-color
-      moment in the system: <code>.card.empty { opacity: .55 }</code> — a
-      quiet, non-alarming way to say "nothing here yet" without introducing a
-      second accent color.</p>
+    <p class="ds-note">Default card shows the "✓ Tried it" badge
+      (<code>--color-done</code>) the index adds for books ticked in this
+      browser. The dimmed "empty" card (<code>.card.empty { opacity: .55 }</code>)
+      also shows the <b>cover placeholder</b> used when no cover is stored: the
+      first letter and a marigold full stop on an ink tile
+      (<code>covers.placeholder_svg</code>), flipping with the theme.</p>
 
     <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">Core idea (lit pull-quote)</h3>
     <p class="ds-lede">The book's one idea, in the display face on a paper
@@ -265,7 +277,7 @@
     <p class="ds-lede">The sun/moon control in the header, above. Persists to
       <code>localStorage</code>, respects OS preference by default, and is a
       real focusable button (<kbd>Tab</kbd> to it, <code>:focus-visible</code>
-      shows the accent-color ring used everywhere in the system).</p>
+      shows the marigold focus ring used everywhere in the system).</p>
   </section>
 
   <!-- ASSETS ====================================================== -->
@@ -308,6 +320,10 @@
   b.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);try{localStorage.setItem('gttp-theme',n);}catch(e){}sync();});
 })();
 
+(function(){var g=document.querySelector('.ds-motion-glow');
+  function go(){g.classList.remove('flicker');void g.offsetWidth;g.classList.add('flicker');}
+  g.addEventListener('click',go);g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});})();
+
 // Build the color, type, and spacing sections by reading the *actual*
 // computed custom properties from :root — so this page can never drift out
 // of sync with style.css.
@@ -320,7 +336,7 @@
     ['--color-ink', 'Ink (text)'], ['--color-muted', 'Muted text'],
     ['--color-border', 'Border'], ['--color-border-strong', 'Border (strong)'],
     ['--color-accent', 'Accent'], ['--color-accent-ink', 'Accent ink'], ['--color-accent-tint', 'Accent tint'],
-    ['--color-marigold', 'Marigold (the light)'], ['--color-glow', 'Glow (halos)'],
+    ['--color-marigold', 'Marigold (the light)'], ['--color-marigold-ink', 'Ink on marigold'], ['--color-glow', 'Glow (halos)'],
     ['--color-highlight', 'Marker highlight'], ['--color-sticky', 'Sticky note'],
     ['--color-sticky-ink', 'Sticky-note ink'], ['--color-done', 'Done (tried it)'],
     ['--color-accent-highlight', 'Accent highlight (alias)']
@@ -358,7 +374,7 @@
   }).join('');
   document.getElementById('spacing-scale').innerHTML = spaceHtml;
 
-  var radii = ['--radius-sm','--radius','--radius-lg','--radius-pill'];
+  var radii = ['--radius-xs','--radius-sm','--radius','--radius-lg','--radius-pill'];
   var radiusHtml = radii.map(function(r){
     var val = v(r);
     var w = r === '--radius-pill' ? '5.5rem' : '3.5rem';

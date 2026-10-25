@@ -141,10 +141,12 @@ Three self-hosted faces, all SIL Open Font License, served from
 **Spacing** (`--space-1` … `--space-14`, rem): `.25, .5, .75, 1, 1.25, 1.5,
 2, 2.5, 3.5`.
 
-**Radius**: `--radius-sm: 9px`, `--radius: 14px` (cards), `--radius-lg:
-22px` (today card), `--radius-pill: 999px` (buttons, search, tags, theme
-toggle). The sticky note uses a one-off `3px 3px 18px 3px` for a curled
-corner.
+**Radius**: `--radius-xs: 6px` (covers, focus ring, logo link),
+`--radius-sm: 9px` (detail-page cover), `--radius: 14px` (cards),
+`--radius-lg: 22px` (today card), `--radius-pill: 999px` (buttons, search,
+tags, theme toggle). Deliberate one-offs, not tokens: the sticky note's
+curled corner `3px 3px 18px 3px`, the core-idea card's squared marigold edge
+`4px 14px 14px 4px`, the h2 dash (`3px`) and the tick box (`5px`).
 
 **Shadow**: `--shadow-sm`, `--shadow` (cards), `--shadow-lg` (card hover),
 `--shadow-cover` / `--shadow-cover-lg` (covers), `--shadow-sticky` (sticky
@@ -186,8 +188,10 @@ All defined in `static/style.css` and rendered live on `/design-system.html`.
   with an ink border and hard shadow that presses in on `:active`; ghost is
   a surface pill with a strong border. Both have hover, active and disabled
   states.
-- **Book card** (`.books li`, `.card`, `.card.empty`): cover thumb, title,
-  core idea clamped to 3 lines (`.card-idea`), subreddit tags. The whole
+- **Book card** (`.books li`, `.card`, `.card.empty`): cover thumb, title
+  in the display face, author on its own muted `--text-sm` line
+  (`.card-author`, inside the link), core idea clamped to 3 lines
+  (`.card-idea`), subreddit tags. The whole
   card is the link (`a::after` overlay). Hover and focus-within light it
   with a marigold halo. A "✓ Tried it" badge (`.tried-badge`) appears when
   the viewer has ticked that book.
@@ -205,8 +209,14 @@ All defined in `static/style.css` and rendered live on `/design-system.html`.
 - **Folded section** (`details.more`): dashed top rule, round `+` toggle
   that turns marigold and rotates to `−` when open.
 - **Section heading** (`h2::before`): a 6px marigold dash, tilted -2°.
-- **Search** (`.search`): surface pill, marigold focus ring.
-- **Tag pill** (`.tag`), **theme toggle** (`.theme-toggle`, round), and
+- **Search** (`.search`): surface pill; border goes ink on hover, marigold
+  focus ring. An empty filter shows a muted, centered `.no-results` line.
+- **Cover placeholder** (`.cover-placeholder`, from
+  `covers.placeholder_svg`): for a book with no stored cover. The title's
+  first letter in Young Serif plus a marigold full stop, on an ink tile
+  (`--color-ink` / `--color-bg` / `--color-marigold` via CSS classes, so it
+  flips with the theme). Replaced v1's random-hue Georgia tile.
+- **Tag pill** (`.tag`, `--text-xs` at its token weight), **theme toggle** (`.theme-toggle`, round), and
   **header/footer** (`.site-header` with the SVG wordmark swapped per theme
   via `.logo-light` / `.logo-dark`; `.site-footer` with a dashed rule).
 
@@ -282,6 +292,16 @@ book-to-a-point and a lightbulb dot) and redrawn as clean SVG:
   hero with daily rotation and Shuffle; sticky-note try-today with "I tried
   it"; card halos, line-clamped card text, paper grain, and switch-on,
   marker and spark motion.
+
+- **2026-10-25** — Compliance pass. Cover placeholder redrawn on-system
+  (ink tile, Young Serif letter, marigold full stop) instead of random
+  `hsl()` hues and Georgia. Card author split onto a muted line. Added
+  `--radius-xs` and replaced hardcoded 6px/8px radii; dropped the unused,
+  undocumented `--color-quiet`; tags use the `--text-xs` weight. Search
+  hover state and a styled no-results line. Showcase: h1 in ink (it had
+  inherited the muted lede color), plus `--color-marigold-ink`,
+  `--radius-xs`, `--shadow-cover-lg`, spring and glow motion demos, the
+  today-label spark, the tried badge and the placeholder cover.
 
 ## Where to look
 

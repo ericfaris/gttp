@@ -186,7 +186,10 @@ def _render_index_card(page: BookPage, covers_dir: Path) -> str:
     search = html.escape(
         " ".join(filter(None, [page.title, page.author, page.core_idea])).lower()
     )
-    author = f" — {html.escape(page.author)}" if page.author else ""
+    author = (
+        f'<span class="card-author">{html.escape(page.author)}</span>'
+        if page.author else ""
+    )
     subs = list(dict.fromkeys(s["subreddit"] for s in page.sources))[:3]
     tags = "".join(
         f'<span class="tag">r/{html.escape(sub)}</span>' for sub in subs
@@ -323,7 +326,7 @@ def _render_index_html(pages: list[BookPage], covers_dir: Path) -> str:
         '<input type="search" id="q" class="search" placeholder="Search books or ideas…"'
         ' autocomplete="off" aria-label="Search books">'
         f"<ul class='books'>{cards}</ul>"
-        '<p id="no-results" hidden>No books match.</p>'
+        '<p id="no-results" class="no-results" hidden>No books match.</p>'
     )
     return _HTML_SHELL.format(
         title="gttp — Get To The Point",

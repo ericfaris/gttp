@@ -12,7 +12,6 @@ larger detail-page cover both render from that single file via CSS.
 
 from __future__ import annotations
 
-import hashlib
 import html
 from pathlib import Path
 
@@ -94,21 +93,20 @@ def fetch_cover(
 
 
 def placeholder_svg(title: str, css_class: str) -> str:
-    """Deterministic inline SVG cover placeholder: the title's first
-    alphanumeric character over a title-derived hue. Uses md5 (never the
-    process-randomized built-in hash()) so offline builds stay reproducible."""
+    """Deterministic inline SVG cover placeholder in the house style: the
+    title's first alphanumeric character in the display face on an ink tile,
+    followed by a marigold full stop (the "point"). Colors come from CSS
+    classes in style.css so the tile flips with the theme; the fill
+    attributes are only a no-CSS fallback."""
     letter = next((c for c in title if c.isalnum()), "?").upper()
-    digest = hashlib.md5(title.encode("utf-8")).hexdigest()
-    hue = int(digest[:6], 16) % 360
-    fill = f"hsl({hue} 40% 40%)"
     letter_esc = html.escape(letter)
     label = html.escape(f"Cover of {title}")
     return (
-        f'<svg class="{css_class}" viewBox="0 0 60 90" role="img" '
+        f'<svg class="{css_class} cover-placeholder" viewBox="0 0 60 90" role="img" '
         f'aria-label="{label}" preserveAspectRatio="xMidYMid slice">'
-        f'<rect width="60" height="90" fill="{fill}"/>'
-        f'<text x="30" y="45" fill="#fff" font-size="34" font-weight="700" '
-        f'text-anchor="middle" dominant-baseline="central" '
-        f'font-family="Georgia, \'Times New Roman\', serif">{letter_esc}</text>'
+        f'<rect class="ph-bg" width="60" height="90" fill="#14213D"/>'
+        f'<text class="ph-letter" x="30" y="57" fill="#FBF6EC" font-size="34" '
+        f'text-anchor="middle" font-family="\'Young Serif\', Georgia, serif">'
+        f'{letter_esc}<tspan class="ph-dot" fill="#F5C518">.</tspan></text>'
         f'</svg>'
     )

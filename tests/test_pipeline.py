@@ -183,3 +183,22 @@ def test_write_site_html_features(tmp_path):
     # The Markdown output is byte-identical to render_markdown.
     md = (tmp_path / "books" / "atomic-habits.md").read_text()
     assert md == render_markdown(summary)
+
+
+def test_index_card_author_is_its_own_line(tmp_path):
+    """Cards set the author as a muted line under the title, not run into
+    the display-face title with an em dash."""
+    page = BookPage(
+        title="Deep Work",
+        author="Cal Newport",
+        core_idea="Focus is rare and valuable.",
+        bullets=["b"],
+        honest_take="",
+        quotes=[],
+        sources=[],
+    )
+    write_site([page], tmp_path, covers_dir=tmp_path / "none")
+    index = (tmp_path / "index.html").read_text()
+    assert '<span class="card-author">Cal Newport</span>' in index
+    assert "</strong> — Cal Newport" not in index
+    assert 'class="no-results"' in index

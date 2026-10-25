@@ -87,10 +87,13 @@ def test_placeholder_svg_deterministic():
     other = covers.placeholder_svg("Deep Work", "cover")
 
     assert a1 == a2
-    # Different titles derive different fill hues.
+    # Different titles get different letters; colors come from the theme.
     assert a1 != other
+    assert 'class="cover cover-placeholder"' in a1
+    assert 'class="ph-dot"' in a1  # the marigold full stop
+    assert "hsl(" not in a1  # no off-palette per-title hues
     assert 'aria-label="Cover of Atomic Habits"' in a1
-    assert ">A</text>" in a1
+    assert ">A<tspan" in a1
 
 
 def test_placeholder_svg_escapes():

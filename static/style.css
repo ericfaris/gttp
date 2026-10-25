@@ -63,8 +63,6 @@
   --color-sticky-ink: #2A2306;
   --color-done: #2F7D4F;                     /* "I tried it" check */
 
-  --color-quiet: var(--color-muted);
-
   /* Elevation */
   --shadow-sm: 0 1px 2px rgba(20, 33, 61, .06);
   --shadow: 0 1px 2px rgba(20, 33, 61, .06), 0 10px 28px -14px rgba(20, 33, 61, .22);
@@ -74,6 +72,7 @@
   --shadow-sticky: 0 1px 1px rgba(60, 45, 0, .12), 0 12px 22px -12px rgba(60, 45, 0, .45);
 
   /* Radius */
+  --radius-xs: 6px;                          /* covers, focus ring, logo link */
   --radius-sm: 9px;
   --radius: 14px;
   --radius-lg: 22px;
@@ -207,7 +206,7 @@ a:hover { text-decoration-color: var(--color-accent); }
   gap: var(--space-4); padding: .9rem var(--space-5);
   max-width: 66rem; margin: 0 auto;
 }
-.site-title { display: inline-flex; text-decoration: none; border-radius: 8px; }
+.site-title { display: inline-flex; text-decoration: none; border-radius: var(--radius-xs); }
 .site-title img { display: block; width: 128px; height: auto; }
 .site-title .logo-dark { display: none; }
 :root[data-theme="dark"] .site-title .logo-light { display: none; }
@@ -321,6 +320,7 @@ a:hover { text-decoration-color: var(--color-accent); }
   background: var(--color-surface); color: inherit;
 }
 .search::placeholder { color: var(--color-muted); }
+.search:hover { border-color: var(--color-ink); }
 .search:focus-visible { outline: 3px solid var(--color-marigold); outline-offset: 2px; border-color: var(--color-ink); }
 
 .books {
@@ -347,6 +347,8 @@ a:hover { text-decoration-color: var(--color-accent); }
 /* Whole card is the click target. */
 .card-body a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
 .card-body strong { font-weight: 400; }
+.card-author { display: block; margin-top: .15rem; font: var(--text-sm); color: var(--color-muted); }
+.no-results { color: var(--color-muted); text-align: center; margin: var(--space-6) 0; }
 .books p { color: var(--color-muted); margin: .4rem 0 0; font-size: .95rem; }
 /* Cards tease the idea; the full sentence lives on the page. */
 .card-idea { display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
@@ -358,14 +360,19 @@ a:hover { text-decoration-color: var(--color-accent); }
 
 .cover {
   display: block; object-fit: cover; aspect-ratio: 2 / 3;
-  border-radius: 6px; border: 1px solid var(--color-border);
+  border-radius: var(--radius-xs); border: 1px solid var(--color-border);
   background: var(--color-surface-2); box-shadow: var(--shadow-cover);
 }
+/* No stored cover: the first letter + a marigold full stop on an ink tile
+   (covers.placeholder_svg). Flips with the theme like the rest of the ink. */
+.cover-placeholder .ph-bg { fill: var(--color-ink); }
+.cover-placeholder .ph-letter { fill: var(--color-bg); font-family: var(--font-display); }
+.cover-placeholder .ph-dot { fill: var(--color-marigold); }
 .cover-thumb { width: 4.75rem; height: auto; flex-shrink: 0; }
-.cover-detail { width: 12rem; height: auto; flex-shrink: 0; border-radius: 8px; box-shadow: var(--shadow-cover-lg); }
+.cover-detail { width: 12rem; height: auto; flex-shrink: 0; border-radius: var(--radius-sm); box-shadow: var(--shadow-cover-lg); }
 
 .tag {
-  display: inline-block; font: var(--text-xs); font-weight: 500; margin: .4rem .35rem 0 0;
+  display: inline-block; font: var(--text-xs); margin: .4rem .35rem 0 0;
   padding: .18rem .6rem; border-radius: var(--radius-pill); color: var(--color-muted);
   background: var(--color-surface-2); border: 1px solid var(--color-border);
 }
@@ -486,7 +493,7 @@ details.more > summary:hover::before { background: var(--color-glow); }
 .back a { color: var(--color-muted); text-decoration: none; }
 .back a:hover { color: var(--color-accent-ink); }
 
-:focus-visible { outline: 3px solid var(--color-marigold); outline-offset: 2px; border-radius: 6px; }
+:focus-visible { outline: 3px solid var(--color-marigold); outline-offset: 2px; border-radius: var(--radius-xs); }
 
 /* ---------------------------------------------------------------------- */
 /* 7. Motion                                                               */
