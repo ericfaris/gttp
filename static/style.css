@@ -392,6 +392,7 @@ a:hover { text-decoration-color: var(--color-accent); }
 .cover-glow::before {
   content: ""; position: absolute; z-index: -1; inset: -30%;
   background: radial-gradient(closest-side, var(--color-glow), transparent);
+  pointer-events: none; /* it spills over the back link; never eat clicks */
   animation: switch-on var(--duration-glow) var(--ease-standard) both;
 }
 .hero-body { min-width: 0; }
