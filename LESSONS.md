@@ -33,3 +33,21 @@
   Also: the deploy clone was 10 commits behind (the earlier redesign was
   never deployed), and a container restart doesn't rebuild `site/`. Run
   `gttp build` inside the container after `up -d`.
+- **2026-10-25 — Half the catalog was synthesized from off-topic threads.**
+  Unquoted title queries with `sort=top` return each subreddit's most
+  popular posts, and `filter_threads` kept the top 40 by upvotes, so real
+  summaries (around 100-300 upvotes) were cut before ranking. Claude then wrote
+  "from general knowledge" with disclaimers in the core idea. Fix: only
+  threads naming the book or author pass, and queries quote the title.
+  Lesson: check that sources are on-topic, not just that the output reads
+  well.
+  - A failed `--refresh` (Reddit blocked) saved `[]` over the cached threads.
+    The caching client now refuses to overwrite with a degraded or empty
+    fetch.
+  - Sentinel's push-to-main deploy runs in the dev checkout, which conflicts
+    with the deploy-clone rule (see HANDOFF open item 1). Five pushes in one
+    session flipped the live container between the two checkouts.
+  - Cost (Sonnet 5.5, measured inputs): a 40-thread book is about 33k input
+    tokens (rank ~27-30k, synth ~5-6k, enrich ~1k), roughly $0.15-0.20 with
+    output. Ranking is ~80% of input; finalized pages cost nothing on the
+    weekly rebuild.

@@ -48,9 +48,26 @@ in DESIGN.md), and every new component goes into the showcase.
 
 ## Open items (priority order)
 
-1. Idea from LESSONS: a weekly push of one try-today experiment (Google Task
+1. **Resolve the deploy-path conflict (blocks pushing).** `test.yml`'s
+   `deploy` job makes Sentinel (`/api/deploy`, repo `gttp`) run compose in
+   `~/projects/gttp`, the dev checkout, on every push to `main`. That
+   remounts the live container onto dev's `site/` and `.cache/`, which the
+   deploy-clone rule exists to prevent. On 2026-10-25 this served a stale page
+   and wrote into dev's cache. Choose one: point Sentinel's gttp deploy at
+   `/home/eric/deploy/gttp`, or drop the separate clone and protect dev
+   another way. Until then, deploy by hand from the deploy clone after any
+   push, and check with
+   `docker inspect gttp-app-1 --format '{{index .Config.Labels "com.docker.compose.project.working_dir"}}'`.
+2. **Re-synthesize the books built from off-topic threads** (see LESSONS,
+   2026-10-25). The filter is fixed; each needs
+   `gttp build --only "<title>" --force` (about $0.10-0.20 each). Books with no
+   relevant cached threads would drop to the "no summaries yet" page.
+3. **Live Reddit fetching is blocked** ("blocked by network security", 403
+   behind a JS challenge). The thread cache is from 2026-07-11. The legitimate
+   fix is Reddit's official API (needs an approved app).
+4. Idea from LESSONS: a weekly push of one try-today experiment (Google Task
    via goose-cli) with a keep/drop check-in.
-2. `the-courage-to-be-disliked` has no stored cover. Run `gttp covers` in
+5. `the-courage-to-be-disliked` has no stored cover. Run `gttp covers` in
    the deploy clone, or accept the on-brand placeholder.
 
 ## Gotchas
