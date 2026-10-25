@@ -65,8 +65,8 @@ in DESIGN.md), and every new component goes into the showcase.
 1. **3 pages still lack real Reddit evidence:** Why Has Nobody Told Me This
    Before? and Boundaries (nothing in the Arctic Shift archive) and How to
    Begin (the archive only had generic "how to begin" posts). Their pages
-   come from the July run. Decide whether to keep them or swap in the "no
-   summaries yet" page. Thin but on-topic (1-3 threads): The Mountain Is You,
+   come from the July run and stay as they are (user's decision,
+   2026-10-25); re-check them only if a new data source turns up. Thin but on-topic (1-3 threads): The Mountain Is You,
    The Magic of Thinking Big, Emotional Intelligence, The 7 Habits, Thinking
    Fast and Slow, Tiny Experiments.
 2. **Reddit data source:** Reddit blocks the lab IP (403, "blocked by network
