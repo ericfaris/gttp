@@ -227,6 +227,13 @@ def test_stylesheet_link_is_content_versioned(tmp_path):
         assert 'href="/style.css"' not in text, f
 
 
+def test_site_serves_healthz(tmp_path):
+    """http.server has no routes, so a /healthz probe 404s unless the file
+    is in site/; static/healthz is copied there with the other assets."""
+    write_site([], tmp_path, covers_dir=tmp_path / "none")
+    assert (tmp_path / "healthz").read_text().strip() == "ok"
+
+
 def _thread(tid, title, score, body="x " * 300):
     return RedditThread(
         id=tid, title=title, subreddit="s", author="a", score=score,
