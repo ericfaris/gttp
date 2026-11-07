@@ -108,10 +108,11 @@ quality guard then keeps the cached page.
   unauthenticated GET/POST get a 302 to Access and create no queue entry;
   `gttp.mooseflip.com` stays public.
 - systemd: `systemd/gttp-worker.{service,timer}` are symlinked into
-  `~/.config/systemd/user/` and `daemon-reload` was run. **The timer is NOT
-  enabled yet.** Enable with `systemctl --user enable --now
-  gttp-worker.timer` after `python -m gttp.worker preflight` is all ✓
-  (it was on 2026-11-07). Linger is on for eric.
+  `~/.config/systemd/user/`, and **the timer is enabled** (every minute;
+  enabled 2026-11-07 after `python -m gttp.worker preflight` was all ✓).
+  Real negative run verified the same day: The Like Switch failed with
+  "insufficient evidence", tree clean, nothing pushed, ~$0. A positive run
+  (a real book that publishes) has not been done yet. Linger is on for eric.
 - Sentinel: the worker takes Sentinel's per-repo deploy lock
   (`/tmp/sentinel-deploy-locks/_home_eric_projects_gttp.lock`, same
   pid-file + hard-link protocol as `sentinel/src/deployLock.js`) while the
