@@ -1,0 +1,10 @@
+[Unit]
+Description=Check the gttp submit queue every minute
+
+[Timer]
+OnCalendar=*-*-* *:*:00
+AccuracySec=10s
+Persistent=false
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,13 @@
+[Unit]
+Description=gttp submit worker: build one queued book in the app container, then commit + push it
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/projects/gttp
+Environment=TZ=America/New_York
+Environment=PYTHONUNBUFFERED=1
+EnvironmentFile=-%h/.config/gttp/worker.env
+ExecStart=%h/projects/gttp/.venv/bin/python -m gttp.worker run
+TimeoutStartSec=45min
+Nice=10
