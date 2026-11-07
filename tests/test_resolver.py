@@ -27,6 +27,7 @@ from gttp.resolver import (
     make_server,
 )
 from gttp.safefetch import FetchError, FetchResult
+from gttp.submit import validate_resolver_result
 
 FIX = Path(__file__).parent / "fixtures"
 AMAZON_URL = "https://www.amazon.com/Charisma-Myth-Science-Personal-Magnetism/dp/1591845947"
@@ -216,6 +217,7 @@ def test_injection_page_only_changes_title_and_author(tmp_path, monkeypatch, cap
                 '"queue"', "ANTHROPIC"):
         assert bad not in blob, bad
     assert r["warnings"]
+    assert validate_resolver_result({"ok": True, **r}) is not None
     assert "sk-canary" not in capsys.readouterr().out
     assert books.read_bytes() == before
     assert list(queue.iterdir()) == []

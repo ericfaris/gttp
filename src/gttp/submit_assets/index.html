@@ -23,24 +23,40 @@
 <main class="content reading">
   <div class="intro">
     <h1>Add a book</h1>
-    <p class="sub">Give a title and its author. The worker looks for Reddit
-      threads about it, writes the page, checks it and publishes it, usually
-      within a few minutes. If Reddit has nothing good on the book, nothing is
+    <p class="sub">Paste a book link (Goodreads, Amazon or any book page) or
+      type the title and author, then press <b>Check</b>. Review the corrections
+      it shows, then press <b>Queue it</b>. The worker looks for Reddit threads
+      about the book, writes the page, checks it and publishes it, usually
+      within a few minutes. If Reddit has nothing good on it, nothing is
       published and the queue below says why.</p>
   </div>
 
   <form class="submit-form" id="submit-form" novalidate>
     <div class="field">
+      <label for="link">Link</label>
+      <input class="input" id="link" name="url" type="url" inputmode="url" maxlength="2048" autocomplete="off" placeholder="https://www.goodreads.com/book/show/…" aria-describedby="link-hint">
+      <p class="field-hint" id="link-hint">Optional. Fills in the title and author.</p>
+    </div>
+    <div class="field">
       <label for="title">Title</label>
-      <input class="input" id="title" name="title" type="text" maxlength="120" autocomplete="off" required>
+      <input class="input" id="title" name="title" type="text" maxlength="120" autocomplete="off">
     </div>
     <div class="field">
       <label for="author">Author</label>
-      <input class="input" id="author" name="author" type="text" maxlength="80" autocomplete="off" required>
+      <input class="input" id="author" name="author" type="text" maxlength="80" autocomplete="off">
     </div>
     <p class="form-error" id="form-error" role="alert"></p>
     <p class="form-ok" id="form-ok" role="status"></p>
-    <div><button class="btn btn-primary" id="submit-btn" type="submit">Queue it</button></div>
+    <section class="check-preview" id="check-preview" aria-live="polite" aria-label="Check result" hidden>
+      <p class="check-source" id="check-source"></p>
+      <ul class="change-list" id="check-changes"></ul>
+      <ul class="warn-list" id="check-warnings"></ul>
+      <p class="form-error" id="check-duplicate"></p>
+    </section>
+    <div class="form-actions">
+      <button class="btn btn-ghost" id="check-btn" type="submit">Check</button>
+      <button class="btn btn-primary" id="submit-btn" type="button" disabled>Queue it</button>
+    </div>
   </form>
 
   <div class="section-label">

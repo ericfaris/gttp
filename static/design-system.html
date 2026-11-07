@@ -228,6 +228,60 @@
       </ol>
     </div>
 
+    <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">Check preview (private submit page)</h3>
+    <p class="ds-lede">Check looks the book up (link parsing, then capitalization,
+      then Open Library) and writes the result back into the editable fields.
+      The preview lists each change as struck-out old text, an arrow and the
+      new text on <code>--color-glow</code>, with a reason tag; warnings get a
+      marigold edge on <code>--color-surface-2</code>; a duplicate uses the
+      error line. <b>Queue it</b> stays disabled until a check comes back ready
+      and the fields still match it. Editing after a check dashes and fades the
+      preview (<code>.is-stale</code>).</p>
+    <div class="ds-grid ds-grid-2">
+      <form class="submit-form" novalidate onsubmit="return false">
+        <div class="field">
+          <label for="ds-link">Link</label>
+          <input class="input" id="ds-link" type="url" value="https://www.goodreads.com/book/show/13436116-the-charisma-myth" aria-describedby="ds-link-hint">
+          <p class="field-hint" id="ds-link-hint">Optional. Fills in the title and author.</p>
+        </div>
+        <div class="field">
+          <label for="ds-check-title">Title</label>
+          <input class="input" id="ds-check-title" type="text" value="The Charisma Myth">
+        </div>
+        <div class="field">
+          <label for="ds-check-author">Author</label>
+          <input class="input" id="ds-check-author" type="text" value="Olivia Fox Cabane">
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-ghost" type="submit">Check</button>
+          <button class="btn btn-primary" type="button">Queue it</button>
+          <button class="btn btn-primary" type="button" disabled>Queue it</button>
+        </div>
+      </form>
+      <div style="display:grid; gap:var(--space-4); align-content:start; min-width:0;">
+        <section class="check-preview" aria-label="Check result demo">
+          <p class="check-source">Checked what you typed.</p>
+          <ul class="change-list">
+            <li class="change-item"><span class="change-field">Title</span><del class="change-from">the charisma myth</del><span class="change-arrow" aria-hidden="true">→</span><ins class="change-to">The Charisma Myth</ins><span class="tag change-reason">capitalization</span></li>
+            <li class="change-item"><span class="change-field">Author</span><del class="change-from is-empty">(empty)</del><span class="change-arrow" aria-hidden="true">→</span><ins class="change-to">Olivia Fox Cabane</ins><span class="tag change-reason">Open Library</span></li>
+          </ul>
+          <ul class="warn-list">
+            <li class="form-warn">Couldn't reach Open Library, so this isn't verified (capitalization only).</li>
+          </ul>
+          <p class="form-error">'The Charisma Myth' is already in the catalog</p>
+        </section>
+        <section class="check-preview is-stale" aria-label="Stale check result demo">
+          <p class="check-source">Edited: press Check again.</p>
+          <ul class="change-list">
+            <li class="change-item"><span class="change-field">Title</span><del class="change-from">the charisma myth</del><span class="change-arrow" aria-hidden="true">→</span><ins class="change-to">The Charisma Myth</ins><span class="tag change-reason">capitalization</span></li>
+          </ul>
+          <ul class="warn-list">
+            <li class="form-warn">Not found on Open Library; check the spelling.</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
     <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">Tags</h3>
     <div class="ds-card-demo">
       <span class="tag">r/getdisciplined</span>

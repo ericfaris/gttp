@@ -7,24 +7,36 @@ only through Cloudflare Access at submit-gttp.mooseflip.com. Its one mount is
 submission only writes a `queued` entry (see gttp.jobs). The host-side
 worker (gttp.worker) builds, validates, commits and pushes it.
 
+`POST /api/check` proxies a link/title/author lookup to the internal
+`resolver` service (gttp.resolver) and treats its answer as untrusted: it
+rebuilds the response from re-validated fields only. If the resolver is
+down, busy or over today's cap, the check falls back to casing only
+(gttp.casing), so the user never gets a 5xx. A check never writes to the
+queue.
+
 Stdlib only. Static files are served from a fixed table built at startup,
 so no request path is ever joined onto a filesystem path.
 """
 
 from __future__ import annotations
 
+import http.client
 import json
 import os
 import re
 import signal
 import sys
 import threading
+import time
+from collections import deque
+from datetime import datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit
 
-from . import jobs
+from . import casing, jobs
 from .config import BOOKS_FILE, STATIC_DIR
+from .resolver import W_LINK_FAILED
 
 ASSETS_DIR = Path(__file__).resolve().parent / "submit_assets"
 MAX_BODY = 4096
@@ -46,6 +58,19 @@ CSP = (
     "style-src 'self'; connect-src 'self'; frame-ancestors 'none'; "
     "base-uri 'none'; form-action 'self'"
 )
+DEFAULT_RESOLVER_URL = "http://gttp-resolver:8102"
+RESOLVER_MAX_RESPONSE = 16 * 1024
+CHECK_WINDOW = 60.0
+W_LIMIT = "Daily lookup limit reached, so this is capitalization only."
+W_RESOLVER_DOWN = "The lookup service isn't answering, so this is capitalization only."
+W_RESOLVER_BUSY = ("The lookup service is busy, so this is capitalization only. "
+                   "Check again in a moment.")
+W_CATALOG = "Couldn't check the catalog for duplicates."
+_RESULT_KEYS = {"ok", "title", "author", "source", "changes", "warnings"}
+_CHANGE_KEYS = {"field", "from", "to", "reason"}
+_REASONS = {"capitalization", "open-library", "link"}
+_MAX_LIST = 6
+_MAX_TEXT = 300
 _STATUS_FIELDS = (
     "id", "title", "author", "state", "message", "created_at", "updated_at",
     "commit", "usd",
@@ -68,10 +93,49 @@ def build_routes(assets_dir: Path = ASSETS_DIR, static_dir: Path = STATIC_DIR) -
     return {k: v for k, v in routes.items() if v.is_file()}
 
 
+def _clean_text(v, max_len: int = _MAX_TEXT) -> bool:
+    return isinstance(v, str) and len(v) <= max_len and not any(
+        jobs._is_invisible(c) for c in v)
+
+
+def validate_resolver_result(d) -> dict | None:
+    """A new dict built only from re-validated resolver fields, or None if
+    anything about the answer is off (the caller then falls back)."""
+    if not isinstance(d, dict) or d.get("ok") is not True or set(d) != _RESULT_KEYS:
+        return None
+    out = {}
+    for field, max_len in (("title", jobs.TITLE_MAX), ("author", jobs.AUTHOR_MAX)):
+        v = d[field]
+        if not isinstance(v, str) or (v and jobs.validate_field(field, v, max_len)):
+            return None
+        out[field] = v
+    if d["source"] not in ("link", "typed"):
+        return None
+    out["source"] = d["source"]
+    changes, warnings = d["changes"], d["warnings"]
+    if not isinstance(changes, list) or len(changes) > _MAX_LIST:
+        return None
+    out["changes"] = []
+    for c in changes:
+        if (not isinstance(c, dict) or set(c) != _CHANGE_KEYS
+                or c["field"] not in ("title", "author") or c["reason"] not in _REASONS
+                or not _clean_text(c["from"]) or not _clean_text(c["to"])):
+            return None
+        out["changes"].append({k: c[k] for k in ("field", "from", "to", "reason")})
+    if not isinstance(warnings, list) or len(warnings) > _MAX_LIST:
+        return None
+    if not all(_clean_text(w) for w in warnings):
+        return None
+    out["warnings"] = list(warnings)
+    return out
+
+
 class SubmitServer(ThreadingHTTPServer):
     daemon_threads = True
 
-    def __init__(self, addr, queue_dir, catalog_path, daily_cap, max_queued, origins):
+    def __init__(self, addr, queue_dir, catalog_path, daily_cap, max_queued, origins,
+                 resolver_url=DEFAULT_RESOLVER_URL, resolver_timeout=20.0, check_cap=30,
+                 check_burst=6, clock=time.monotonic):
         self.queue_dir = Path(queue_dir)
         self.catalog_path = Path(catalog_path)
         self.daily_cap = daily_cap
@@ -81,6 +145,17 @@ class SubmitServer(ThreadingHTTPServer):
         # One lock around read-check-write, so two concurrent submissions
         # can't both pass the daily cap or the duplicate check.
         self.submit_lock = threading.Lock()
+        # Link checks: in-memory counters (a restart resets them).
+        self.resolver_url = resolver_url
+        self.resolver_timeout = resolver_timeout
+        self.check_cap = check_cap
+        self.check_burst = check_burst
+        self.clock = clock
+        self.check_day = datetime.now(jobs.TZ).date()
+        self.checks_today = 0
+        self.recent_checks: deque = deque()
+        self.check_lock = threading.Lock()
+        self.check_inflight = threading.Lock()
         super().__init__(addr, Handler)
 
 
@@ -93,11 +168,14 @@ class Handler(BaseHTTPRequestHandler):
     server_version = "gttp-submit"
     sys_version = ""
     timeout = 15  # seconds per socket read: a stalled client can't pin a thread
+    outcome = ""
 
-    # -- logging: method, path and status only, never bodies ---------------
+    # -- logging: method, path, status and an outcome code, never bodies -----
     def log_request(self, code="-", size="-"):
         path = urlsplit(self.path).path if getattr(self, "path", None) else "-"
-        print(f"[submit] {self.command} {_safe_for_log(path)} {code}", flush=True)
+        extra = f" {self.outcome}" if self.outcome else ""
+        print(f"[submit] {self.command} {_safe_for_log(path)} {code}{_safe_for_log(extra)}",
+              flush=True)
 
     def log_message(self, format, *args):
         print(f"[submit] {_safe_for_log(format % args)}", flush=True)
@@ -157,13 +235,25 @@ class Handler(BaseHTTPRequestHandler):
                 "today": jobs.count_today(entries),
                 "max_queued": self.server.max_queued,
                 "active": jobs.active_count(entries),
+                "check_cap": self.server.check_cap,
+                "checks_today": self._checks_today(),
             },
         }
 
     # -- POST -------------------------------------------------------------------
     def do_POST(self):
-        if urlsplit(self.path).path != "/api/submit":
+        path = urlsplit(self.path).path
+        if path not in ("/api/submit", "/api/check"):
             return self._error(404, "not found")
+        data = self._read_json()
+        if data is None:
+            return
+        if path == "/api/check":
+            return self._check(data)
+        self._submit(data)
+
+    def _read_json(self) -> dict | None:
+        """The shared POST preamble. Sends the error itself and returns None."""
         origin = self.headers.get("Origin")
         if origin is not None and origin not in self.server.origins:
             return self._error(403, "origin not allowed")
@@ -185,6 +275,9 @@ class Handler(BaseHTTPRequestHandler):
             return self._error(400, "body must be JSON")
         if not isinstance(data, dict):
             return self._error(400, "body must be a JSON object")
+        return data
+
+    def _submit(self, data: dict):
         if set(data) - {"title", "author"}:
             return self._error(400, "unexpected fields")
         title, author = data.get("title", ""), data.get("author", "")
@@ -215,6 +308,129 @@ class Handler(BaseHTTPRequestHandler):
                 return self._error(500, "could not save the submission")
         self._json(201, {"ok": True, "entry": entry})
 
+    # -- link check ---------------------------------------------------------------
+    def _checks_today(self) -> int:
+        srv = self.server
+        with srv.check_lock:
+            self._roll_day()
+            return srv.checks_today
+
+    def _roll_day(self):
+        srv = self.server
+        today = datetime.now(jobs.TZ).date()
+        if today != srv.check_day:
+            srv.check_day, srv.checks_today = today, 0
+
+    def _check(self, data: dict):
+        if set(data) - jobs.CHECK_FIELDS:
+            return self._error(400, "unexpected fields")
+        err, url, title, author = jobs.validate_check(data)
+        if err:
+            return self._error(400, err)
+        srv = self.server
+        if not srv.check_inflight.acquire(blocking=False):
+            self.outcome = "check:inflight"
+            return self._error(429, "a check is already running; try again in a moment")
+        try:
+            with srv.check_lock:
+                now = srv.clock()
+                while srv.recent_checks and now - srv.recent_checks[0] >= CHECK_WINDOW:
+                    srv.recent_checks.popleft()
+                if len(srv.recent_checks) >= srv.check_burst:
+                    self.outcome = "check:burst"
+                    return self._error(429, "too many checks; wait a minute")
+                srv.recent_checks.append(now)
+                self._roll_day()
+                over_cap = srv.checks_today >= srv.check_cap
+                if not over_cap:
+                    srv.checks_today += 1
+            payload = {k: v for k, v in (("url", url), ("title", title), ("author", author)) if v}
+            if over_cap:
+                self.outcome = "check:limit"
+                result = self._local_check(url, title, author, W_LIMIT)
+            else:
+                result, code = self._call_resolver(payload)
+                self.outcome = f"check:{code}"
+                if result is None:
+                    warning = W_RESOLVER_BUSY if code == "busy" else W_RESOLVER_DOWN
+                    result = self._local_check(url, title, author, warning)
+            return self._json(200, {"ok": True, **self._finish(result)})
+        finally:
+            srv.check_inflight.release()
+
+    def _call_resolver(self, payload: dict) -> tuple[dict | None, str]:
+        srv = self.server
+        try:
+            parts = urlsplit(srv.resolver_url)
+            conn = http.client.HTTPConnection(parts.hostname, parts.port or 80,
+                                              timeout=srv.resolver_timeout)
+            try:
+                body = json.dumps(payload).encode("utf-8")
+                conn.request("POST", "/resolve", body=body,
+                             headers={"Content-Type": "application/json"})
+                resp = conn.getresponse()
+                raw = resp.read(RESOLVER_MAX_RESPONSE + 1)
+                status = resp.status
+            finally:
+                conn.close()
+        except Exception as exc:
+            return None, f"resolver-down:{type(exc).__name__}"
+        if status == 429:
+            return None, "busy"
+        if status != 200:
+            return None, f"resolver-{status}"
+        if len(raw) > RESOLVER_MAX_RESPONSE:
+            return None, "resolver-too-large"
+        try:
+            d = json.loads(raw.decode("utf-8"))
+        except (UnicodeDecodeError, ValueError):
+            return None, "resolver-bad-json"
+        result = validate_resolver_result(d)
+        if result is None:
+            return None, "resolver-bad-shape"
+        return result, "resolved"
+
+    def _local_check(self, url: str, title: str, author: str, warning: str) -> dict:
+        fields = {"title": title, "author": author}
+        changes = []
+        for field in ("title", "author"):
+            if fields[field]:
+                new, ch = casing.apply_casing(field, fields[field])
+                if ch and jobs.validate_field(field, new, jobs.TITLE_MAX if field == "title"
+                                              else jobs.AUTHOR_MAX) is None:
+                    fields[field] = new
+                    changes.append(ch)
+        warnings = [warning]
+        if url and not title:
+            warnings.append(W_LINK_FAILED)
+        return {**fields, "source": "typed", "changes": changes, "warnings": warnings}
+
+    def _finish(self, result: dict) -> dict:
+        title, author = result["title"], result["author"]
+        warnings = list(result["warnings"])
+        duplicate = None
+        ready = False
+        if title:
+            err, slug = jobs.validate_submission(title, author or "x")
+            if err:
+                warnings.append(err)
+            else:
+                try:
+                    catalog = jobs.catalog_slugs(self.server.catalog_path)
+                except Exception as exc:
+                    print(f"[submit] catalog unreadable: {type(exc).__name__}", flush=True)
+                    warnings.append(W_CATALOG)
+                else:
+                    entries = jobs.read_entries(self.server.queue_dir)
+                    duplicate = jobs.find_duplicate(slug, entries, catalog, title)
+                ready = bool(author) and duplicate is None and W_CATALOG not in warnings \
+                    and jobs.validate_submission(title, author)[0] is None
+        return {
+            "title": title, "author": author, "source": result["source"],
+            "changes": result["changes"], "warnings": warnings,
+            "duplicate": duplicate, "ready": ready,
+        }
+
 
 def make_server(
     queue_dir: Path,
@@ -224,8 +440,15 @@ def make_server(
     origins=tuple(DEFAULT_ORIGINS.split(",")),
     port: int = 8101,
     host: str = "0.0.0.0",
+    resolver_url: str = DEFAULT_RESOLVER_URL,
+    resolver_timeout: float = 20.0,
+    check_cap: int = 30,
+    check_burst: int = 6,
+    clock=time.monotonic,
 ) -> SubmitServer:
-    return SubmitServer((host, port), queue_dir, catalog_path, daily_cap, max_queued, origins)
+    return SubmitServer((host, port), queue_dir, catalog_path, daily_cap, max_queued, origins,
+                        resolver_url=resolver_url, resolver_timeout=resolver_timeout,
+                        check_cap=check_cap, check_burst=check_burst, clock=clock)
 
 
 def _int_env(name: str, default: int) -> int:
@@ -252,6 +475,8 @@ def main() -> int:
         max_queued=_int_env("GTTP_SUBMIT_MAX_QUEUED", 3),
         origins=origins,
         port=_int_env("GTTP_SUBMIT_PORT", 8101),
+        resolver_url=os.environ.get("GTTP_RESOLVER_URL") or DEFAULT_RESOLVER_URL,
+        check_cap=_int_env("GTTP_CHECK_DAILY_CAP", 30),
     )
     print(f"[submit] serving on :{server.server_address[1]}, queue {queue_dir}", flush=True)
     # As the container's PID 1, Python ignores SIGTERM unless it handles it,
