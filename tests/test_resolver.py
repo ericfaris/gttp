@@ -162,6 +162,18 @@ def test_unreadable_page():
     assert (r["title"], r["author"], r["warnings"]) == ("", "", [W_LINK_FAILED])
 
 
+def test_unreadable_page_with_a_typed_title_warns_once():
+    url = "https://books.example.org/x"
+    r = check({"url": url, "title": "Grit"}, pages({url: FetchError("timeout")}), ol())
+    assert r["warnings"] == [W_LINK_FAILED, W_NOT_FOUND]
+
+
+def test_page_without_an_author():
+    url = "https://books.example.org/x"
+    r = check({"url": url}, pages({url: "generic-title-only.html"}), ol())
+    assert r["warnings"] == [resolver.W_NO_AUTHOR, W_NOT_FOUND]
+
+
 def test_link_fills_only_the_missing_author():
     r = check({"url": GOODREADS_URL, "title": "The Charisma Myth"},
               pages({GOODREADS_URL: "goodreads-charisma.html"}), ol("charisma.json"))

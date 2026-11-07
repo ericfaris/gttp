@@ -118,8 +118,9 @@ def check(req: dict, fetch_page, fetch_json, outcomes: list | None = None) -> di
                     warn(W_AUTHOR_GUESSED)
             elif cand.author_raw:
                 warn(W_BAD_CANDIDATE.format(field="author"))
-            elif fields["title"] and not slug_mode:
-                warn(W_NO_AUTHOR)
+            elif fields["title"] and not slug_mode and not any(
+                    n == "blocked" or n.startswith("fetch-failed") for n in cand.notes):
+                warn(W_NO_AUTHOR)  # the page was read but named no author
 
     # 2. Deterministic casing.
     for field in ("title", "author"):
