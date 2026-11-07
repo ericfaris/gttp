@@ -390,3 +390,20 @@ def test_require_author_matches_any_coauthor_surname():
 def test_catalog_flags_generic_titles():
     flagged = {b.title for b in load_catalog() if b.require_author}
     assert {"Boundaries", "Emotional Intelligence", "How to Begin"} <= flagged
+
+
+def test_untrusted_hrefs_are_neutralized(tmp_path):
+    page = BookPage(
+        title="Grit", author=None, core_idea="c", bullets=["b"], honest_take="h",
+        quotes=[{"text": "q", "author": "u", "url": "javascript:alert(1)"}],
+        sources=[
+            {"title": "s", "url": "JaVaScRiPt:alert(2)", "subreddit": "x", "score": 1},
+            {"title": "ok", "url": "https://www.reddit.com/r/x/1", "subreddit": "x", "score": 1},
+        ],
+        generated_by="claude",
+    )
+    write_site([page], tmp_path, covers_dir=tmp_path / "none")
+    html_out = (tmp_path / "books" / "grit.html").read_text()
+    assert "href='#'" in html_out
+    assert "javascript:" not in html_out.lower()
+    assert "href='https://www.reddit.com/r/x/1'" in html_out

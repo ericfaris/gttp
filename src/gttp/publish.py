@@ -154,6 +154,15 @@ def _version_css(page_html: str, version: str) -> str:
     )
 
 
+def _safe_href(url) -> str:
+    """An escaped http(s) URL, or "#" for anything else (javascript:,
+    data:, relative paths). Page URLs come from Reddit threads and Claude
+    output, so they're untrusted."""
+    if isinstance(url, str) and url.startswith(("https://", "http://")):
+        return html.escape(url)
+    return "#"
+
+
 def _has_summary(page: BookPage) -> bool:
     return bool(page.bullets or page.sources)
 
@@ -430,7 +439,7 @@ def _render_book_html(page: BookPage, covers_dir: Path) -> str:
         for q in page.quotes:
             parts.append(
                 f"<blockquote>{html.escape(q['text'])}"
-                f"<footer>— <a href='{html.escape(q['url'])}'>{html.escape(q['author'])}</a></footer>"
+                f"<footer>— <a href='{_safe_href(q['url'])}'>{html.escape(q['author'])}</a></footer>"
                 f"</blockquote>"
             )
         parts.append("</details>")
@@ -441,7 +450,7 @@ def _render_book_html(page: BookPage, covers_dir: Path) -> str:
         )
         for s in page.sources:
             parts.append(
-                f"<li><a href='{html.escape(s['url'])}'>{html.escape(s['title'])}</a> "
+                f"<li><a href='{_safe_href(s['url'])}'>{html.escape(s['title'])}</a> "
                 f"— r/{html.escape(s['subreddit'])} ({s['score']} upvotes)</li>"
             )
         parts.append("</ul></details>")
