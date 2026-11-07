@@ -78,3 +78,41 @@
   - Everyday-phrase titles keep turning up ("How to Begin" matched "how to
     begin to like myself?"). When a page's core idea opens with "Caveat:"
     the sources are off-topic: add `require_author` and keep the old page.
+- **2026-11-07 — Book-submission pipeline (form → host worker → push).**
+  Decisions and footguns from building it:
+  - `gttp build` exits 0 and writes a "No qualifying Reddit summaries" stub
+    (to `.cache/pages/` and the live `site/`) when nothing passes filtering;
+    The Like Switch did exactly that. Automation must gate on page content
+    (`worker.validate_page`: Claude synthesis, bullets + reddit-only
+    sources, quality guard), never the exit code, and the rollback must
+    remove the derived `site/books/<slug>.*` and re-render.
+  - `--only` is a title substring match, fine by hand but dangerous in
+    automation ("Habits" rebuilds three books). Added `--exact`; the worker
+    also fails a job if any file outside the book's own three changed.
+  - `yaml.safe_dump` round-trips strip every comment in `books.yaml`.
+    `add_book` now appends a snippet in place and re-parses to verify.
+  - `books.yaml` is a single-file bind mount: `git checkout`, `git reset
+    --hard`, `os.replace` and rename-on-save editors swap the inode and the
+    container keeps reading the deleted file. Restore by rewriting in place;
+    undo an unpushed commit with `reset --soft` + `reset` (index only).
+  - Sentinel refuses to deploy into a dirty tree and the worker's job makes
+    the tree dirty for minutes. Borrowing Sentinel's own per-repo deploy
+    lock (same pid + hard-link protocol) makes a deploy wait instead of
+    fail. Coupling: if Sentinel changes the lock, serialization silently
+    stops (the clean-tree checks still hold).
+  - Hard budget without a token-count call: reserve `(prompt bytes + 4000) ×
+    input price + max_tokens × output price` before each call (byte-level
+    BPE means a token is at least one byte), refuse if spent + reserve >
+    cap, and make the refusal sticky. The existing fallbacks turn it into
+    the heuristic/keep-cache path. Fail closed on bad env or unknown price.
+  - Residual injection risk is accepted: a hostile thread can still put
+    misleading *words* on a page that passes validation (escaped text,
+    reddit-only links), but it can't run anything, touch other files or
+    add a non-reddit link.
+  - Gotchas hit while verifying: a CSP without `unsafe-eval` breaks
+    Playwright's `wait_for_function` (use locator waits); browsers send
+    `Origin` on same-origin POSTs, so a test instance on another port needs
+    its origin in `GTTP_SUBMIT_ORIGINS`; `systemd-run -p WorkingDirectory=`
+    doesn't expand `%h`; `pkill -f <pattern>` can match the calling shell.
+    And never call `gttp.cli.main(["add", ...])` to "just check argparse":
+    it writes the real `books.yaml` and fetches a real cover.

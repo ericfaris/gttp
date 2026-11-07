@@ -3,10 +3,29 @@
 ## What it is / where it runs
 
 Static site of point-first self-help book digests built from Reddit threads
-and Claude synthesis. Production: Docker container on `127.0.0.1:8100`, public
-at https://gttp.mooseflip.com through the mooseflip Cloudflare tunnel (no
-Access gate). Nothing builds automatically: every `gttp build` is run by
-hand inside the container.
+and Claude synthesis. Production: Docker container `gttp-app-1` on
+`127.0.0.1:8100`, public at https://gttp.mooseflip.com through the mooseflip
+Cloudflare tunnel (no Access gate).
+
+**Book submission pipeline (0.2.0, 2026-11-07):**
+- `gttp-submit-1` (compose service `submit`, same image, `python -m
+  gttp.submit`) on `127.0.0.1:8101`: private form + queue status page. Its
+  only mount is `.cache/queue/` (rw); read-only root, no git, no keys, no
+  Anthropic key. It validates input (title ≤120, author ≤80, no
+  control/invisible chars, ASCII slug, duplicates, 5/day, 3 waiting) and
+  writes one JSON entry per submission. Intended public hostname:
+  `submit-gttp.mooseflip.com` behind Cloudflare Access (see wiring below).
+- Host worker `python -m gttp.worker run` (`src/gttp/worker.py`), run every
+  minute by the `gttp-worker.timer` user unit (`systemd/` in this repo). It
+  takes the oldest queued entry, preflights, holds Sentinel's deploy lock,
+  runs `gttp add` + `gttp build --exact --only=<title>` in the app container
+  with `GTTP_MAX_BUDGET_USD`, validates the page (real Claude synthesis,
+  reddit-only links, quality guard), runs pytest + ruff, commits exactly
+  `books.yaml` + `.cache/pages/<slug>.json` (+ `covers/<slug>.jpg`) and
+  pushes `main`. Sentinel's normal push-to-main deploy publishes it. Any
+  failure restores the tree and marks the entry `failed: <reason>`.
+- Manual `gttp build` in the container still works as before (no budget
+  guard unless `GTTP_MAX_BUDGET_USD` is set).
 
 **Production runs from this checkout, `/home/eric/projects/gttp`,** like
 every other lab app. The compose file bind-mounts `./site`, `./.cache`,
@@ -35,6 +54,19 @@ directly. Rules:
   code's HTML is live immediately. Manual equivalent:
   `docker compose build --pull && docker compose up -d`.
 - Re-render without deploying: `docker compose exec -T app gttp render`.
+- Worker (from the repo root, host only):
+  `.venv/bin/python -m gttp.worker preflight` (each check ✓/✗, read-only
+  apart from a `git fetch`; exit 0 or 2), `… status` (print the queue),
+  `… cancel <id>` (queued → failed "cancelled by operator"; how to clear
+  test/junk entries without deleting files), `… run` (what the timer runs).
+- Worker logs and timer: `journalctl --user -u gttp-worker -n 50`,
+  `systemctl --user list-timers gttp-worker.timer`, and
+  `systemctl --user start gttp-worker.service` to run one tick now.
+- Submit service: `docker compose logs submit`, `curl -s
+  127.0.0.1:8101/api/status`. Exit codes of the worker: 0 nothing to do /
+  done / another worker running; 1 job failed, tree clean; 2 preflight
+  refused (entry stays queued with `waiting: <reason>`); 3 restore failed,
+  tree still dirty, **Sentinel deploys blocked** until fixed by hand.
 
 ## Claude usage
 
@@ -52,6 +84,45 @@ book with 30-40 relevant threads, since ranking dominates.
 truncation or API failure falls back to the heuristic path, and the
 quality guard then keeps the cached page.
 
+## Config not in git
+
+- `.env`: `ANTHROPIC_API_KEY` only, used by the `app` service via compose
+  interpolation. The `submit` service gets nothing from it (no `env_file:`).
+- `~/.config/gttp/worker.env` (optional, no secrets, loaded by the unit's
+  `EnvironmentFile=-`): `GTTP_MAX_BUDGET_USD` (per job, default 0.50),
+  `GTTP_MONTHLY_BUDGET_USD` (NY calendar month across all of
+  `.cache/usage.jsonl`, default 5.00), `GTTP_WORKER_BUILD_TIMEOUT` (s,
+  default 600). Compose-level overrides for submit:
+  `GTTP_SUBMIT_DAILY_CAP`, `GTTP_SUBMIT_MAX_QUEUED`.
+- `.cache/queue/` (gitignored) must exist and be owned by eric **before**
+  the first `docker compose up`, or Docker creates it root-owned and the
+  submit service exits with "queue dir … is not writable".
+
+## Shared-system wiring
+
+- Cloudflare: `submit-gttp.mooseflip.com` → `http://localhost:8101`, with
+  its own Access app (only ericfaris@gmail.com). **Status: pending** (not
+  created yet; runbook in `.claude/plans/book-submission-plan.md` §5.5:
+  Access app first, then DNS, then tunnel ingress, then the
+  cloudflared restart). Until then the form is reachable only on the host.
+- systemd: `systemd/gttp-worker.{service,timer}` get symlinked into
+  `~/.config/systemd/user/` (like the sentinel units), then
+  `systemctl --user daemon-reload && systemctl --user enable --now
+  gttp-worker.timer`. **Status: not linked or enabled yet.** Enable only
+  after the 0.2.0 image is deployed (the worker's version gate refuses an
+  older container anyway). Linger is on for eric.
+- Sentinel: the worker takes Sentinel's per-repo deploy lock
+  (`/tmp/sentinel-deploy-locks/_home_eric_projects_gttp.lock`, same
+  pid-file + hard-link protocol as `sentinel/src/deployLock.js`) while the
+  tree is dirty, so a deploy that arrives mid-job waits instead of
+  refusing. If Sentinel changes that path or protocol, the worker silently
+  stops serializing with deploys (its clean-tree checks still protect it).
+  Sentinel waits at most 15 min for the lock; keep a job's dirty window
+  under ~12 min. Sentinel's health check only looks at `gttp-app-1`;
+  `gttp-submit-1` isn't in its `repo-map.json` (optional to add).
+- A systemd-context `git push --dry-run` works (ssh auth OK from the user
+  manager, checked 2026-11-07).
+
 ## Design system
 
 `DESIGN.md` ("Switched On" v2) is the source of truth. Tokens and components
@@ -62,14 +133,27 @@ in DESIGN.md), and every new component goes into the showcase.
 
 ## Open items (priority order)
 
-1. **3 pages still lack real Reddit evidence:** Why Has Nobody Told Me This
+1. **Roll out the submit pipeline** (in order): resolve the dirty tree
+   (The Like Switch entry in `books.yaml`, `covers/the-like-switch.jpg`,
+   the untracked plan files); push `main` so Sentinel deploys 0.2.0 and
+   starts `submit`; link + enable the timer; run the Cloudflare runbook;
+   then the real negative run (submit The Like Switch; expect `failed:
+   insufficient evidence`, clean tree) and, with OK to spend, one positive
+   run. The image built locally on 2026-11-07 baked in the dirty
+   `books.yaml`, so the running `gttp-submit-1` currently treats The Like
+   Switch as already in the catalog (409) until the next deploy rebuilds
+   the image from a clean tree.
+2. **The Like Switch has no evidence** (Arctic Shift: 16 posts, 0 passed
+   filtering). Publishing it is blocked pending a user decision; it is the
+   pipeline's real negative fixture.
+3. **3 pages still lack real Reddit evidence:** Why Has Nobody Told Me This
    Before? and Boundaries (nothing in the Arctic Shift archive) and How to
    Begin (the archive only had generic "how to begin" posts). Their pages
    come from the July run and stay as they are (user's decision,
    2026-10-25); re-check them only if a new data source turns up. Thin but on-topic (1-3 threads): The Mountain Is You,
    The Magic of Thinking Big, Emotional Intelligence, The 7 Habits, Thinking
    Fast and Slow, Tiny Experiments.
-2. **Reddit data source:** Reddit blocks the lab IP (403, "blocked by network
+4. **Reddit data source:** Reddit blocks the lab IP (403, "blocked by network
    security"), and official API access isn't available to us (tried
    2026-10-25), so don't pursue it. Live search uses the Arctic Shift
    archive (`src/gttp/arctic.py`, the default; `GTTP_REDDIT_SOURCE=browser`
@@ -77,9 +161,9 @@ in DESIGN.md), and every new component goes into the showcase.
    r/getdisciplined, r/productivity usually return 422 within a second) and
    results vary run to run. A `--refresh` merges into the cache, so
    re-running adds threads.
-3. Idea from LESSONS: a weekly push of one try-today experiment (Google Task
+5. Idea from LESSONS: a weekly push of one try-today experiment (Google Task
    via goose-cli) with a keep/drop check-in.
-4. `the-courage-to-be-disliked` has no stored cover. Run `gttp covers` in
+6. `the-courage-to-be-disliked` has no stored cover. Run `gttp covers` in
    the container, or accept the on-brand placeholder.
 
 ## Gotchas
@@ -102,3 +186,18 @@ in DESIGN.md), and every new component goes into the showcase.
 - Full-page Playwright screenshots show a visible seam in the background at
   viewport height (`background-attachment: fixed`). It's a screenshot
   artifact, not a bug.
+- **books.yaml is a single-file bind mount.** Anything that replaces it by
+  rename (`git checkout -- books.yaml`, `git reset --hard`, `os.replace`,
+  editors that save by rename) leaves the app container reading the old,
+  deleted file. Restore it in place (`git show HEAD:books.yaml >
+  books.yaml`) and, if the container already lost it, `docker compose
+  restart app`. The worker's preflight compares the two sha256s and
+  refuses on a mismatch. `gttp add` now appends in place (comments kept).
+- **`--only` matches by substring.** "Habits" also rebuilds "Atomic Habits"
+  and "The 7 Habits". Automation must use `--exact`.
+- **A dirty tree blocks both the worker and Sentinel deploys**, untracked
+  files included. A worker exit 3 means it couldn't restore the tree; read
+  the journal, fix the tree by hand, and the next tick or deploy continues.
+- **`gttp build` exits 0 with a stub page** when Reddit has nothing usable,
+  and writes the stub to the live `site/` immediately. Gate on the page's
+  content (`worker.validate_page`), never the exit code.
