@@ -100,17 +100,18 @@ quality guard then keeps the cached page.
 
 ## Shared-system wiring
 
-- Cloudflare: `submit-gttp.mooseflip.com` → `http://localhost:8101`, with
-  its own Access app (only ericfaris@gmail.com). **Status: pending** (not
-  created yet; runbook in `.claude/plans/book-submission-plan.md` §5.5:
-  Access app first, then DNS, then tunnel ingress, then the
-  cloudflared restart). Until then the form is reachable only on the host.
-- systemd: `systemd/gttp-worker.{service,timer}` get symlinked into
-  `~/.config/systemd/user/` (like the sentinel units), then
-  `systemctl --user daemon-reload && systemctl --user enable --now
-  gttp-worker.timer`. **Status: not linked or enabled yet.** Enable only
-  after the 0.2.0 image is deployed (the worker's version gate refuses an
-  older container anyway). Linger is on for eric.
+- Cloudflare (live since 2026-11-07): `submit-gttp.mooseflip.com` →
+  `http://localhost:8101`. Access app "gttp submit" (id
+  `7cf2acc2-8def-4d10-98c0-c72f9592cb38`, only ericfaris@gmail.com, 24h),
+  proxied CNAME, and a remote tunnel ingress rule (the local `config.yml`
+  fallbacks weren't updated; they already lack other hosts). Verified:
+  unauthenticated GET/POST get a 302 to Access and create no queue entry;
+  `gttp.mooseflip.com` stays public.
+- systemd: `systemd/gttp-worker.{service,timer}` are symlinked into
+  `~/.config/systemd/user/` and `daemon-reload` was run. **The timer is NOT
+  enabled yet.** Enable with `systemctl --user enable --now
+  gttp-worker.timer` after `python -m gttp.worker preflight` is all ✓
+  (it was on 2026-11-07). Linger is on for eric.
 - Sentinel: the worker takes Sentinel's per-repo deploy lock
   (`/tmp/sentinel-deploy-locks/_home_eric_projects_gttp.lock`, same
   pid-file + hard-link protocol as `sentinel/src/deployLock.js`) while the
