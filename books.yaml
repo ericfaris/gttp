@@ -77,3 +77,5 @@ books:
   require_author: true  # the phrase alone matches other EQ books and posts
 - title: The Compound Effect
   author: Darren Hardy
+- title: The charisma myth
+  author: Olivia fox Cabane

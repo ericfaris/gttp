@@ -1,0 +1,54 @@
+{
+  "title": "The charisma myth",
+  "author": "Olivia fox Cabane",
+  "core_idea": "Charisma isn't an inborn gift. It's a learnable set of behaviors that come from three inner states, presence, power and warmth, which you can train and then show through body language and how you treat people.",
+  "bullets": [
+    "Presence: be fully in the room. Distracted attention is the fastest way to kill charisma, so practice dropping the mental chatter and focusing on the person in front of you.",
+    "Power: people read you as able to affect the world through posture, calm movement and unhurried speech. Cut the fidgeting and the nervous hedging.",
+    "Warmth: people need to feel your goodwill toward them. Power without warmth reads as cold or intimidating.",
+    "Pick a charisma style that fits your temperament instead of forcing one: focus, visionary, kindness or authority. Not everyone should try to be the loud, high-energy type.",
+    "Your inner state drives your outer signals, so manage it. Use mental techniques for nerves and awkward moments, then put them to work in real conversations."
+  ],
+  "honest_take": "These threads are thin. One is a book-club schedule and the other is a 'what should I read next' post, so nobody wrote a real review and nobody named chapters to skip. What the threads do show is that the book is popular: it won the club vote with 33 votes, beating Robert Greene's 48 Laws of Power and Siddhartha. The one open question was whether charisma can really be learned, and nobody answered it. The sharpest take is the 'read less, apply more' comment: if you've already read this and How to Win Friends, more books won't help, so go act on them. Others point to Leil Lowndes (How to Talk to Anyone) and Joe Navarro (What Every Body Is Saying) for tactics and body language, or to 7 Habits for building genuine character instead of faking it. Read it as a decent starting framework, not a bible.",
+  "quotes": [
+    {
+      "text": "I particularly like info on improving body language and small tips and tricks to be more charismatic in a business setting.",
+      "author": "oconn",
+      "url": "https://www.reddit.com/r/selfimprovement/comments/4l4ylz/"
+    },
+    {
+      "text": "Making *The Charisma Myth* our book for this month.",
+      "author": "s-b",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/48k0rl/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Books similar to \"The Charisma Myth\" and \"How to Win Friends\"?",
+      "url": "https://www.reddit.com/r/selfimprovement/comments/4l4ylz/",
+      "subreddit": "selfimprovement",
+      "score": 41
+    },
+    {
+      "title": "The Charisma Myth - Reading &amp; Discussion Schedule",
+      "url": "https://www.reddit.com/r/BettermentBookClub/comments/48k0rl/",
+      "subreddit": "BettermentBookClub",
+      "score": 17
+    }
+  ],
+  "generated_by": "claude",
+  "generated_at": "2026-11-07",
+  "model": "claude-sonnet-5-5",
+  "verdict": "This page covers the core framework; read the book only if you'll practice it, since the threads offer no real review.",
+  "try_today": "Pick one conversation today and give the person your full attention: silence the mental chatter, put your phone away, and focus only on what they're saying until they finish.",
+  "for_who": "Someone new to charisma who wants a simple starting framework of presence, power and warmth.",
+  "skip_if": "You've already read How to Win Friends and just keep collecting books instead of acting on them.",
+  "take_points": [
+    "The threads are thin: just a book-club schedule and a 'what to read next' post, so nobody wrote a real review or named chapters to skip.",
+    "The book is clearly popular, winning its club vote with 33 votes over Robert Greene's 48 Laws of Power and Siddhartha.",
+    "Nobody answered the big question of whether charisma can really be learned.",
+    "The sharpest comment says read less and apply more, and points to Leil Lowndes, Joe Navarro or 7 Habits if you want tactics, body language or real character."
+  ],
+  "enriched_at": "2026-11-07",
+  "enrich_model": "claude-sonnet-5-5"
+}
