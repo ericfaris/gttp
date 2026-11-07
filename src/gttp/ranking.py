@@ -11,9 +11,11 @@ from __future__ import annotations
 import json
 import re
 
-from .claude import record_usage, response_text
+from .claude import check_budget, record_usage, response_text
 from .config import MODEL, Book, anthropic_key
 from .models import RankedThread, RedditThread
+
+RANK_MAX_TOKENS = 8000
 
 _RANK_SCHEMA = {
     "type": "object",
@@ -138,9 +140,10 @@ def _rank_with_claude(threads: list[RedditThread], book: Book) -> list[RankedThr
         "penalize vague reviews, rants, and thin one-liners.\n\n"
         f"Threads:\n{catalog}"
     )
+    check_budget(prompt, RANK_MAX_TOKENS, "rank", book.title)
     resp = client.messages.create(
         model=MODEL,
-        max_tokens=8000,
+        max_tokens=RANK_MAX_TOKENS,
         output_config={"format": {"type": "json_schema", "schema": _RANK_SCHEMA}},
         messages=[{"role": "user", "content": prompt}],
     )

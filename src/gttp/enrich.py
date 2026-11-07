@@ -14,9 +14,13 @@ import json
 from dataclasses import replace
 from datetime import date
 
-from .claude import record_usage, response_text
+from .claude import check_budget, record_usage, response_text
 from .config import MODEL, anthropic_key
 from .models import BookPage
+
+# Same headroom as synthesis: adaptive thinking spends tokens before the
+# JSON, and a tight cap returns empty output.
+ENRICH_MAX_TOKENS = 8000
 
 _ENRICH_SCHEMA = {
     "type": "object",
@@ -92,11 +96,10 @@ def _enrich_with_claude(page: BookPage) -> dict:
         f"Key ideas:\n{bullets}\n\n"
         f"Honest take: {page.honest_take}"
     )
+    check_budget(prompt, ENRICH_MAX_TOKENS, "enrich", page.title)
     resp = client.messages.create(
         model=MODEL,
-        # Same headroom as synthesis: adaptive thinking spends tokens before
-        # the JSON, and a tight cap returns empty output.
-        max_tokens=8000,
+        max_tokens=ENRICH_MAX_TOKENS,
         thinking={"type": "adaptive"},
         output_config={
             "effort": "medium",

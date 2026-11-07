@@ -11,9 +11,14 @@ from __future__ import annotations
 import json
 from datetime import date
 
-from .claude import record_usage, response_text
+from .claude import check_budget, record_usage, response_text
 from .config import MODEL, Book, anthropic_key
 from .models import BookPage, RankedThread
+
+# Adaptive thinking at high effort can spend several thousand tokens
+# reasoning before ever emitting the JSON output; 4000 was tuned for Opus and
+# left no room on Sonnet, causing empty responses.
+SYNTH_MAX_TOKENS = 12000
 
 _PAGE_SCHEMA = {
     "type": "object",
@@ -112,12 +117,10 @@ def _synthesize_with_claude(book: Book, top: list[RankedThread]) -> BookPage:
         "book, not self-help in general.\n\n"
         f"Threads:\n{threads_blob}"
     )
+    check_budget(prompt, SYNTH_MAX_TOKENS, "synthesize", book.title)
     resp = client.messages.create(
         model=MODEL,
-        # Adaptive thinking at high effort can spend several thousand tokens
-        # reasoning before ever emitting the JSON output; 4000 was tuned for
-        # Opus and left no room on Sonnet, causing empty responses.
-        max_tokens=12000,
+        max_tokens=SYNTH_MAX_TOKENS,
         thinking={"type": "adaptive"},
         output_config={
             "effort": "high",
