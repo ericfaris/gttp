@@ -87,12 +87,16 @@ All colors are CSS custom properties in `static/style.css` and flip under
 | `--color-accent-tint` | `rgba(228,87,28,.10)` | `rgba(240,122,69,.14)` | Reserved tint |
 | `--color-sticky` | `#FFE27A` | `#F2D56B` | Try-this-today sticky note |
 | `--color-sticky-ink` | `#2A2306` | `#1F1A04` | Text and "I tried it" button on the sticky note |
-| `--color-done` | `#2F7D4F` | `#7BD49C` | "✓ Tried it" badge on index cards |
+| `--color-done` | `#2F7D4F` | `#7BD49C` | "✓ Tried it" badge on index cards; "Published" state pill |
+| `--color-error` | `#B3261E` | `#FF8A80` | Submit page only: form errors, invalid-field border, "Failed" pill |
+| `--color-error-tint` | `rgba(179,38,30,.10)` | `rgba(255,138,128,.14)` | Background behind form errors and the "Failed" pill |
 | `--color-accent-highlight` | alias of `--color-highlight` | | Kept for older markup |
 
-**Semantic color**: the only states are "not yet summarized"
-(`.card.empty { opacity: .55 }`) and "tried it" (`--color-done`). There are
-no forms, so there is no error red.
+**Semantic color**: on the public site the only states are "not yet
+summarized" (`.card.empty { opacity: .55 }`) and "tried it"
+(`--color-done`). The public site has no forms. Error red
+(`--color-error`) exists only for the private submit page: its form errors
+and the "Failed" job pill.
 
 **Contrast** (WCAG, computed):
 
@@ -104,6 +108,11 @@ no forms, so there is no error red.
 | navy on marigold (primary button) | 9.8:1 | 9.8:1 |
 | sticky-ink on sticky | 12.2:1 | 12.0:1 |
 | done on bg | 4.7:1 | 10.2:1 |
+| done on surface ("Published" pill) | 5.0:1 | 9.0:1 |
+| error on bg | 6.1:1 | 8.0:1 |
+| error on surface | 6.4:1 | 7.1:1 |
+| error on error-tint (over surface) | 5.5:1 | 5.6:1 |
+| muted on surface-2 ("Queued" pill) | 5.2:1 | 6.3:1 |
 
 Everything passes AA for normal text; body text passes AAA.
 
@@ -211,6 +220,21 @@ All defined in `static/style.css` and rendered live on `/design-system.html`.
 - **Section heading** (`h2::before`): a 6px marigold dash, tilted -2°.
 - **Search** (`.search`): surface pill; border goes ink on hover, marigold
   focus ring. An empty filter shows a muted, centered `.no-results` line.
+- **Submit page (private)** (`src/gttp/submit_assets/`, served only by the
+  `submit` service behind Cloudflare Access, never copied to `site/`):
+  `.submit-form` (grid, max 36rem) of `.field`s (600-weight `--text-sm`
+  label over an `.input`). `.input` shares one selector list with
+  `.search` (border, radius, hover, focus) so they can't drift; an invalid
+  one gets `aria-invalid="true"` and an error border. `.form-error`
+  (`--color-error` on `--color-error-tint`, `role="alert"`) and `.form-ok`
+  (ink on glow, `role="status"`) hide when empty. Below it, `.queue-list` of
+  `.queue-item` surface cards (title in `--text-md`, author/message/meta in
+  `--text-sm`/`--text-xs`, `overflow-wrap: anywhere` so a long unbroken
+  title can't widen the page) with a `.state-pill` in `.tag` geometry:
+  `.state-queued` (surface-2/muted), `.state-running` (marigold),
+  `.state-done` (done on surface), `.state-failed` (error on tint). The
+  page has a strict CSP, so it has no inline script or `style=`; its theme
+  bootstrap lives at the top of `submit.js`.
 - **Cover placeholder** (`.cover-placeholder`, from
   `covers.placeholder_svg`): for a book with no stored cover. The title's
   first letter in Young Serif plus a marigold full stop, on an ink tile
@@ -275,6 +299,7 @@ book-to-a-point and a lightbulb dot) and redrawn as clean SVG:
 | `static/mark.svg` | Speech-bubble mark, standalone. |
 | `scripts/icons/icon.svg` → `static/favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`, `manifest.webmanifest` | App icon on the house standard. `tests/test_icons.py` guards the wiring. |
 | `src/gttp/publish.py` | Site generator: header, today's idea, shuffle and tried scripts. |
+| `src/gttp/submit_assets/index.html`, `submit.js` | Private submit page (form + queue status), served by `gttp.submit` with `/style.css`, logos and fonts from `static/`. Not under `static/`, so it never reaches the public site. |
 
 ## Changelog
 
@@ -302,6 +327,12 @@ book-to-a-point and a lightbulb dot) and redrawn as clean SVG:
   inherited the muted lede color), plus `--color-marigold-ink`,
   `--radius-xs`, `--shadow-cover-lg`, spring and glow motion demos, the
   today-label spark, the tried badge and the placeholder cover.
+
+- **2026-11-07** — Private submit page. Added `--color-error` and
+  `--color-error-tint` (all three token blocks; contrast above), `.input`
+  (shares `.search`'s rules), `.submit-form`, `.field`, `.form-error`,
+  `.form-ok`, `.queue-list`/`.queue-item` and `.state-pill` with one class
+  per job state. Showcase: error swatches and a submit-form + queue specimen.
 
 ## Where to look
 

@@ -199,6 +199,35 @@
       <input type="search" class="search" value="atomic" aria-label="Search books demo, filled">
     </div>
 
+    <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">Submit form and queue (private submit page)</h3>
+    <p class="ds-lede">Only on the private submit page
+      (<code>src/gttp/submit_assets/</code>, behind Cloudflare Access), never
+      on the public site. Text inputs (<code>.input</code>) share the search
+      box's rules; an invalid field gets <code>aria-invalid</code> and the
+      error line uses <code>--color-error</code> on its tint. Each queued
+      book shows a state pill.</p>
+    <div class="ds-grid ds-grid-2">
+      <form class="submit-form" novalidate onsubmit="return false">
+        <div class="field">
+          <label for="ds-title">Title</label>
+          <input class="input" id="ds-title" type="text" value="The Like Switch: An Ex-FBI Agent's Guide to Influencing, Attracting and Winning People Over, Expanded" aria-invalid="true">
+        </div>
+        <div class="field">
+          <label for="ds-author">Author</label>
+          <input class="input" id="ds-author" type="text" value="Jack Schafer">
+        </div>
+        <p class="form-error" role="alert">title is too long for its page address (at most 100 letters and digits)</p>
+        <p class="form-ok" role="status">Queued "Grit". It will show below as it builds.</p>
+        <div><button class="btn btn-primary" type="submit">Queue it</button></div>
+      </form>
+      <ol class="queue-list">
+        <li class="queue-item"><div class="queue-head"><span class="queue-title">Grit</span><span class="state-pill state-queued">Queued</span></div><p class="queue-author">by Angela Duckworth</p><p class="queue-meta">Nov 7, 10:02 AM</p></li>
+        <li class="queue-item"><div class="queue-head"><span class="queue-title">The Power of Habit</span><span class="state-pill state-running">Building</span></div><p class="queue-author">by Charles Duhigg</p><p class="queue-meta">Nov 7, 10:00 AM</p></li>
+        <li class="queue-item"><div class="queue-head"><span class="queue-title">Deep Work</span><span class="state-pill state-done">Published</span></div><p class="queue-author">by Cal Newport</p><p class="queue-message">published; deploy runs from the push</p><p class="queue-meta">Nov 6, 9:14 PM · commit 1a2b3c4 · $0.06</p></li>
+        <li class="queue-item"><div class="queue-head"><span class="queue-title">The Like Switch</span><span class="state-pill state-failed">Failed</span></div><p class="queue-author">by Jack Schafer</p><p class="queue-message">insufficient evidence: no qualifying Reddit summaries found</p><p class="queue-meta">Nov 6, 8:40 PM · $0.00</p></li>
+      </ol>
+    </div>
+
     <h3 style="font:var(--text-md); margin: 1.5rem 0 .5rem;">Tags</h3>
     <div class="ds-card-demo">
       <span class="tag">r/getdisciplined</span>
@@ -339,6 +368,7 @@
     ['--color-marigold', 'Marigold (the light)'], ['--color-marigold-ink', 'Ink on marigold'], ['--color-glow', 'Glow (halos)'],
     ['--color-highlight', 'Marker highlight'], ['--color-sticky', 'Sticky note'],
     ['--color-sticky-ink', 'Sticky-note ink'], ['--color-done', 'Done (tried it)'],
+    ['--color-error', 'Error (submit page)'], ['--color-error-tint', 'Error tint'],
     ['--color-accent-highlight', 'Accent highlight (alias)']
   ];
   var swatchHtml = colors.map(function(c){

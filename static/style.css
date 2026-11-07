@@ -63,6 +63,10 @@
   --color-sticky-ink: #2A2306;
   --color-done: #2F7D4F;                     /* "I tried it" check */
 
+  /* Color — error (the private submit page's form errors and failed jobs) */
+  --color-error: #B3261E;
+  --color-error-tint: rgba(179, 38, 30, .10);
+
   /* Elevation */
   --shadow-sm: 0 1px 2px rgba(20, 33, 61, .06);
   --shadow: 0 1px 2px rgba(20, 33, 61, .06), 0 10px 28px -14px rgba(20, 33, 61, .22);
@@ -136,6 +140,8 @@
     --color-sticky: #F2D56B;
     --color-sticky-ink: #1F1A04;
     --color-done: #7BD49C;
+    --color-error: #FF8A80;
+    --color-error-tint: rgba(255, 138, 128, .14);
     --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px -16px rgba(0, 0, 0, .7);
     --shadow-lg: 0 2px 4px rgba(0, 0, 0, .45), 0 18px 38px -18px rgba(0, 0, 0, .75);
     --shadow-sticky: 0 1px 1px rgba(0, 0, 0, .3), 0 14px 24px -12px rgba(0, 0, 0, .7);
@@ -159,6 +165,8 @@
   --color-sticky: #F2D56B;
   --color-sticky-ink: #1F1A04;
   --color-done: #7BD49C;
+  --color-error: #FF8A80;
+  --color-error-tint: rgba(255, 138, 128, .14);
   --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px -16px rgba(0, 0, 0, .7);
   --shadow-lg: 0 2px 4px rgba(0, 0, 0, .45), 0 18px 38px -18px rgba(0, 0, 0, .75);
   --shadow-sticky: 0 1px 1px rgba(0, 0, 0, .3), 0 14px 24px -12px rgba(0, 0, 0, .7);
@@ -313,15 +321,17 @@ a:hover { text-decoration-color: var(--color-accent); }
 .section-label { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin: 0 0 var(--space-3); }
 .section-label h2 { margin: 0; }
 
-.search {
+/* The search box and the submit page's text inputs share one look, so the
+   two can't drift apart. */
+.search, .input {
   font: inherit; width: 100%; margin: 0 0 var(--space-6);
   padding: .8rem 1rem; border-radius: var(--radius-pill);
   border: 2px solid var(--color-border-strong);
   background: var(--color-surface); color: inherit;
 }
-.search::placeholder { color: var(--color-muted); }
-.search:hover { border-color: var(--color-ink); }
-.search:focus-visible { outline: 3px solid var(--color-marigold); outline-offset: 2px; border-color: var(--color-ink); }
+.search::placeholder, .input::placeholder { color: var(--color-muted); }
+.search:hover, .input:hover { border-color: var(--color-ink); }
+.search:focus-visible, .input:focus-visible { outline: 3px solid var(--color-marigold); outline-offset: 2px; border-color: var(--color-ink); }
 
 .books {
   list-style: none; padding: 0; margin: 0; display: grid;
@@ -495,6 +505,42 @@ details.more > summary:hover::before { background: var(--color-glow); }
 .back a:hover { color: var(--color-accent-ink); }
 
 :focus-visible { outline: 3px solid var(--color-marigold); outline-offset: 2px; border-radius: var(--radius-xs); }
+
+/* ---------------------------------------------------------------------- */
+/* 6b. Submit page (private, src/gttp/submit_assets/)                      */
+/* ---------------------------------------------------------------------- */
+
+.submit-form { display: grid; gap: var(--space-4); max-width: 36rem; margin: 0 0 var(--space-6); }
+.field { display: grid; gap: var(--space-2); min-width: 0; }
+.field label { font: var(--text-sm); font-weight: 600; }
+.input { margin: 0; }
+.input[aria-invalid="true"] { border-color: var(--color-error); }
+.form-error, .form-ok { margin: 0; font: var(--text-sm); border-radius: var(--radius-xs); padding: var(--space-2) var(--space-3); overflow-wrap: anywhere; }
+.form-error { color: var(--color-error); background: var(--color-error-tint); }
+.form-ok { color: var(--color-ink); background: var(--color-glow); }
+.form-error:empty, .form-ok:empty { display: none; }
+
+.queue-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+.queue-item {
+  margin: 0; padding: var(--space-4); min-width: 0; border-radius: var(--radius);
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm); overflow-wrap: anywhere;
+}
+.queue-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); }
+.queue-title { font: var(--text-md); min-width: 0; }
+.queue-author, .queue-message, .queue-meta { margin: var(--space-1) 0 0; font: var(--text-sm); color: var(--color-muted); }
+.queue-message { color: var(--color-ink); }
+.queue-meta { font: var(--text-xs); color: var(--color-muted); }
+
+/* Job state: .tag geometry, one color per state. */
+.state-pill {
+  display: inline-block; flex-shrink: 0; font: var(--text-xs); white-space: nowrap;
+  padding: .18rem .6rem; border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border); background: var(--color-surface-2); color: var(--color-muted);
+}
+.state-running { background: var(--color-marigold); color: var(--color-marigold-ink); border-color: var(--color-marigold); }
+.state-done { background: var(--color-surface); color: var(--color-done); border-color: var(--color-done); }
+.state-failed { background: var(--color-error-tint); color: var(--color-error); border-color: var(--color-error); }
 
 /* ---------------------------------------------------------------------- */
 /* 7. Motion                                                               */

@@ -30,3 +30,32 @@ services:
       # synthesizer without it.
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
       - PORT=8100
+
+  # Private book-submission form + queue status (behind Cloudflare Access at
+  # submit-gttp.mooseflip.com). Same image as app, different command. It can
+  # only write queue entries: no git, no keys, no Anthropic key, read-only
+  # root FS, and .cache/queue is its only mount. The host-side worker
+  # (systemd/gttp-worker.*) does the building, committing and pushing.
+  submit:
+    image: ericfaris/gttp:latest
+    restart: unless-stopped
+    user: "1000:1000"
+    entrypoint: ["python", "-m", "gttp.submit"]
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - "127.0.0.1:8101:8101"
+    volumes:
+      - ./.cache/queue:/app/.cache/queue
+    environment:
+      - GTTP_SUBMIT_PORT=8101
+      - GTTP_SUBMIT_DAILY_CAP=${GTTP_SUBMIT_DAILY_CAP:-5}
+      - GTTP_SUBMIT_MAX_QUEUED=${GTTP_SUBMIT_MAX_QUEUED:-3}
+      - TZ=America/New_York
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://127.0.0.1:8101/healthz',timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
