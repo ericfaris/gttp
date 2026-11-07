@@ -1,0 +1,28 @@
+{
+ "numFound": 5,
+ "start": 0,
+ "docs": [
+  {
+   "title": 42,
+   "author_name": "Olivia"
+  },
+  {
+   "title": {
+    "x": 1
+   }
+  },
+  "not a doc",
+  {
+   "title": [
+    "a"
+   ]
+  },
+  {
+   "title": "",
+   "author_name": [
+    1,
+    2
+   ]
+  }
+ ]
+}

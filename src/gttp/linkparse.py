@@ -236,15 +236,20 @@ def _authors(names: list[str]) -> str:
     return join_authors(cleaned[:MAX_AUTHORS])
 
 
-def shorten_title(t: str) -> str:
-    head, sep, _ = t.partition(": ")
-    if sep and any(c.isalnum() for c in head):
-        t = head
+def strip_edition(t: str) -> str:
+    """Drop trailing "(Paperback Edition)", "(Dune Book 1)" and the like."""
     prev = None
     while prev != t:
         prev = t
         t = _EDITION_RE.sub("", t).strip()
     return t
+
+
+def shorten_title(t: str) -> str:
+    head, sep, _ = t.partition(": ")
+    if sep and any(c.isalnum() for c in head):
+        t = head
+    return strip_edition(t)
 
 
 def strip_site_suffix(t: str) -> str:

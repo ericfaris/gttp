@@ -1,0 +1,26 @@
+{
+ "numFound": 3,
+ "start": 0,
+ "docs": [
+  {
+   "title": "Summary of The Charisma Myth",
+   "author_name": [
+    "Instaread"
+   ],
+   "first_publish_year": 2016
+  },
+  {
+   "title": "The Charisma Myth Workbook",
+   "author_name": [
+    "Someone Else"
+   ]
+  },
+  {
+   "title": "The Charisma Myth: How Anyone Can Master the Art and Science of Personal Magnetism",
+   "author_name": [
+    "Olivia Fox Cabane"
+   ],
+   "first_publish_year": 2012
+  }
+ ]
+}
