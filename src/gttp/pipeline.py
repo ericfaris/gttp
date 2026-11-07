@@ -38,12 +38,18 @@ def make_reddit_client(offline: bool, refresh: bool = False) -> RedditClient:
     return CachingRedditClient(ArcticShiftClient(), refresh=refresh)
 
 
-def match_books(books: list[Book], only: str | None) -> list[Book]:
+def match_books(
+    books: list[Book], only: str | None, exact: bool = False
+) -> list[Book]:
     """Books to (re)build. `only` matches on slug or a case-insensitive title
-    substring; None means all books."""
+    substring; None means all books. With `exact`, only the book whose slug
+    is exactly `slugify(only)` matches: the submit worker uses it so "Habits"
+    can never also rebuild "Atomic Habits"."""
     if not only:
         return list(books)
     q = slugify(only)
+    if exact:
+        return [b for b in books if b.slug == q]
     return [b for b in books if q in b.slug or only.lower() in b.title.lower()]
 
 
@@ -92,6 +98,7 @@ def build_all(
     only: str | None = None,
     refresh: bool = False,
     force: bool = False,
+    exact: bool = False,
 ) -> list[BookPage]:
     """Build the targeted books and render the site.
 
@@ -100,7 +107,7 @@ def build_all(
     production serves. On 2026-07-11 an offline build in the shared checkout
     replaced 17 live summaries with fixture/heuristic pages.
     """
-    targets = match_books(books, only)
+    targets = match_books(books, only, exact=exact)
     target_slugs = {b.slug for b in targets}
     client = make_reddit_client(offline, refresh)
     save = (lambda slug, page: None) if offline else save_page

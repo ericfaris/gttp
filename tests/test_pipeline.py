@@ -84,12 +84,61 @@ def test_catalog_loads():
     assert all(b.subreddits for b in books)
 
 
+def _catalog():
+    # Synthetic, so a future catalog book with "deep work" in its title can't
+    # fail this test (and with it the submit worker's test gate).
+    return [
+        Book(title="Atomic Habits"),
+        Book(title="Deep Work"),
+        Book(title="The 7 Habits of Highly Effective People"),
+    ]
+
+
 def test_match_books():
-    books = load_catalog()
+    books = _catalog()
     assert len(match_books(books, None)) == len(books)  # None -> all
     only = match_books(books, "deep work")  # case-insensitive substring
     assert [b.title for b in only] == ["Deep Work"]
     assert match_books(books, "nonexistent title") == []
+
+
+def test_match_books_exact():
+    books = _catalog()
+    assert match_books(books, "Habits", exact=True) == []
+    assert [b.title for b in match_books(books, "Atomic Habits", exact=True)] == ["Atomic Habits"]
+    assert [b.title for b in match_books(books, "Habits")] == [
+        "Atomic Habits", "The 7 Habits of Highly Effective People",
+    ]
+
+
+def test_build_exact_without_only_is_an_error(capsys):
+    from gttp.cli import main
+
+    assert main(["build", "--exact"]) == 1
+    assert "--exact needs --only" in capsys.readouterr().out
+
+
+def test_build_all_exact_builds_only_the_exact_book(monkeypatch, tmp_path):
+    from gttp import pipeline
+
+    built = []
+    monkeypatch.setattr(pipeline, "make_reddit_client", lambda *a, **k: object())
+    monkeypatch.setattr(
+        pipeline, "build_book",
+        lambda book, client, force=False: built.append(book.title) or BookPage(
+            title=book.title, author=None, core_idea="c", bullets=[], honest_take="",
+            quotes=[], sources=[],
+        ),
+    )
+    monkeypatch.setattr(pipeline, "write_site", lambda pages, *a: tmp_path / "index.html")
+    books = _catalog()
+    for b in books:  # every book already has a cached page
+        cache.save_page(b.slug, BookPage(
+            title=b.title, author=None, core_idea="c", bullets=[], honest_take="",
+            quotes=[], sources=[],
+        ))
+    pipeline.build_all(books, only="Atomic Habits", exact=True)
+    assert built == ["Atomic Habits"]
 
 
 def test_thread_and_page_cache_roundtrip(tmp_path, monkeypatch):

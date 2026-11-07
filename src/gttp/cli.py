@@ -34,6 +34,11 @@ def main(argv: list[str] | None = None) -> int:
         "of the index renders from cache",
     )
     p_build.add_argument(
+        "--exact",
+        action="store_true",
+        help="with --only: match the slug exactly, never a substring",
+    )
+    p_build.add_argument(
         "--refresh",
         action="store_true",
         help="ignore cached threads and re-fetch from Reddit",
@@ -126,7 +131,10 @@ def main(argv: list[str] | None = None) -> int:
         if not books:
             print("Catalog is empty. Add a book with `gttp add \"<title>\"`.")
             return 1
-        if args.only and not match_books(books, args.only):
+        if args.exact and not args.only:
+            print("--exact needs --only.")
+            return 1
+        if args.only and not match_books(books, args.only, exact=args.exact):
             print(f"No catalog book matches '{args.only}'.")
             return 1
         scope = f"'{args.only}'" if args.only else f"{len(books)} book(s)"
@@ -137,6 +145,7 @@ def main(argv: list[str] | None = None) -> int:
             only=args.only,
             refresh=args.refresh,
             force=args.force,
+            exact=args.exact,
         )
         return 0
 
