@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "src/gttp/submit_assets/index.html"
+        ],
+        "createdAt": "2026-11-07T19:45:36.315Z",
+        "reason": "orchestrator: rendered 390px screenshots show h1 display type ~2x the body/lede and distinct queue titles; type scale comes from the site's tokens in style.css, so the heuristic misreads it. Not user confirmed."
+      }
+    ]
+  }
+}
