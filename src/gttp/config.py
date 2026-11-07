@@ -86,17 +86,43 @@ def load_catalog(path: Path = BOOKS_FILE) -> list[Book]:
 
 
 def add_book(title: str, author: str | None = None, path: Path = BOOKS_FILE) -> bool:
-    """Append a book to books.yaml. Returns False if it already exists."""
-    data = yaml.safe_load(path.read_text()) or {}
-    books = data.setdefault("books", [])
-    existing = {slugify(b["title"]) for b in books}
-    if slugify(title) in existing:
+    """Append a book to books.yaml. Returns False if it already exists.
+
+    Appends text to the end of the file instead of re-dumping the YAML, so
+    the comments in books.yaml survive. The write happens in place (same
+    inode): books.yaml is a single-file bind mount into the app container,
+    and a file replaced by rename would leave the container reading the old,
+    deleted one.
+    """
+    text = path.read_text()
+    before = yaml.safe_load(text) or {}
+    books = before.get("books") or []
+    if slugify(title) in {slugify(b["title"]) for b in books}:
         return False
+    if "books" in before and list(before)[-1] != "books":
+        raise ValueError("books: must be the last key in books.yaml")
     entry = {"title": title}
     if author:
         entry["author"] = author
-    books.append(entry)
-    path.write_text(yaml.safe_dump(data, sort_keys=False, allow_unicode=True))
+    snippet = yaml.safe_dump(
+        [entry], sort_keys=False, allow_unicode=True, default_flow_style=False
+    )
+    if "books" not in before:
+        snippet = "books:\n" + snippet
+    with path.open("a") as f:
+        if text and not text.endswith("\n"):
+            f.write("\n")
+        f.write(snippet)
+
+    after = yaml.safe_load(path.read_text()) or {}
+    others_same = {k: v for k, v in after.items() if k != "books"} == {
+        k: v for k, v in before.items() if k != "books"
+    }
+    if not others_same or after.get("books") != books + [entry]:
+        with path.open("r+") as f:
+            f.truncate(0)
+            f.write(text)
+        raise ValueError(f"appending {title!r} did not round-trip; books.yaml left unchanged")
     return True
 
 
