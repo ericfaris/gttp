@@ -87,6 +87,34 @@ def validate_submission(title, author) -> tuple[str | None, str | None]:
     return None, slug
 
 
+URL_MAX = 2048
+CHECK_FIELDS = frozenset({"url", "title", "author"})
+
+
+def validate_check(data: dict) -> tuple[str | None, str, str, str]:
+    """(error, url, title, author) for a link-check request ({url?, title?,
+    author?}). Shared by the submit service and the resolver, which each
+    validate it. "" counts as absent."""
+    url, title, author = data.get("url", ""), data.get("title", ""), data.get("author", "")
+    if url != "":
+        if not isinstance(url, str):
+            return "link must be text", "", "", ""
+        if len(url) > URL_MAX:
+            return f"link must be at most {URL_MAX} characters", "", "", ""
+        if any(_is_invisible(c) for c in url):
+            return "link contains control or invisible characters", "", "", ""
+        if not url.lower().startswith(("http://", "https://")):
+            return "link must start with http:// or https://", "", "", ""
+    for name, value, max_len in (("title", title, TITLE_MAX), ("author", author, AUTHOR_MAX)):
+        if value != "":
+            err = validate_field(name, value, max_len)
+            if err:
+                return err, "", "", ""
+    if not url and not title:
+        return "give a link or a title", "", "", ""
+    return None, url, title, author
+
+
 def _iso(now: datetime) -> str:
     return now.astimezone(TZ).isoformat(timespec="seconds")
 

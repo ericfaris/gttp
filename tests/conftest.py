@@ -20,3 +20,14 @@ def _isolate_budget(monkeypatch):
     claude.reset_budget()
     yield
     claude.reset_budget()
+
+
+@pytest.fixture(autouse=True)
+def _isolate_openlibrary_cache():
+    # The Open Library cache is process-wide; a hit from one test must not
+    # stand in for another test's stubbed response.
+    from gttp import openlibrary
+
+    openlibrary.clear_cache()
+    yield
+    openlibrary.clear_cache()

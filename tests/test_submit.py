@@ -1,15 +1,27 @@
 """The submit service (gttp.submit) against a scratch queue and catalog."""
 
 import json
+import socket
 import threading
+import time
 import urllib.error
 import urllib.request
 from datetime import datetime
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
 
 import pytest
 
 from gttp import jobs
-from gttp.submit import CSP, make_server
+from gttp import resolver as resolver_mod
+from gttp.submit import (
+    CSP,
+    W_LIMIT,
+    W_RESOLVER_BUSY,
+    W_RESOLVER_DOWN,
+    make_server,
+    validate_resolver_result,
+)
 
 CATALOG = "books:\n- title: Atomic Habits\n  author: James Clear\n"
 
@@ -199,7 +211,8 @@ def test_status(svc):
     assert set(data["entries"][0]) == {
         "id", "title", "author", "state", "message", "created_at", "updated_at", "commit", "usd",
     }
-    assert data["limits"] == {"daily_cap": 5, "today": 2, "max_queued": 3, "active": 2}
+    assert data["limits"] == {"daily_cap": 5, "today": 2, "max_queued": 3, "active": 2,
+                              "check_cap": 30, "checks_today": 0}
 
 
 def test_status_shows_at_most_20(svc):
@@ -230,3 +243,288 @@ def test_main_refuses_unwritable_queue(tmp_path, monkeypatch, capsys):
     monkeypatch.setenv("GTTP_QUEUE_DIR", str(tmp_path / "missing"))
     assert submit_mod.main() == 1
     assert "is not writable by uid" in capsys.readouterr().out
+
+
+
+# -- /api/check ------------------------------------------------------------------
+
+FIX = Path(__file__).parent / "fixtures"
+GOOD = {"ok": True, "title": "The Power of Habit", "author": "Charles Duhigg",
+        "source": "typed", "changes": [], "warnings": []}
+
+
+class FakeResolver(ThreadingHTTPServer):
+    daemon_threads = True
+
+    def __init__(self):
+        self.reply = (200, json.dumps(GOOD).encode())
+        self.hits = 0
+        self.delay = 0.0
+        self.entered = threading.Event()
+        self.gate = None
+        fake = self
+
+        class H(BaseHTTPRequestHandler):
+            def log_message(self, *a):
+                pass
+
+            def do_POST(self):
+                self.rfile.read(int(self.headers.get("Content-Length", "0")))
+                fake.hits += 1
+                fake.entered.set()
+                if fake.gate is not None:
+                    fake.gate.wait(5)
+                if fake.delay:
+                    time.sleep(fake.delay)
+                code, body = fake.reply
+                try:
+                    self.send_response(code)
+                    self.send_header("Content-Type", "application/json")
+                    self.send_header("Content-Length", str(len(body)))
+                    self.end_headers()
+                    self.wfile.write(body)
+                except OSError:
+                    pass
+
+        super().__init__(("127.0.0.1", 0), H)
+
+    def handle_error(self, *a):
+        pass
+
+
+@pytest.fixture
+def check_svc(tmp_path):
+    made = []
+
+    def make(resolver_url=None, catalog=CATALOG, **kw):
+        fake = None
+        if resolver_url is None:
+            fake = FakeResolver()
+            threading.Thread(target=fake.serve_forever, kwargs={"poll_interval": 0.02},
+                             daemon=True).start()
+            made.append(fake)
+            resolver_url = f"http://127.0.0.1:{fake.server_address[1]}"
+        queue = tmp_path / "queue"
+        queue.mkdir(exist_ok=True)
+        cat = tmp_path / "books.yaml"
+        cat.write_text(catalog)
+        server = make_server(queue, cat, port=0, host="127.0.0.1",
+                             resolver_url=resolver_url, **kw)
+        threading.Thread(target=server.serve_forever, kwargs={"poll_interval": 0.02},
+                         daemon=True).start()
+        server.base = f"http://127.0.0.1:{server.server_address[1]}"
+        server.fake = fake
+        made.append(server)
+        return server
+
+    yield make
+    for s in made:
+        s.shutdown()
+        s.server_close()
+
+
+def check(svc, body, **kw):
+    code, _, raw = call(svc, "POST", "/api/check", body, **kw)
+    return code, json.loads(raw)
+
+
+def _real_resolver(fixture="empty.json"):
+    def fetch_json(url, timeout):
+        return (FIX / "openlibrary" / fixture).read_bytes()
+
+    def no_pages(url):
+        raise AssertionError("no page fetch expected")
+
+    srv = resolver_mod.make_server("127.0.0.1", 0, lambda: {"127.0.0.1"},
+                                   fetch_page=no_pages, fetch_json=fetch_json)
+    threading.Thread(target=srv.serve_forever, kwargs={"poll_interval": 0.02},
+                     daemon=True).start()
+    return srv
+
+
+def test_check_integration_with_the_real_resolver(check_svc):
+    res = _real_resolver("charisma.json")
+    try:
+        url = f"http://127.0.0.1:{res.server_address[1]}"
+        svc = check_svc(resolver_url=url,
+                        catalog=CATALOG + "- title: The Charisma Myth\n  author: Olivia Fox Cabane\n")
+        code, body = check(svc, {"title": "the charisma myth", "author": "olivia fox cabane"})
+        assert code == 200
+        assert body == {
+            "ok": True, "title": "The Charisma Myth", "author": "Olivia Fox Cabane",
+            "source": "typed",
+            "changes": [
+                {"field": "title", "from": "the charisma myth", "to": "The Charisma Myth",
+                 "reason": "capitalization"},
+                {"field": "author", "from": "olivia fox cabane", "to": "Olivia Fox Cabane",
+                 "reason": "capitalization"},
+            ],
+            "warnings": [],
+            "duplicate": "'The Charisma Myth' is already in the catalog",
+            "ready": False,
+        }
+        code, body = check(svc, {"title": "the power of habit", "author": "charles duhigg"})
+        assert code == 200 and body["ready"] is True and body["duplicate"] is None
+        assert (body["title"], body["author"]) == ("The Power of Habit", "Charles Duhigg")
+        assert queue_files(svc) == []
+    finally:
+        res.shutdown()
+        res.server_close()
+
+
+def test_check_flags_a_queued_duplicate(check_svc):
+    svc = check_svc()
+    assert submit(svc, "The Power of Habit", "Charles Duhigg")[0] == 201
+    code, body = check(svc, {"title": "The Power of Habit", "author": "Charles Duhigg"})
+    assert body["duplicate"] == "'The Power of Habit' is already queued"
+    assert body["ready"] is False
+    assert len(queue_files(svc)) == 1  # the check itself wrote nothing
+
+
+@pytest.mark.parametrize("payload, message", [
+    ({}, "give a link or a title"),
+    ({"author": "x"}, "give a link or a title"),
+    ({"url": "ftp://x"}, "link must start with http:// or https://"),
+    ({"url": "https://x.org/" + "a" * 2040}, "link must be at most 2048 characters"),
+    ({"url": "https://x.org/\n"}, "link contains control or invisible characters"),
+    ({"title": "Bad​Title"}, "title contains control or invisible characters"),
+    ({"url": 5}, "link must be text"),
+    ({"title": "Grit", "isbn": "1"}, "unexpected fields"),
+])
+def test_check_validation(check_svc, payload, message):
+    svc = check_svc()
+    assert check(svc, payload) == (400, {"ok": False, "error": message})
+    assert svc.fake.hits == 0
+
+
+def test_check_transport_errors(check_svc):
+    svc = check_svc()
+    assert call(svc, "POST", "/api/check", raw=b"title=x",
+                headers={"Content-Type": "application/x-www-form-urlencoded"})[0] == 415
+    assert call(svc, "POST", "/api/check", {"title": "x" * 5000})[0] == 413
+    assert check(svc, {"title": "Grit"}, headers={"Origin": "https://evil.example"})[0] == 403
+
+
+def _closed_port():
+    s = socket.socket()
+    s.bind(("127.0.0.1", 0))
+    port = s.getsockname()[1]
+    s.close()
+    return port
+
+
+def test_resolver_down_falls_back_to_casing(check_svc):
+    svc = check_svc(resolver_url=f"http://127.0.0.1:{_closed_port()}")
+    code, body = check(svc, {"title": "the power of habit", "author": "charles duhigg"})
+    assert code == 200
+    assert (body["title"], body["author"]) == ("The Power of Habit", "Charles Duhigg")
+    assert body["warnings"] == [W_RESOLVER_DOWN] and body["ready"] is True
+    assert len(body["changes"]) == 2
+
+
+def test_resolver_down_with_only_a_link(check_svc):
+    svc = check_svc(resolver_url=f"http://127.0.0.1:{_closed_port()}")
+    code, body = check(svc, {"url": "https://www.goodreads.com/book/show/1"})
+    assert code == 200 and (body["title"], body["author"]) == ("", "")
+    assert body["warnings"] == [W_RESOLVER_DOWN, resolver_mod.W_LINK_FAILED]
+    assert body["ready"] is False
+
+
+def test_resolver_timeout_falls_back(check_svc):
+    svc = check_svc(resolver_timeout=0.3)
+    svc.fake.delay = 1.0
+    t0 = time.monotonic()
+    code, body = check(svc, {"title": "grit", "author": "angela duckworth"})
+    assert code == 200 and body["warnings"] == [W_RESOLVER_DOWN] and body["title"] == "Grit"
+    assert time.monotonic() - t0 < 1.0
+
+
+def _bad(**over):
+    return json.dumps({**GOOD, **over}).encode()
+
+
+@pytest.mark.parametrize("reply, warning", [
+    ((500, b'{"ok": false}'), W_RESOLVER_DOWN),
+    ((429, b'{"ok": false, "error": "busy"}'), W_RESOLVER_BUSY),
+    ((200, b"not json"), W_RESOLVER_DOWN),
+    ((200, json.dumps({**GOOD, "state": "done"}).encode()), W_RESOLVER_DOWN),
+    ((200, _bad(title="Evil‮Title")), W_RESOLVER_DOWN),
+    ((200, _bad(author="A" * 200)), W_RESOLVER_DOWN),
+    ((200, _bad(changes=[{"field": "title", "from": "a", "to": "b",
+                          "reason": "capitalization"}] * 50)), W_RESOLVER_DOWN),
+    ((200, _bad(changes=[{"field": "title", "from": "a", "to": "b", "reason": "rm -rf"}])),
+     W_RESOLVER_DOWN),
+    ((200, _bad(source="admin")), W_RESOLVER_DOWN),
+    ((200, _bad(warnings=["x\n" * 3])), W_RESOLVER_DOWN),
+    ((200, b"[" * 20000), W_RESOLVER_DOWN),
+])
+def test_untrusted_resolver_answers_fall_back(check_svc, reply, warning):
+    svc = check_svc()
+    svc.fake.reply = reply
+    code, body = check(svc, {"title": "grit", "author": "angela duckworth"})
+    assert code == 200 and body["warnings"] == [warning]
+    assert (body["title"], body["author"]) == ("Grit", "Angela Duckworth")
+    blob = json.dumps(body)
+    for bad in ("\\u202e", "AAAA", "rm -rf", "admin", '"state"'):
+        assert bad not in blob
+
+
+def test_validate_resolver_result_builds_a_new_dict():
+    out = validate_resolver_result(GOOD)
+    assert out == {k: v for k, v in GOOD.items() if k != "ok"}
+    assert out is not GOOD
+    assert validate_resolver_result({**GOOD, "ok": 1}) is None
+    assert validate_resolver_result({**GOOD, "title": 5}) is None
+    assert validate_resolver_result(None) is None
+
+
+def test_daily_check_cap(check_svc):
+    svc = check_svc(check_cap=2)
+    for _ in range(2):
+        assert check(svc, {"title": "Grit"})[1]["warnings"] == []
+    code, body = check(svc, {"title": "grit"})
+    assert code == 200 and body["warnings"] == [W_LIMIT] and body["title"] == "Grit"
+    assert svc.fake.hits == 2
+    status = json.loads(call(svc, "GET", "/api/status")[2])
+    assert status["limits"]["checks_today"] == 2 and status["limits"]["check_cap"] == 2
+
+
+def test_check_burst_limit(check_svc):
+    now = [1000.0]
+    svc = check_svc(check_burst=2, clock=lambda: now[0])
+    assert check(svc, {"title": "Grit"})[0] == 200
+    assert check(svc, {"title": "Grit"})[0] == 200
+    assert check(svc, {"title": "Grit"}) == (429, {"ok": False,
+                                                   "error": "too many checks; wait a minute"})
+    now[0] += 61
+    assert check(svc, {"title": "Grit"})[0] == 200
+
+
+def test_one_check_in_flight(check_svc):
+    svc = check_svc()
+    svc.fake.gate = threading.Event()
+    first = {}
+    t = threading.Thread(target=lambda: first.update(r=check(svc, {"title": "Grit"})))
+    t.start()
+    assert svc.fake.entered.wait(5)
+    assert check(svc, {"title": "Mindset"}) == (
+        429, {"ok": False, "error": "a check is already running; try again in a moment"})
+    svc.fake.gate.set()
+    t.join(5)
+    assert first["r"][0] == 200
+
+
+def test_check_slug_rule_warning(check_svc):
+    svc = check_svc()
+    svc.fake.reply = (200, _bad(title="Café", author="X"))
+    code, body = check(svc, {"title": "Café", "author": "X"})
+    assert body["ready"] is False
+    assert "title must contain letters or digits (A-Z, 0-9) for its page address" in body["warnings"]
+
+
+def test_unreadable_catalog_is_a_warning(check_svc):
+    svc = check_svc()
+    svc.catalog_path.write_text("books: [")
+    code, body = check(svc, {"title": "Grit", "author": "Angela Duckworth"})
+    assert code == 200 and "Couldn't check the catalog for duplicates." in body["warnings"]
+    assert body["ready"] is False

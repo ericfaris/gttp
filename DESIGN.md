@@ -235,6 +235,24 @@ All defined in `static/style.css` and rendered live on `/design-system.html`.
   `.state-done` (done on surface), `.state-failed` (error on tint). The
   page has a strict CSP, so it has no inline script or `style=`; its theme
   bootstrap lives at the top of `submit.js`.
+  **Link check**: the form starts with an optional Link field (`type="url"`)
+  with a `.field-hint` line (`--text-xs`, muted) under it, and ends in a
+  `.form-actions` row (wrapping flex) holding **Check** (`.btn-ghost`,
+  `type="submit"`, so Enter checks) and **Queue it** (`.btn-primary`,
+  `type="button"`). Check writes its result back into the editable Title
+  and Author inputs and fills a `.check-preview` surface card
+  (`aria-live="polite"`, hidden until the first check): a muted
+  `.check-source` line, a `.change-list` of `.change-item`s (bold
+  `.change-field`, `del.change-from` struck through in muted, or italic
+  "(empty)" with `.is-empty`, an `aria-hidden` `.change-arrow`,
+  `ins.change-to` in ink on `--color-glow`, and a `.tag.change-reason`),
+  a `.warn-list` of `.form-warn` lines (ink on `--color-surface-2` with a
+  4px marigold left edge) and a duplicate notice in a `.form-error` line.
+  **Queue it is disabled until a check comes back `ready` and the inputs
+  still equal the checked values**; any edit after a check sets
+  `.is-stale` (dashed border, faded lists, "Edited: press Check again.")
+  and disables it again. All text from the check goes in via
+  `textContent`.
 - **Cover placeholder** (`.cover-placeholder`, from
   `covers.placeholder_svg`): for a book with no stored cover. The title's
   first letter in Young Serif plus a marigold full stop, on an ink tile
@@ -333,6 +351,14 @@ book-to-a-point and a lightbulb dot) and redrawn as clean SVG:
   (shares `.search`'s rules), `.submit-form`, `.field`, `.form-error`,
   `.form-ok`, `.queue-list`/`.queue-item` and `.state-pill` with one class
   per job state. Showcase: error swatches and a submit-form + queue specimen.
+
+- **2026-11-07** — Link check on the submit page. Added `.field-hint`,
+  `.form-actions`, `.check-preview` (+ `.is-stale`), `.change-list` /
+  `.change-item` (`del`/`ins`, arrow, reason tag) and `.warn-list` /
+  `.form-warn`; Queue it is gated on a ready, unedited check. No new
+  tokens: ink on glow and ink on surface-2 are existing checked pairs.
+  Showcase: a check-preview specimen (fresh and stale, enabled and disabled
+  Queue it).
 
 ## Where to look
 

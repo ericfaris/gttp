@@ -28,9 +28,16 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   var form = document.getElementById('submit-form');
+  var link = document.getElementById('link');
   var title = document.getElementById('title');
   var author = document.getElementById('author');
-  var btn = document.getElementById('submit-btn');
+  var checkBtn = document.getElementById('check-btn');
+  var submitBtn = document.getElementById('submit-btn');
+  var preview = document.getElementById('check-preview');
+  var sourceLine = document.getElementById('check-source');
+  var changeList = document.getElementById('check-changes');
+  var warnList = document.getElementById('check-warnings');
+  var dupLine = document.getElementById('check-duplicate');
   var errBox = document.getElementById('form-error');
   var okBox = document.getElementById('form-ok');
   var list = document.getElementById('queue');
@@ -39,12 +46,65 @@ document.addEventListener('DOMContentLoaded', function () {
   var timer = null;
 
   var LABELS = { queued: 'Queued', running: 'Building', done: 'Published', failed: 'Failed' };
+  var REASONS = { capitalization: 'capitalization', 'open-library': 'Open Library', link: 'from the link' };
+  // The last successful check: {title, author, ready, source}. Queue it is
+  // enabled only while the inputs still equal what was checked.
+  var checked = null;
 
   function showError(msg) {
     okBox.textContent = '';
     errBox.textContent = msg || '';
     title.setAttribute('aria-invalid', /^title\b|^'/.test(msg || '') ? 'true' : 'false');
     author.setAttribute('aria-invalid', /^author\b/.test(msg || '') ? 'true' : 'false');
+    link.setAttribute('aria-invalid', /^link\b/.test(msg || '') ? 'true' : 'false');
+  }
+
+  function matches() {
+    return !!checked && title.value.trim() === checked.title && author.value.trim() === checked.author;
+  }
+
+  function sourceText() {
+    return checked.source === 'link' ? 'Filled in from the link.' : 'Checked what you typed.';
+  }
+
+  function syncQueue() {
+    submitBtn.disabled = !(checked && checked.ready && matches());
+    var stale = !!checked && !matches();
+    preview.classList.toggle('is-stale', stale);
+    if (checked) sourceLine.textContent = stale ? 'Edited: press Check again.' : sourceText();
+  }
+
+  function clearPreview() {
+    [changeList, warnList].forEach(function (n) { while (n.firstChild) n.removeChild(n.firstChild); });
+    dupLine.textContent = '';
+    sourceLine.textContent = '';
+    preview.classList.remove('is-stale');
+    preview.hidden = true;
+  }
+
+  function changeItem(c) {
+    var li = el('li', 'change-item');
+    li.appendChild(el('span', 'change-field', c.field === 'author' ? 'Author' : 'Title'));
+    li.appendChild(c.from ? el('del', 'change-from', c.from) : el('del', 'change-from is-empty', '(empty)'));
+    var arrow = el('span', 'change-arrow', '\u2192');
+    arrow.setAttribute('aria-hidden', 'true');
+    li.appendChild(arrow);
+    li.appendChild(el('ins', 'change-to', c.to));
+    li.appendChild(el('span', 'tag change-reason', REASONS[c.reason] || c.reason));
+    return li;
+  }
+
+  function showCheck(data) {
+    title.value = data.title || '';
+    author.value = data.author || '';
+    checked = { title: title.value, author: author.value, ready: data.ready === true, source: data.source };
+    clearPreview();
+    (data.changes || []).forEach(function (c) { changeList.appendChild(changeItem(c)); });
+    (data.warnings || []).forEach(function (w) { warnList.appendChild(el('li', 'form-warn', w)); });
+    dupLine.textContent = data.duplicate || '';
+    preview.hidden = false;
+    syncQueue();
+    if (!submitBtn.disabled) submitBtn.focus();
   }
 
   function when(iso) {
@@ -80,7 +140,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     empty.hidden = entries.length > 0;
     var l = data.limits;
-    if (l) limits.textContent = l.today + ' of ' + l.daily_cap + ' today';
+    if (l) limits.textContent = l.today + ' of ' + l.daily_cap + ' today \u00b7 ' +
+      l.checks_today + ' of ' + l.check_cap + ' lookups';
     return entries.some(function (e) { return e.state === 'queued' || e.state === 'running'; });
   }
 
@@ -92,10 +153,36 @@ document.addEventListener('DOMContentLoaded', function () {
       .catch(function () { timer = setTimeout(poll, 60000); });
   }
 
+  [link, title, author].forEach(function (n) { n.addEventListener('input', syncQueue); });
+
+  // Enter or the Check button: look the book up. Never queues anything.
   form.addEventListener('submit', function (ev) {
     ev.preventDefault();
-    var body = JSON.stringify({ title: title.value.trim(), author: author.value.trim() });
-    btn.disabled = true;
+    var body = {};
+    if (link.value.trim()) body.url = link.value.trim();
+    if (title.value.trim()) body.title = title.value.trim();
+    if (author.value.trim()) body.author = author.value.trim();
+    checkBtn.disabled = true;
+    checkBtn.textContent = 'Checking\u2026';
+    showError('');
+    fetch('/api/check', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
+      .then(function (res) {
+        if (!res.ok || !res.data.ok) {
+          showError(res.data.error || 'Something went wrong.');
+          syncQueue();
+          return;
+        }
+        showCheck(res.data);
+      })
+      .catch(function () { showError("Couldn't reach the submit service. Try again in a minute."); syncQueue(); })
+      .then(function () { checkBtn.disabled = false; checkBtn.textContent = 'Check'; });
+  });
+
+  submitBtn.addEventListener('click', function () {
+    if (submitBtn.disabled || !checked) return;
+    var body = JSON.stringify({ title: checked.title, author: checked.author });
+    submitBtn.disabled = true;
     showError('');
     fetch('/api/submit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body })
       .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
@@ -106,10 +193,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         okBox.textContent = 'Queued "' + res.data.entry.title + '". It will show below as it builds.';
         form.reset();
+        checked = null;
+        clearPreview();
         poll();
       })
       .catch(function () { showError("Couldn't reach the submit service. Try again in a minute."); })
-      .then(function () { btn.disabled = false; });
+      .then(function () { syncQueue(); });
   });
 
   poll();

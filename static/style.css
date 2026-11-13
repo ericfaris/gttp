@@ -519,6 +519,40 @@ details.more > summary:hover::before { background: var(--color-glow); }
 .form-error { color: var(--color-error); background: var(--color-error-tint); }
 .form-ok { color: var(--color-ink); background: var(--color-glow); }
 .form-error:empty, .form-ok:empty { display: none; }
+.field-hint { margin: 0; font: var(--text-xs); color: var(--color-muted); }
+.form-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+/* Link check preview: what Check changed, warnings, a duplicate notice.
+   Dashed and faded once the inputs no longer match the checked values. */
+.check-preview {
+  display: grid; gap: var(--space-3); padding: var(--space-4); min-width: 0;
+  border-radius: var(--radius); background: var(--color-surface);
+  border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); overflow-wrap: anywhere;
+}
+.check-preview[hidden] { display: none; }
+.check-preview.is-stale { border-style: dashed; }
+.check-preview.is-stale .change-list, .check-preview.is-stale .warn-list { opacity: .6; }
+.check-source { margin: 0; font: var(--text-sm); color: var(--color-muted); }
+.change-list, .warn-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.change-list:empty, .warn-list:empty { display: none; }
+.change-item {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-1) var(--space-2);
+  font: var(--text-sm); min-width: 0;
+}
+.change-field { font-weight: 600; }
+.change-arrow { color: var(--color-muted); }
+.change-from { color: var(--color-muted); text-decoration: line-through; }
+.change-from.is-empty { text-decoration: none; font-style: italic; }
+.change-to {
+  text-decoration: none; color: var(--color-ink); background: var(--color-glow);
+  border-radius: var(--radius-xs); padding: 0 var(--space-1);
+}
+.change-reason { flex-shrink: 0; margin: 0; }
+.form-warn {
+  margin: 0; font: var(--text-sm); color: var(--color-ink); background: var(--color-surface-2);
+  border-left: 4px solid var(--color-marigold); border-radius: var(--radius-xs);
+  padding: var(--space-2) var(--space-3); overflow-wrap: anywhere;
+}
 
 .queue-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
 .queue-item {

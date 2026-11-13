@@ -116,3 +116,34 @@
     doesn't expand `%h`; `pkill -f <pattern>` can match the calling shell.
     And never call `gttp.cli.main(["add", ...])` to "just check argparse":
     it writes the real `books.yaml` and fetches a real cover.
+- **2026-11-07 — Link check on the submit page (resolver service).** Paste
+  a link or type a title, Check, review the diff, then Queue it. No Claude,
+  no key: link parsing + deterministic casing + Open Library.
+  - SSRF pinning needs `http.client` with your own `connect()` that dials
+    the validated IP (SNI and cert checks on the hostname) and per-hop
+    re-validation of redirects. `urllib`/`requests` silently follow
+    redirects and honor `HTTP(S)_PROXY`, which defeats both.
+  - Reject IP-literal hosts outright (require a DNS name with an alphabetic
+    TLD): glibc `inet_aton` turns `2130706433`, `0x7f.1` and `127.1` into
+    loopback. Check every resolved address, not the first.
+  - A per-socket timeout doesn't stop a server that drips header bytes; a
+    `threading.Timer` that `shutdown()`s the socket at the deadline does.
+  - A container on only an `internal: true` network can't publish ports,
+    so `submit` keeps `default` for 127.0.0.1:8101 and joins the internal
+    network too. The host can still route to container bridge IPs, so the
+    resolver binds to its internal IP and drops other peers in
+    `ThreadingHTTPServer.verify_request` (verified: host gets an empty
+    reply).
+  - Open Library titles come back sentence case from MARC records; re-case
+    them. Casing must keep existing inner capitals, and the catalog
+    fixed-point test is the regression guard.
+  - The plan's thresholds were inconsistent for one-word titles
+    (influence/influencer scores 0.95 > the 0.92 title-only bar): a
+    one-word title with no author now needs an exact match.
+  - Caps live in memory (reset on restart) rather than a state file in
+    `.cache/queue/`, which the worker reads every minute and warns about
+    for every non-entry file.
+  - Loopback socket buffers can swallow MBs, so "server counted bytes
+    sent" can't prove a client read cap; test the reader with a fake
+    response instead. `ls` is aliased to something that hangs in this
+    agent shell; use `command ls`.

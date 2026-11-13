@@ -49,13 +49,60 @@ services:
       - "127.0.0.1:8101:8101"
     volumes:
       - ./.cache/queue:/app/.cache/queue
+    # default: the 127.0.0.1:8101 publish (a container on only an internal
+    # network can't publish ports). resolver-internal: the link-check lookups.
+    networks:
+      default: {}
+      resolver-internal:
+        aliases: [gttp-submit-internal]
     environment:
       - GTTP_SUBMIT_PORT=8101
       - GTTP_SUBMIT_DAILY_CAP=${GTTP_SUBMIT_DAILY_CAP:-5}
       - GTTP_SUBMIT_MAX_QUEUED=${GTTP_SUBMIT_MAX_QUEUED:-3}
       - TZ=America/New_York
+      - GTTP_RESOLVER_URL=http://gttp-resolver:8102
+      - GTTP_CHECK_DAILY_CAP=${GTTP_CHECK_DAILY_CAP:-30}
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://127.0.0.1:8101/healthz',timeout=3)"]
       interval: 30s
       timeout: 5s
       retries: 3
+
+  # Link lookup + Open Library check for the submit page. The only service
+  # that fetches arbitrary URLs. No published port, no mounts, no secrets:
+  # it is reachable only from `submit` over resolver-internal (it binds to
+  # that network's IP and drops any other peer), and reaches the internet
+  # through resolver-egress. Its SSRF guard blocks private, loopback,
+  # link-local, CGNAT/Tailscale and metadata addresses.
+  resolver:
+    image: ericfaris/gttp:latest
+    restart: unless-stopped
+    user: "1000:1000"
+    entrypoint: ["python", "-m", "gttp.resolver"]
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: 256m
+    pids_limit: 64
+    networks:
+      resolver-internal:
+        aliases: [gttp-resolver]
+      resolver-egress: {}
+    environment:
+      - GTTP_RESOLVER_PORT=8102
+      - GTTP_RESOLVER_BIND=gttp-resolver
+      - GTTP_RESOLVER_ALLOW_FROM=gttp-submit-internal
+      - GTTP_RESOLVER_DAILY_FETCHES=${GTTP_RESOLVER_DAILY_FETCHES:-200}
+      - TZ=America/New_York
+    healthcheck:
+      test: ["CMD", "python", "-m", "gttp.resolver", "healthcheck"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+networks:
+  resolver-internal:
+    internal: true
+  resolver-egress: {}

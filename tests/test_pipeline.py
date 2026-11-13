@@ -1,5 +1,7 @@
 """End-to-end offline test: fixtures -> filter -> heuristic rank/synth -> markdown."""
 
+import json
+
 import pytest
 
 from gttp import cache, ranking, synthesize
@@ -281,6 +283,14 @@ def test_site_serves_healthz(tmp_path):
     is in site/; static/healthz is copied there with the other assets."""
     write_site([], tmp_path, covers_dir=tmp_path / "none")
     assert (tmp_path / "healthz").read_text().strip() == "ok"
+
+
+def test_site_serves_empty_assetlinks(tmp_path):
+    """Android probes /.well-known/assetlinks.json; an empty statement list
+    (no associated app) avoids a pair of logged 404s per probe."""
+    write_site([], tmp_path, covers_dir=tmp_path / "none")
+    data = json.loads((tmp_path / ".well-known" / "assetlinks.json").read_text())
+    assert data == []
 
 
 def _thread(tid, title, score, body="x " * 300):

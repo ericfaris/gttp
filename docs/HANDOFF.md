@@ -27,6 +27,30 @@ Cloudflare tunnel (no Access gate).
 - Manual `gttp build` in the container still works as before (no budget
   guard unless `GTTP_MAX_BUDGET_USD` is set).
 
+**Link check (0.3.0, 2026-11-07):** the submit page has a Link field and a
+**Check** button in front of **Queue it**.
+- `gttp-resolver-1` (compose service `resolver`, same image, `python -m
+  gttp.resolver`, port 8102, **no published port**): the only component that
+  fetches arbitrary URLs (Goodreads/Amazon/any page) or reaches
+  openlibrary.org. No mounts, no secrets, nothing from `.env`, read-only
+  root, cap_drop ALL, uid 1000, 256 MB / 64 pids. It binds only to its IP on
+  `resolver-internal` and `verify_request` drops every peer except `submit`
+  (`gttp-submit-internal`) and itself (healthcheck). Fetches go through
+  `gttp.safefetch` (http/https, default ports, DNS-name hosts only, every
+  resolved IP must be public, the socket dials the validated IP, ≤3
+  redirects re-checked per hop, 1 MB HTML / 256 KB JSON, 8 s / 5 s).
+- `submit` gains `POST /api/check` `{url?, title?, author?}` → `{title,
+  author, source, changes[], warnings[], duplicate, ready}`. It re-validates
+  the resolver's answer as untrusted and falls back to casing only
+  (`gttp.casing`) when the resolver is down/busy/over the cap, so the user
+  never gets a 5xx. A check never writes the queue; `/api/submit` is
+  unchanged and still enforces its own validation and caps. Queue it is
+  enabled in the UI only for a `ready` check whose values are unedited (the
+  server doesn't require a check: advisory, single user behind Access).
+- Order of transforms: link (subtitle/edition dropped) → deterministic
+  casing → Open Library (its title re-cased). Every change is listed with
+  its reason. No Claude call or API key anywhere in this feature.
+
 **Production runs from this checkout, `/home/eric/projects/gttp`,** like
 every other lab app. The compose file bind-mounts `./site`, `./.cache`,
 `./books.yaml` and `./covers`, so the live container reads and writes these
@@ -63,7 +87,15 @@ directly. Rules:
   `systemctl --user list-timers gttp-worker.timer`, and
   `systemctl --user start gttp-worker.service` to run one tick now.
 - Submit service: `docker compose logs submit`, `curl -s
-  127.0.0.1:8101/api/status`. Exit codes of the worker: 0 nothing to do /
+  127.0.0.1:8101/api/status`. **A `POST /api/check` to 8101 makes real
+  outbound calls** (Goodreads/Amazon/Open Library) through the resolver.
+- Resolver: `docker compose logs resolver` (method, path, status and
+  outcome codes like `link:amazon-slug ol:matched` only). It is unreachable
+  from the host by design; probe it from submit:
+  `docker compose exec -T submit python -c "import http.client as h; c=h.HTTPConnection('gttp-resolver',8102,timeout=3); c.request('GET','/healthz'); print(c.getresponse().status)"`
+  (→ 200). Throwaway no-egress test stack: plan §5.2.4 in
+  `.claude/plans/link-resolver-plan.md`.
+- Exit codes of the worker: 0 nothing to do /
   done / another worker running; 1 job failed, tree clean; 2 preflight
   refused (entry stays queued with `waiting: <reason>`); 3 restore failed,
   tree still dirty, **Sentinel deploys blocked** until fixed by hand.
@@ -93,7 +125,17 @@ quality guard then keeps the cached page.
   `GTTP_MONTHLY_BUDGET_USD` (NY calendar month across all of
   `.cache/usage.jsonl`, default 5.00), `GTTP_WORKER_BUILD_TIMEOUT` (s,
   default 600). Compose-level overrides for submit:
-  `GTTP_SUBMIT_DAILY_CAP`, `GTTP_SUBMIT_MAX_QUEUED`.
+  `GTTP_SUBMIT_DAILY_CAP`, `GTTP_SUBMIT_MAX_QUEUED`, `GTTP_CHECK_DAILY_CAP`
+  (checks per NY day that reach the resolver, default 30; past it a check
+  is casing only), and for the resolver `GTTP_RESOLVER_DAILY_FETCHES`
+  (outbound HTTP requests per NY day incl. each redirect hop and OL query,
+  default 200). Both counters are **in memory and reset when the container
+  restarts** (a state file in `.cache/queue/` was rejected: the worker
+  warns about every non-entry file there). Fixed limits: 6 checks per
+  rolling minute and 1 in flight (submit, 429), 2 concurrent resolves
+  (resolver, 429 → casing-only fallback).
+- Secrets: the resolver gets **nothing** from `.env` (no `env_file`, no
+  key); submit is unchanged (no key, only the `.cache/queue` mount).
 - `.cache/queue/` (gitignored) must exist and be owned by eric **before**
   the first `docker compose up`, or Docker creates it root-owned and the
   submit service exits with "queue dir … is not writable".
@@ -122,6 +164,15 @@ quality guard then keeps the cached page.
   Sentinel waits at most 15 min for the lock; keep a job's dirty window
   under ~12 min. Sentinel's health check only looks at `gttp-app-1`;
   `gttp-submit-1` isn't in its `repo-map.json` (optional to add).
+- Networks (link check): `gttp_resolver-internal` (`internal: true`,
+  172.25.0.0/16: submit + resolver) and `gttp_resolver-egress` (plain
+  bridge, 172.27.0.0/16: resolver only). `app` stays on `gttp_default`
+  only. Both subnets are RFC 1918, so the SSRF guard covers them. Verified
+  2026-11-07 (local, before deploy): host → resolver internal IP gets an
+  empty reply (dropped by `verify_request`), egress IP refused, `app` can't
+  connect, submit → resolver 200. No Cloudflare change for this feature.
+  Sentinel's health gate only checks `gttp-app-1`, so a broken resolver
+  doesn't fail a deploy; check `docker compose ps`.
 - A systemd-context `git push --dry-run` works (ssh auth OK from the user
   manager, checked 2026-11-07).
 
@@ -135,27 +186,30 @@ in DESIGN.md), and every new component goes into the showcase.
 
 ## Open items (priority order)
 
-1. **Roll out the submit pipeline** (in order): resolve the dirty tree
-   (The Like Switch entry in `books.yaml`, `covers/the-like-switch.jpg`,
-   the untracked plan files); push `main` so Sentinel deploys 0.2.0 and
-   starts `submit`; link + enable the timer; run the Cloudflare runbook;
-   then the real negative run (submit The Like Switch; expect `failed:
-   insufficient evidence`, clean tree) and, with OK to spend, one positive
-   run. The image built locally on 2026-11-07 baked in the dirty
-   `books.yaml`, so the running `gttp-submit-1` currently treats The Like
-   Switch as already in the catalog (409) until the next deploy rebuilds
-   the image from a clean tree.
-2. **The Like Switch has no evidence** (Arctic Shift: 16 posts, 0 passed
+1. **Deploy the link check (0.3.0)**: the commits are local, not pushed.
+   Push `main` (Sentinel rebuilds and starts `resolver`), then confirm
+   `docker compose ps` (app/submit/resolver), `gttp --version` 0.3.0 in
+   `app`, `worker preflight` all ✓, and one live check each with a real
+   Goodreads link, a typed title, an Amazon link and the metadata URL (plan
+   §5.4). Until the deploy, the worker's version gate refuses (host 0.3.0,
+   app 0.2.0); queued entries would only wait. Local `submit`/`resolver`
+   were already recreated from the new image on 2026-11-07.
+2. Optional: a one-off casing audit of the existing catalog (offered
+   separately), and adding `gttp-resolver-1` / `gttp-submit-1` to
+   Sentinel's `repo-map.json`.
+3. A positive worker run (a real book that publishes) has not been done
+   yet.
+4. **The Like Switch has no evidence** (Arctic Shift: 16 posts, 0 passed
    filtering). Publishing it is blocked pending a user decision; it is the
    pipeline's real negative fixture.
-3. **3 pages still lack real Reddit evidence:** Why Has Nobody Told Me This
+5. **3 pages still lack real Reddit evidence:** Why Has Nobody Told Me This
    Before? and Boundaries (nothing in the Arctic Shift archive) and How to
    Begin (the archive only had generic "how to begin" posts). Their pages
    come from the July run and stay as they are (user's decision,
    2026-10-25); re-check them only if a new data source turns up. Thin but on-topic (1-3 threads): The Mountain Is You,
    The Magic of Thinking Big, Emotional Intelligence, The 7 Habits, Thinking
    Fast and Slow, Tiny Experiments.
-4. **Reddit data source:** Reddit blocks the lab IP (403, "blocked by network
+6. **Reddit data source:** Reddit blocks the lab IP (403, "blocked by network
    security"), and official API access isn't available to us (tried
    2026-10-25), so don't pursue it. Live search uses the Arctic Shift
    archive (`src/gttp/arctic.py`, the default; `GTTP_REDDIT_SOURCE=browser`
@@ -163,9 +217,9 @@ in DESIGN.md), and every new component goes into the showcase.
    r/getdisciplined, r/productivity usually return 422 within a second) and
    results vary run to run. A `--refresh` merges into the cache, so
    re-running adds threads.
-5. Idea from LESSONS: a weekly push of one try-today experiment (Google Task
+7. Idea from LESSONS: a weekly push of one try-today experiment (Google Task
    via goose-cli) with a keep/drop check-in.
-6. `the-courage-to-be-disliked` has no stored cover. Run `gttp covers` in
+8. `the-courage-to-be-disliked` has no stored cover. Run `gttp covers` in
    the container, or accept the on-brand placeholder.
 
 ## Gotchas
@@ -203,3 +257,16 @@ in DESIGN.md), and every new component goes into the showcase.
 - **`gttp build` exits 0 with a stub page** when Reddit has nothing usable,
   and writes the stub to the live `site/` immediately. Gate on the page's
   content (`worker.validate_page`), never the exit code.
+- **Link check heuristics.** Amazon usually answers bots with a captcha;
+  the resolver then guesses the title from the `dp` URL slug (warning
+  shown, no author). Open Library titles are often sentence case ("The
+  charisma myth"), so its values are re-cased, never taken raw. Casing
+  keeps any word with an inner capital (McKeown, Le Cunff, NASA), and every
+  catalog entry is a fixed point (`tests/test_casing.py`), but stylized
+  names (`bell hooks`, `e.e. cummings`) and a typed-lowercase `Van` will be
+  "fixed" wrongly when OL doesn't match. The preview shows every change and
+  the fields stay editable. A one-word title with no author must match OL
+  exactly (near-miss words like influence/influencer score 0.95).
+- The container's Python (3.15) sets `VERIFY_X509_STRICT` by default, so a
+  site with a sloppy certificate can fail in the resolver but not in host
+  tests. Report it; never disable verification.
