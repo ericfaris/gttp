@@ -676,3 +676,89 @@ def test_validate_page_accepts_a_good_page(tmp_path):
     assert validate_page(_write(tmp_path, _page(T, A)), T, A) == (True, "")
     old = _page(T, A, sources=[{"title": "t", "url": "https://old.reddit.com/r/x/1"}])
     assert validate_page(_write(tmp_path, old), T, A) == (True, "")
+
+
+# --- self-healing preflight -------------------------------------------------
+
+
+def test_untracked_claude_notes_do_not_block(cfg):
+    """The real-world stall: a human's .claude/plans notes made the tree 'dirty'."""
+    enqueue(cfg)
+    notes = cfg.repo / ".claude" / "plans"
+    notes.mkdir(parents=True)
+    (notes / "plan.md").write_text("notes")
+    assert worker.preflight(cfg, FakeBuilder(cfg)) is None
+
+
+def test_claude_dir_prefix_is_narrow(cfg):
+    """Only untracked .claude/ is ignored; other untracked files and tracked edits still block."""
+    (cfg.repo / ".claudex").write_text("x")
+    assert ".claudex" in worker.porcelain_paths(cfg.repo)
+    (cfg.repo / ".claudex").unlink()
+    (cfg.repo / "src" / "dummy.py").write_text("x = 9\n")
+    assert "working tree is not clean" in worker.preflight(cfg, FakeBuilder(cfg))
+
+
+def _advance_origin(cfg, tmp_path):
+    other = tmp_path / "other"
+    _git(tmp_path, "clone", "-q", str(tmp_path / "origin.git"), str(other))
+    for k, v in [("user.name", "T"), ("user.email", "t@example.com"), ("commit.gpgsign", "false")]:
+        _git(other, "config", k, v)
+    (other / "src" / "dummy.py").write_text("x = 42\n")
+    _git(other, "commit", "-q", "-am", "upstream change")
+    _git(other, "push", "-q")
+
+
+def test_behind_origin_fast_forwards_and_proceeds(cfg, tmp_path):
+    _advance_origin(cfg, tmp_path)
+    assert worker.preflight(cfg, FakeBuilder(cfg)) is None
+    assert worker.head(cfg.repo) == worker.head(cfg.repo, "origin/main")
+    assert (cfg.repo / "src" / "dummy.py").read_text() == "x = 42\n"
+
+
+def test_diverged_from_origin_is_not_healed(cfg, tmp_path):
+    _advance_origin(cfg, tmp_path)
+    (cfg.repo / "src" / "other.py").write_text("y = 1\n")
+    _git(cfg.repo, "add", "-A")
+    _git(cfg.repo, "commit", "-q", "-m", "local only")
+    before = worker.head(cfg.repo)
+    assert "is not origin/main" in worker.preflight(cfg, FakeBuilder(cfg))
+    assert worker.head(cfg.repo) == before  # history untouched
+
+
+def test_stale_container_triggers_one_deploy_then_cools_down(cfg, monkeypatch):
+    cfg.deploy_url = "http://sentinel.test/api/deploy"
+    b = FakeBuilder(cfg)
+    b.version_override = "gttp 0.0.0"
+    calls = []
+
+    class Resp:
+        def __enter__(self): return self
+        def __exit__(self, *a): return False
+        def read(self): return json.dumps({"deployStatus": "done"}).encode()
+
+    def fake_urlopen(req, timeout=0):
+        calls.append(json.loads(req.data))
+        b.version_override = None  # the deploy updated the container
+        return Resp()
+
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+    assert worker.preflight(cfg, b) is None
+    assert calls == [{"repo": cfg.repo.name, "containerName": f"{cfg.repo.name}-app-1"}]
+
+    # a second stale container within the cooldown must NOT redeploy
+    b.version_override = "gttp 0.0.0"
+    assert "deploy first" in worker.preflight(cfg, b)
+    assert len(calls) == 1
+
+
+def test_deploy_heal_off_without_url_and_survives_failures(cfg, monkeypatch):
+    b = FakeBuilder(cfg)
+    b.version_override = "gttp 0.0.0"
+    assert "deploy first" in worker.preflight(cfg, b)  # no deploy_url: waits as before
+
+    cfg.deploy_url = "http://sentinel.test/api/deploy"
+    def boom(*a, **k):
+        raise OSError("connection refused")
+    monkeypatch.setattr("urllib.request.urlopen", boom)
+    assert "deploy first" in worker.preflight(cfg, b)  # failure -> still just waits

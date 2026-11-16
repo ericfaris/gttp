@@ -58,6 +58,10 @@ EXIT_OK, EXIT_FAILED, EXIT_WAITING, EXIT_DIRTY = 0, 1, 2, 3
 MAX_PAGE_BYTES = 200 * 1024
 REDDIT_URL_RE = re.compile(r"^https://(www\.|old\.)?reddit\.com/")
 DEFAULT_SENTINEL_LOCK_DIR = "/tmp/sentinel-deploy-locks"
+# Untracked files under here don't count as a dirty tree (a human's or an
+# agent's local notes); a job only ever commits the files it produced itself.
+IGNORED_UNTRACKED_PREFIX = ".claude/"
+DEPLOY_HEAL_COOLDOWN_S = 15 * 60
 INTERRUPTED = "interrupted: the worker stopped mid-job; check git status"
 
 
@@ -79,6 +83,9 @@ class WorkerConfig:
     branch: str = "main"
     sentinel_wait_s: float = 600.0
     sentinel_poll_s: float = 2.0
+    # Sentinel's /api/deploy; when set, a stale app container triggers a deploy
+    # (at most once per DEPLOY_HEAL_COOLDOWN_S) instead of just waiting.
+    deploy_url: str | None = None
 
     @classmethod
     def from_env(cls) -> "WorkerConfig":
@@ -95,6 +102,7 @@ class WorkerConfig:
             job_cap_usd=_positive_float(env, "GTTP_MAX_BUDGET_USD", 0.50),
             monthly_cap_usd=_positive_float(env, "GTTP_MONTHLY_BUDGET_USD", 5.00),
             build_timeout_s=int(_positive_float(env, "GTTP_WORKER_BUILD_TIMEOUT", 600)),
+            deploy_url=env.get("GTTP_SENTINEL_DEPLOY_URL") or None,
         )
 
 
@@ -145,6 +153,8 @@ def porcelain_paths(repo: Path) -> dict[str, str]:
         if len(item) < 4:
             continue
         status, path = item[:2], item[3:]
+        if status == "??" and path.startswith(IGNORED_UNTRACKED_PREFIX):
+            continue  # agent notes/plans: never ship, never touched by a job
         paths[path] = status
         if status[0] in "RC" and i < len(items):
             paths[items[i]] = status
@@ -472,6 +482,34 @@ def budget_refusal(usage_log: Path, job_id: str) -> dict | None:
 # --------------------------------------------------------------------------
 
 
+def _try_deploy(cfg: WorkerConfig, now: float | None = None) -> bool:
+    """Ask Sentinel to deploy this repo, at most once per cooldown (a deploy
+    that keeps failing must not be re-run every minute). True if it reports done."""
+    if not cfg.deploy_url:
+        return False
+    import urllib.request
+
+    stamp = cfg.repo / ".cache" / "deploy-heal.ts"
+    now = time.time() if now is None else now
+    try:
+        if now - float(stamp.read_text()) < DEPLOY_HEAL_COOLDOWN_S:
+            return False
+    except (OSError, ValueError):
+        pass
+    stamp.parent.mkdir(parents=True, exist_ok=True)
+    stamp.write_text(str(now))
+    body = json.dumps({"repo": cfg.repo.name, "containerName": f"{cfg.repo.name}-app-1"}).encode()
+    req = urllib.request.Request(cfg.deploy_url, data=body, headers={"Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=900) as resp:  # noqa: S310 (operator-configured URL)
+            ok = json.load(resp).get("deployStatus") == "done"
+    except Exception as exc:  # Sentinel down, build failed (HTTP 5xx), timeout
+        log(f"deploy heal failed: {type(exc).__name__}: {exc}")
+        return False
+    log(f"deploy heal: {'done' if ok else 'not done'}")
+    return ok
+
+
 def _preflight_checks(cfg: WorkerConfig, builder: Builder):
     """(name, check) pairs in order; each check returns an error or None."""
     repo = cfg.repo
@@ -490,15 +528,28 @@ def _preflight_checks(cfg: WorkerConfig, builder: Builder):
     def in_sync():
         git(repo, "fetch", "-q", cfg.remote, cfg.branch, timeout=120)
         local, remote = head(repo), head(repo, f"{cfg.remote}/{cfg.branch}")
-        return None if local == remote else (
-            f"HEAD {local[:7]} is not {cfg.remote}/{cfg.branch} {remote[:7]}"
-        )
+        if local == remote:
+            return None
+        # Heal the benign case: tree is clean (checked just before) and local is
+        # strictly behind origin, so a fast-forward loses nothing.
+        behind = git(repo, "merge-base", "--is-ancestor", local, remote, check=False).returncode == 0
+        if behind and not porcelain_paths(repo):
+            r = git(repo, "merge", "--ff-only", "-q", f"{cfg.remote}/{cfg.branch}", check=False)
+            if r.returncode == 0 and head(repo) == remote:
+                log(f"healed: fast-forwarded {local[:7]} -> {remote[:7]}")
+                return None
+        return f"HEAD {local[:7]} is not {cfg.remote}/{cfg.branch} {remote[:7]}"
 
     def version():
         want, got = f"gttp {__version__}", builder.version()
-        return None if got == want else (
-            f"app container runs {got!r}, worker is {want!r}; deploy first"
-        )
+        if got == want:
+            return None
+        if _try_deploy(cfg):
+            got = builder.version()
+            if got == want:
+                log("healed: Sentinel deploy brought the app container up to date")
+                return None
+        return f"app container runs {got!r}, worker is {want!r}; deploy first"
 
     def same_catalog():
         if builder.catalog_sha256() == sha256_file(repo / "books.yaml"):

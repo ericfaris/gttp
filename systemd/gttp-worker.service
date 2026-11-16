@@ -8,6 +8,11 @@ WorkingDirectory=%h/projects/gttp
 Environment=TZ=America/New_York
 Environment=PYTHONUNBUFFERED=1
 EnvironmentFile=-%h/.config/gttp/worker.env
+# A stale app container triggers one Sentinel deploy (15 min cooldown) instead of waiting forever.
+Environment=GTTP_SENTINEL_DEPLOY_URL=http://127.0.0.1:7891/api/deploy
+# Exit 2 = "preflight refused, book left queued (waiting)": normal, not a failed unit.
+# Sentinel's self-heal escalates a book that stays queued too long.
+SuccessExitStatus=2
 ExecStart=%h/projects/gttp/.venv/bin/python -m gttp.worker run
 TimeoutStartSec=45min
 Nice=10
