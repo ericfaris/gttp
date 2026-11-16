@@ -3,11 +3,11 @@ FROM python:3.15-slim
 WORKDIR /app
 
 # Chromium is driven headed under a virtual display (Reddit blocks headless /
-# raw-HTTP clients), so install Xvfb. Browsers live at a shared, world-readable
+# raw-HTTP clients), so install Xvfb. libatomic1: Playwright's bundled node needs it and the slim base no longer ships it. Browsers live at a shared, world-readable
 # path so the container can run as a non-root user (uid 1000) and still launch
 # Chromium.
 ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
-RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends xvfb \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends xvfb libatomic1 \
     && rm -rf /var/lib/apt/lists/* \
     # Xvfb writes its socket here; make it world-writable for the non-root user.
     && mkdir -p /tmp/.X11-unix && chmod 1777 /tmp/.X11-unix
